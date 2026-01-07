@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RN Counselling</title>
+
+  <!-- ===== EDITABLE SETTINGS ===== -->
+  <!-- Change values below to update website -->
+  
+  <style>
+    :root{
+      --primary:#0b3c5d;   /* Deep blue */
+      --secondary:#1c7293; /* Heading blue */
+      --accent:#22c55e;    /* Green accent */
+      --bg:#eef4f8;        /* Light background */
+    }
+
+    body{
+      font-family:'Segoe UI',Tahoma,Arial,sans-serif;
+      margin:0;
+      background:linear-gradient(135deg,#eef4f8,#dbeafe);
+    }    
+    header{
+      background:linear-gradient(135deg,#0b3c5d,#1c7293);
+      color:#fff;
+      padding:50px 20px;
+      text-align:center;
+    }
+    header h1{font-size:42px;margin-bottom:10px;}
+    header p{font-size:18px;opacity:0.95;}
+    section{
+      background:#fff;
+      margin:30px auto;
+      padding:30px;
+      border-radius:14px;
+      max-width:1200px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+    h2{color:var(--primary);}    
+    footer{
+      background:linear-gradient(135deg,#0b3c5d,#1c7293);
+      color:#fff;
+      text-align:center;
+      padding:25px;
+      margin-top:40px;
+    }
+
+    .packages{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:20px;
+    }
+    .card{
+      border:none;
+      border-radius:16px;
+      padding:20px;
+      background:linear-gradient(180deg,#ffffff,#f8fafc);
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 15px 35px rgba(0,0,0,0.15);
+    }
+    .card h3{margin-top:0;color:var(--secondary);}    
+    ul{padding-left:18px;}
+    li{margin-bottom:6px;}
+
+    input,select{width:100%;padding:8px;margin:8px 0 14px 0;}
+    button{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#fff;
+      border:none;
+      padding:14px;
+      width:100%;
+      border-radius:30px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+    }
+    button:hover{
+      transform:scale(1.02);
+      box-shadow:0 6px 18px rgba(34,197,94,0.5);
+    }
+
+    .success-message{
+      display:none;
+      margin-top:15px;
+      padding:12px;
+      background:#dcfce7;
+      color:#166534;
+      border:1px solid #86efac;
+      border-radius:6px;
+      font-weight:bold;
+    }
+    a{color:#2563eb;text-decoration:none;margin-right:10px;}
+
+    /* Social icon buttons */
+    .social-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+    .social-btn{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:6px;color:#fff;font-weight:bold;}
+    .social-btn img{width:20px;height:20px;}
+    .instagram{background:#E1306C;}
+    .telegram{background:#229ED9;}
+    .whatsapp{background:#25D366;}
+
+    /* Form half layout */
+    .form-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:flex-start;
+    }
+    .form-box{
+      background:#ffffff;
+    }
+    .blank-box{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+    .info-box{
+      background:#ffffff;
+      border-radius:12px;
+      padding:20px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+    .info-box h3{
+      margin-top:0;
+      color:var(--secondary);
+    }
+    .notification-list li{
+      margin-bottom:8px;
+      font-size:14px;
+    }
+    .review-placeholder{
+      font-style:italic;
+      color:#64748b;
+      font-size:14px;
+    }
+
+    @media(max-width:768px){
+      .form-layout{grid-template-columns:1fr;}
+      .blank-box{display:none;}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>RN Counselling</h1>
+  <p>Medical Admission Counselling & Guidance</p>
+</header>
+
+<section>
+  <h2>About Us</h2>
+  <p>
+    RN Counselling provides expert guidance to students and parents for admissions into
+    medical and allied health science courses such as MBBS, BDS, AYUSH, Nursing, and Paramedical programs.
+    We offer personalized counselling, college and course selection support, and assistance through the
+    admission process as per NEET and regulatory norms, ensuring transparency and informed decision-making.
+  </p>
+</section>
+
+<section>
+  <h2>Contact Details</h2>
+  <p>📞 Phone: <strong>+91-9763077764</strong></p>
+  <p>📧 Email: <strong>rnenterprises77764@mail.com</strong></p>
+  <p>📍 Address: <strong>2nd Floor, Tower Building, Arif Colony, Aurangabad – 431001</strong></p>
+  <div class="social-buttons">
+    <a class="social-btn instagram" href="https://www.instagram.com/ugmedicalcounselling?igsh=MW9tZjQwcnRjNWNwZg==" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Instagram
+    </a>
+    <a class="social-btn telegram" href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram"> Telegram
+    </a>
+    <a class="social-btn whatsapp" href="https://wa.me/919763077764" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"> WhatsApp
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Our Counselling Packages</h2>
+  <div class="packages">
+
+    <!-- ===== BASIC PACKAGES (TOP ROW) ===== -->
+    <div class="card">
+      <h3>MBBS / BDS – Basic</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 18,500</p>
+      <p><strong>Paid Counselling Guidance Fee For Basic Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for two states</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details for relevant states explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC and home state counselling registration</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>State-wise list of top Government colleges will be provided</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences guided by Nadeem Patel Sir & Dr. Ramsha Naaz</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>BAMS / BHMS / BUMS – Basic</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 13,999</p>
+      <p><strong>Paid Counselling Guidance Fee For Basic Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for two states</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details for relevant states explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC and home state counselling registration</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>State-wise list of top Government colleges will be provided</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences guided by Nadeem Patel Sir & Dr. Ramsha Naaz</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Nursing / Paramedical – Basic</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 7,500</p>
+      <p><strong>Paid Counselling Guidance Fee For Basic Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for two states</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details for relevant states explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC and home state counselling registration</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>State-wise list of top Government colleges will be provided</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences guided by Nadeem Patel Sir & Dr. Ramsha Naaz</li>
+      </ul>
+    </div>
+
+    <!-- ===== PREMIUM PACKAGES (BOTTOM ROW) ===== -->
+    <div class="card">
+      <h3>MBBS / BDS – Premium</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 24,999</p>
+      <p><strong>Counselling Guidance Fee For Premium Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for more than two states as per requirement</li>
+        <li>Online NEET mock test on our mobile app</li>
+        <li>Previous year cutoff analysis for Govt. and Pvt. colleges</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC, Home State, Deemed & Open Private counselling</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>Immediate updates on court cases related to fees, seats, domicile, or eligibility</li>
+        <li>State-wise list of top Government colleges</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences under guidance of Ashok Sir</li>
+        <li>Guidance for physical counselling rounds during Mop-up & Stray Vacancy</li>
+        <li>Refund policy of security deposit explained</li>
+        <li>Documentation support at reporting college</li>
+        <li>Video meeting with expert counsellor after every counselling round</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>BAMS / BHMS / BUMS – Premium</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 19,999</p>
+      <p><strong>Counselling Guidance Fee For Premium Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for more than two states as per requirement</li>
+        <li>Online NEET mock test on our mobile app</li>
+        <li>Previous year cutoff analysis for Govt. and Pvt. colleges</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC, Home State, Deemed & Open Private counselling</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>Immediate updates on court cases related to fees, seats, domicile, or eligibility</li>
+        <li>State-wise list of top Government colleges</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences under guidance of Ashok Sir</li>
+        <li>Guidance for physical counselling rounds during Mop-up & Stray Vacancy</li>
+        <li>Refund policy of security deposit explained</li>
+        <li>Documentation support at reporting college</li>
+        <li>Video meeting with expert counsellor after every counselling round</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Nursing / Paramedical – Premium</h3>
+      <p style="font-size:20px;color:#16a34a;font-weight:bold;">₹ 12,999</p>
+      <p><strong>Counselling Guidance Fee For Premium Package</strong></p>
+      <ul>
+        <li>24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+        <li>Counselling for more than two states as per requirement</li>
+        <li>Online NEET mock test on our mobile app</li>
+        <li>Previous year cutoff analysis for Govt. and Pvt. colleges</li>
+        <li>Complete guidance for college selection as per NEET score and budget</li>
+        <li>Guidance for all required certificates such as Domicile, Category, Minority, GAP, EWS, Physically Challenged, NRI, etc.</li>
+        <li>Bond and bank guarantee details explained in detail</li>
+        <li>Detailed college analysis including seat matrix, clinical facts, and fee structure</li>
+        <li>Complete support for MCC, Home State, Deemed & Open Private counselling</li>
+        <li>Safety and security of deposit will be our responsibility</li>
+        <li>Immediate updates on court cases related to fees, seats, domicile, or eligibility</li>
+        <li>State-wise list of top Government colleges</li>
+        <li>Round-wise counselling strategy</li>
+        <li>Choice filling support in every round by experts</li>
+        <li>Merit list and seat matrix discussion with parents and students in all rounds</li>
+        <li>Choice filling preferences under guidance of Ashok Sir</li>
+        <li>Guidance for physical counselling rounds during Mop-up & Stray Vacancy</li>
+        <li>Refund policy of security deposit explained</li>
+        <li>Documentation support at reporting college</li>
+        <li>Video meeting with expert counsellor after every counselling round</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Enquiry Form</h2>
+  <div class="form-layout">
+
+    <!-- LEFT / RIGHT SIDE FORM -->
+    <div class="form-box">
+      <form onsubmit="showSuccessMessage(event)">
+
+        
+
+        <label><strong>2.</strong> Student Name (As per NEET Records)</label>
+        <input type="text" placeholder="Enter full name as per NEET" required>
+
+        <label><strong>3.</strong> Category</label>
+        <select required>
+          <option value="">-- Select Category --</option>
+          <option>General (Open)</option>
+          <option>OBC</option>
+          <option>SC</option>
+          <option>ST</option>
+          <option>Other</option>
+        </select>
+
+        <label><strong>4.</strong> State of Domicile</label>
+        <select required>
+          <option value="">-- Select State / UT --</option>
+          <option>Andhra Pradesh</option>
+          <option>Arunachal Pradesh</option>
+          <option>Assam</option>
+          <option>Bihar</option>
+          <option>Chhattisgarh</option>
+          <option>Delhi</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Haryana</option>
+          <option>Himachal Pradesh</option>
+          <option>Jharkhand</option>
+          <option>Karnataka</option>
+          <option>Kerala</option>
+          <option>Madhya Pradesh</option>
+          <option>Maharashtra</option>
+          <option>Odisha</option>
+          <option>Punjab</option>
+          <option>Rajasthan</option>
+          <option>Tamil Nadu</option>
+          <option>Telangana</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttarakhand</option>
+          <option>West Bengal</option>
+          <option>Other State / UT</option>
+        </select>
+
+        <label><strong>5.</strong> NEET Attempt</label>
+        <select required>
+          <option value="">-- Select Attempt --</option>
+          <option>1st Attempt</option>
+          <option>2nd Attempt</option>
+          <option>3rd Attempt</option>
+          <option>3rd or More</option>
+          <option>Not Appeared</option>
+        </select>
+
+        <label><strong>6.</strong> Student Contact Number</label>
+        <input type="tel" placeholder="10-digit mobile number" required>
+
+        <label><strong>7.</strong> Parent Contact Number</label>
+        <input type="tel" placeholder="10-digit mobile number" required>
+
+        <label><strong>8.</strong> Email ID</label>
+        <input type="email" placeholder="example@email.com" required>
+
+        <label><strong>9.</strong> Preferred Quota (Select one or more)</label>
+        <div>
+          <label><input type="checkbox"> Home State</label><br>
+          <label><input type="checkbox"> Away State</label><br>
+          <label><input type="checkbox"> All India Quota</label><br>
+          <label><input type="checkbox"> Management</label><br>
+          <label><input type="checkbox"> Private</label>
+        </div>
+
+        <label><strong>10.</strong> Select Counselling Package</label>
+        <select required>
+          <option value="">-- Select Package --</option>
+          <option>MBBS / BDS – Basic</option>
+          <option>MBBS / BDS – Premium</option>
+          <option>BAMS / BHMS / BUMS – Basic</option>
+          <option>BAMS / BHMS / BUMS – Premium</option>
+          <option>Nursing / Paramedical – Basic</option>
+          <option>Nursing / Paramedical – Premium</option>
+        </select>
+
+        <label><strong>11.</strong> Reference Code</label>
+        <input type="text" placeholder="Enter reference / referral code (if any)">
+
+        <label>
+          <input type="checkbox" required>
+          <strong>12.</strong> I hereby declare that the information provided above is true and correct as per my NEET records.
+          I hereby declare that the information provided above is true and correct as per my NEET records.
+        </label>
+
+        <button type="submit">Submit Enquiry</button>
+        <div class="success-message" id="successMessage">
+          ✔️ Your details have been submitted successfully. Our representative will call you shortly for payment process.
+        </div>
+      </form>
+    </div>
+
+    <!-- RIGHT SIDE CONTENT AREA -->
+    <div class="blank-box">
+
+      <!-- IMPORTANT NOTIFICATIONS -->
+      <div class="info-box">
+        <h3>📢 Important Notifications</h3>
+        <ul class="notification-list">
+          <li>• Notification 1 – To be updated</li>
+          <li>• Notification 2 – To be updated</li>
+          <li>• Notification 3 – To be updated</li>
+          <li>• Notification 4 – To be updated</li>
+          <li>• Notification 5 – To be updated</li>
+        </ul>
+      </div>
+
+      <!-- STUDENT REVIEWS -->
+      <div class="info-box">
+        <h3>⭐ Student Reviews</h3>
+        <p class="review-placeholder">Student reviews and testimonials will be added here soon.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 RN Counselling. All Rights Reserved.</p>
+</footer>
+
+<script>
+  function showSuccessMessage(event){
+    event.preventDefault(); // stop page refresh
+    document.getElementById('successMessage').style.display = 'block';
+    event.target.reset();
+  }
+</script>
+
+</body>
+</html>
