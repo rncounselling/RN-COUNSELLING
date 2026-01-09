@@ -336,120 +336,77 @@
     </div>
 
   </div>
-</section>
-
 <section>
   <h2>Enquiry Form</h2>
-  <div class="form-layout">
+  <form id="enquiryForm">
 
-    <!-- LEFT / RIGHT SIDE FORM -->
-    <div class="form-box">
-      <form id="enquiryForm">
+  <label>Student Name (As per NEET)</label>
+  <input type="text" name="student_name" required>
 
-        
+  <label>Category</label>
+  <select name="category" required>
+    <option value="">Select</option>
+    <option value="General">General</option>
+    <option value="OBC">OBC</option>
+    <option value="SC">SC</option>
+    <option value="ST">ST</option>
+  </select>
 
-        <label><strong>2.</strong> Student Name (As per NEET Records)</label>
-        <input type="text" name="student_name" placeholder="Enter full name as per NEET" required>
+  <label>State of Domicile</label>
+  <select name="domicile_state" required>
+    <option value="">Select</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Other">Other</option>
+  </select>
 
-        <label><strong>3.</strong> Category</label>
-        <select name="category" required>
-          <option value="">-- Select Category --</option>
-          <option value="General (Open)">General (Open)</option>
-          <option value="OBC">OBC</option>
-          <<option value="SC">SC</option>
-          <option value="ST">ST</option>
-          <option value="Other">Other</option>
-        </select>
+  <label>NEET Attempt</label>
+  <select name="neet_attempt" required>
+    <option value="">Select</option>
+    <option value="1st">1st Attempt</option>
+    <option value="2nd">2nd Attempt</option>
+    <option value="3rd">3rd Attempt</option>
+    <option value="More">More than 3</option>
+  </select>
 
-        <label><strong>4.</strong> State of Domicile</label>
-        <<select name="domicile_state" required>
-          <option value="">-- Select State / UT --</option>
-          <option value="Andhra Pradesh">Andhra Pradesh</option>
-          <option Value="Arunachal Pradesh">Arunachal Pradesh</option>
-          <option value="Assam">Assam</option>
-          <option value="Bihar">Bihar</option>
-          <option value="Chhattisgarh">Chhattisgarh</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Bihar">Goa</option>
-          <option value="Gujrat">Gujarat</option>
-          <option value="Haryana">Haryana</option>
-          <option value="Himachal Pradesh">Himachal Pradesh</option>
-          <option> value="Jharkhand">Jharkhand</option>
-          <option> value="Karnataka">Karnataka</option>
-          <option value="Kerala">Kerala</option>
-          <option value="Madhya Pradesh">Madhya Pradesh</option>
-          <option maharastra>Maharashtra</option>
-          <option value="Other State">Other State / UT</option>
-        </select>
+  <label>Student Mobile</label>
+  <input type="tel" name="student_mobile" required>
 
-        <label><strong>5.</strong> NEET Attempt</label>
-        <select name="neet_attempt" required>
-          <option value="">-- Select Attempt --</option>
-          <option value="1st Attempt">1st Attempt</option>
-          <option value="2nd Attempt">2nd Attempt</option>
-          <option value="3rd Attempt">3rd Attempt</option>
-          <option value="3rd or More">3rd or More</option>
-          <option value="Not Appeared">Not Appeared</option>
-        </select>
+  <label>Parent Mobile</label>
+  <input type="tel" name="parent_mobile" required>
 
-        <label><strong>6.</strong> Student Contact Number</label>
-        <input type="tel" name="student_mobile" placeholder="10-digit mobile number" required>
+  <label>Email</label>
+  <input type="email" name="email" required>
 
-        <<label><strong>7.</strong> Parent Contact Number</label>
-        <input type="tel" name="parent_mobile" placeholder="10-digit mobile number" required>
+  <label>Preferred Quota</label>
+  <label><input type="checkbox" name="preferred_quota[]" value="Home State"> Home State</label><br>
+  <label><input type="checkbox" name="preferred_quota[]" value="All India"> All India</label><br>
+  <label><input type="checkbox" name="preferred_quota[]" value="Management"> Management</label>
 
-        <<label><strong>8.</strong> Email ID</label>
-        input type="email" name="email" placeholder="example@email.com" required>
+  <label>Counselling Package</label>
+  <select name="package" required>
+    <option value="">Select</option>
+    <option value="MBBS Basic">MBBS / BDS – Basic</option>
+    <option value="MBBS Premium">MBBS / BDS – Premium</option>
+    <option value="BAMS Basic">BAMS / BHMS – Basic</option>
+    <option value="Nursing Basic">Nursing / Paramedical – Basic</option>
+  </select>
 
-        <label><strong>9.</strong> Preferred Quota (Select one or more)</label>
-<div>
-  <label>
-    <input type="checkbox" name="preferred_quota" value="Home State"> Home State
-  </label><br>
+  <label>Reference Code</label>
+  <input type="text" name="reference_code">
 
   <label>
-    <input type="checkbox" name="preferred_quota" value="Away State"> Away State
-  </label><br>
-
-  <label>
-    <input type="checkbox" name="preferred_quota" value="All India Quota"> All India Quota
-  </label><br>
-
-  <label>
-    <input type="checkbox" name="preferred_quota" value="Management"> Management
-  </label><br>
-
-  <label>
-    <input type="checkbox" name="preferred_quota" value="Private"> Private
+    <input type="checkbox" name="declaration" required>
+    I declare the above information is correct.
   </label>
-</div>
 
+  <button type="submit">Submit Enquiry</button>
 
-        <label><strong>10.</strong> Select Counselling Package</label>
-        <select name="counselling_package" required>
-          <option value="">-- Select Package --</option>
-          <option value="MBBS / BDS – Basic">MBBS / BDS – Basic</option>
-          <option value="MBBS / BDS – Premium">MBBS / BDS – Premium</option>
-          <option value="BAMS / BHMS / BUMS – Basic">BAMS / BHMS / BUMS – Basic</option>
-          <option value="BAMS / BHMS / BUMS – Premium">BAMS / BHMS / BUMS – Premium</option>
-          <option value="Nursing / Paramedical – Basic">Nursing / Paramedical – Basic</option>
-          <option value="Nursing / Paramedical – Premium">Nursing / Paramedical – Premium</option>
-        </select>
-
-        <label><strong>11.</strong> Reference Code</label>
-        <<input type="text" name="reference_code" placeholder="Enter reference / referral code (if any)">
-
-        <label>
-           <input type="checkbox" name="declaration" value="Agreed" required>
-          <strong>12.</strong> I hereby declare that the information provided above is true and correct as per my NEET records.
-          I hereby declare that the information provided above is true and correct as per my NEET records.
-        </label>
-
-        <button type="submit">Submit Enquiry</button>
-        <div class="success-message" id="successMessage">
-          ✔️ Your details have been submitted successfully. Our representative will call you shortly for payment process.
-        </div>
-      </form>
+  <div class="success-message" id="successMessage">
+    ✔️ Submitted successfully. We will contact you shortly.
+  </div>
     </div>
 
     <!-- RIGHT SIDE CONTENT AREA -->
@@ -471,9 +428,7 @@
       <div class="info-box">
         <h3>⭐ Student Reviews</h3>
         <p class="review-placeholder">Student reviews and testimonials will be added here soon.</p>
-      </div>
-
-    </div>
+        </div>
 
   </div>
 </section>
@@ -513,6 +468,7 @@ form.addEventListener("submit", function(e){
 
 </body>
 </html>
+
 
 
 
