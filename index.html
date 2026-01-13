@@ -218,6 +218,10 @@
   </p>
 </section>
 
+  <button class="enquiry-tab" onclick="openEnquiryForm()">
+  📝 Enquiry Form
+</button>
+  
 <section>
   <h2>Contact Details</h2>
   <p>📞 Phone: <strong>+91-9763077764</strong></p>
@@ -377,6 +381,7 @@
 
   </div>
 <section>
+<section id="enquirySection" style="display:none;">
   <h2>Enquiry Form</h2>
 
   <form id="enquiryForm">
@@ -393,35 +398,34 @@
       <option value="ST">ST</option>
     </select>
 
-  <label>State of Domicile</label>
-  <select name="domicile_state" required>
-    <option value="">-- Select State / UT --</option>
-
-    <option value="Andhra Pradesh">Andhra Pradesh</option>
-    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-    <option value="Assam">Assam</option>
-    <option value="Bihar">Bihar</option>
-    <option value="Chhattisgarh">Chhattisgarh</option>
-    <option value="Goa">Goa</option>
-    <option value="Gujarat">Gujarat</option>
-    <option value="Haryana">Haryana</option>
-    <option value="Himachal Pradesh">Himachal Pradesh</option>
-    <option value="Jharkhand">Jharkhand</option>
-    <option value="Karnataka">Karnataka</option>
-    <option value="Kerala">Kerala</option>
-    <option value="Madhya Pradesh">Madhya Pradesh</option>
-    <option value="Maharashtra">Maharashtra</option>
-    <option value="Punjab">Punjab</option>
-    <option value="Rajasthan">Rajasthan</option>
-    <option value="Tamil Nadu">Tamil Nadu</option>
-    <option value="Telangana">Telangana</option>
-    <option value="Uttar Pradesh">Uttar Pradesh</option>
-    <option value="West Bengal">West Bengal</option>
-    <option value="Delhi">Delhi (NCT)</option>
-    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-    <option value="Ladakh">Ladakh</option>
-    <option value="Puducherry">Puducherry</option>
-   </select>
+    <label>State of Domicile</label>
+    <select name="domicile_state" required>
+      <option value="">-- Select State / UT --</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+      <option value="Assam">Assam</option>
+      <option value="Bihar">Bihar</option>
+      <option value="Chhattisgarh">Chhattisgarh</option>
+      <option value="Goa">Goa</option>
+      <option value="Gujarat">Gujarat</option>
+      <option value="Haryana">Haryana</option>
+      <option value="Himachal Pradesh">Himachal Pradesh</option>
+      <option value="Jharkhand">Jharkhand</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value="Kerala">Kerala</option>
+      <option value="Madhya Pradesh">Madhya Pradesh</option>
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="Punjab">Punjab</option>
+      <option value="Rajasthan">Rajasthan</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Uttar Pradesh">Uttar Pradesh</option>
+      <option value="West Bengal">West Bengal</option>
+      <option value="Delhi">Delhi (NCT)</option>
+      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+      <option value="Ladakh">Ladakh</option>
+      <option value="Puducherry">Puducherry</option>
+    </select>
 
     <label>NEET Attempt</label>
     <select name="neet_attempt" required>
@@ -438,8 +442,7 @@
     <label>Parent Mobile</label>
     <input type="tel" name="parent_mobile" required>
 
-    
-  <label>Email ID</label>
+    <label>Email ID</label>
     <input type="email" name="email" required>
 
     <label>Preferred Quota (Select one or more)</label>
@@ -468,43 +471,43 @@
 
     <button type="submit">Submit Enquiry</button>
 
-    <div class="success-message" id="successMessage">
+    <div class="success-message" id="successMessage" style="display:none;">
       ✔️ Submitted successfully. We will contact you shortly.
     </div>
 
   </form>
 </section>
-
-
-<footer>
-  <p>© 2025 RN Counselling. All Rights Reserved.</p>
-</footer>
-
 <script>
-const form = document.getElementById("enquiryForm");
+  function openEnquiryForm() {
+    const section = document.getElementById("enquirySection");
+    section.style.display = "block";
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  const form = document.getElementById("enquiryForm");
+  const successMsg = document.getElementById("successMessage");
 
-  const scriptURL =
-    "https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec";
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: new FormData(form)
-  })
-    .then(() => {
-      document.getElementById("successMessage").style.display = "block";
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      successMsg.style.display = "block";
       form.reset();
     })
-    .catch(() => {
-      alert("Your details saved sucsessfully, Our representative call you shortly for proceed.");
+    .catch(error => {
+      alert("Submission failed. Please try again.");
     });
-});
+  });
 </script>
 
-</body>
-</html>
+
 
 
 
