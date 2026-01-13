@@ -217,11 +217,7 @@
     admission process as per NEET and regulatory norms, ensuring transparency and informed decision-making.
   </p>
 </section>
-
-  <button class="enquiry-tab" onclick="openEnquiryForm()">
-  📝 Enquiry Form
-</button>
-  
+ 
 <section>
   <h2>Contact Details</h2>
   <p>📞 Phone: <strong>+91-9763077764</strong></p>
@@ -381,10 +377,26 @@
 
   </div>
 <section>
-<section id="enquirySection" style="display:none;">
+<!-- ENQUIRY BUTTON -->
+<button id="openFormBtn" style="
+  padding:12px 20px;
+  font-size:16px;
+  background:#0a3cff;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+">
+  View Enquiry Form
+</button>
+
+<!-- ENQUIRY FORM SECTION -->
+<section id="enquirySection" style="display:none; margin-top:20px;">
   <h2>Enquiry Form</h2>
 
-  <form id="enquiryForm">
+  <form id="enquiryForm"
+        action="https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec"
+        method="post">
 
     <label>Student Name (As per NEET)</label>
     <input type="text" name="student_name" required>
@@ -445,7 +457,7 @@
     <label>Email ID</label>
     <input type="email" name="email" required>
 
-    <label>Preferred Quota (Select one or more)</label>
+    <label>Preferred Quota</label>
     <label><input type="checkbox" name="preferred_quota[]" value="Home State"> Home State</label><br>
     <label><input type="checkbox" name="preferred_quota[]" value="All India"> All India</label><br>
     <label><input type="checkbox" name="preferred_quota[]" value="Management"> Management</label>
@@ -471,50 +483,31 @@
 
     <button type="submit">Submit Enquiry</button>
 
-    <div class="success-message" id="successMessage" style="display:none;">
+    <div id="successMessage" style="display:none; color:green; margin-top:10px;">
       ✔️ Submitted successfully. We will contact you shortly.
     </div>
 
   </form>
 </section>
+
+<!-- SCRIPT -->
 <script>
-  function openEnquiryForm() {
-    const section = document.getElementById("enquirySection");
-    section.style.display = "block";
-    section.scrollIntoView({ behavior: "smooth" });
-  }
+document.getElementById("openFormBtn").onclick = function () {
+  document.getElementById("enquirySection").style.display = "block";
+  this.style.display = "none";
+};
 
-  const form = document.getElementById("enquiryForm");
-  const successMsg = document.getElementById("successMessage");
+document.getElementById("enquiryForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch("https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      successMsg.style.display = "block";
-      form.reset();
-    })
-    .catch(error => {
-      alert("Submission failed. Please try again.");
-    });
+  fetch(this.action, {
+    method: "POST",
+    body: new FormData(this)
+  }).then(() => {
+    document.getElementById("successMessage").style.display = "block";
+    this.reset();
+  }).catch(() => {
+    alert("Submission failed. Try again.");
   });
+});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
