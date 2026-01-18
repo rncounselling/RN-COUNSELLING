@@ -6,35 +6,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f7fb;
-  color: #333;
-}
+/* ===== RN COUNSELLING STICKY HEADER ===== */
 
-/* HEADER */
-header {
-  background: #ffffff;
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+.sticky-header {
   position: sticky;
   top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-header h2 {
-  margin: 0;
-  color: #0a58ca;
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-nav a {
-  margin-left: 20px;
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0b3c5d;
+}
+
+.brand span {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  font-weight: normal;
+}
+
+.nav-links a {
+  margin: 0 12px;
   text-decoration: none;
-  color: #333;
-  font-weight: 600;
+  color: #222;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: #0b3c5d;
+}
+
+.header-btn {
+  background: #ff7a00;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.header-btn:hover {
+  background: #e56c00;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+}
+
+  <!-- STICKY HEADER : RN COUNSELLING -->
+<header class="sticky-header">
+  <div class="header-container">
+
+    <!-- BRAND -->
+    <div class="brand">
+      RN Counselling
+      <span>Medical Admission Guidance</span>
+    </div>
+
+    <!-- NAVIGATION (YOUR EXISTING LINKS) -->
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#packages">Packages</a>
+      <a href="#apply">Apply For Counselling</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="#apply" class="header-btn">Apply Now</a>
+
+  </div>
+</header>
 }
 
 /* HERO */
