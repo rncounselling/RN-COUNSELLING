@@ -29,20 +29,25 @@ label{
     display:block;
 }
 input, select{
-    display:none;
+    width:100%;
     background:#e9f9ef;
     color:#0a7d39;
-    padding:15px;
+    padding:12px;
     border-radius:8px;
-    margin-top:20px;
+    margin-top:6px;
     font-size:15px;
     border:1px solid #9ee2b8;
+    box-sizing:border-box;
 }
 .checkbox-group{
     margin-top:10px;
 }
 .checkbox-group label{
     font-weight:normal;
+}
+.checkbox-group input[type="checkbox"]{
+    width:auto;
+    margin-right:6px;
 }
 button{
     width:100%;
