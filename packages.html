@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Packages | RN Counselling</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: #ffffff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+header h2 {
+  color: #0a58ca;
+  margin: 0;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+/* PAGE TITLE */
+.page-title {
+  background: linear-gradient(to right, #0a58ca, #0d6efd);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* SECTION */
+.section {
+  padding: 50px 20px;
+}
+
+/* PACKAGE GRID */
+.packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  color: #0a58ca;
+  margin-top: 0;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff7a00;
+  margin: 10px 0;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* BUTTON */
+.btn {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  background: #ff7a00;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  background: #0a58ca;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>RN Counselling</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="packages.html">Packages</a>
+    <a href="student-form.html">Student Form</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="page-title">
+  <h1>Our Counselling Packages</h1>
+  <p>Transparent • Ethical • Student-first guidance</p>
+</div>
+
+<div class="section">
+  <div class="packages">
+
+    <!-- MBBS BASIC -->
+    <div class="card">
+      <h3>MBBS / BDS – Basic</h3>
+      <div class="price">₹17,000</div>
+      <ul>
+        <li>NEET score & rank analysis</li>
+        <li>College prediction (AIQ / State)</li>
+        <li>Eligibility check</li>
+        <li>Fee & bond details</li>
+        <li>Cut-off trends (3–5 years)</li>
+        <li>Limited 1-to-1 counselling</li>
+        <li>WhatsApp / Telegram support</li>
+        <li>Choice filling support</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+    <!-- MBBS PREMIUM -->
+    <div class="card">
+      <h3>MBBS / BDS – Premium</h3>
+      <div class="price">₹24,999</div>
+      <ul>
+        <li>Everything in Basic Package</li>
+        <li>End-to-end admission support</li>
+        <li>Personalized college shortlisting</li>
+        <li>Complete counselling registration</li>
+        <li>Choice filling & locking guidance</li>
+        <li>Seat allotment & upgrade strategy</li>
+        <li>Document verification support</li>
+        <li>College reporting guidance</li>
+        <li>Priority WhatsApp & call support</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+    <!-- AYUSH BASIC -->
+    <div class="card">
+      <h3>BAMS / BHMS / BUMS – Basic</h3>
+      <div class="price">₹12,500</div>
+      <ul>
+        <li>Rank & eligibility analysis</li>
+        <li>College prediction</li>
+        <li>Fee structure details</li>
+        <li>Cut-off trends</li>
+        <li>Limited counselling support</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+    <!-- AYUSH PREMIUM -->
+    <div class="card">
+      <h3>BAMS / BHMS / BUMS – Premium</h3>
+      <div class="price">₹18,999</div>
+      <ul>
+        <li>Complete admission support</li>
+        <li>College shortlisting</li>
+        <li>Choice filling & locking</li>
+        <li>Document support</li>
+        <li>Priority assistance</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+    <!-- NURSING BASIC -->
+    <div class="card">
+      <h3>Nursing / Paramedical – Basic</h3>
+      <div class="price">₹8,500</div>
+      <ul>
+        <li>Course & college guidance</li>
+        <li>Eligibility check</li>
+        <li>Fee structure info</li>
+        <li>Limited counselling</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+    <!-- NURSING PREMIUM -->
+    <div class="card">
+      <h3>Nursing / Paramedical – Premium</h3>
+      <div class="price">₹15,000</div>
+      <ul>
+        <li>End-to-end admission support</li>
+        <li>College shortlisting</li>
+        <li>Documentation help</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="student-form.html" class="btn">Apply Now</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>RN Medical Admission Counselling</p>
+  <p>© 2026 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
