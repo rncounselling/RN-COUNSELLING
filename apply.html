@@ -177,9 +177,32 @@ I confirm that the above information is true and I agree to RN Counselling proce
 
 <script>
 document.getElementById("counsellingForm").addEventListener("submit", function(e){
-e.preventDefault();
-fetch("https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec",{
-method:"POST",
-body:new FormData(this)
-}).then(()=>{
-document.get
+    e.preventDefault();
+
+    let form = this;
+    let successBox = document.getElementById("successMsg");
+
+    fetch("https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    .then(() => {
+        successBox.style.display = "block";
+        successBox.innerHTML = `
+        ✅ <b>Application Submitted Successfully!</b><br><br>
+        Thank you for applying with <b>RN Counselling</b>.<br>
+        Your details have been saved securely.<br><br>
+        📞 Our representative will contact you shortly for<br>
+        <b>payment process and admission confirmation.</b><br><br>
+        Please keep your phone reachable.
+        `;
+
+        setTimeout(() => {
+            form.reset();
+        }, 3000); // reset AFTER 3 seconds
+    })
+    .catch(() => {
+        alert("Submission failed. Please try again.");
+    });
+});
+</script>
