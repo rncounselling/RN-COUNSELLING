@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Apply for Counselling | RN Counselling</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 25px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #0b5ed7;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+}
+
+input, select {
+  width: 100%;
+  padding: 11px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #e56c00;
+}
+
+.declaration {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.success {
+  display: none;
+  margin-top: 20px;
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Apply for Medical Counselling</h2>
+
+<form id="applyForm">
+
+<label>Full Name (as per NEET)</label>
+<input type="text" name="name" required>
+
+<label>Mobile Number</label>
+<input type="tel" name="mobile" required>
+
+<label>Parent’s Contact Number</label>
+<input type="tel" name="parent_mobile" required>
+
+<label>Residency State</label>
+<select name="state" required>
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Delhi</option>
+<option>Gujarat</option>
+<option>Karnataka</option>
+<option>Maharashtra</option>
+<option>Rajasthan</option>
+<option>Tamil Nadu</option>
+<option>Uttar Pradesh</option>
+<option>West Bengal</option>
+<option>Other</option>
+</select>
+
+<label>Caste Category</label>
+<select name="category" required>
+<option value="">Select Category</option>
+<option>General</option>
+<option>OBC</option>
+<option>SC</option>
+<option>ST</option>
+<option>EWS</option>
+<option>Minority</option>
+</select>
+
+<label>NEET Rank (if applicable)</label>
+<input type="text" name="neet_rank">
+
+<label>Interested Course</label>
+<select name="course" required>
+<option value="">Select Course</option>
+<option>MBBS</option>
+<option>BDS</option>
+<option>BAMS</option>
+<option>BHMS</option>
+<option>BUMS</option>
+<option>Nursing</option>
+<option>Paramedical</option>
+<option>Other</option>
+</select>
+
+<label>Preferred Quota</label>
+<select name="quota" required>
+<option value="">Select Quota</option>
+<option>State Quota</option>
+<option>All India Quota</option>
+<option>Private</option>
+<option>Management</option>
+<option>Deemed</option>
+<option>Any</option>
+</select>
+
+<label>Select Package</label>
+<select name="package" required>
+<option value="">Select Package</option>
+<option>MBBS/BDS BASIC – ₹17,000</option>
+<option>MBBS/BDS PREMIUM – ₹24,999</option>
+<option>AYUSH BASIC – ₹12,500</option>
+<option>AYUSH PREMIUM – ₹18,999</option>
+<option>Nursing BASIC – ₹8,500</option>
+<option>Nursing PREMIUM – ₹15,000</option>
+</select>
+
+<label>Reference Code (Optional)</label>
+<input type="text" name="reference" placeholder="Use code & get 5%–25% discount">
+
+<div class="declaration">
+<input type="checkbox" required>
+ I confirm that the above details are true and I agree to be contacted by RN Counselling for admission guidance and payment confirmation.
+</div>
+
+<button type="submit">Submit Application</button>
+
+<div class="success" id="successMsg">
+Form saved successfully. Our representatives will call you for payment and admission confirmation.
+</div>
+
+</form>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec";
+const form = document.getElementById("applyForm");
+const msg = document.getElementById("successMsg");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then(() => {
+      msg.style.display = "block";
+      form.reset();
+    })
+    .catch(() => alert("Error submitting form"));
+});
+</script>
+
+</body>
+</html>
