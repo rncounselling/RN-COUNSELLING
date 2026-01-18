@@ -211,11 +211,68 @@ footer {
     flex-direction: column;
     text-align: center;
   }
+/* Menu Button */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1001;
+  color: white; /* change if needed */
+}
+
+/* Side Menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 250px;
+  height: 100%;
+  background: #0d47a1;
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.side-menu a {
+  display: block;
+  padding: 14px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.side-menu a:hover {
+  background: rgba(255,255,255,0.2);
+}
 }
 </style>
 </head>
 
 <body>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("sideMenu");
+  if (menu.style.left === "0px") {
+    menu.style.left = "-260px";
+  } else {
+    menu.style.left = "0px";
+  }
+}
+</script>
+<body>
+
+<!-- Menu Button -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<!-- Side Menu -->
+<div id="sideMenu" class="side-menu">
+  <a href="index.html">Home / About</a>
+  <a href="contact.html">Contact Us</a>
+  <a href="apply.html">Apply for Counselling</a>
+  <a href="packages.html">Admission Counselling Guidance</a>
+</div>
 
 <!-- ===== STICKY HEADER HTML ===== -->
 <header class="sticky-header">
