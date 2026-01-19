@@ -1,228 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>RN Medical Admission Counselling</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+import Text "mo:core/Text";
+import Array "mo:core/Array";
+import Map "mo:core/Map";
+import Iter "mo:core/Iter";
+import Order "mo:core/Order";
+import Runtime "mo:core/Runtime";
 
-<style>
-/* ===== RESET ===== */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  padding-top: 70px;
-}
+actor {
+  type Notification = {
+    id : Nat;
+    title : Text;
+    message : Text;
+    isActive : Bool;
+  };
 
-/* ===== HEADER ===== */
-.sticky-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  z-index: 1000;
-}
+  type Review = {
+    id : Nat;
+    studentName : Text;
+    feedback : Text;
+    rating : Nat; // 1-5 stars
+  };
 
-.header-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  type ServiceCard = {
+    id : Nat;
+    title : Text;
+    description : Text;
+    redirectUrl : Text;
+  };
 
-.brand {
-  font-size: 20px;
-  font-weight: bold;
-  color: #0a58ca;
-}
+  module Notification {
+    public func compare(notification1 : Notification, notification2 : Notification) : Order.Order {
+      Nat.compare(notification1.id, notification2.id);
+    };
+  };
 
-.brand span {
-  display: block;
-  font-size: 12px;
-  color: #666;
-  font-weight: normal;
-}
+  module Review {
+    public func compare(review1 : Review, review2 : Review) : Order.Order {
+      Nat.compare(review1.id, review2.id);
+    };
+  };
 
-/* Menu Button (RIGHT SIDE) */
-.menu-btn {
-  font-size: 26px;
-  cursor: pointer;
-  color: #0a58ca;
-}
+  module ServiceCard {
+    public func compare(serviceCard1 : ServiceCard, serviceCard2 : ServiceCard) : Order.Order {
+      Nat.compare(serviceCard1.id, serviceCard2.id);
+    };
+  };
 
-/* ===== SIDE MENU ===== */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -260px;
-  width: 250px;
-  height: 100%;
-  background: #0a58ca;
-  padding-top: 70px;
-  transition: 0.3s;
-  z-index: 1100;
-}
+  let notifications = Map.empty<Nat, Notification>();
+  let reviews = Map.empty<Nat, Review>();
+  let serviceCards = Map.empty<Nat, ServiceCard>();
 
-.side-menu a {
-  display: block;
-  padding: 15px 20px;
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-}
+  // Initialize with some default data
+  public shared ({ caller }) func initialize() : async () {
+    if (notifications.size() > 0) { Runtime.trap("Already initialized") };
 
-.side-menu a:hover {
-  background: rgba(255,255,255,0.15);
-}
+    // Add default notifications
+    let defaultNotifications = [
+      {
+        id = 1;
+        title = "Admission Update";
+        message = "MBBS counselling registration is now open!";
+        isActive = true;
+      },
+      {
+        id = 2;
+        title = "Important Notice";
+        message = "BDS application deadline extended to next month.";
+        isActive = true;
+      },
+    ];
 
-/* ===== HERO SECTION ===== */
-.hero {
-  background: linear-gradient(135deg, #0a58ca, #0d6efd);
-  color: white;
-  padding: 70px 20px 90px;
-  text-align: center;
-}
+    for (notification in defaultNotifications.values()) {
+      notifications.add(notification.id, notification);
+    };
 
-.hero h1 {
-  font-size: 38px;
-  max-width: 800px;
-  margin: auto;
-  line-height: 1.3;
-}
+    // Add default reviews
+    let defaultReviews = [
+      {
+        id = 1;
+        studentName = "John Doe";
+        feedback = "Excellent guidance and support throughout the admission process.";
+        rating = 5;
+      },
+      {
+        id = 2;
+        studentName = "Jane Smith";
+        feedback = "Professional and reliable service. Highly recommended!";
+        rating = 4;
+      },
+      {
+        id = 3;
+        studentName = "Michael Johnson";
+        feedback = "Helped me secure my dream medical college. Thank you!";
+        rating = 5;
+      },
+    ];
 
-.hero p {
-  font-size: 18px;
-  margin: 20px auto 35px;
-  max-width: 700px;
-}
+    for (review in defaultReviews.values()) {
+      reviews.add(review.id, review);
+    };
 
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+    // Add default service cards
+    let defaultServiceCards = [
+      {
+        id = 1;
+        title = "MBBS Counselling";
+        description = "Comprehensive guidance for MBBS admissions.";
+        redirectUrl = "packages.html";
+      },
+      {
+        id = 2;
+        title = "BDS Counselling";
+        description = "Expert support for BDS course admissions.";
+        redirectUrl = "packages.html";
+      },
+      {
+        id = 3;
+        title = "AYUSH Programs";
+        description = "Admission assistance for AYUSH courses.";
+        redirectUrl = "packages.html";
+      },
+      {
+        id = 4;
+        title = "Other Medical Courses";
+        description = "Guidance for various medical programs.";
+        redirectUrl = "packages.html";
+      },
+    ];
 
-.hero-buttons a {
-  padding: 15px 28px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 16px;
-}
+    for (serviceCard in defaultServiceCards.values()) {
+      serviceCards.add(serviceCard.id, serviceCard);
+    };
+  };
 
-.btn-primary {
-  background: #ff7a00;
-  color: white;
-}
+  // Notification Management
+  public shared ({ caller }) func addNotification(title : Text, message : Text) : async () {
+    let id = notifications.size() + 1;
+    let notification : Notification = {
+      id;
+      title;
+      message;
+      isActive = true;
+    };
+    notifications.add(id, notification);
+  };
 
-.btn-secondary {
-  background: white;
-  color: #0a58ca;
-}
+  public shared ({ caller }) func updateNotification(id : Nat, title : Text, message : Text, isActive : Bool) : async () {
+    switch (notifications.get(id)) {
+      case (null) { Runtime.trap("Notification not found") };
+      case (?_) {
+        let updatedNotification : Notification = {
+          id;
+          title;
+          message;
+          isActive;
+        };
+        notifications.add(id, updatedNotification);
+      };
+    };
+  };
 
-/* ===== SOCIAL STRIP ===== */
-.social-strip-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: -28px;
-}
+  public shared ({ caller }) func deleteNotification(id : Nat) : async () {
+    if (not notifications.containsKey(id)) {
+      Runtime.trap("Notification not found");
+    };
+    notifications.remove(id);
+  };
 
-.social-strip {
-  background: #ff4fa3;
-  padding: 12px 22px;
-  border-radius: 40px;
-  display: flex;
-  gap: 22px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
+  public query ({ caller }) func getActiveNotifications() : async [Notification] {
+    notifications.values().toArray().filter(func(n) { n.isActive }).sort();
+  };
 
-.social-strip a img {
-  width: 22px;
-  height: 22px;
-  filter: brightness(0) invert(1);
-  transition: transform 0.2s ease;
-}
+  // Review Management
+  public shared ({ caller }) func addReview(studentName : Text, feedback : Text, rating : Nat) : async () {
+    if (rating < 1 or rating > 5) {
+      Runtime.trap("Rating must be between 1 and 5");
+    };
+    let id = reviews.size() + 1;
+    let review : Review = {
+      id;
+      studentName;
+      feedback;
+      rating;
+    };
+    reviews.add(id, review);
+  };
 
-.social-strip a:hover img {
-  transform: scale(1.2);
-}
+  public query ({ caller }) func getAllReviews() : async [Review] {
+    reviews.values().toArray().sort();
+  };
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 28px;
-  }
-  .hero p {
-    font-size: 16px;
-  }
-}
-</style>
-</head>
+  // Service Card Management
+  public shared ({ caller }) func addServiceCard(title : Text, description : Text, redirectUrl : Text) : async () {
+    let id = serviceCards.size() + 1;
+    let serviceCard : ServiceCard = {
+      id;
+      title;
+      description;
+      redirectUrl;
+    };
+    serviceCards.add(id, serviceCard);
+  };
 
-<body>
-
-<!-- MENU BUTTON -->
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <a href="index.html">Home / About</a>
-  <a href="packages.html">Packages</a>
-  <a href="apply.html">Apply for Counselling</a>
-  <a href="contact.html">Contact Us</a>
-</div>
-
-<!-- HEADER -->
-<header class="sticky-header">
-  <div class="header-container">
-    <div class="brand">
-      RN Counselling
-      <span>Medical Admission Guidance</span>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Confused About MBBS Admission After NEET?</h1>
-  <p>
-    Get expert guidance for Government, Private & Management Quota
-    medical admissions across India.
-  </p>
-
-  <div class="hero-buttons">
-    <a href="apply.html" class="btn-primary">Apply for Counselling</a>
-    <a href="packages.html" class="btn-secondary">View Packages</a>
-  </div>
-</section>
-
-<!-- SOCIAL MEDIA BAR -->
-<div class="social-strip-wrapper">
-  <div class="social-strip">
-    <a href="tel:9673882382">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/phone.svg">
-    </a>
-    <a href="https://wa.me/919673882382" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
-    </a>
-    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg">
-    </a>
-    <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
-    </a>
-  </div>
-</div>
-
-<script>
-function toggleMenu() {
-  const menu = document.getElementById("sideMenu");
-  menu.style.right = (menu.style.right === "0px") ? "-260px" : "0px";
-}
-</script>
-
-</body>
-</html>
+  public query ({ caller }) func getAllServiceCards() : async [ServiceCard] {
+    serviceCards.values().toArray().sort();
+  };
+};
