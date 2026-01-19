@@ -1,207 +1,1407 @@
-import Text "mo:core/Text";
-import Array "mo:core/Array";
-import Map "mo:core/Map";
-import Iter "mo:core/Iter";
-import Order "mo:core/Order";
-import Runtime "mo:core/Runtime";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RN Counselling - Expert medical admission guidance for MBBS, BDS, AYUSH, Nursing, and Paramedical courses. Trusted counselling services in Aurangabad.">
+    <meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses, Aurangabad">
+    <title>RN Counselling - Trusted Medical Admission Guidance</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-actor {
-  type Notification = {
-    id : Nat;
-    title : Text;
-    message : Text;
-    isActive : Bool;
-  };
+        :root {
+            --medical-blue: #1e40af;
+            --medical-blue-dark: #1e3a8a;
+            --medical-blue-light: #dbeafe;
+            --medical-orange: #f97316;
+            --medical-orange-dark: #ea580c;
+            --medical-orange-light: #ffedd5;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
 
-  type Review = {
-    id : Nat;
-    studentName : Text;
-    feedback : Text;
-    rating : Nat; // 1-5 stars
-  };
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background-color: var(--white);
+        }
 
-  type ServiceCard = {
-    id : Nat;
-    title : Text;
-    description : Text;
-    redirectUrl : Text;
-  };
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-  module Notification {
-    public func compare(notification1 : Notification, notification2 : Notification) : Order.Order {
-      Nat.compare(notification1.id, notification2.id);
-    };
-  };
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
-  module Review {
-    public func compare(review1 : Review, review2 : Review) : Order.Order {
-      Nat.compare(review1.id, review2.id);
-    };
-  };
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            min-height: 80px;
+        }
 
-  module ServiceCard {
-    public func compare(serviceCard1 : ServiceCard, serviceCard2 : ServiceCard) : Order.Order {
-      Nat.compare(serviceCard1.id, serviceCard2.id);
-    };
-  };
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-  let notifications = Map.empty<Nat, Notification>();
-  let reviews = Map.empty<Nat, Review>();
-  let serviceCards = Map.empty<Nat, ServiceCard>();
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
 
-  // Initialize with some default data
-  public shared ({ caller }) func initialize() : async () {
-    if (notifications.size() > 0) { Runtime.trap("Already initialized") };
+        .brand-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--medical-blue);
+            line-height: 1.2;
+        }
 
-    // Add default notifications
-    let defaultNotifications = [
-      {
-        id = 1;
-        title = "Admission Update";
-        message = "MBBS counselling registration is now open!";
-        isActive = true;
-      },
-      {
-        id = 2;
-        title = "Important Notice";
-        message = "BDS application deadline extended to next month.";
-        isActive = true;
-      },
-    ];
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
 
-    for (notification in defaultNotifications.values()) {
-      notifications.add(notification.id, notification);
-    };
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-    // Add default reviews
-    let defaultReviews = [
-      {
-        id = 1;
-        studentName = "John Doe";
-        feedback = "Excellent guidance and support throughout the admission process.";
-        rating = 5;
-      },
-      {
-        id = 2;
-        studentName = "Jane Smith";
-        feedback = "Professional and reliable service. Highly recommended!";
-        rating = 4;
-      },
-      {
-        id = 3;
-        studentName = "Michael Johnson";
-        feedback = "Helped me secure my dream medical college. Thank you!";
-        rating = 5;
-      },
-    ];
+        .menu-btn, .apply-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.875rem;
+        }
 
-    for (review in defaultReviews.values()) {
-      reviews.add(review.id, review);
-    };
+        .menu-btn {
+            background-color: var(--white);
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
+        }
 
-    // Add default service cards
-    let defaultServiceCards = [
-      {
-        id = 1;
-        title = "MBBS Counselling";
-        description = "Comprehensive guidance for MBBS admissions.";
-        redirectUrl = "packages.html";
-      },
-      {
-        id = 2;
-        title = "BDS Counselling";
-        description = "Expert support for BDS course admissions.";
-        redirectUrl = "packages.html";
-      },
-      {
-        id = 3;
-        title = "AYUSH Programs";
-        description = "Admission assistance for AYUSH courses.";
-        redirectUrl = "packages.html";
-      },
-      {
-        id = 4;
-        title = "Other Medical Courses";
-        description = "Guidance for various medical programs.";
-        redirectUrl = "packages.html";
-      },
-    ];
+        .menu-btn:hover {
+            background-color: var(--medical-blue-light);
+        }
 
-    for (serviceCard in defaultServiceCards.values()) {
-      serviceCards.add(serviceCard.id, serviceCard);
-    };
-  };
+        .apply-btn {
+            background-color: var(--medical-orange);
+            color: var(--white);
+        }
 
-  // Notification Management
-  public shared ({ caller }) func addNotification(title : Text, message : Text) : async () {
-    let id = notifications.size() + 1;
-    let notification : Notification = {
-      id;
-      title;
-      message;
-      isActive = true;
-    };
-    notifications.add(id, notification);
-  };
+        .apply-btn:hover {
+            background-color: var(--medical-orange-dark);
+        }
 
-  public shared ({ caller }) func updateNotification(id : Nat, title : Text, message : Text, isActive : Bool) : async () {
-    switch (notifications.get(id)) {
-      case (null) { Runtime.trap("Notification not found") };
-      case (?_) {
-        let updatedNotification : Notification = {
-          id;
-          title;
-          message;
-          isActive;
-        };
-        notifications.add(id, updatedNotification);
-      };
-    };
-  };
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
 
-  public shared ({ caller }) func deleteNotification(id : Nat) : async () {
-    if (not notifications.containsKey(id)) {
-      Runtime.trap("Notification not found");
-    };
-    notifications.remove(id);
-  };
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            padding: 3rem 0;
+        }
 
-  public query ({ caller }) func getActiveNotifications() : async [Notification] {
-    notifications.values().toArray().filter(func(n) { n.isActive }).sort();
-  };
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-  // Review Management
-  public shared ({ caller }) func addReview(studentName : Text, feedback : Text, rating : Nat) : async () {
-    if (rating < 1 or rating > 5) {
-      Runtime.trap("Rating must be between 1 and 5");
-    };
-    let id = reviews.size() + 1;
-    let review : Review = {
-      id;
-      studentName;
-      feedback;
-      rating;
-    };
-    reviews.add(id, review);
-  };
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
 
-  public query ({ caller }) func getAllReviews() : async [Review] {
-    reviews.values().toArray().sort();
-  };
+        .hero .highlight {
+            color: var(--medical-blue);
+        }
 
-  // Service Card Management
-  public shared ({ caller }) func addServiceCard(title : Text, description : Text, redirectUrl : Text) : async () {
-    let id = serviceCards.size() + 1;
-    let serviceCard : ServiceCard = {
-      id;
-      title;
-      description;
-      redirectUrl;
-    };
-    serviceCards.add(id, serviceCard);
-  };
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
 
-  public query ({ caller }) func getAllServiceCards() : async [ServiceCard] {
-    serviceCards.values().toArray().sort();
-  };
-};
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--medical-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--medical-blue-dark);
+        }
+
+        .btn-outline-blue {
+            background-color: var(--white);
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
+        }
+
+        .btn-outline-blue:hover {
+            background-color: var(--medical-blue-light);
+        }
+
+        .btn-outline-orange {
+            background-color: var(--white);
+            color: var(--medical-orange);
+            border: 2px solid var(--medical-orange);
+        }
+
+        .btn-outline-orange:hover {
+            background-color: var(--medical-orange-light);
+        }
+
+        .hero-image {
+            margin-top: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Notification Section */
+        .notifications {
+            background: linear-gradient(90deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            padding: 2rem 0;
+        }
+
+        .notification-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .notification-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--medical-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .notification-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .notification-header h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-header p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .notification-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr;
+        }
+
+        .notification-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--medical-blue);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .notification-card.urgent {
+            border-left-color: var(--medical-orange);
+            background-color: rgba(249, 115, 22, 0.05);
+        }
+
+        .notification-card .dismiss-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-600);
+            font-size: 1.25rem;
+            padding: 0.25rem;
+            line-height: 1;
+        }
+
+        .notification-card .dismiss-btn:hover {
+            color: var(--gray-900);
+        }
+
+        .notification-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .notification-card p {
+            color: var(--gray-600);
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .notification-card .date {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Introduction Section */
+        .introduction {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--medical-blue-light);
+            color: var(--medical-blue);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .introduction h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .introduction p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Why Sections */
+        .why-sections {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            padding: 3rem 0;
+        }
+
+        .why-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+
+        .why-card {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .why-card.blue {
+            border-color: rgba(30, 64, 175, 0.2);
+        }
+
+        .why-card.orange {
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+
+        .why-card h3 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-card.blue h3 {
+            color: var(--medical-blue);
+        }
+
+        .why-card.orange h3 {
+            color: var(--medical-orange);
+        }
+
+        .why-list {
+            list-style: none;
+        }
+
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-list .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .why-card.blue .icon {
+            background-color: var(--medical-blue-light);
+            color: var(--medical-blue);
+        }
+
+        .why-card.orange .icon {
+            background-color: var(--medical-orange-light);
+            color: var(--medical-orange);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            position: relative;
+            aspect-ratio: 3/2;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content .subtitle {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .service-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--white);
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .service-btn:hover {
+            background-color: var(--medical-blue);
+            color: var(--white);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            padding: 3rem 0;
+        }
+
+        .featured-review {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(30, 64, 175, 0.2);
+            position: relative;
+        }
+
+        .review-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: var(--medical-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: 2px solid var(--medical-blue);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .review-info .course {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .review-info .college {
+            font-size: 0.75rem;
+            color: var(--medical-blue);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .star-rating {
+            height: 24px;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .read-more-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
+            background-color: var(--white);
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--medical-blue-light);
+        }
+
+        .reviews-grid {
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .reviews-grid.show {
+            display: grid;
+        }
+
+        .review-card {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-card .review-avatar {
+            width: 48px;
+            height: 48px;
+            font-size: 1rem;
+        }
+
+        .review-card .star-rating {
+            height: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-blue-dark) 100%);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-brand-text h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .footer-brand-text p {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .contact-list a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-list a:hover {
+            opacity: 1;
+        }
+
+        .footer-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .footer-btn {
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .footer-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Strip */
+        .social-strip {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .social-btn.phone {
+            background-color: var(--medical-blue);
+        }
+
+        .social-btn.whatsapp {
+            background-color: #25d366;
+        }
+
+        .social-btn.telegram {
+            background-color: #0088cc;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-btn .tooltip {
+            position: absolute;
+            right: 60px;
+            background-color: var(--gray-900);
+            color: var(--white);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .social-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-menu nav a {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-decoration: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu nav a:hover {
+            color: var(--medical-blue);
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+
+            .notification-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .social-strip {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .social-btn {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-btn, .apply-btn {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .notification-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .introduction h2 {
+                font-size: 1.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo" class="logo-img">
+                    <div class="brand-text">
+                        <h1>RN Counselling</h1>
+                        <p>Trusted Medical Admission Guidance</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="menu-btn" onclick="toggleMenu()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        Menu
+                    </button>
+                    <button class="apply-btn" onclick="window.location.href='packages.html'">Apply Now</button>
+                    <button class="mobile-menu-btn" onclick="toggleMenu()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="close-menu" onclick="toggleMenu()">×</button>
+        </div>
+        <nav>
+            <a href="packages.html">Apply Now</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="packages.html">Packages</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Your Path to <span class="highlight">Medical</span> Success Starts Here</h2>
+                <p>Expert counselling for MBBS, BDS, AYUSH, Nursing, and Paramedical course admissions. We guide you through every step of your medical education journey.</p>
+                <div class="hero-buttons">
+                    <a href="packages.html" class="btn btn-primary">
+                        Apply Now
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                    <a href="contact.html" class="btn btn-outline-blue">Contact Us</a>
+                    <a href="packages.html" class="btn btn-outline-orange">Packages</a>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/generated/hero-medical-team.dim_1200x600.jpg" alt="Medical Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification Section -->
+    <section class="notifications">
+        <div class="container">
+            <div class="notification-header">
+                <div class="notification-icon">
+                    <img src="assets/generated/notification-icon-transparent.dim_64x64.png" alt="Notification">
+                </div>
+                <div>
+                    <h2>Important Updates</h2>
+                    <p>Stay informed about admission deadlines</p>
+                </div>
+            </div>
+            <div class="notification-grid">
+                <div class="notification-card urgent" id="notification1">
+                    <button class="dismiss-btn" onclick="dismissNotification('notification1')">×</button>
+                    <h3>NEET 2026 Registration Open</h3>
+                    <p>Karnataka has officially started MBBS, BDS & AYUSH registration for 2026 admissions. Don't miss the deadline!</p>
+                    <div class="date">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        January 15, 2026
+                    </div>
+                </div>
+                <div class="notification-card" id="notification2">
+                    <button class="dismiss-btn" onclick="dismissNotification('notification2')">×</button>
+                    <h3>Counselling Schedule Released</h3>
+                    <p>First round of counselling begins on February 1st, 2026. Book your slot now for personalized guidance!</p>
+                    <div class="date">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        January 10, 2026
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="introduction">
+        <div class="container">
+            <div class="intro-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                </svg>
+                About Our Counselling
+            </div>
+            <h2>Your Journey to <span class="highlight">Medical Excellence</span></h2>
+            <p>Choosing the right medical college is a life-defining decision. Our UG medical admission counselling provides expert guidance, transparent processes, and personalized support to help you secure the best possible seat based on your merit and preferences.</p>
+        </div>
+    </section>
+
+    <!-- Why Sections -->
+    <section class="why-sections">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-card blue">
+                    <h3>Why Counselling Important</h3>
+                    <ul class="why-list">
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Clear admission guidance</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Right college selection</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Error-free choice filling</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Better seat chances</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Reduced stress & confusion</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="why-card orange">
+                    <h3>Why Choose Us</h3>
+                    <ul class="why-list">
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Experienced counselling experts</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Transparent guidance process</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Personalized student support</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Updated admission insights</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Trusted student success</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="highlight">Services</span></h2>
+                <p>Choose from our comprehensive range of medical admission counselling services tailored to your career goals.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" onclick="window.location.href='packages.html'">
+                    <div class="service-image">
+                        <img src="assets/generated/mbbs-card.dim_300x200.jpg" alt="MBBS/BDS">
+                    </div>
+                    <div class="service-content">
+                        <h3>MBBS/BDS</h3>
+                        <p class="subtitle">Medical & Dental Surgery Programs</p>
+                        <p>Comprehensive guidance for MBBS and BDS admissions in top medical and dental colleges across India.</p>
+                        <button class="service-btn">
+                            Apply Now
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="window.location.href='packages.html'">
+                    <div class="service-image">
+                        <img src="assets/generated/ayush-card.dim_300x200.jpg" alt="Ayush">
+                    </div>
+                    <div class="service-content">
+                        <h3>Ayush (BAMS, BUMS, BHMS)</h3>
+                        <p class="subtitle">Alternative Medicine Programs</p>
+                        <p>Specialized support for Ayurveda, Unani, Siddha, and Homeopathy course admissions.</p>
+                        <button class="service-btn">
+                            Apply Now
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="window.location.href='packages.html'">
+                    <div class="service-image">
+                        <img src="assets/generated/nursing-paramedical-card.dim_300x200.jpg" alt="Nursing/Paramedical">
+                    </div>
+                    <div class="service-content">
+                        <h3>Nursing/Paramedical/etc</h3>
+                        <p class="subtitle">Healthcare Support Programs</p>
+                        <p>Complete guidance for Nursing, Pharmacy, Allied Health Sciences, and other paramedical courses.</p>
+                        <button class="service-btn">
+                            Apply Now
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our <span style="color: var(--medical-orange);">Students</span> Say</h2>
+                <p>Real success stories from students who achieved their medical education dreams with our guidance.</p>
+            </div>
+            <div class="featured-review">
+                <div class="review-header">
+                    <div class="review-avatar">PS</div>
+                    <div class="review-info">
+                        <h4>Priya Sharma</h4>
+                        <p class="course">MBBS Student</p>
+                        <p class="college">Bangalore Medical College</p>
+                    </div>
+                </div>
+                <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                <p class="review-text">"RN Counselling made my dream of becoming a doctor come true. Their expert guidance helped me secure admission in my preferred college. The team was incredibly supportive throughout the entire process, from documentation to final admission. Highly recommended!"</p>
+            </div>
+            <button class="read-more-btn" id="readMoreBtn" onclick="showMoreReviews()">
+                Read More Reviews
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="margin-left: 0.5rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="reviews-grid" id="moreReviews">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">RK</div>
+                        <div class="review-info">
+                            <h4>Rahul Kumar</h4>
+                            <p class="course">BDS Student</p>
+                        </div>
+                    </div>
+                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <p class="review-text">"The counselling team was incredibly supportive throughout the admission process. They helped me understand all my options and made the right choice for my career. Their expertise in dental admissions is unmatched."</p>
+                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">Government Dental College</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">AR</div>
+                        <div class="review-info">
+                            <h4>Ananya Reddy</h4>
+                            <p class="course">BAMS Student</p>
+                        </div>
+                    </div>
+                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <p class="review-text">"Professional, knowledgeable, and always available to answer questions. RN Counselling exceeded my expectations in every way. They guided me through the AYUSH admission process seamlessly."</p>
+                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">National Institute of Ayurveda</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">VS</div>
+                        <div class="review-info">
+                            <h4>Vikram Singh</h4>
+                            <p class="course">MBBS Student</p>
+                        </div>
+                    </div>
+                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <p class="review-text">"From documentation to final admission, they handled everything smoothly. Their experience and network in medical education is unmatched. I am grateful for their support in achieving my medical career goals."</p>
+                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">Mysore Medical College</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                        <div class="footer-brand-text">
+                            <h3>RN Counselling</h3>
+                            <p>Trusted Medical Admission Guidance</p>
+                        </div>
+                    </div>
+                    <p>Your trusted partner for medical education admissions. We guide aspiring medical professionals to achieve their dreams with expert counselling and personalized support.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>2nd floor, Tower building, Arif colony, Aurangabad-431001</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <a href="mailto:rnenterprises77764@gmail.com">rnenterprises77764@gmail.com</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <a href="tel:+919673882382">+91 9673882382</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Get in Touch</h3>
+                    <div class="footer-buttons">
+                        <a href="tel:+919673882382" class="footer-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Call
+                        </a>
+                        <a href="https://wa.me/919673882382" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                            Telegram
+                        </a>
+                        <a href="https://www.instagram.com/ugmedicalcounselling?igsh=MW9tZjQwcnRjNWNwZg==" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025. Built with ❤️ using <a href="https://caffeine.ai" target="_blank" rel="noopener noreferrer">caffeine.ai</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Social Strip -->
+    <div class="social-strip">
+        <a href="tel:+919673882382" class="social-btn phone">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span class="tooltip">Call</span>
+        </a>
+        <a href="https://wa.me/919673882382" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener noreferrer" class="social-btn telegram">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            <span class="tooltip">Telegram</span>
+        </a>
+        <a href="https://www.instagram.com/ugmedicalcounselling?igsh=MW9tZjQwcnRjNWNwZg==" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
