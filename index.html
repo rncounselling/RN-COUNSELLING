@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RN Counselling - Expert medical admission guidance for MBBS, BDS, AYUSH, Nursing, and Paramedical courses. Trusted counselling services in Aurangabad.">
-    <meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses, Aurangabad">
+    <meta name="description" content="RN Counselling - Trusted Medical Admission Guidance for MBBS, BDS, AYUSH, Nursing, and Paramedical courses">
+    <meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses">
     <title>RN Counselling - Trusted Medical Admission Guidance</title>
-    
     <style>
         * {
             margin: 0;
@@ -15,28 +14,25 @@
         }
 
         :root {
-            --medical-blue: #1e40af;
-            --medical-blue-dark: #1e3a8a;
-            --medical-blue-light: #dbeafe;
-            --medical-orange: #f97316;
-            --medical-orange-dark: #ea580c;
-            --medical-orange-light: #ffedd5;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --medical-blue: hsl(210, 100%, 45%);
+            --medical-blue-dark: hsl(210, 100%, 35%);
+            --medical-blue-light: hsl(210, 100%, 95%);
+            --medical-orange: hsl(25, 95%, 53%);
+            --medical-orange-dark: hsl(25, 95%, 43%);
+            --medical-orange-light: hsl(25, 95%, 95%);
+            --background: #ffffff;
+            --foreground: #0a0a0a;
+            --muted: #f5f5f5;
+            --muted-foreground: #737373;
+            --border: #e5e5e5;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--gray-900);
-            background-color: var(--white);
+            color: var(--foreground);
+            background-color: var(--background);
         }
 
         .container {
@@ -45,34 +41,33 @@
             padding: 0 1rem;
         }
 
-        /* Header Styles */
+        /* Header */
         header {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-200);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px var(--shadow);
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            min-height: 80px;
+            justify-content: space-between;
+            height: 80px;
         }
 
-        .logo-section {
+        .brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .logo-img {
-            width: 48px;
+        .brand img {
             height: 48px;
+            width: 48px;
             object-fit: contain;
         }
 
@@ -85,7 +80,7 @@
 
         .brand-text p {
             font-size: 0.75rem;
-            color: var(--gray-600);
+            color: var(--muted-foreground);
         }
 
         .header-actions {
@@ -95,37 +90,41 @@
         }
 
         .menu-btn, .apply-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.25rem;
             border-radius: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             border: none;
-            font-size: 0.875rem;
+            font-size: 0.95rem;
         }
 
         .menu-btn {
-            background-color: var(--white);
+            background: transparent;
+            border: 1px solid var(--medical-blue);
             color: var(--medical-blue);
-            border: 2px solid var(--medical-blue);
         }
 
         .menu-btn:hover {
-            background-color: var(--medical-blue-light);
+            background: var(--medical-blue-light);
         }
 
         .apply-btn {
-            background-color: var(--medical-orange);
-            color: var(--white);
+            background: var(--medical-orange);
+            color: white;
         }
 
         .apply-btn:hover {
-            background-color: var(--medical-orange-dark);
+            background: var(--medical-orange-dark);
         }
 
         .mobile-menu-btn {
             display: none;
-            background: none;
+            background: transparent;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
@@ -133,7 +132,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--background) 50%, var(--medical-orange-light) 100%);
             padding: 3rem 0;
         }
 
@@ -156,7 +155,7 @@
 
         .hero p {
             font-size: 1.125rem;
-            color: var(--gray-600);
+            color: var(--muted-foreground);
             margin-bottom: 2rem;
         }
 
@@ -173,64 +172,65 @@
             border-radius: 0.5rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            font-size: 1rem;
+            transition: all 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
         }
 
         .btn-primary {
-            background-color: var(--medical-blue);
-            color: var(--white);
+            background: var(--medical-blue);
+            color: white;
         }
 
         .btn-primary:hover {
-            background-color: var(--medical-blue-dark);
+            background: var(--medical-blue-dark);
         }
 
-        .btn-outline-blue {
-            background-color: var(--white);
-            color: var(--medical-blue);
+        .btn-outline {
+            background: transparent;
             border: 2px solid var(--medical-blue);
+            color: var(--medical-blue);
         }
 
-        .btn-outline-blue:hover {
-            background-color: var(--medical-blue-light);
+        .btn-outline:hover {
+            background: var(--medical-blue-light);
         }
 
         .btn-outline-orange {
-            background-color: var(--white);
-            color: var(--medical-orange);
+            background: transparent;
             border: 2px solid var(--medical-orange);
+            color: var(--medical-orange);
         }
 
         .btn-outline-orange:hover {
-            background-color: var(--medical-orange-light);
+            background: var(--medical-orange-light);
         }
 
         .hero-image {
-            margin-top: 2rem;
+            position: relative;
+            aspect-ratio: 16/9;
             border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px var(--shadow);
         }
 
         .hero-image img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
         }
 
-        /* Notification Section */
+        /* Notification Box */
         .notifications {
-            background: linear-gradient(90deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            background: linear-gradient(90deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
             padding: 2rem 0;
         }
 
-        .notification-header {
+        .notifications-header {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -238,10 +238,10 @@
         }
 
         .notification-icon {
-            width: 48px;
             height: 48px;
-            background-color: var(--medical-orange);
+            width: 48px;
             border-radius: 50%;
+            background: var(--medical-orange);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -249,56 +249,52 @@
         }
 
         .notification-icon img {
-            width: 32px;
             height: 32px;
+            width: 32px;
         }
 
-        .notification-header h2 {
-            font-size: 1.875rem;
+        .notifications-header h2 {
+            font-size: 1.75rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
         }
 
-        .notification-header p {
-            font-size: 0.875rem;
-            color: var(--gray-600);
+        .notifications-header p {
+            font-size: 0.95rem;
+            color: var(--muted-foreground);
         }
 
-        .notification-grid {
+        .notifications-grid {
             display: grid;
             gap: 1rem;
             grid-template-columns: 1fr;
         }
 
         .notification-card {
-            background-color: var(--white);
+            background: white;
+            border-left: 4px solid var(--medical-orange);
             border-radius: 0.5rem;
-            padding: 1.5rem;
-            border-left: 4px solid var(--medical-blue);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            position: relative;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px var(--shadow);
         }
 
-        .notification-card.urgent {
+        .notification-card.blue {
+            border-left-color: var(--medical-blue);
+            background: var(--medical-blue-light);
+        }
+
+        .notification-card.orange {
             border-left-color: var(--medical-orange);
-            background-color: rgba(249, 115, 22, 0.05);
+            background: var(--medical-orange-light);
         }
 
-        .notification-card .dismiss-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--gray-600);
-            font-size: 1.25rem;
-            padding: 0.25rem;
-            line-height: 1;
+        .notification-content {
+            display: flex;
+            gap: 1rem;
         }
 
-        .notification-card .dismiss-btn:hover {
-            color: var(--gray-900);
+        .notification-content svg {
+            flex-shrink: 0;
+            margin-top: 0.25rem;
         }
 
         .notification-card h3 {
@@ -308,20 +304,20 @@
         }
 
         .notification-card p {
-            color: var(--gray-600);
+            font-size: 0.95rem;
+            color: var(--muted-foreground);
             margin-bottom: 0.75rem;
-            font-size: 0.875rem;
         }
 
-        .notification-card .date {
-            font-size: 0.75rem;
-            color: var(--gray-600);
+        .notification-date {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
         }
 
-        /* Introduction Section */
+        /* Introduction */
         .introduction {
             padding: 3rem 0;
             text-align: center;
@@ -332,11 +328,11 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background-color: var(--medical-blue-light);
-            color: var(--medical-blue);
             border-radius: 2rem;
+            background: var(--medical-blue-light);
+            color: var(--medical-blue);
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 1.5rem;
         }
 
@@ -348,7 +344,7 @@
 
         .introduction p {
             font-size: 1.125rem;
-            color: var(--gray-600);
+            color: var(--muted-foreground);
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.8;
@@ -356,7 +352,7 @@
 
         /* Why Sections */
         .why-sections {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
             padding: 3rem 0;
         }
 
@@ -364,26 +360,28 @@
             display: grid;
             gap: 1.5rem;
             grid-template-columns: 1fr;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .why-card {
-            background-color: var(--white);
+            background: white;
             border-radius: 0.75rem;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px var(--shadow);
             border: 2px solid transparent;
         }
 
         .why-card.blue {
-            border-color: rgba(30, 64, 175, 0.2);
+            border-color: var(--medical-blue);
         }
 
         .why-card.orange {
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: var(--medical-orange);
         }
 
         .why-card h3 {
-            font-size: 1.875rem;
+            font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
@@ -407,9 +405,9 @@
             margin-bottom: 1rem;
         }
 
-        .why-list .icon {
-            width: 24px;
+        .why-icon {
             height: 24px;
+            width: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -418,17 +416,17 @@
             margin-top: 0.125rem;
         }
 
-        .why-card.blue .icon {
-            background-color: var(--medical-blue-light);
+        .why-card.blue .why-icon {
+            background: var(--medical-blue-light);
             color: var(--medical-blue);
         }
 
-        .why-card.orange .icon {
-            background-color: var(--medical-orange-light);
+        .why-card.orange .why-icon {
+            background: var(--medical-orange-light);
             color: var(--medical-orange);
         }
 
-        /* Services Section */
+        /* Services */
         .services {
             padding: 3rem 0;
         }
@@ -445,8 +443,8 @@
         }
 
         .section-header p {
-            font-size: 1rem;
-            color: var(--gray-600);
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -455,20 +453,22 @@
             display: grid;
             gap: 1.5rem;
             grid-template-columns: 1fr;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .service-card {
-            background-color: var(--white);
+            background: white;
             border-radius: 0.75rem;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            box-shadow: 0 4px 12px var(--shadow);
             cursor: pointer;
+            transition: all 0.3s;
         }
 
         .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 24px var(--shadow);
         }
 
         .service-image {
@@ -488,6 +488,27 @@
             transform: scale(1.1);
         }
 
+        .service-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .service-icon.blue {
+            background: var(--medical-blue);
+        }
+
+        .service-icon.orange {
+            background: var(--medical-orange);
+        }
+
         .service-content {
             padding: 1.5rem;
         }
@@ -500,154 +521,184 @@
 
         .service-content .subtitle {
             font-size: 0.875rem;
-            color: var(--gray-600);
+            color: var(--muted-foreground);
             margin-bottom: 1rem;
         }
 
         .service-content p {
-            font-size: 0.875rem;
-            color: var(--gray-600);
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--muted-foreground);
+            margin-bottom: 1.25rem;
         }
 
         .service-btn {
             width: 100%;
             padding: 0.75rem;
-            background-color: var(--white);
-            color: var(--medical-blue);
-            border: 2px solid var(--medical-blue);
-            border-radius: 0.5rem;
-            font-weight: 600;
+            background: transparent;
+            border: none;
+            color: var(--foreground);
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            border-radius: 0.375rem;
         }
 
-        .service-btn:hover {
-            background-color: var(--medical-blue);
-            color: var(--white);
+        .service-card:hover .service-btn {
+            background: var(--medical-blue-light);
+            color: var(--medical-blue);
         }
 
-        /* Reviews Section */
+        /* Reviews */
         .reviews {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
             padding: 3rem 0;
         }
 
         .featured-review {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 2rem;
-            background-color: var(--white);
+            background: white;
             border-radius: 0.75rem;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(30, 64, 175, 0.2);
+            box-shadow: 0 4px 12px var(--shadow);
+            border: 2px solid var(--medical-blue);
             position: relative;
         }
 
-        .review-avatar {
+        .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0.1;
             width: 64px;
             height: 64px;
-            border-radius: 50%;
-            background-color: var(--medical-blue);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
-            border: 2px solid var(--medical-blue);
+            color: var(--medical-blue);
         }
 
         .review-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            background: var(--medical-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            border: 2px solid var(--medical-blue);
         }
 
         .review-info h4 {
             font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
         }
 
-        .review-info .course {
+        .review-info p {
             font-size: 0.875rem;
-            color: var(--gray-600);
+            color: var(--muted-foreground);
         }
 
         .review-info .college {
             font-size: 0.75rem;
             color: var(--medical-blue);
-            font-weight: 600;
+            font-weight: 500;
             margin-top: 0.25rem;
         }
 
-        .star-rating {
+        .stars {
             height: 24px;
             margin-bottom: 1rem;
         }
 
+        .stars img {
+            height: 100%;
+            width: auto;
+        }
+
         .review-text {
             font-size: 1rem;
-            color: var(--gray-600);
-            line-height: 1.8;
+            color: var(--muted-foreground);
+            line-height: 1.7;
         }
 
         .read-more-btn {
             display: block;
             margin: 2rem auto;
             padding: 0.75rem 2rem;
-            background-color: var(--white);
-            color: var(--medical-blue);
+            background: transparent;
             border: 2px solid var(--medical-blue);
-            border-radius: 0.5rem;
+            color: var(--medical-blue);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
         }
 
         .read-more-btn:hover {
-            background-color: var(--medical-blue-light);
+            background: var(--medical-blue-light);
         }
 
-        .reviews-grid {
+        .additional-reviews {
             display: none;
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-top: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .reviews-grid.show {
+        .additional-reviews.show {
             display: grid;
         }
 
         .review-card {
-            background-color: var(--white);
+            background: white;
             border-radius: 0.75rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px var(--shadow);
+            position: relative;
         }
 
-        .review-card .review-avatar {
-            width: 48px;
+        .review-card .avatar {
             height: 48px;
-            font-size: 1rem;
+            width: 48px;
+            font-size: 0.95rem;
         }
 
-        .review-card .star-rating {
+        .review-card .stars {
             height: 20px;
+        }
+
+        .review-card .review-text {
+            font-size: 0.95rem;
+        }
+
+        .review-card .college {
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--medical-blue);
+            font-weight: 500;
         }
 
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-blue-dark) 100%);
-            color: var(--white);
-            padding: 3rem 0 1.5rem;
+            color: white;
+            padding: 3rem 0 2rem;
         }
 
         .footer-grid {
@@ -665,15 +716,14 @@
         }
 
         .footer-brand img {
-            width: 40px;
             height: 40px;
+            width: 40px;
             filter: brightness(0) invert(1);
         }
 
         .footer-brand-text h3 {
             font-size: 1.125rem;
             font-weight: 700;
-            line-height: 1.2;
         }
 
         .footer-brand-text p {
@@ -689,7 +739,7 @@
 
         .footer-section p {
             font-size: 0.875rem;
-            opacity: 0.8;
+            opacity: 0.7;
             line-height: 1.6;
         }
 
@@ -706,40 +756,45 @@
             opacity: 0.8;
         }
 
+        .contact-list svg {
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
         .contact-list a {
-            color: var(--white);
+            color: white;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
         }
 
         .contact-list a:hover {
             opacity: 1;
         }
 
-        .footer-buttons {
+        .contact-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.75rem;
         }
 
-        .footer-btn {
-            padding: 0.5rem 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
+        .contact-btn {
+            padding: 0.625rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
+            color: white;
+            border-radius: 0.375rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            font-size: 0.875rem;
         }
 
-        .footer-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .footer-bottom {
@@ -751,7 +806,7 @@
         }
 
         .footer-bottom a {
-            color: var(--white);
+            color: white;
             text-decoration: none;
         }
 
@@ -764,24 +819,24 @@
             position: fixed;
             bottom: 1rem;
             right: 1rem;
-            z-index: 999;
+            z-index: 40;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
 
         .social-btn {
-            width: 48px;
-            height: 48px;
+            height: 56px;
+            width: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-            position: relative;
+            color: white;
             text-decoration: none;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.2s;
+            position: relative;
         }
 
         .social-btn:hover {
@@ -789,177 +844,105 @@
         }
 
         .social-btn.phone {
-            background-color: var(--medical-blue);
+            background: var(--medical-blue);
         }
 
         .social-btn.whatsapp {
-            background-color: #25d366;
+            background: #25D366;
         }
 
         .social-btn.telegram {
-            background-color: #0088cc;
+            background: #0088cc;
         }
 
         .social-btn.instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background: linear-gradient(135deg, #833AB4 0%, #E1306C 100%);
         }
 
-        .social-btn .tooltip {
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-tooltip {
             position: absolute;
-            right: 60px;
-            background-color: var(--gray-900);
-            color: var(--white);
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
+            right: 64px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
             font-size: 0.75rem;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
         }
 
-        .social-btn:hover .tooltip {
+        .social-btn:hover .social-tooltip {
             opacity: 1;
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100vh;
-            background-color: var(--white);
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 2000;
-            padding: 2rem;
-            transform: translateX(100%);
-            transition: transform 0.3s;
+        /* Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
         }
 
-        .mobile-menu.active {
-            display: block;
-            transform: translateX(0);
+        .icon-fill {
+            fill: currentColor;
         }
 
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .mobile-menu-header h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.25rem;
-        }
-
-        .mobile-menu nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-menu nav a {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--gray-700);
-            text-decoration: none;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--gray-200);
-            transition: color 0.3s;
-        }
-
-        .mobile-menu nav a:hover {
-            color: var(--medical-blue);
-        }
-
-        .menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-        }
-
-        .menu-overlay.active {
-            display: block;
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (min-width: 768px) {
             .container {
                 padding: 0 2rem;
             }
 
             .hero h2 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
-            .notification-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .notifications-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .why-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr 1fr;
             }
 
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .reviews-grid {
+            .additional-reviews {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .social-strip {
-                bottom: 1.5rem;
-                right: 1.5rem;
-            }
-
-            .social-btn {
-                width: 56px;
-                height: 56px;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (min-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .reviews-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer-grid {
+            .additional-reviews {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 767px) {
-            .menu-btn, .apply-btn {
-                display: none;
-            }
-
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .header-actions {
+                display: none;
             }
 
             .hero h2 {
@@ -979,10 +962,6 @@
                 justify-content: center;
             }
 
-            .notification-header h2 {
-                font-size: 1.5rem;
-            }
-
             .introduction h2 {
                 font-size: 1.75rem;
             }
@@ -990,16 +969,93 @@
             .section-header h2 {
                 font-size: 1.75rem;
             }
+
+            .social-strip {
+                bottom: 0.5rem;
+                right: 0.5rem;
+                gap: 0.5rem;
+            }
+
+            .social-btn {
+                height: 48px;
+                width: 48px;
+            }
+
+            .social-btn svg {
+                width: 20px;
+                height: 20px;
+            }
         }
 
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            background: white;
+            box-shadow: -4px 0 12px var(--shadow);
+            z-index: 100;
+            padding: 2rem;
         }
 
-        svg {
-            width: 20px;
-            height: 20px;
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+
+        .mobile-menu-overlay.show {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-menu {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-menu a {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--foreground);
+            text-decoration: none;
+            padding: 0.75rem 0;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--medical-blue);
         }
     </style>
 </head>
@@ -1008,40 +1064,49 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo-section">
-                    <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo" class="logo-img">
+                <div class="brand">
+                    <img src="/assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
                     <div class="brand-text">
                         <h1>RN Counselling</h1>
                         <p>Trusted Medical Admission Guidance</p>
                     </div>
                 </div>
                 <div class="header-actions">
-                    <button class="menu-btn" onclick="toggleMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <button class="menu-btn" onclick="toggleMobileMenu()">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                         Menu
                     </button>
-                    <button class="apply-btn" onclick="window.location.href='packages.html'">Apply Now</button>
-                    <button class="mobile-menu-btn" onclick="toggleMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    <a href="packages.html" class="apply-btn">Apply Now</a>
                 </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <svg class="icon" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Mobile Menu -->
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <h3>Menu</h3>
-            <button class="close-menu" onclick="toggleMenu()">×</button>
+            <button class="close-menu" onclick="toggleMobileMenu()">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
         <nav>
-            <a href="packages.html">Apply Now</a>
+            <a href="apply.html">Apply Now</a>
             <a href="contact.html">Contact Us</a>
             <a href="packages.html">Packages</a>
         </nav>
@@ -1054,71 +1119,92 @@
                 <h2>Your Path to <span class="highlight">Medical</span> Success Starts Here</h2>
                 <p>Expert counselling for MBBS, BDS, AYUSH, Nursing, and Paramedical course admissions. We guide you through every step of your medical education journey.</p>
                 <div class="hero-buttons">
-                    <a href="packages.html" class="btn btn-primary">
+                    <a href="apply.html" class="btn btn-primary">
                         Apply Now
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
                         </svg>
                     </a>
-                    <a href="contact.html" class="btn btn-outline-blue">Contact Us</a>
+                    <a href="contact.html" class="btn btn-outline">Contact Us</a>
                     <a href="packages.html" class="btn btn-outline-orange">Packages</a>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/generated/hero-medical-team.dim_1200x600.jpg" alt="Medical Team">
+                    <img src="/assets/generated/hero-medical-team.dim_1200x600.jpg" alt="Medical Team">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Notification Section -->
+    <!-- Notification Box -->
     <section class="notifications">
         <div class="container">
-            <div class="notification-header">
+            <div class="notifications-header">
                 <div class="notification-icon">
-                    <img src="assets/generated/notification-icon-transparent.dim_64x64.png" alt="Notification">
+                    <img src="/assets/generated/notification-icon-transparent.dim_64x64.png" alt="Notification">
                 </div>
                 <div>
                     <h2>Important Updates</h2>
                     <p>Stay informed about admission deadlines</p>
                 </div>
             </div>
-            <div class="notification-grid">
-                <div class="notification-card urgent" id="notification1">
-                    <button class="dismiss-btn" onclick="dismissNotification('notification1')">×</button>
-                    <h3>NEET 2026 Registration Open</h3>
-                    <p>Karnataka has officially started MBBS, BDS & AYUSH registration for 2026 admissions. Don't miss the deadline!</p>
-                    <div class="date">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <div class="notifications-grid">
+                <div class="notification-card orange">
+                    <div class="notification-content">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--medical-orange);">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
                         </svg>
-                        January 15, 2026
+                        <div>
+                            <h3>NEET 2026 Registration Open</h3>
+                            <p>Karnataka has officially started MBBS, BDS & AYUSH registration for 2026 admissions. Don't miss the deadline!</p>
+                            <div class="notification-date">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>January 15, 2026</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="notification-card" id="notification2">
-                    <button class="dismiss-btn" onclick="dismissNotification('notification2')">×</button>
-                    <h3>Counselling Schedule Released</h3>
-                    <p>First round of counselling begins on February 1st, 2026. Book your slot now for personalized guidance!</p>
-                    <div class="date">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <div class="notification-card blue">
+                    <div class="notification-content">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--medical-blue);">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
                         </svg>
-                        January 10, 2026
+                        <div>
+                            <h3>Counselling Schedule Released</h3>
+                            <p>First round of counselling begins on February 1st, 2026. Book your slot now for personalized guidance!</p>
+                            <div class="notification-date">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>January 10, 2026</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Introduction Section -->
+    <!-- Introduction -->
     <section class="introduction">
         <div class="container">
             <div class="intro-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                 </svg>
-                About Our Counselling
+                <span>About Our Counselling</span>
             </div>
             <h2>Your Journey to <span class="highlight">Medical Excellence</span></h2>
             <p>Choosing the right medical college is a life-defining decision. Our UG medical admission counselling provides expert guidance, transparent processes, and personalized support to help you secure the best possible seat based on your merit and preferences.</p>
@@ -1133,23 +1219,46 @@
                     <h3>Why Counselling Important</h3>
                     <ul class="why-list">
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
                             <span>Clear admission guidance</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
                             <span>Right college selection</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
                             <span>Error-free choice filling</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                            </div>
                             <span>Better seat chances</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon icon-fill" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
                             <span>Reduced stress & confusion</span>
                         </li>
                     </ul>
@@ -1158,23 +1267,49 @@
                     <h3>Why Choose Us</h3>
                     <ul class="why-list">
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
                             <span>Experienced counselling experts</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
                             <span>Transparent guidance process</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
                             <span>Personalized student support</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                            </div>
                             <span>Updated admission insights</span>
                         </li>
                         <li>
-                            <span class="icon">✓</span>
+                            <div class="why-icon">
+                                <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
                             <span>Trusted student success</span>
                         </li>
                     </ul>
@@ -1183,7 +1318,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section class="services">
         <div class="container">
             <div class="section-header">
@@ -1193,7 +1328,12 @@
             <div class="services-grid">
                 <div class="service-card" onclick="window.location.href='packages.html'">
                     <div class="service-image">
-                        <img src="assets/generated/mbbs-card.dim_300x200.jpg" alt="MBBS/BDS">
+                        <img src="/assets/generated/mbbs-card.dim_300x200.jpg" alt="MBBS/BDS">
+                        <div class="service-icon blue">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="service-content">
                         <h3>MBBS/BDS</h3>
@@ -1201,15 +1341,22 @@
                         <p>Comprehensive guidance for MBBS and BDS admissions in top medical and dental colleges across India.</p>
                         <button class="service-btn">
                             Apply Now
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </button>
                     </div>
                 </div>
                 <div class="service-card" onclick="window.location.href='packages.html'">
                     <div class="service-image">
-                        <img src="assets/generated/ayush-card.dim_300x200.jpg" alt="Ayush">
+                        <img src="/assets/generated/ayush-card.dim_300x200.jpg" alt="Ayush">
+                        <div class="service-icon orange">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M17 8c0-3.866-3.582-7-8-7a1 1 0 0 0 0 2c3.309 0 6 2.691 6 5 0 3.866-3.582 7-8 7s-8-3.134-8-7c0-2.309 1.691-5 5-5a1 1 0 0 0 0-2C-.582 1 1 4.134 1 8c0 4.963 4.037 9 9 9s9-4.037 9-9z"></path>
+                                <path d="M12 2v10"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="service-content">
                         <h3>Ayush (BAMS, BUMS, BHMS)</h3>
@@ -1217,15 +1364,22 @@
                         <p>Specialized support for Ayurveda, Unani, Siddha, and Homeopathy course admissions.</p>
                         <button class="service-btn">
                             Apply Now
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </button>
                     </div>
                 </div>
                 <div class="service-card" onclick="window.location.href='packages.html'">
                     <div class="service-image">
-                        <img src="assets/generated/nursing-paramedical-card.dim_300x200.jpg" alt="Nursing/Paramedical">
+                        <img src="/assets/generated/nursing-paramedical-card.dim_300x200.jpg" alt="Nursing/Paramedical">
+                        <div class="service-icon blue">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="service-content">
                         <h3>Nursing/Paramedical/etc</h3>
@@ -1233,8 +1387,9 @@
                         <p>Complete guidance for Nursing, Pharmacy, Allied Health Sciences, and other paramedical courses.</p>
                         <button class="service-btn">
                             Apply Now
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </button>
                     </div>
@@ -1243,7 +1398,7 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
+    <!-- Student Reviews -->
     <section class="reviews">
         <div class="container">
             <div class="section-header">
@@ -1251,59 +1406,83 @@
                 <p>Real success stories from students who achieved their medical education dreams with our guidance.</p>
             </div>
             <div class="featured-review">
+                <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                </svg>
                 <div class="review-header">
-                    <div class="review-avatar">PS</div>
+                    <div class="avatar">PS</div>
                     <div class="review-info">
                         <h4>Priya Sharma</h4>
-                        <p class="course">MBBS Student</p>
+                        <p>MBBS Student</p>
                         <p class="college">Bangalore Medical College</p>
                     </div>
                 </div>
-                <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                <div class="stars">
+                    <img src="/assets/generated/star-rating-transparent.dim_150x30.png" alt="5 star rating">
+                </div>
                 <p class="review-text">"RN Counselling made my dream of becoming a doctor come true. Their expert guidance helped me secure admission in my preferred college. The team was incredibly supportive throughout the entire process, from documentation to final admission. Highly recommended!"</p>
             </div>
             <button class="read-more-btn" id="readMoreBtn" onclick="showMoreReviews()">
                 Read More Reviews
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="margin-left: 0.5rem;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px; display: inline; vertical-align: middle; margin-left: 0.5rem;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
             </button>
-            <div class="reviews-grid" id="moreReviews">
+            <div class="additional-reviews" id="additionalReviews">
                 <div class="review-card">
+                    <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 48px; height: 48px;">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                    </svg>
                     <div class="review-header">
-                        <div class="review-avatar">RK</div>
+                        <div class="avatar">RK</div>
                         <div class="review-info">
                             <h4>Rahul Kumar</h4>
-                            <p class="course">BDS Student</p>
+                            <p>BDS Student</p>
                         </div>
                     </div>
-                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <div class="stars">
+                        <img src="/assets/generated/star-rating-transparent.dim_150x30.png" alt="5 star rating">
+                    </div>
                     <p class="review-text">"The counselling team was incredibly supportive throughout the admission process. They helped me understand all my options and made the right choice for my career. Their expertise in dental admissions is unmatched."</p>
-                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">Government Dental College</p>
+                    <p class="college">Government Dental College</p>
                 </div>
                 <div class="review-card">
+                    <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 48px; height: 48px;">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                    </svg>
                     <div class="review-header">
-                        <div class="review-avatar">AR</div>
+                        <div class="avatar">AR</div>
                         <div class="review-info">
                             <h4>Ananya Reddy</h4>
-                            <p class="course">BAMS Student</p>
+                            <p>BAMS Student</p>
                         </div>
                     </div>
-                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <div class="stars">
+                        <img src="/assets/generated/star-rating-transparent.dim_150x30.png" alt="5 star rating">
+                    </div>
                     <p class="review-text">"Professional, knowledgeable, and always available to answer questions. RN Counselling exceeded my expectations in every way. They guided me through the AYUSH admission process seamlessly."</p>
-                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">National Institute of Ayurveda</p>
+                    <p class="college">National Institute of Ayurveda</p>
                 </div>
                 <div class="review-card">
+                    <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 48px; height: 48px;">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                    </svg>
                     <div class="review-header">
-                        <div class="review-avatar">VS</div>
+                        <div class="avatar">VS</div>
                         <div class="review-info">
                             <h4>Vikram Singh</h4>
-                            <p class="course">MBBS Student</p>
+                            <p>MBBS Student</p>
                         </div>
                     </div>
-                    <img src="assets/generated/star-rating-transparent.dim_150x30.png" alt="5 stars" class="star-rating">
+                    <div class="stars">
+                        <img src="/assets/generated/star-rating-transparent.dim_150x30.png" alt="5 star rating">
+                    </div>
                     <p class="review-text">"From documentation to final admission, they handled everything smoothly. Their experience and network in medical education is unmatched. I am grateful for their support in achieving my medical career goals."</p>
-                    <p class="college" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">Mysore Medical College</p>
+                    <p class="college">Mysore Medical College</p>
                 </div>
             </div>
         </div>
@@ -1315,7 +1494,7 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-brand">
-                        <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                        <img src="/assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
                         <div class="footer-brand-text">
                             <h3>RN Counselling</h3>
                             <p>Trusted Medical Admission Guidance</p>
@@ -1327,21 +1506,22 @@
                     <h3>Contact Us</h3>
                     <ul class="contact-list">
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                             <span>2nd floor, Tower building, Arif colony, Aurangabad-431001</span>
                         </li>
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                             <a href="mailto:rnenterprises77764@gmail.com">rnenterprises77764@gmail.com</a>
                         </li>
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                             <a href="tel:+919673882382">+91 9673882382</a>
                         </li>
@@ -1349,29 +1529,31 @@
                 </div>
                 <div class="footer-section">
                     <h3>Get in Touch</h3>
-                    <div class="footer-buttons">
-                        <a href="tel:+919673882382" class="footer-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <div class="contact-buttons">
+                        <a href="tel:+919673882382" class="contact-btn">
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                             Call
                         </a>
-                        <a href="https://wa.me/919673882382" target="_blank" rel="noopener noreferrer" class="footer-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        <a href="https://wa.me/919673882382" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
                             WhatsApp
                         </a>
-                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener noreferrer" class="footer-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                             </svg>
                             Telegram
                         </a>
-                        <a href="https://www.instagram.com/ugmedicalcounselling?igsh=MW9tZjQwcnRjNWNwZg==" target="_blank" rel="noopener noreferrer" class="footer-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                             </svg>
                             Instagram
                         </a>
@@ -1379,7 +1561,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025. Built with ❤️ using <a href="https://caffeine.ai" target="_blank" rel="noopener noreferrer">caffeine.ai</a></p>
+                <p>© 2025. Built with 
+                    <svg class="icon icon-fill" viewBox="0 0 24 24" style="width: 16px; height: 16px; display: inline; vertical-align: middle; color: var(--medical-orange);">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    using <a href="https://caffeine.ai" target="_blank" rel="noopener noreferrer">caffeine.ai</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -1387,21 +1574,49 @@
     <!-- Social Strip -->
     <div class="social-strip">
         <a href="tel:+919673882382" class="social-btn phone">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
-            <span class="tooltip">Call</span>
+            <span class="social-tooltip">Call</span>
         </a>
         <a href="https://wa.me/919673882382" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span class="tooltip">WhatsApp</span>
+            <span class="social-tooltip">WhatsApp</span>
         </a>
         <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener noreferrer" class="social-btn telegram">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            <svg class="icon" viewBox="0 0 24 24">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
-            <span class="tooltip">Telegram</span>
+            <span class="social-tooltip">Telegram</span>
         </a>
-        <a href="https://www.instagram.com/ugmedicalcounselling?igsh=MW9tZjQwcnRjNWNwZg==" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
+        <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span class="social-tooltip">Instagram</span>
+        </a>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            menu.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        function showMoreReviews() {
+            const additionalReviews = document.getElementById('additionalReviews');
+            const readMoreBtn = document.getElementById('readMoreBtn');
+            additionalReviews.classList.add('show');
+            readMoreBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
