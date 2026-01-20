@@ -775,3 +775,31 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+
+                    </footer>
+
+    <!-- JAVASCRIPT START -->
+    <script>
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("active");
+    }
+
+    function toggleReadMore(id) {
+        const section = document.getElementById(id);
+        const button = event.target;
+
+        section.classList.toggle("expanded");
+
+        if (section.classList.contains("expanded")) {
+            button.innerText = "Read Less Features";
+        } else {
+            button.innerText = "Read More Features";
+        }
+    }
+    </script>
+    <!-- JAVASCRIPT END -->
+
+</body>
+</html>
+
