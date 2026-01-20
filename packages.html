@@ -1,241 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Packages | RN Counselling</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Counselling Packages - RN Counselling</title>
+    <meta name="description" content="Choose from our comprehensive medical admission counselling packages for MBBS/BDS, AYUSH, and Nursing/Paramedical courses.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f7fb;
-  color: #333;
-}
+        :root {
+            --medical-blue: hsl(210, 100%, 45%);
+            --medical-blue-dark: hsl(210, 100%, 35%);
+            --medical-blue-light: hsl(210, 100%, 95%);
+            --medical-orange: hsl(25, 95%, 53%);
+            --medical-orange-dark: hsl(25, 95%, 43%);
+            --medical-orange-light: hsl(25, 95%, 95%);
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --border-color: #e5e5e5;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
 
-/* HEADER */
-header {
-  background: #ffffff;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #fff;
+        }
 
-header h2 {
-  color: #0a58ca;
-  margin: 0;
-}
+        /* Header Styles */
+        header {
+            background: #fff;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-nav a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-}
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
 
-/* PAGE TITLE */
-.page-title {
-  background: linear-gradient(to right, #0a58ca, #0d6efd);
-  color: white;
-  padding: 50px 20px;
-  text-align: center;
-}
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-/* SECTION */
-.section {
-  padding: 50px 20px;
-}
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
 
-/* PACKAGE GRID */
-.packages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
+        .brand-info h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--medical-blue);
+            line-height: 1.2;
+        }
 
-/* CARD */
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
+        .brand-info p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            line-height: 1.2;
+        }
 
-.card h3 {
-  color: #0a58ca;
-  margin-top: 0;
-}
+        .nav-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-.price {
-  font-size: 22px;
-  font-weight: bold;
-  color: #ff7a00;
-  margin: 10px 0;
-}
+        .nav-links {
+            display: none;
+            gap: 1.5rem;
+        }
 
-ul {
-  padding-left: 18px;
-}
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-ul li {
-  margin-bottom: 8px;
-}
+        .nav-links a:hover {
+            color: var(--medical-blue);
+        }
 
-/* BUTTON */
-.btn {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  padding: 12px;
-  background: #ff7a00;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-}
+        .apply-btn {
+            background: var(--medical-orange);
+            color: #fff;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
 
-/* FOOTER */
-footer {
-  background: #0a58ca;
-  color: white;
-  text-align: center;
-  padding: 25px;
-  margin-top: 40px;
-}
+        .apply-btn:hover {
+            background: var(--medical-orange-dark);
+        }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+        .menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medical-blue);
+        }
 
-  nav a {
-    display: block;
-    margin: 8px 0;
-  }
-}
-</style>
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--medical-blue-light);
+        }
+
+        /* Page Title Section */
+        .page-title {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-blue-dark) 100%);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .page-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .packages-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--medical-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Package Card */
+        .package-card {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .package-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .package-card.premium {
+            border-color: var(--medical-orange);
+            position: relative;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -12px;
+            right: 1.5rem;
+            background: var(--medical-orange);
+            color: #fff;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .package-header {
+            margin-bottom: 1rem;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .package-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--medical-blue);
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--medical-blue);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .read-more-section {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .read-more-section.expanded {
+            max-height: 2000px;
+            transition: max-height 0.6s ease-in;
+        }
+
+        .read-more-btn {
+            background: var(--medical-blue-light);
+            color: var(--medical-blue);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .read-more-btn:hover {
+            background: var(--medical-blue);
+            color: #fff;
+        }
+
+        .package-apply-btn {
+            display: block;
+            width: 100%;
+            background: var(--medical-orange);
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .package-apply-btn:hover {
+            background: var(--medical-orange-dark);
+        }
+
+        .package-card.premium .package-apply-btn {
+            background: var(--medical-blue);
+        }
+
+        .package-card.premium .package-apply-btn:hover {
+            background: var(--medical-blue-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--medical-blue-dark) 0%, var(--medical-blue) 100%);
+            color: #fff;
+            padding: 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .contact-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #fff;
+        }
+
+        .contact-btn.call {
+            background: #10b981;
+        }
+
+        .contact-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .contact-btn.telegram {
+            background: #0088cc;
+        }
+
+        .contact-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom a {
+            color: var(--medical-orange-light);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Strip */
+        .social-strip {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 90;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .social-btn.phone {
+            background: #10b981;
+        }
+
+        .social-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .social-btn.telegram {
+            background: #0088cc;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .header-container {
+                padding: 1rem 2rem;
+            }
+
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .brand-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .brand-info p {
+                font-size: 0.875rem;
+            }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: none;
+            }
+
+            .page-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                padding: 3rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .social-strip {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                flex-direction: row;
+                justify-content: space-around;
+                background: #fff;
+                box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+                padding: 0.75rem;
+                border-radius: 0;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="/assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo" class="logo-img">
+                <div class="brand-info">
+                    <h1>RN Counselling</h1>
+                    <p>Trusted Medical Admission Guidance</p>
+                </div>
+            </div>
+            <nav class="nav-section">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="apply.html">Apply</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <a href="apply.html" class="apply-btn">Apply Now</a>
+                <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="packages.html">Packages</a>
+            <a href="apply.html">Apply</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
 
-<header>
-  <h2>RN Counselling</h2>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="packages.html">Packages</a>
-    <a href="student-form.html">Student Form</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <!-- Page Title -->
+    <section class="page-title">
+        <h2>Our Counselling Packages</h2>
+        <p>Choose the perfect package for your medical admission journey</p>
+    </section>
 
-<div class="page-title">
-  <h1>Our Counselling Packages</h1>
-  <p>Transparent • Ethical • Student-first guidance</p>
-</div>
+    <!-- Main Content -->
+    <main>
+        <!-- MBBS/BDS Packages -->
+        <section class="packages-section">
+            <h3 class="section-title">MBBS/BDS Counselling</h3>
+            <div class="packages-grid">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4 class="package-name">Basic Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>Essential counselling guidance</li>
+                        <li>College selection support</li>
+                        <li>Choice filling assistance</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
 
-<div class="section">
-  <div class="packages">
+                <!-- Premium Package -->
+                <div class="package-card premium">
+                    <span class="premium-badge">Premium</span>
+                    <div class="package-header">
+                        <h4 class="package-name">Premium Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>24/7 Query Support On WhatsApp Messages/On Calls</li>
+                        <li>We will provide counselling for more than two states as per your requirements</li>
+                        <li>Previous Year Cut Off as per Your Requirement for Govt. and Pvt. Colleges</li>
+                    </ul>
+                    <button class="read-more-btn" onclick="toggleReadMore('mbbs-premium')">Read More Features</button>
+                    <div class="read-more-section" id="mbbs-premium">
+                        <ul class="package-features">
+                            <li>Complete guidance for college selection according to NEET score and budget</li>
+                            <li>Advice and guidance on all kinds of required certificates like Domicile, Category, Minority, GAP, EWS, physically challenged, and NRI etc.</li>
+                            <li>Detailed College Analysis like Seat Matrix, Clinical facts, and fee structure will be provided</li>
+                            <li>Complete Support for MCC/Home State/Deemed and Open Pvt. States</li>
+                            <li>All updates related to court cases for fees, seats, domicile, or other eligibility criteria will be explained immediately</li>
+                            <li>State-wise list of top Government colleges will be provided</li>
+                            <li>Round-wise Strategy to proceed with the counselling</li>
+                            <li>Choice filling support during every round from our experts</li>
+                            <li>Merit list and seat matrix will be discussed with parents and students during all rounds of counselling</li>
+                            <li>Choice filling preferences for all rounds will be done under guidance of Ashok Sir</li>
+                            <li>Guidance for physical round of Counselling During Mop up Stray vacancy will be provided</li>
+                            <li>Documentation help at the time of reporting at allotted college will be provided</li>
+                            <li>Video meeting with our expert counsellor will be provided after every round of counselling</li>
+                        </ul>
+                    </div>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- MBBS BASIC -->
-    <div class="card">
-      <h3>MBBS / BDS – Basic</h3>
-      <div class="price">₹17,000</div>
-      <ul>
-        <li>NEET score & rank analysis</li>
-        <li>College prediction (AIQ / State)</li>
-        <li>Eligibility check</li>
-        <li>Fee & bond details</li>
-        <li>Cut-off trends (3–5 years)</li>
-        <li>Limited 1-to-1 counselling</li>
-        <li>WhatsApp / Telegram support</li>
-        <li>Choice filling support</li>
-      </ul>
-      <a href="apply.html">Apply Now</a>
-    </div>
+        <!-- AYUSH Packages -->
+        <section class="packages-section">
+            <h3 class="section-title">AYUSH Counselling</h3>
+            <div class="packages-grid">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4 class="package-name">Basic Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>Essential counselling guidance</li>
+                        <li>College selection support</li>
+                        <li>Choice filling assistance</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
 
-    <!-- MBBS PREMIUM -->
-    <div class="card">
-      <h3>MBBS / BDS – Premium</h3>
-      <div class="price">₹24,999</div>
-      <ul>
-        <li>Everything in Basic Package</li>
-        <li>End-to-end admission support</li>
-        <li>Personalized college shortlisting</li>
-        <li>Complete counselling registration</li>
-        <li>Choice filling & locking guidance</li>
-        <li>Seat allotment & upgrade strategy</li>
-        <li>Document verification support</li>
-        <li>College reporting guidance</li>
-        <li>Priority WhatsApp & call support</li>
-      </ul>
-      <a href="apply.html">Apply Now</a>
-    </div>
+                <!-- Premium Package -->
+                <div class="package-card premium">
+                    <span class="premium-badge">Premium</span>
+                    <div class="package-header">
+                        <h4 class="package-name">Premium Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>24/7 Query Support On WhatsApp Messages/On Calls</li>
+                        <li>We will provide counselling for more than two states as per your requirements</li>
+                        <li>Previous Year Cut Off as per Your Requirement for Govt. and Pvt. Colleges</li>
+                    </ul>
+                    <button class="read-more-btn" onclick="toggleReadMore('ayush-premium')">Read More Features</button>
+                    <div class="read-more-section" id="ayush-premium">
+                        <ul class="package-features">
+                            <li>Complete guidance for college selection according to NEET score and budget</li>
+                            <li>Advice and guidance on all kinds of required certificates like Domicile, Category, Minority, GAP, EWS, physically challenged, and NRI etc.</li>
+                            <li>Detailed College Analysis like Seat Matrix, Clinical facts, and fee structure will be provided</li>
+                            <li>Complete Support for MCC/Home State/Deemed and Open Pvt. States</li>
+                            <li>All updates related to court cases for fees, seats, domicile, or other eligibility criteria will be explained immediately</li>
+                            <li>State-wise list of top Government colleges will be provided</li>
+                            <li>Round-wise Strategy to proceed with the counselling</li>
+                            <li>Choice filling support during every round from our experts</li>
+                            <li>Merit list and seat matrix will be discussed with parents and students during all rounds of counselling</li>
+                            <li>Choice filling preferences for all rounds will be done under guidance of Ashok Sir</li>
+                            <li>Guidance for physical round of Counselling During Mop up Stray vacancy will be provided</li>
+                            <li>Documentation help at the time of reporting at allotted college will be provided</li>
+                            <li>Video meeting with our expert counsellor will be provided after every round of counselling</li>
+                        </ul>
+                    </div>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- AYUSH BASIC -->
-    <div class="card">
-      <h3>BAMS / BHMS / BUMS – Basic</h3>
-      <div class="price">₹12,500</div>
-      <ul>
-        <li>Rank & eligibility analysis</li>
-        <li>College prediction</li>
-        <li>Fee structure details</li>
-        <li>Cut-off trends</li>
-        <li>Limited counselling support</li>
-      </ul>
-      <a href="student-form.html" class="btn">Apply Now</a>
-    </div>
+        <!-- Nursing/Paramedical Packages -->
+        <section class="packages-section">
+            <h3 class="section-title">Nursing/Paramedical Counselling</h3>
+            <div class="packages-grid">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4 class="package-name">Basic Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>Essential counselling guidance</li>
+                        <li>College selection support</li>
+                        <li>Choice filling assistance</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
 
-    <!-- AYUSH PREMIUM -->
-    <div class="card">
-      <h3>BAMS / BHMS / BUMS – Premium</h3>
-      <div class="price">₹18,999</div>
-      <ul>
-        <li>Complete admission support</li>
-        <li>College shortlisting</li>
-        <li>Choice filling & locking</li>
-        <li>Document support</li>
-        <li>Priority assistance</li>
-      </ul>
-      <a href="apply.html">Apply Now</a>
-    </div>
+                <!-- Premium Package -->
+                <div class="package-card premium">
+                    <span class="premium-badge">Premium</span>
+                    <div class="package-header">
+                        <h4 class="package-name">Premium Package</h4>
+                        <p class="package-price">Contact for Pricing</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>24/7 Query Support On WhatsApp Messages/On Calls</li>
+                        <li>We will provide counselling for more than two states as per your requirements</li>
+                        <li>Previous Year Cut Off as per Your Requirement for Govt. and Pvt. Colleges</li>
+                    </ul>
+                    <button class="read-more-btn" onclick="toggleReadMore('nursing-premium')">Read More Features</button>
+                    <div class="read-more-section" id="nursing-premium">
+                        <ul class="package-features">
+                            <li>Complete guidance for college selection according to NEET score and budget</li>
+                            <li>Advice and guidance on all kinds of required certificates like Domicile, Category, Minority, GAP, EWS, physically challenged, and NRI etc.</li>
+                            <li>Detailed College Analysis like Seat Matrix, Clinical facts, and fee structure will be provided</li>
+                            <li>Complete Support for MCC/Home State/Deemed and Open Pvt. States</li>
+                            <li>All updates related to court cases for fees, seats, domicile, or other eligibility criteria will be explained immediately</li>
+                            <li>State-wise list of top Government colleges will be provided</li>
+                            <li>Round-wise Strategy to proceed with the counselling</li>
+                            <li>Choice filling support during every round from our experts</li>
+                            <li>Merit list and seat matrix will be discussed with parents and students during all rounds of counselling</li>
+                            <li>Choice filling preferences for all rounds will be done under guidance of Ashok Sir</li>
+                            <li>Guidance for physical round of Counselling During Mop up Stray vacancy will be provided</li>
+                            <li>Documentation help at the time of reporting at allotted college will be provided</li>
+                            <li>Video meeting with our expert counsellor will be provided after every round of counselling</li>
+                        </ul>
+                    </div>
+                    <a href="apply.html" class="package-apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- NURSING BASIC -->
-    <div class="card">
-      <h3>Nursing / Paramedical – Basic</h3>
-      <div class="price">₹8,500</div>
-      <ul>
-        <li>Course & college guidance</li>
-        <li>Eligibility check</li>
-        <li>Fee structure info</li>
-        <li>Limited counselling</li>
-      </ul>
-      <a href="apply.html">Apply Now</a>
-    </div>
-
-    <!-- NURSING PREMIUM -->
-    <div class="card">
-      <h3>Nursing / Paramedical – Premium</h3>
-      <div class="price">₹15,000</div>
-      <ul>
-        <li>End-to-end admission support</li>
-        <li>College shortlisting</li>
-        <li>Documentation help</li>
-        <li>Priority support</li>
-      </ul>
-      <a href="apply.html">Apply Now</a>
-    </div>
-
-  </div>
-</div>
-
-<footer>
-  <p>RN Medical Admission Counselling</p>
-  <p>© 2026 All Rights Reserved</p>
-</footer>
-
-</body>
-</html>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RN Counselling</h3>
+                    <p>Trusted Medical Admission Guidance</p>
+                    <p>Your partner in securing the best medical college seat based on your merit and preferences.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="apply.html">Apply Now</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📍 2nd floor, Tower building, Arif colony, Aurangabad-431001</p>
+                    <p>📧 rnenterprises77764@gmail.com</p>
+                    <p>📞 +91 96738 82382</p>
+                </div>
+            </div>
+            <div class="contact-buttons">
+                <a href="tel:+919673882382" class="contact-btn call">📞 Call</a>
+                <a href="https://wa.me/919673882382" target="_blank" rel="noopener" class="contact-btn whatsapp">💬 WhatsApp</a>
+                <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener" class="contact-btn telegram">✈️ Telegram</a>
+                <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener" class="contact-btn instagram">📷 Instagram</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RN Counselling. All rights reserved.</p>
