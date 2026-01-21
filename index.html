@@ -7,1011 +7,293 @@
     <meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses">
     <title>RN Counselling - Trusted Medical Admission Guidance</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --medical-blue: hsl(210, 100%, 45%);
-            --medical-blue-dark: hsl(210, 100%, 35%);
-            --medical-blue-light: hsl(210, 100%, 95%);
-            --medical-orange: hsl(25, 95%, 53%);
-            --medical-orange-dark: hsl(25, 95%, 43%);
-            --medical-orange-light: hsl(25, 95%, 95%);
-            --background: #ffffff;
-            --foreground: #0a0a0a;
-            --muted: #f5f5f5;
-            --muted-foreground: #737373;
-            --border: #e5e5e5;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--foreground);
-            background-color: var(--background);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 1px 3px var(--shadow);
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 80px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .brand img {
-            height: 48px;
-            width: 48px;
-            object-fit: contain;
-        }
-
-        .brand-text h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--medical-blue);
-            line-height: 1.2;
-        }
-
-        .brand-text p {
-            font-size: 0.75rem;
-            color: var(--muted-foreground);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .menu-btn, .apply-btn {
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            font-size: 0.95rem;
-        }
-
-        .menu-btn {
-            background: transparent;
-            border: 1px solid var(--medical-blue);
-            color: var(--medical-blue);
-        }
-
-        .menu-btn:hover {
-            background: var(--medical-blue-light);
-        }
-
-        .apply-btn {
-            background: var(--medical-orange);
-            color: white;
-        }
-
-        .apply-btn:hover {
-            background: var(--medical-orange-dark);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--background) 50%, var(--medical-orange-light) 100%);
-            padding: 3rem 0;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero .highlight {
-            color: var(--medical-blue);
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--muted-foreground);
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--medical-blue);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--medical-blue-dark);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--medical-blue);
-            color: var(--medical-blue);
-        }
-
-        .btn-outline:hover {
-            background: var(--medical-blue-light);
-        }
-
-        .btn-outline-orange {
-            background: transparent;
-            border: 2px solid var(--medical-orange);
-            color: var(--medical-orange);
-        }
-
-        .btn-outline-orange:hover {
-            background: var(--medical-orange-light);
-        }
-
-        .hero-image {
-            position: relative;
-            aspect-ratio: 16/9;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 20px 50px var(--shadow);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Notification Box */
-        .notifications {
-            background: linear-gradient(90deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
-            padding: 2rem 0;
-        }
-
-        .notifications-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .notification-icon {
-            height: 48px;
-            width: 48px;
-            border-radius: 50%;
-            background: var(--medical-orange);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .notification-icon img {
-            height: 32px;
-            width: 32px;
-        }
-
-        .notifications-header h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-
-        .notifications-header p {
-            font-size: 0.95rem;
-            color: var(--muted-foreground);
-        }
-
-        .notifications-grid {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: 1fr;
-        }
-
-        .notification-card {
-            background: white;
-            border-left: 4px solid var(--medical-orange);
-            border-radius: 0.5rem;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .notification-card.blue {
-            border-left-color: var(--medical-blue);
-            background: var(--medical-blue-light);
-        }
-
-        .notification-card.orange {
-            border-left-color: var(--medical-orange);
-            background: var(--medical-orange-light);
-        }
-
-        .notification-content {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .notification-content svg {
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-
-        .notification-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .notification-card p {
-            font-size: 0.95rem;
-            color: var(--muted-foreground);
-            margin-bottom: 0.75rem;
-        }
-
-        .notification-date {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--muted-foreground);
-        }
-
-        /* Introduction */
-        .introduction {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .intro-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            background: var(--medical-blue-light);
-            color: var(--medical-blue);
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .introduction h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .introduction p {
-            font-size: 1.125rem;
-            color: var(--muted-foreground);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Why Sections */
-        .why-sections {
-            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
-            padding: 3rem 0;
-        }
-
-        .why-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: 1fr;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .why-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 2rem;
-            box-shadow: 0 4px 12px var(--shadow);
-            border: 2px solid transparent;
-        }
-
-        .why-card.blue {
-            border-color: var(--medical-blue);
-        }
-
-        .why-card.orange {
-            border-color: var(--medical-orange);
-        }
-
-        .why-card h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .why-card.blue h3 {
-            color: var(--medical-blue);
-        }
-
-        .why-card.orange h3 {
-            color: var(--medical-orange);
-        }
-
-        .why-list {
-            list-style: none;
-        }
-
-        .why-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .why-icon {
-            height: 24px;
-            width: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 0.125rem;
-        }
-
-        .why-card.blue .why-icon {
-            background: var(--medical-blue-light);
-            color: var(--medical-blue);
-        }
-
-        .why-card.orange .why-icon {
-            background: var(--medical-orange-light);
-            color: var(--medical-orange);
-        }
-
-        /* Services */
-        .services {
-            padding: 3rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.125rem;
-            color: var(--muted-foreground);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: 1fr;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            box-shadow: 0 4px 12px var(--shadow);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px var(--shadow);
-        }
-
-        .service-image {
-            position: relative;
-            aspect-ratio: 3/2;
-            overflow: hidden;
-        }
-
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-
-        .service-icon {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            height: 48px;
-            width: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .service-icon.blue {
-            background: var(--medical-blue);
-        }
-
-        .service-icon.orange {
-            background: var(--medical-orange);
-        }
-
-        .service-content {
-            padding: 1.5rem;
-        }
-
-        .service-content h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-content .subtitle {
-            font-size: 0.875rem;
-            color: var(--muted-foreground);
-            margin-bottom: 1rem;
-        }
-
-        .service-content p {
-            font-size: 0.95rem;
-            color: var(--muted-foreground);
-            margin-bottom: 1.25rem;
-        }
-
-        .service-btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: transparent;
-            border: none;
-            color: var(--foreground);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border-radius: 0.375rem;
-        }
-
-        .service-card:hover .service-btn {
-            background: var(--medical-blue-light);
-            color: var(--medical-blue);
-        }
-
-        /* Reviews */
-        .reviews {
-            background: linear-gradient(135deg, var(--medical-blue-light) 0%, var(--medical-orange-light) 100%);
-            padding: 3rem 0;
-        }
-
-        .featured-review {
-            max-width: 900px;
-            margin: 0 auto 2rem;
-            background: white;
-            border-radius: 0.75rem;
-            padding: 2rem;
-            box-shadow: 0 4px 12px var(--shadow);
-            border: 2px solid var(--medical-blue);
-            position: relative;
-        }
-
-        .quote-icon {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            opacity: 0.1;
-            width: 64px;
-            height: 64px;
-            color: var(--medical-blue);
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .avatar {
-            height: 64px;
-            width: 64px;
-            border-radius: 50%;
-            background: var(--medical-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-            border: 2px solid var(--medical-blue);
-        }
-
-        .review-info h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-
-        .review-info p {
-            font-size: 0.875rem;
-            color: var(--muted-foreground);
-        }
-
-        .review-info .college {
-            font-size: 0.75rem;
-            color: var(--medical-blue);
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        .stars {
-            height: 24px;
-            margin-bottom: 1rem;
-        }
-
-        .stars img {
-            height: 100%;
-            width: auto;
-        }
-
-        .review-text {
-            font-size: 1rem;
-            color: var(--muted-foreground);
-            line-height: 1.7;
-        }
-
-        .read-more-btn {
-            display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
-            background: transparent;
-            border: 2px solid var(--medical-blue);
-            color: var(--medical-blue);
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
-        }
-
-        .read-more-btn:hover {
-            background: var(--medical-blue-light);
-        }
-
-        .additional-reviews {
-            display: none;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .additional-reviews.show {
-            display: grid;
-        }
-
-        .review-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px var(--shadow);
-            position: relative;
-        }
-
-        .review-card .avatar {
-            height: 48px;
-            width: 48px;
-            font-size: 0.95rem;
-        }
-
-        .review-card .stars {
-            height: 20px;
-        }
-
-        .review-card .review-text {
-            font-size: 0.95rem;
-        }
-
-        .review-card .college {
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
-            margin-top: 0.75rem;
-            font-size: 0.75rem;
-            color: var(--medical-blue);
-            font-weight: 500;
-        }
-
-        /* ================= FOOTER START ================= */
-
-/* Ensure footer stays at bottom on short pages */
-html, body {
-    height: 100%;
+        /* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* ================= ROOT ================= */
+:root {
+    --medical-blue: #0b66c3;
+    --medical-blue-dark: #084c9a;
+    --medical-blue-light: #eaf3ff;
+
+    --medical-orange: #f97316;
+    --medical-orange-dark: #ea580c;
+    --medical-orange-light: #fff3e8;
+
+    --foreground: #1f2937;
+    --muted-foreground: #6b7280;
+    --border: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.12);
+}
+
+/* ================= BASE ================= */
 body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--foreground);
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+/* ================= HEADER ================= */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px var(--shadow);
+}
+
+.header-content {
+    height: 80px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-main {
-    flex: 1;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-/* Footer main */
-footer {
-    background: linear-gradient(135deg, var(--medical-blue-dark) 0%, var(--medical-blue) 100%);
+.brand img {
+    width: 48px;
+    height: 48px;
+}
+
+.brand-text h1 {
+    font-size: 1.2rem;
+    color: var(--medical-blue);
+}
+
+.brand-text p {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+/* Header buttons */
+.menu-btn,
+.apply-btn {
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.menu-btn {
+    border: 1px solid var(--medical-blue);
+    background: transparent;
+    color: var(--medical-blue);
+}
+
+.apply-btn {
+    background: var(--medical-orange);
     color: #fff;
-    padding: 2rem 1rem;
+}
+
+/* ================= HERO ================= */
+.hero {
+    background: linear-gradient(135deg, var(--medical-blue-light), #fff, var(--medical-orange-light));
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero .highlight {
+    color: var(--medical-blue);
+}
+
+.hero p {
+    max-width: 800px;
+    margin: auto;
+    color: var(--muted-foreground);
+}
+
+.hero-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Buttons – FIXED SIZE */
+.btn {
+    padding: 0.6rem 1.6rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--medical-blue);
+    color: #fff;
+}
+
+.btn-outline {
+    border: 2px solid var(--medical-blue);
+    color: var(--medical-blue);
+    background: transparent;
+}
+
+.btn-outline-orange {
+    border: 2px solid var(--medical-orange);
+    color: var(--medical-orange);
+    background: transparent;
+}
+
+/* ================= NOTIFICATIONS ================= */
+.notifications {
+    background: linear-gradient(90deg, var(--medical-blue-light), var(--medical-orange-light));
+    padding: 2.5rem 0;
+}
+
+.notification-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--medical-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* SVG ICON SIZE FIX */
+.notification-content svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.notification-card {
+    background: #fff;
+    border-left: 4px solid var(--medical-orange);
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ================= SERVICES ================= */
+.service-btn {
+    padding: 0.55rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    background: var(--medical-blue-light);
+    color: var(--medical-blue);
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background: linear-gradient(135deg, var(--medical-blue-dark), var(--medical-blue));
+    color: #fff;
+    padding: 2.5rem 1rem;
 }
 
 .footer-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* Footer sections */
-.footer-section {
-    min-width: 220px;
 }
 
 .footer-section h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+    margin-bottom: 0.75rem;
 }
 
 .footer-section p,
 .footer-section a {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255,255,255,0.9);
     text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-    padding-left: 2px;
+    font-size: 0.9rem;
 }
 
-.footer-section a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-/* Contact buttons */
 .contact-buttons {
+    margin-top: 2rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
-    margin-top: 1rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .contact-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
     color: #fff;
-}
-
-.contact-btn.call {
-    background: #10b981;
-}
-
-.contact-btn.whatsapp {
-    background: #25d366;
-}
-
-.contact-btn.telegram {
-    background: #0088cc;
-}
-
-.contact-btn.instagram {
-    background: linear-gradient(
-        45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%
-    );
-}
-
-.contact-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Footer bottom */
-.footer-bottom {
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.footer-bottom p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+.contact-btn.call { background: #10b981; }
+.contact-btn.whatsapp { background: #25d366; }
+.contact-btn.telegram { background: #0088cc; }
+.contact-btn.instagram {
+    background: linear-gradient(45deg,#f09433,#dc2743,#bc1888);
 }
 
-.footer-bottom a {
-    color: var(--medical-orange-light);
-    text-decoration: none;
+.footer-bottom {
+    margin-top: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 1rem;
+    font-size: 0.85rem;
 }
 
-.footer-bottom a:hover {
-    text-decoration: underline;
-}
-
-/* Prevent layout overflow issues */
-footer * {
-    box-sizing: border-box;
-}
-
-/* Responsive footer layout */
+/* ================= RESPONSIVE ================= */
 @media (min-width: 768px) {
     .footer-content {
         grid-template-columns: repeat(3, 1fr);
     }
 
     .contact-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .contact-buttons {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* ================= FOOTER END ================= */
+@media (max-width: 767px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
 
+    .hero-buttons {
+        flex-direction: column;
+    }
 
-        /* Responsive */
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 2rem;
-            }
-
-            .hero h2 {
-                font-size: 3.5rem;
-            }
-
-            .notifications-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .additional-reviews {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .additional-reviews {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .header-actions {
-                display: none;
-            }
-
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .introduction h2 {
-                font-size: 1.75rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.75rem;
-            }
-
-            .social-strip {
-                bottom: 0.5rem;
-                right: 0.5rem;
-                gap: 0.5rem;
-            }
-
-            .social-btn {
-                height: 48px;
-                width: 48px;
-            }
-
-            .social-btn svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 300px;
-            background: white;
-            box-shadow: -4px 0 12px var(--shadow);
-            z-index: 100;
-            padding: 2rem;
-        }
-
-        .mobile-menu.show {
-            display: block;
-        }
-
-        .mobile-menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 99;
-        }
-
-        .mobile-menu-overlay.show {
-            display: block;
-        }
-
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .mobile-menu-header h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .close-menu {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-menu a {
-            font-size: 1.125rem;
-            font-weight: 500;
-            color: var(--foreground);
-            text-decoration: none;
-            padding: 0.75rem 0;
-            transition: color 0.2s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--medical-blue);
-        }
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
     </style>
 </head>
 <body>
