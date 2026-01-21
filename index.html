@@ -1106,9 +1106,36 @@
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+         .side-menu {
+             position: fixed;
+             top: 0;
+             right: -260px;
+             width: 250px;
+            height: 100%;
+            background: #0a58ca;
+            padding-top: 70px;
+            transition: right 0.3s ease;
+            z-index: 999;
         }
+            .side-menu.open {
+             right: 0;
+        }
+            .side-menu a {
+            color: white;
+            display: block;
+          padding: 15px 20px;
+          text-decoration: none;
+    }
+        .side-menu a:hover {
+          background: rgba(255,255,255,0.15);
+    }
     </style>
 </head>
+    <script>
+function toggleMenu() {
+    document.getElementById("menuDropdown").classList.toggle("show");
+}
+</script>
 <body>
     <!-- Header -->
     <header>
@@ -1121,7 +1148,13 @@
                         <p>Trusted Medical Admission Guidance</p>
                     </div>
                 </div>
-                <button class="menu-btn" onclick="alert('Menu: Apply Now, Contact Us, Notifications, Packages')">☰ Menu</button>
+                <button class="menu-btn" onclick="toggleMenu()">☰</button>
+                <div id="menuDropdown" class="menu-dropdown">
+                    <a href="apply.html">Apply Now</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="#">Notifications</a>
+                    <a href="#packages">Packages</a>
+</div>
             </div>
         </div>
     </header>
