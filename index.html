@@ -1,289 +1,1116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="RN Counselling - Trusted Medical Admission Guidance for MBBS, BDS, AYUSH, Nursing, and Paramedical courses">
-<meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses">
-<title>RN Counselling - Trusted Medical Admission Guidance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RN Counselling - Trusted Medical Admission Guidance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-:root{
-    --medical-blue:#0b66c3;
-    --medical-orange:#f97316;
-}
+        :root {
+            --medical-blue: #1e40af;
+            --medical-blue-light: #3b82f6;
+            --medical-orange: #f97316;
+            --medical-orange-light: #fb923c;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+        }
 
-/* RESET */
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-    font-family:"Segoe UI",Arial,sans-serif;
-    color:#1f2937;
-    background:#fff;
-    line-height:1.6
-}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-svg{stroke:currentColor;fill:none;stroke-width:2}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
 
-/* COMMON */
-.container{max-width:1200px;margin:auto;padding:0 1rem}
-.highlight{color:var(--medical-orange)}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* BUTTONS */
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:.4rem;
-    padding:.6rem 1.4rem;
-    border-radius:6px;
-    font-weight:600;
-    cursor:pointer
-}
-.btn-primary{background:var(--medical-blue);color:#fff}
-.btn-primary:hover{background:#084c9a}
-.btn-outline{border:2px solid var(--medical-blue);color:var(--medical-blue)}
-.btn-outline:hover{background:#eaf3ff}
-.btn-outline-orange{border:2px solid var(--medical-orange);color:var(--medical-orange)}
-.btn-outline-orange:hover{background:#fff3e8}
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* HEADER */
-header{
-    position:sticky;
-    top:0;
-    background:#fff;
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
-    z-index:50
-}
-.header-content{
-    display:flex;
-    justify-content:space-between;
-    align-items:center
-}
-.brand{display:flex;gap:.75rem;align-items:center}
-.brand img{height:55px}
-.apply-btn{
-    background:var(--medical-orange);
-    color:#fff;
-    padding:.45rem 1rem;
-    border-radius:6px;
-    font-weight:600
-}
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-/* HERO */
-.hero{text-align:center;padding:3rem 1rem}
-.hero h2{font-size:2.4rem;font-weight:700}
-.hero p{color:#6b7280;max-width:850px;margin:auto}
-.hero-buttons{margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.hero-image{margin-top:2rem}
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-/* MOBILE MENU */
-.mobile-menu-overlay{
-    position:fixed;inset:0;
-    background:rgba(0,0,0,.4);
-    display:none;
-    z-index:99
-}
-.mobile-menu{
-    position:fixed;
-    top:0;right:-260px;
-    width:260px;height:100%;
-    background:#fff;
-    padding:1rem;
-    transition:.3s;
-    z-index:100
-}
-.mobile-menu.show{right:0}
-.mobile-menu-overlay.show{display:block}
-.mobile-menu nav a{
-    display:block;
-    padding:.75rem 0;
-    font-weight:600
-}
+        .logo-section img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
 
-/* NOTIFICATIONS */
-.notifications{padding:2rem 1rem;background:linear-gradient(90deg,#eaf3ff,#fff3e8)}
-.notifications-grid{display:grid;gap:1rem}
-.notification-card{
-    background:#fff;
-    border-radius:8px;
-    padding:1rem;
-    box-shadow:0 2px 8px rgba(0,0,0,.08)
-}
-.notification-date{font-size:.85rem;color:#6b7280}
+        .brand-info h1 {
+            font-size: 24px;
+            color: var(--medical-blue);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
 
-/* WHY */
-.why-grid{display:grid;gap:2rem}
-.why-list{list-style:none}
-.why-list li{display:flex;gap:.75rem;margin-bottom:.75rem}
+        .brand-info p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
 
-/* SERVICES */
-.services-grid{display:grid;gap:2rem}
-.service-card{
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-    cursor:pointer
-}
-.service-content{padding:1rem}
-.service-btn{
-    margin-top:.75rem;
-    background:var(--medical-blue);
-    color:#fff;
-    border:none;
-    padding:.45rem 1rem;
-    border-radius:6px
-}
+        /* Path to Success Section */
+        .path-section {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-blue-light) 100%);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-/* REVIEWS */
-.reviews{padding:2.5rem 1rem;background:linear-gradient(135deg,#eaf3ff,#fff3e8)}
-.review-card,.featured-review{
-    background:#fff;
-    padding:1rem;
-    border-radius:8px;
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-    margin-bottom:1rem
-}
-.review-header{display:flex;gap:.75rem;align-items:center}
-.avatar{
-    width:42px;height:42px;
-    border-radius:50%;
-    background:var(--medical-blue);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700
-}
-.additional-reviews{display:none}
-.additional-reviews.show{display:block}
+        .path-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
 
-/* FOOTER */
-footer{
-    background:var(--medical-blue);
-    color:#fff;
-    padding:2rem 1rem;
-    margin-top:3rem
-}
-.footer-content{display:grid;gap:2rem}
-.footer-section a{display:block;margin-bottom:.5rem}
-.contact-buttons{display:grid;gap:.75rem;margin:2rem 0}
-.contact-btn{
-    padding:.5rem;
-    border-radius:6px;
-    text-align:center;
-    color:#fff;
-    font-weight:600
-}
-.contact-btn.call{background:#10b981}
-.contact-btn.whatsapp{background:#25d366}
-.contact-btn.telegram{background:#0088cc}
-.contact-btn.instagram{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)}
-.footer-bottom{text-align:center;border-top:1px solid rgba(255,255,255,.2);padding-top:1rem}
+        .path-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
 
-/* RESPONSIVE */
-@media(min-width:768px){
-    .notifications-grid{grid-template-columns:repeat(2,1fr)}
-    .why-grid{grid-template-columns:repeat(2,1fr)}
-    .services-grid{grid-template-columns:repeat(3,1fr)}
-    .footer-content{grid-template-columns:repeat(3,1fr)}
-    .contact-buttons{grid-template-columns:repeat(4,1fr)}
-}
-</style>
+        .path-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--medical-orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--medical-orange-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--medical-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Carousel */
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-slide.logo-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-blue-light) 100%);
+        }
+
+        .carousel-slide.logo-slide img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--medical-blue);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--white);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Latest Notifications */
+        .notifications-section {
+            padding: 40px 20px;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            color: var(--medical-blue);
+            font-weight: 700;
+        }
+
+        .view-all {
+            color: var(--medical-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: var(--medical-orange-light);
+        }
+
+        .notifications-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--medical-blue) var(--border-color);
+        }
+
+        .notifications-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .notifications-scroll::-webkit-scrollbar-track {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .notifications-scroll::-webkit-scrollbar-thumb {
+            background: var(--medical-blue);
+            border-radius: 4px;
+        }
+
+        .notification-card {
+            min-width: 280px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .notification-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 12px;
+        }
+
+        .notification-card h3 {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .notification-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-download {
+            background: var(--medical-blue);
+            color: var(--white);
+        }
+
+        .btn-download:hover {
+            background: var(--medical-blue-light);
+        }
+
+        .btn-view {
+            background: var(--white);
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
+        }
+
+        .btn-view:hover {
+            background: var(--medical-blue);
+            color: var(--white);
+        }
+
+        /* About Us Section */
+        .about-section {
+            padding: 50px 20px;
+            background: var(--white);
+        }
+
+        .about-section h2 {
+            font-size: 32px;
+            color: var(--medical-blue);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .about-section h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .about-section p {
+            font-size: 17px;
+            color: var(--text-gray);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 25px;
+            line-height: 1.8;
+        }
+
+        .about-bullets {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-bullets li {
+            font-size: 16px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-bullets li::before {
+            content: "•";
+            color: var(--medical-orange);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Why Sections */
+        .why-sections {
+            padding: 50px 20px;
+            background: var(--bg-light);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .why-card h3 {
+            font-size: 22px;
+            color: var(--medical-blue);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .why-card ul {
+            list-style: none;
+        }
+
+        .why-card li {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .why-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--medical-orange);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 50px 20px;
+            background: var(--white);
+        }
+
+        .services-section h2 {
+            font-size: 32px;
+            color: var(--medical-blue);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 20px;
+            color: var(--medical-blue);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            font-size: 15px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 50px 20px;
+            background: var(--bg-light);
+        }
+
+        .testimonials-section h2 {
+            font-size: 32px;
+            color: var(--medical-blue);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .student-info h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .student-info p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .rating img {
+            width: 100px;
+            height: auto;
+        }
+
+        .testimonial-card .testimonial-text {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--medical-blue);
+            color: var(--white);
+            padding: 50px 20px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: var(--medical-orange);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--medical-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--medical-orange);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .sticky-social-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .sticky-social-btn.phone {
+            background: #10b981;
+        }
+
+        .sticky-social-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .sticky-social-btn.telegram {
+            background: #0088cc;
+        }
+
+        .sticky-social-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .brand-info h1 {
+                font-size: 20px;
+            }
+
+            .brand-info p {
+                font-size: 12px;
+            }
+
+            .path-section h2 {
+                font-size: 26px;
+            }
+
+            .path-section p {
+                font-size: 16px;
+            }
+
+            .carousel-container {
+                height: 250px;
+            }
+
+            .carousel-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .carousel-arrow.prev {
+                left: 10px;
+            }
+
+            .carousel-arrow.next {
+                right: 10px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .about-section h2 {
+                font-size: 26px;
+            }
+
+            .about-section h3 {
+                font-size: 20px;
+            }
+
+            .services-section h2,
+            .testimonials-section h2 {
+                font-size: 26px;
+            }
+
+            .why-grid,
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sticky-social {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+
+            .sticky-social-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-section img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .notification-card {
+                min-width: 250px;
+            }
+
+            .about-bullets {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="rn-counselling-logo-transparent.png" alt="RN Counselling Logo">
+                    <div class="brand-info">
+                        <h1>RN Counselling</h1>
+                        <p>Trusted Medical Admission Guidance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<!-- HEADER -->
-<header>
-<div class="container">
-<div class="header-content">
-<div class="brand">
-<img src="rn-counselling-logo-transparent.png" alt="RN Counselling Logo">
-<div>
-<h1>RN Counselling</h1>
-<p>Trusted Medical Admission Guidance</p>
-</div>
-</div>
-<a href="packages.html" class="apply-btn">Apply Now</a>
-</div>
-</div>
-</header>
+    <!-- Path to Success Section -->
+    <section class="path-section">
+        <div class="container">
+            <h2>Your Path to Success</h2>
+            <p>Expert guidance for your medical career journey. We help you navigate the complex admission process with confidence and clarity.</p>
+            <div class="path-buttons">
+                <a href="apply.html" class="btn btn-primary">Apply Now</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
-<div class="mobile-menu" id="mobileMenu">
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About Us</a>
-<a href="packages.html">Packages</a>
-<a href="apply.html">Apply Now</a>
-<a href="contact.html">Contact</a>
-</nav>
-</div>
+    <!-- Sliding Image Notification Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide active" onclick="window.location.href='apply.html'">
+                <img src="01.png" alt="Notification 1">
+            </div>
+            <div class="carousel-slide" onclick="window.location.href='apply.html'">
+                <img src="02.jpg" alt="Notification 2">
+            </div>
+            <div class="carousel-slide logo-slide" onclick="window.location.href='apply.html'">
+                <img src="rn-counselling-logo-transparent.png" alt="RN Counselling">
+            </div>
+            
+            <button class="carousel-arrow prev" onclick="changeSlide(-1)">‹</button>
+            <button class="carousel-arrow next" onclick="changeSlide(1)">›</button>
+            
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
-<div class="container">
-<h2>Your Path to <span class="highlight">Medical</span> Success Starts Here</h2>
-<p>Expert counselling for MBBS, BDS, AYUSH, Nursing, and Paramedical course admissions.</p>
-<div class="hero-buttons">
-<a href="apply.html" class="btn btn-primary">Apply Now</a>
-<a href="contact.html" class="btn btn-outline">Contact Us</a>
-<a href="packages.html" class="btn btn-outline-orange">Packages</a>
-</div>
-<div class="hero-image">
-<img src="hero-medical-team.jpg" alt="Medical Team">
-</div>
-</div>
-</section>
+    <!-- Latest Notifications -->
+    <section class="notifications-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Notifications</h2>
+                <a href="notification.html" class="view-all">View All →</a>
+            </div>
+            <div class="notifications-scroll">
+                <div class="notification-card">
+                    <img src="generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
+                    <h3>JEE MAIN 20-01-2026</h3>
+                    <div class="notification-buttons">
+                        <a href="#" class="btn-small btn-download">Download</a>
+                        <a href="#" class="btn-small btn-view">View</a>
+                    </div>
+                </div>
+                <div class="notification-card">
+                    <img src="generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
+                    <h3>NEET UG 2026 Updates</h3>
+                    <div class="notification-buttons">
+                        <a href="#" class="btn-small btn-download">Download</a>
+                        <a href="#" class="btn-small btn-view">View</a>
+                    </div>
+                </div>
+                <div class="notification-card">
+                    <img src="generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
+                    <h3>MBBS Admission 2026</h3>
+                    <div class="notification-buttons">
+                        <a href="#" class="btn-small btn-download">Download</a>
+                        <a href="#" class="btn-small btn-view">View</a>
+                    </div>
+                </div>
+                <div class="notification-card">
+                    <img src="generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
+                    <h3>Counselling Schedule</h3>
+                    <div class="notification-buttons">
+                        <a href="#" class="btn-small btn-download">Download</a>
+                        <a href="#" class="btn-small btn-view">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-<div class="container">
-<div class="footer-content">
-<div class="footer-section">
-<h3>RN Counselling</h3>
-<p>Trusted Medical Admission Guidance</p>
-</div>
-<div class="footer-section">
-<h3>Quick Links</h3>
-<a href="index.html">Home</a>
-<a href="packages.html">Packages</a>
-<a href="apply.html">Apply Now</a>
-<a href="contact.html">Contact</a>
-</div>
-<div class="footer-section">
-<h3>Contact</h3>
-<p>📍 Aurangabad, Maharashtra</p>
-<p>📞 +91 96738 82382</p>
-<p>📧 rnenterprises77764@gmail.com</p>
-</div>
-</div>
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2>About Us</h2>
+            <h3>Welcome to RN Counselling</h3>
+            <p>Since 2015, we've guided 500+ students admissions through expert counselling and structured guidance across India. We specialize in professional admission support for medical and non-medical courses.</p>
+            <ul class="about-bullets">
+                <li>Access 6+ guidance packages</li>
+                <li>Connect with expert mentors</li>
+            </ul>
+        </div>
+    </section>
 
-<div class="contact-buttons">
-<a href="tel:+919673882382" class="contact-btn call">Call</a>
-<a href="https://wa.me/919673882382" class="contact-btn whatsapp">WhatsApp</a>
-<a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="contact-btn telegram">Telegram</a>
-<a href="https://instagram.com/ugmedicalcounselling" class="contact-btn instagram">Instagram</a>
-</div>
+    <!-- Why Sections -->
+    <section class="why-sections">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>Why Counselling Important</h3>
+                    <ul>
+                        <li>Clear admission guidance</li>
+                        <li>Right college selection</li>
+                        <li>Error-free choice filling</li>
+                        <li>Better seat chances</li>
+                        <li>Reduced stress & confusion</li>
+                    </ul>
+                </div>
+                <div class="why-card">
+                    <h3>Why Choose Us</h3>
+                    <ul>
+                        <li>Experienced counselling experts</li>
+                        <li>Transparent guidance process</li>
+                        <li>Personalized student support</li>
+                        <li>Updated admission insights</li>
+                        <li>Trusted student success</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="footer-bottom">
-<p>© 2025 RN Counselling. All rights reserved.</p>
-</div>
-</div>
-</footer>
+    <!-- Our Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="generated/mbbs-card.dim_300x200.jpg" alt="MBBS/BDS">
+                    <div class="service-content">
+                        <h3>MBBS/BDS</h3>
+                        <p>Comprehensive guidance for medical and dental degree programs. Expert support for NEET counselling and college selection.</p>
+                        <a href="packages.html" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="generated/ayush-card.dim_300x200.jpg" alt="AYUSH">
+                    <div class="service-content">
+                        <h3>AYUSH (BAMS, BUMS, BHMS)</h3>
+                        <p>Specialized counselling for alternative medicine courses including Ayurveda, Unani, Homeopathy, and Siddha programs.</p>
+                        <a href="packages.html" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="generated/nursing-paramedical-card.dim_300x200.jpg" alt="Nursing/Paramedical">
+                    <div class="service-content">
+                        <h3>Nursing/Paramedical/etc</h3>
+                        <p>Professional guidance for nursing, paramedical, and allied healthcare support programs across India.</p>
+                        <a href="packages.html" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-function toggleMobileMenu(){
-    document.getElementById('mobileMenu').classList.toggle('show');
-    document.getElementById('mobileMenuOverlay').classList.toggle('show');
-}
-function showMoreReviews(){
-    document.getElementById('additionalReviews').classList.add('show');
-    document.getElementById('readMoreBtn').style.display='none';
-}
-</script>
+    <!-- What Our Students Say Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="student-info">
+                            <h4>Priya Sharma (MBBS)</h4>
+                            <p>Government Medical College, Mumbai</p>
+                        </div>
+                        <div class="rating">
+                            <img src="generated/star-rating-transparent.dim_150x30.png" alt="5 stars">
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"RN Counselling made my admission process so smooth. Their expert guidance helped me secure a seat in my dream college. Highly recommended for all medical aspirants!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="student-info">
+                            <h4>Rahul Patel (BDS)</h4>
+                            <p>Dental College, Pune</p>
+                        </div>
+                        <div class="rating">
+                            <img src="generated/star-rating-transparent.dim_150x30.png" alt="5 stars">
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"The personalized support and round-the-clock availability of the counselling team was exceptional. They guided me through every step with patience and expertise."</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>RN Counselling</h3>
+                    <p>Trusted Medical Admission Guidance</p>
+                    <p>Since 2015, we've been helping students achieve their medical career dreams through expert counselling and personalized support.</p>
+                    <div class="social-buttons">
+                        <a href="tel:+919673882382" class="social-btn" title="Call Us">📞</a>
+                        <a href="https://wa.me/919673882382" class="social-btn" title="WhatsApp">💬</a>
+                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn" title="Telegram">✈️</a>
+                        <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn" title="Instagram">📷</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="notification.html">Notifications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <p>📍 Address: Medical Counselling Center, India</p>
+                    <p>📧 Email: info@rncounselling.com</p>
+                    <p>📞 Phone: +91 96738 82382</p>
+                    <p>⏰ Hours: Mon-Sat, 9:00 AM - 7:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 RN Counselling. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="sticky-social-btn phone" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" class="sticky-social-btn whatsapp" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="sticky-social-btn telegram" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" class="sticky-social-btn instagram" title="Instagram">📷</a>
+    </div>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+            
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(autoSlide, 4000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Start auto-sliding when page loads
+        startAutoSlide();
+
+        // Pause auto-slide on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+    </script>
 </body>
 </html>
