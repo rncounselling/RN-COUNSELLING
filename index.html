@@ -8,11 +8,6 @@
     <title>RN Counselling - Trusted Medical Admission Guidance</title>
     <style>
        /* ================= RESET & GLOBAL ================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 html, body {
     width: 100%;
@@ -270,6 +265,128 @@ footer .contact-btn.instagram {
     }
     .hero-buttons {
         flex-direction: column;
+        /* ================= SAFE FIXES (DO NOT BREAK DESIGN) ================= */
+
+/* Box sizing without killing spacing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header fix */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand img {
+    height: 55px;
+    width: auto;
+}
+
+/* Hero layout */
+.hero-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* Notifications */
+.notifications-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.notification-content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+/* Why section */
+.why-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.why-list {
+    list-style: none;
+    padding: 0;
+}
+
+.why-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+/* Services */
+.services-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.service-card {
+    cursor: pointer;
+}
+
+/* Reviews */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar {
+    background: #0b66c3;
+    color: #fff;
+    font-weight: 700;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer (your original footer preserved) */
+footer {
+    margin-top: 3rem;
+}
+
+/* Desktop grids */
+@media (min-width: 768px) {
+    .notifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
     }
     </style>
 </head>
@@ -734,8 +851,8 @@ footer .contact-btn.instagram {
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 RN Counselling. All rights reserved.</p>
-
-                    </footer>
+            </div>
+            </footer>
 
     <script>
         function toggleMobileMenu() {
