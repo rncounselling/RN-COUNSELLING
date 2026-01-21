@@ -1,398 +1,910 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply for Counselling | RN Counselling</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Medical Counselling - RN Counselling</title>
+    <meta name="description" content="Apply for medical counselling services at RN Counselling. Complete your application in 4 easy steps.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-}
-.container{
-    max-width:700px;
-    background:#fff;
-    margin:20px auto;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-h2{
-    text-align:center;
-    color:#0b5ed7;
-}
-label{
-    font-weight:600;
-    margin-top:15px;
-    display:block;
-}
-input, select{
-    width:100%;
-    background:#e9f9ef;
-    color:#0a7d39;
-    padding:12px;
-    border-radius:8px;
-    margin-top:6px;
-    font-size:15px;
-    border:1px solid #9ee2b8;
-    box-sizing:border-box;
-}
-.checkbox-group{
-    margin-top:10px;
-}
-.checkbox-group label{
-    font-weight:normal;
-}
-.checkbox-group input[type="checkbox"]{
-    width:auto;
-    margin-right:6px;
-}
-button{
-    width:100%;
-    background:#ff7a00;
-    color:#fff;
-    padding:14px;
-    border:none;
-    font-size:16px;
-    border-radius:6px;
-    margin-top:20px;
-    cursor:pointer;
-}
-button:hover{
-    background:#e66b00;
-}
-.success{
-    color:green;
-    text-align:center;
-    font-weight:bold;
-    margin-top:15px;
-}
-.note{
-    font-size:14px;
-    color:#555;
-    /* ================= FOOTER START ================= */
+        :root {
+            --medical-blue: #1e40af;
+            --medical-blue-light: #3b82f6;
+            --medical-blue-dark: #1e3a8a;
+            --medical-orange: #f97316;
+            --medical-orange-light: #fb923c;
+            --medical-orange-dark: #ea580c;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-green: #10b981;
+            --error-red: #ef4444;
+        }
 
-/* Ensure footer stays at bottom on short pages */
-html, body {
-    height: 100%;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: white;
+            padding-top: 80px;
+        }
 
-body {
-    display: flex;
-    flex-direction: column;
-}
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-main {
-    flex: 1;
-}
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-/* Footer main */
-footer {
-    background: linear-gradient(135deg, var(--medical-blue-dark) 0%, var(--medical-blue) 100%);
-    color: #fff;
-    padding: 2rem 1rem;
-}
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .logo {
+            height: 50px;
+            width: auto;
+        }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
+        .brand-info h1 {
+            font-size: 1.5rem;
+            color: var(--medical-blue);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
 
-/* Footer sections */
-.footer-section {
-    min-width: 220px;
-}
+        .brand-info p {
+            font-size: 0.875rem;
+            color: var(--medical-orange);
+            font-weight: 500;
+        }
 
-.footer-section h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-.footer-section p,
-.footer-section a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-    padding-left: 2px;
-}
+        .nav-links a {
+            padding: 0.5rem 1rem;
+            background: var(--medical-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
 
-.footer-section a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
+        .nav-links a:hover {
+            background: var(--medical-blue-dark);
+            transform: translateY(-2px);
+        }
 
-/* Contact buttons */
-.contact-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .nav-links a.active {
+            background: var(--medical-orange);
+        }
 
-.contact-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    color: #fff;
-}
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem 4rem;
+        }
 
-.contact-btn.call {
-    background: #10b981;
-}
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-.contact-btn.whatsapp {
-    background: #25d366;
-}
+        .page-header h2 {
+            font-size: 2rem;
+            color: var(--medical-blue);
+            margin-bottom: 0.5rem;
+        }
 
-.contact-btn.telegram {
-    background: #0088cc;
-}
+        .page-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+        }
 
-.contact-btn.instagram {
-    background: linear-gradient(
-        45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%
-    );
-}
+        /* Form Container */
+        .form-container {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
 
-.contact-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
 
-/* Footer bottom */
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 0;
+        }
 
-.footer-bottom p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
 
-.footer-bottom a {
-    color: var(--medical-orange-light);
-    text-decoration: none;
-}
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
 
-.footer-bottom a:hover {
-    text-decoration: underline;
-}
+        .step.active .step-number {
+            background: var(--medical-blue);
+            color: white;
+        }
 
-/* Prevent layout overflow issues */
-footer * {
-    box-sizing: border-box;
-}
+        .step.completed .step-number {
+            background: var(--success-green);
+            color: white;
+        }
 
-/* Responsive footer layout */
-@media (min-width: 768px) {
-    .footer-content {
-        grid-template-columns: repeat(3, 1fr);
-    }
+        .step-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-align: center;
+            font-weight: 500;
+        }
 
-    .contact-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+        .step.active .step-label {
+            color: var(--medical-blue);
+            font-weight: 600;
+        }
 
-@media (min-width: 1024px) {
-    .contact-buttons {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
 
-/* ================= FOOTER END ================= */
+        .form-step.active {
+            display: block;
+        }
 
-}
-</style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            color: var(--medical-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .form-group label .required {
+            color: var(--error-red);
+            margin-left: 0.25rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--medical-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: var(--success-green);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            padding: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 0.375rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Checkbox Groups */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        /* Agreement Checkbox */
+        .agreement-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .agreement-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.25rem;
+            cursor: pointer;
+        }
+
+        .agreement-checkbox label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--medical-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--medical-blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--text-light);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+        }
+
+        .btn-success {
+            background: var(--medical-orange);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: var(--medical-orange-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h3 {
+            color: var(--success-green);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--medical-blue-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--medical-orange);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn.call {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .social-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .social-btn.telegram {
+            background: #0088cc;
+            color: white;
+        }
+
+        .social-btn.instagram {
+            background: #E4405F;
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 140px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .page-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .step-label {
+                font-size: 0.625rem;
+            }
+
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 0.875rem;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 40px;
+            }
+
+            .brand-info h1 {
+                font-size: 1.25rem;
+            }
+
+            .brand-info p {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="container">
-<h2>Apply for Counselling</h2>
-
-<form id="counsellingForm">
-
-<label>Full Name (as per NEET)</label>
-<input type="text" name="name" required>
-
-<label>Student Mobile Number</label>
-<input type="tel" name="student_mobile" required>
-
-<label>Parent Mobile Number</label>
-<input type="tel" name="parent_mobile" required>
-
-<label>Residency State</label>
-<select name="state" required>
-<option value="">Select State</option>
-<option>Maharashtra</option>
-<option>Gujarat</option>
-<option>Rajasthan</option>
-<option>Madhya Pradesh</option>
-<option>Uttar Pradesh</option>
-<option>Bihar</option>
-<option>Delhi</option>
-<option>Karnataka</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Andhra Pradesh</option>
-<option>West Bengal</option>
-<option>Punjab</option>
-<option>Haryana</option>
-<option>Kerala</option>
-<option>Odisha</option>
-<option>Chhattisgarh</option>
-<option>Jharkhand</option>
-<option>Assam</option>
-<option>Other</option>
-</select>
-
-<label>Caste Category</label>
-<select name="category" required>
-<option value="">Select Category</option>
-<option>General</option>
-<option>OBC</option>
-<option>SC</option>
-<option>ST</option>
-<option>EWS</option>
-<option>Minority</option>
-</select>
-
-<label>NEET Rank</label>
-<input type="number" name="neet_rank">
-
-<label>NEET Score</label>
-<input type="number" name="neet_score">
-
-<label>Preferred Courses (Select all applicable)</label>
-<div class="checkbox-group">
-<label><input type="checkbox" name="course[]" value="MBBS"> MBBS</label>
-<label><input type="checkbox" name="course[]" value="BDS"> BDS</label>
-<label><input type="checkbox" name="course[]" value="BAMS"> BAMS</label>
-<label><input type="checkbox" name="course[]" value="BHMS"> BHMS</label>
-<label><input type="checkbox" name="course[]" value="BUMS"> BUMS</label>
-<label><input type="checkbox" name="course[]" value="Nursing"> Nursing</label>
-<label><input type="checkbox" name="course[]" value="Paramedical"> Paramedical</label>
-</div>
-
-<label>Preferred Quota (Select all applicable)</label>
-<div class="checkbox-group">
-<label><input type="checkbox" name="quota[]" value="State"> State Quota</label>
-<label><input type="checkbox" name="quota[]" value="Other State"> Other State</label>
-<label><input type="checkbox" name="quota[]" value="All India"> All India</label>
-<label><input type="checkbox" name="quota[]" value="Private"> Private</label>
-<label><input type="checkbox" name="quota[]" value="Management"> Management</label>
-</div>
-
-<label>Select Package</label>
-<select name="package" required>
-<option value="">Select Package</option>
-<option>MBBS/BDS BASIC – ₹20,499/-</option>
-<option>MBBS/BDS PREMIUM – ₹29,999</option>
-<option>AYUSH BASIC – ₹15,499/-</option>
-<option>AYUSH PREMIUM – ₹23,999/-</option>
-<option>Nursing/Paramedical BASIC – ₹7,500/-</option>
-<option>Nursing/Paramedical PREMIUM – ₹12,999</option>
-</select>
-
-<label>Reference Code (Optional)</label>
-<input type="text" name="reference">
-<div class="note">Use reference code & get 5%–25% discount</div>
-
-<div class="checkbox-group">
-<label>
-<input type="checkbox" required>
-I confirm that the above information is true and I agree to RN Counselling process.
-</label>
-</div>
-
-<button type="submit">Submit Application</button>
-
-<div id="successMsg" class="success"></div>
-
-</form>
-</div>
-
-<script>
-document.getElementById("counsellingForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    let form = this;
-    let successBox = document.getElementById("successMsg");
-
-    fetch("https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec", {
-        method: "POST",
-        body: new FormData(form)
-    })
-    .then(() => {
-        successBox.style.display = "block";
-        successBox.innerHTML = `
-        ✅ <b>Application Submitted Successfully!</b><br><br>
-        Thank you for applying with <b>RN Counselling</b>.<br>
-        Your details have been saved securely.<br><br>
-        📞 Our representative will contact you shortly for<br>
-        <b>payment process and admission confirmation.</b><br><br>
-        Please keep your phone reachable.
-
-      <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>RN Counselling</h3>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo" class="logo">
+                <div class="brand-info">
+                    <h1>RN Counselling</h1>
                     <p>Trusted Medical Admission Guidance</p>
-                    <p>Your partner in securing the best medical college seat based on your merit and preferences.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="packages.html">Packages</a>
-                    <a href="apply.html">Apply Now</a>
-                    <a href="contact.html">Contact Us</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <p>📍 2nd floor, Tower building, Arif colony, Aurangabad-431001</p>
-                    <p>📧 rnenterprises77764@gmail.com</p>
-                    <p>📞 +91 96738 82382</p>
                 </div>
             </div>
-            <div class="contact-buttons">
-                <a href="tel:+919673882382" class="contact-btn call">📞 Call</a>
-                <a href="https://wa.me/919673882382" target="_blank" rel="noopener" class="contact-btn whatsapp">💬 WhatsApp</a>
-                <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener" class="contact-btn telegram">✈️ Telegram</a>
-                <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener" class="contact-btn instagram">📷 Instagram</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+            <nav class="nav-links">
+                <a href="apply.html" class="active">Apply Now</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="notification.html">Notifications</a>
+                <a href="packages.html">Packages</a>
+            </nav>
+        </div>
+    </header>
 
-                    </footer>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h2>Apply for Medical Counselling</h2>
+            <p>Complete your application in 4 easy steps</p>
+        </div>
+
+        <div class="form-container">
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Personal Info</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Academic Info</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Preferences</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="applicationForm">
+                <!-- Step 1: Personal Information -->
+                <div class="form-step active" data-step="1">
+                    <h3 class="step-title">Personal Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <div class="error-message" id="fullNameError">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentMobile">Student Mobile <span class="required">*</span></label>
+                        <input type="tel" id="studentMobile" name="studentMobile" pattern="[0-9]{10}" required>
+                        <div class="error-message" id="studentMobileError">Please enter a valid 10-digit mobile number</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parentMobile">Parent Mobile <span class="required">*</span></label>
+                        <input type="tel" id="parentMobile" name="parentMobile" pattern="[0-9]{10}" required>
+                        <div class="error-message" id="parentMobileError">Please enter a valid 10-digit mobile number</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State <span class="required">*</span></label>
+                        <select id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <div class="error-message" id="stateError">Please select your state</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="General">General</option>
+                            <option value="OBC">OBC</option>
+                            <option value="SC">SC</option>
+                            <option value="ST">ST</option>
+                            <option value="EWS">EWS</option>
+                        </select>
+                        <div class="error-message" id="categoryError">Please select your category</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Academic Information -->
+                <div class="form-step" data-step="2">
+                    <h3 class="step-title">Academic Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="neetRank">NEET Rank <span class="required">*</span></label>
+                        <input type="number" id="neetRank" name="neetRank" min="1" required>
+                        <div class="error-message" id="neetRankError">Please enter your NEET rank</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neetScore">NEET Score <span class="required">*</span></label>
+                        <input type="number" id="neetScore" name="neetScore" min="0" max="720" required>
+                        <div class="error-message" id="neetScoreError">Please enter your NEET score (0-720)</div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Counselling Preferences -->
+                <div class="form-step" data-step="3">
+                    <h3 class="step-title">Counselling Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label>Courses <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mbbs" name="courses" value="MBBS">
+                                <label for="mbbs">MBBS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bds" name="courses" value="BDS">
+                                <label for="bds">BDS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bams" name="courses" value="BAMS">
+                                <label for="bams">BAMS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bhms" name="courses" value="BHMS">
+                                <label for="bhms">BHMS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bums" name="courses" value="BUMS">
+                                <label for="bums">BUMS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bsms" name="courses" value="BSMS">
+                                <label for="bsms">BSMS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nursing" name="courses" value="Nursing">
+                                <label for="nursing">Nursing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="paramedical" name="courses" value="Paramedical">
+                                <label for="paramedical">Paramedical</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="coursesError">Please select at least one course</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quota <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aiq" name="quota" value="AIQ">
+                                <label for="aiq">All India Quota (AIQ)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="stateQuota" name="quota" value="State Quota">
+                                <label for="stateQuota">State Quota</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="deemedUniversity" name="quota" value="Deemed University">
+                                <label for="deemedUniversity">Deemed University</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="privateCollege" name="quota" value="Private College">
+                                <label for="privateCollege">Private College</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="quotaError">Please select at least one quota</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="package">Package <span class="required">*</span></label>
+                        <select id="package" name="package" required>
+                            <option value="">Select Package</option>
+                            <option value="MBBS/BDS Basic">MBBS/BDS Basic</option>
+                            <option value="MBBS/BDS Premium">MBBS/BDS Premium</option>
+                            <option value="AYUSH Basic">AYUSH Basic</option>
+                            <option value="AYUSH Premium">AYUSH Premium</option>
+                            <option value="Nursing/Paramedical Basic">Nursing/Paramedical Basic</option>
+                            <option value="Nursing/Paramedical Premium">Nursing/Paramedical Premium</option>
+                        </select>
+                        <div class="error-message" id="packageError">Please select a package</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referenceCode">Reference Code (Optional)</label>
+                        <input type="text" id="referenceCode" name="referenceCode">
+                        <div class="success-message" id="referenceSuccess">🎉 Congratulations! You got a discount.</div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation and Submission -->
+                <div class="form-step" data-step="4">
+                    <h3 class="step-title">Confirmation and Submission</h3>
+                    
+                    <div class="form-group">
+                        <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                            Please review your information before submitting. You can go back to previous steps to make any changes.
+                        </p>
+                    </div>
+
+                    <div class="agreement-checkbox">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">
+                            I agree to the terms and conditions and confirm that all the information provided is accurate. <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="error-message" id="agreementError">You must agree to the terms and conditions</div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Back</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h3>✅ Application Submitted Successfully!</h3>
+            <p>Thank you for applying to RN Counselling. We have received your application and will contact you shortly.</p>
