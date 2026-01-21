@@ -908,3 +908,95 @@
         <div class="modal-content">
             <h3>✅ Application Submitted Successfully!</h3>
             <p>Thank you for applying to RN Counselling. We have received your application and will contact you shortly.</p>
+            <button id="closeModal" class="btn btn-primary">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RN Counselling</h3>
+                    <p>Trusted Medical Admission Guidance</p>
+                    <p>Your partner in securing the best medical college seat based on your merit and preferences.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="apply.html">Apply Now</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📍 2nd Floor, Tower Building, Arif Colony, Aurangabad‑431001</p>
+                    <p>📧 rnenterprises77764@gmail.com</p>
+                    <p>📞 +91 9673882382</p>
+                </div>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="tel:+919673882382" class="contact-btn call">📞 Call</a>
+                <a href="https://wa.me/919673882382" target="_blank" rel="noopener" class="contact-btn whatsapp">💬 WhatsApp</a>
+                <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener" class="contact-btn telegram">✈️ Telegram</a>
+                <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener" class="contact-btn instagram">📷 Instagram</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Step navigation logic
+    const steps = document.querySelectorAll('.form-step');
+    let currentStep = 0;
+
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const submitBtn = document.getElementById("submitBtn");
+
+    nextBtn.addEventListener('click', () => {
+        steps[currentStep].style.display = 'none';
+        currentStep++;
+        steps[currentStep].style.display = 'block';
+        updateButtons();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        steps[currentStep].style.display = 'none';
+        currentStep--;
+        steps[currentStep].style.display = 'block';
+        updateButtons();
+    });
+
+    function updateButtons() {
+        prevBtn.style.display = currentStep > 0 ? "inline-block" : "none";
+        nextBtn.style.display = currentStep < steps.length - 1 ? "inline-block" : "none";
+        submitBtn.style.display = currentStep === steps.length - 1 ? "inline-block" : "none";
+    }
+
+    steps.forEach((s, i) => s.style.display = i === 0 ? "block" : "none");
+
+    // Reference code discount logic
+    document.querySelector("[name='reference']").addEventListener('input', (e)=>{
+        const code = e.target.value.trim().toUpperCase();
+        const validCodes = ["NEET2026","NEET25%","NEET15%","NEET20%","NEET10%"];
+        const successBox = document.getElementById('successMsg');
+        if(validCodes.includes(code)){
+            successBox.style.display = "block";
+            successBox.innerHTML = "🎉 Congratulations! You have earned a discount using this referral code.";
+        } else {
+            successBox.innerHTML = "";
+        }
+    });
+
+    // Success modal close
+    document.getElementById("closeModal").addEventListener("click", ()=>{
+        document.getElementById("successModal").style.display="none";
+    });
+    </script>
+</body>
+</html
