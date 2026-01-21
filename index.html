@@ -7,7 +7,7 @@
     <meta name="keywords" content="medical counselling, MBBS admission, BDS admission, AYUSH courses, nursing admission, paramedical courses">
     <title>RN Counselling - Trusted Medical Admission Guidance</title>
     <style>
-        /* ---------------- RESET ---------------- */
+       /* ================= RESET & GLOBAL ================= */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,6 @@
 
 html, body {
     width: 100%;
-    min-height: 100%;
     font-family: "Segoe UI", Arial, sans-serif;
     color: #1f2937;
     background: #fff;
@@ -28,27 +27,24 @@ a {
     color: inherit;
 }
 
-/* ---------------- GLOBAL BUTTONS ---------------- */
-button,
-.btn,
-a.btn,
-a.btn-primary,
-a.btn-outline,
-a.btn-orange {
-    cursor: pointer;
+/* ================= BUTTONS ================= */
+button, .btn, a.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.55rem 1.3rem;
+    padding: 0.6rem 1.4rem;
     border-radius: 6px;
-    transition: background 0.2s, color 0.2s;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
 }
 
-/* primary buttons */
+/* primary button */
 .btn-primary,
+button.btn-primary,
 a.btn-primary {
     background: #0b66c3;
     color: #fff;
@@ -59,12 +55,12 @@ a.btn-primary:hover {
     background: #084c9a;
 }
 
-/* outline buttons */
+/* outline button */
 .btn-outline,
 a.btn-outline {
     border: 2px solid #0b66c3;
-    color: #0b66c3;
     background: transparent;
+    color: #0b66c3;
 }
 
 .btn-outline:hover,
@@ -76,6 +72,7 @@ a.btn-outline:hover {
 .btn-orange,
 a.btn-orange {
     border: 2px solid #f97316;
+    background: transparent;
     color: #f97316;
 }
 
@@ -84,41 +81,38 @@ a.btn-orange:hover {
     background: #fff3e8;
 }
 
-/* fix full width on mobile */
-@media (max-width:767px) {
-    button,
-    .btn,
-    a.btn,
-    a.btn-primary,
-    a.btn-outline,
-    a.btn-orange {
+/* MOBILE BUTTON FULL WIDTH */
+@media (max-width: 767px) {
+    button, .btn, a.btn {
         width: 100%;
     }
 }
 
-/* ---------------- HEADER ---------------- */
+/* ================= HEADER ================= */
 header {
     position: sticky;
     top: 0;
     width: 100%;
     background: #fff;
-    border-bottom: 1px solid #e5e7eb;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-bottom: 1px solid #e5e7eb;
     z-index: 50;
 }
 header .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0.75rem 0;
 }
 
-/* small button styling */
+/* small header buttons */
 header .menu-btn,
 header .apply-btn {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
 }
+
+/* strong apply color */
 header .apply-btn {
     background: #f97316;
     color: #fff;
@@ -127,16 +121,14 @@ header .apply-btn:hover {
     background: #ea580c;
 }
 
-/* ---------------- HERO ---------------- */
+/* ================= HERO ================= */
 .hero {
     text-align: center;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #eaf3ff, #fff, #fff3e8);
 }
-
 .hero h2 {
     font-size: 2.4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     font-weight: 700;
 }
 .hero p {
@@ -146,84 +138,99 @@ header .apply-btn:hover {
     margin: auto;
 }
 
-/* ---------------- NOTIFICATIONS ---------------- */
+/* CTA buttons */
+.hero-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ================= NOTIFICATIONS ================= */
 .notifications {
     padding: 2rem 1rem;
     background: linear-gradient(90deg, #eaf3ff, #fff3e8);
 }
 .notifications h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 1.9rem;
     font-weight: 700;
+    margin-bottom: 1rem;
 }
+
+/* notification cards */
 .notifications .notification-card {
-    margin-bottom: 1.2rem;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     padding: 1rem;
+    margin-bottom: 1rem;
 }
+
 .notifications img,
 .notifications svg {
     width: 22px;
     height: 22px;
 }
-.notifications .notification-date {
+
+/* notification date text */
+.notification-date {
     font-size: 0.88rem;
     color: #6b7280;
 }
 
-/* ---------------- SECTIONS ---------------- */
+/* ================= SECTIONS ================= */
 .section-title {
     font-size: 2.2rem;
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 1.5rem 0 1rem;
     font-weight: 700;
 }
 .section-subtitle {
-    text-align: center;
-    margin-bottom: 1.75rem;
-    color: #6b7280;
     font-size: 1rem;
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 1.2rem;
 }
 
-/* ---------------- SERVICES ---------------- */
-.services {
-    padding: 2.5rem 1rem;
-}
+/* ================= SERVICES & CARDS ================= */
 .services .service-card {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1rem;
 }
 .services .service-card img {
     width: 100%;
     height: auto;
 }
 .services .service-btn {
-    padding: 0.45rem;
-    font-size: 0.9rem;
-    color: #0b66c3;
-    background: transparent;
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
+    background: #0b66c3;
+    color: #fff;
+    border-radius: 6px;
+    text-align: center;
 }
 
-/* ---------------- REVIEWS ---------------- */
+/* ================= REVIEWS ================= */
 .reviews {
     padding: 2.5rem 1rem;
     background: linear-gradient(135deg, #eaf3ff, #fff3e8);
 }
 .reviews .review-card {
     background: #fff;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     border-radius: 8px;
     padding: 1rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    margin-bottom: 1rem;
 }
 .reviews img {
     width: auto;
     height: auto;
 }
 
-/* ---------------- FOOTER ---------------- */
+/* ================= FOOTER ================= */
 footer {
     background: #0b66c3;
     color: #fff;
@@ -236,12 +243,34 @@ footer a {
 footer .contact-btn {
     padding: 0.5rem;
     font-size: 0.9rem;
+    border-radius: 6px;
+    display: inline-flex;
+    gap: 0.4rem;
+    text-align: center;
 }
 footer .contact-btn.call { background: #10b981; }
 footer .contact-btn.whatsapp { background: #25d366; }
 footer .contact-btn.telegram { background: #0088cc; }
-footer .contact-btn.instagram { background: linear-gradient(45deg,#f09433,#dc2743,#bc1888); }
+footer .contact-btn.instagram {
+    background: linear-gradient(45deg,#f09433,#dc2743,#bc1888);
+}
 
+/* ================= RESPONSIVE BREAKPOINTS ================= */
+@media (min-width: 768px) {
+    .notifications .notification-card {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+    }
     </style>
 </head>
 <body>
