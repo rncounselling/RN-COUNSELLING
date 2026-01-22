@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AYUSH Courses - BAMS, BHMS, BUMS Admission & Career | RN Counselling</title>
+    <meta name="description" content="Complete guide to AYUSH courses admission through NEET UG. Learn about BAMS, BHMS, BUMS eligibility, fees, career opportunities and get expert counselling.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            margin-top: 10px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #0a58ca;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 88, 202, 0.8), rgba(10, 88, 202, 0.8)), url('assets/generated/ayush-hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 20px 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff7a00;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            background-color: #e66900;
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .content-section h2 {
+            color: #0a58ca;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .content-section ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff7a00;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Course Cards */
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .course-card h3 {
+            color: #0a58ca;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card .cta-button {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        /* Image Sections */
+        .image-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Fee Structure Table */
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .fee-table th,
+        .fee-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .fee-table th {
+            background-color: #0a58ca;
+            color: white;
+            font-weight: bold;
+        }
+
+        .fee-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a58ca;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #084298;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        .faq-answer p {
+            text-align: left;
+        }
+
+        /* Bottom CTA Section */
+        .bottom-cta {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .bottom-cta h2 {
+            color: #0a58ca;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .social-button:hover {
+            background-color: #e66900;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 20px;
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .phone {
+            background-color: #0a58ca;
+        }
+
+        .sticky-social .whatsapp {
+            background-color: #25D366;
+        }
+
+        .sticky-social .telegram {
+            background-color: #0088cc;
+        }
+
+        .sticky-social .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                background-color: rgba(255,255,255,0.1);
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .course-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="assets/generated/rn-counselling-logo-transparent.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Courses ▼</a>
+                        <div class="dropdown-content">
+                            <a href="mbbs.html">MBBS</a>
+                            <a href="bds.html">BDS</a>
+                            <a href="ayush.html">AYUSH</a>
+                            <a href="#">BAMS</a>
+                            <a href="#">BHMS</a>
+                            <a href="#">BUMS</a>
+                            <a href="#">Nursing</a>
+                            <a href="#">Paramedical</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Services ▼</a>
+                        <div class="dropdown-content">
+                            <a href="mbbscoun.html">MBBS Counselling</a>
+                            <a href="#">BDS Counselling</a>
+                            <a href="services-ayush-counselling.html">AYUSH Counselling</a>
+                            <a href="#">Nursing Counselling</a>
+                            <a href="#">Paramedical Counselling</a>
+                            <a href="#">NEET Counselling</a>
+                            <a href="#">Notification Alert</a>
+                            <a href="#">College Cut-off & Predictor</a>
+                            <a href="meeting.html">Video Meeting</a>
+                        </div>
+                    </li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AYUSH Courses – BAMS, BHMS, BUMS Admission, Eligibility & Career</h1>
+        <p>Learn about India's traditional medical systems – Ayurveda, Homeopathy, and Unani – including admission process, eligibility, and career opportunities.</p>
+        <a href="services-ayush-counselling.html" class="cta-button">Need Help with AYUSH Admission? → Explore AYUSH Counselling</a>
+    </section>
+
+    <!-- What Are AYUSH Courses -->
+    <section class="content-section">
+        <h2>What Are AYUSH Courses?</h2>
+        <div class="image-section">
+            <img src="assets/generated/ayush-course-overview.png" alt="AYUSH Course Overview">
+        </div>
+        <p>AYUSH stands for Ayurveda, Yoga & Naturopathy, Unani, Siddha, and Homeopathy – India's traditional and alternative medicine systems. AYUSH courses offer professional medical education in these ancient healing practices, which are gaining global recognition for their holistic approach to healthcare.</p>
+        <p>The three main undergraduate AYUSH programs are BAMS (Bachelor of Ayurvedic Medicine and Surgery), BHMS (Bachelor of Homeopathic Medicine and Surgery), and BUMS (Bachelor of Unani Medicine and Surgery). These courses combine traditional medical wisdom with modern scientific knowledge, preparing students to become qualified practitioners in their respective fields.</p>
+        <p>Admission to AYUSH courses is through NEET-UG (National Eligibility cum Entrance Test for Undergraduate), making it mandatory for all aspiring AYUSH students to qualify in this national-level examination. The growing acceptance of alternative medicine and government support for AYUSH systems has created excellent career opportunities for graduates.</p>
+    </section>
+
+    <!-- Types of AYUSH Courses -->
+    <section class="content-section">
+        <h2>Types of AYUSH Courses</h2>
+        <div class="course-cards">
+            <div class="course-card">
+                <h3>BAMS (Ayurveda Medicine & Surgery)</h3>
+                <p>Bachelor of Ayurvedic Medicine and Surgery focuses on the ancient Indian system of medicine using natural herbs, minerals, and holistic treatments. Students learn about Panchakarma, herbal medicine, and traditional diagnostic methods.</p>
+                <a href="ayush.html" class="cta-button">Know More</a>
+            </div>
+            <div class="course-card">
+                <h3>BHMS (Homeopathic Medicine & Surgery)</h3>
+                <p>Bachelor of Homeopathic Medicine and Surgery teaches the principles of homeopathy, a system based on "like cures like" using highly diluted substances. Students learn about constitutional treatment and individualized patient care.</p>
+                <a href="ayush.html" class="cta-button">Know More</a>
+            </div>
+            <div class="course-card">
+                <h3>BUMS (Unani Medicine & Surgery)</h3>
+                <p>Bachelor of Unani Medicine and Surgery covers the Greco-Arabic system of medicine that emphasizes balance of body humors. Students study herbal formulations, dietary therapy, and traditional Unani diagnostic techniques.</p>
+                <a href="ayush.html" class="cta-button">Know More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Duration -->
+    <section class="content-section">
+        <h2>AYUSH Course Duration</h2>
+        <p>All AYUSH undergraduate programs (BAMS, BHMS, and BUMS) follow a standardized duration structure:</p>
+        <ul>
+            <li><strong>Academic Program:</strong> 4.5 years (9 semesters) of classroom learning, practical training, and clinical exposure</li>
+            <li><strong>Compulsory Internship:</strong> 1 year of hands-on clinical training in hospitals and healthcare centers</li>
+            <li><strong>Total Duration:</strong> 5.5 years to complete the full degree program</li>
+        </ul>
+        <p>The curriculum is designed by the respective councils (Central Council of Indian Medicine for Ayurveda and Unani, Central Council of Homoeopathy for Homeopathy) and includes both theoretical knowledge and practical clinical skills. Students gain experience in diagnosis, treatment protocols, and patient management specific to their chosen AYUSH system.</p>
+    </section>
+
+    <!-- Eligibility Criteria -->
+    <section class="content-section">
+        <h2>AYUSH Eligibility Criteria</h2>
+        <div class="image-section">
+            <img src="assets/generated/ayush-graduation.png" alt="AYUSH Graduation">
+        </div>
+        <p>To be eligible for admission to AYUSH courses in India, candidates must meet the following criteria:</p>
+        <ul>
+            <li><strong>NEET-UG Qualification:</strong> Must qualify in the National Eligibility cum Entrance Test (NEET-UG) conducted by NTA</li>
+            <li><strong>Educational Qualification:</strong> Passed 10+2 or equivalent examination with Physics, Chemistry, and Biology (PCB) as mandatory subjects</li>
+            <li><strong>Minimum Marks:</strong> General category candidates need 50% aggregate in PCB; SC/ST/OBC candidates need 40% aggregate</li>
+            <li><strong>Age Limit:</strong> Minimum 17 years as of December 31st of the admission year; no upper age limit for AYUSH courses</li>
+            <li><strong>Domicile Requirements:</strong> State quota seats may have domicile criteria; All India Quota seats are open to all Indian nationals</li>
+            <li><strong>Category Reservations:</strong> Seats are reserved as per government norms for SC/ST/OBC/EWS and other categories</li>
+        </ul>
+        <p>Candidates must ensure they meet all eligibility criteria before applying for AYUSH counselling to avoid disqualification during document verification.</p>
+    </section>
+
+    <!-- Admission Process -->
+    <section class="content-section">
+        <h2>AYUSH Admission Process (High-Level)</h2>
+        <p>The admission process for AYUSH courses follows a structured procedure:</p>
+        <ul>
+            <li><strong>Step 1: Appear for NEET-UG</strong> – Register and appear for the national entrance examination conducted by NTA</li>
+            <li><strong>Step 2: NEET Result</strong> – Check your NEET-UG score and rank after results are declared</li>
+            <li><strong>Step 3: Apply for AYUSH Counselling</strong> – Register for All India Quota (AIQ) counselling conducted by AYUSH Admissions Central Counselling Committee (AACCC) and/or state-level counselling</li>
+            <li><strong>Step 4: Choice Filling</strong> – Fill and lock your college and course preferences based on your rank and interests</li>
+            <li><strong>Step 5: Seat Allotment</strong> – Seats are allotted based on merit, preferences, and availability through multiple counselling rounds</li>
+            <li><strong>Step 6: Document Verification</strong> – Report to the allotted college with original documents for verification</li>
+            <li><strong>Step 7: Fee Payment & Admission</strong> – Pay the admission fee and complete the admission formalities to secure your seat</li>
+        </ul>
+        <p>The counselling process typically has multiple rounds, and candidates can participate in upgradation rounds to get a better college or course based on their preferences.</p>
+    </section>
+
+    <!-- Types of AYUSH Colleges -->
+    <section class="content-section">
+        <h2>Types of AYUSH Colleges in India</h2>
+        <div class="image-section">
+            <img src="assets/generated/ayush-college-building.png" alt="AYUSH College Building">
+        </div>
+        <p>AYUSH colleges in India are categorized into different types based on their management and funding:</p>
+        <ul>
+            <li><strong>Government AYUSH Colleges:</strong> Established and funded by central or state governments, offering quality education at affordable fees with excellent infrastructure and experienced faculty</li>
+            <li><strong>Private AYUSH Colleges:</strong> Run by private trusts or organizations, offering modern facilities and infrastructure with higher fee structures compared to government colleges</li>
+            <li><strong>Deemed Universities:</strong> Autonomous institutions granted deemed-to-be-university status, offering AYUSH programs with flexibility in curriculum and admission processes</li>
+            <li><strong>All India Quota vs State Quota:</strong> 15% seats in government colleges are filled through All India Quota (AIQ) counselling, while 85% seats are reserved for state domicile candidates through state quota counselling</li>
+        </ul>
+        <p>Each type of college has its own advantages, and students should consider factors like fees, location, infrastructure, faculty, and placement opportunities when making their choice.</p>
+    </section>
+
+    <!-- Fees Structure -->
+    <section class="content-section">
+        <h2>AYUSH Course Fees Structure (Approximate)</h2>
+        <table class="fee-table">
+            <thead>
+                <tr>
+                    <th>College Type</th>
+                    <th>Annual Fee Range</th>
+                    <th>Total Course Fee (5.5 years)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Government AYUSH Colleges</td>
+                    <td>₹25,000 – ₹1,00,000</td>
+                    <td>₹1,37,500 – ₹5,50,000</td>
+                </tr>
+                <tr>
+                    <td>Private AYUSH Colleges</td>
+                    <td>₹2,00,000 – ₹6,00,000</td>
+                    <td>₹11,00,000 – ₹33,00,000</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Note:</strong> Fees vary significantly by state, college, and course (BAMS/BHMS/BUMS). Government colleges generally have much lower fees compared to private institutions. Additional costs include hostel fees, examination fees, books, and other miscellaneous expenses.</p>
+        <p>Some states have fee regulation policies for private colleges, while others allow colleges to set their own fee structures. Students should verify the exact fee structure with the college during admission.</p>
+    </section>
+
+    <!-- Career Scope -->
+    <section class="content-section">
+        <h2>Career Scope After AYUSH</h2>
+        <div class="image-section">
+            <img src="assets/generated/ayush-career-scope.png" alt="AYUSH Career Scope">
+        </div>
+        <p>AYUSH graduates have diverse career opportunities in India and abroad:</p>
+        <ul>
+            <li><strong>Private Practice:</strong> Start your own clinic or dispensary to treat patients using traditional medicine systems with growing patient acceptance</li>
+            <li><strong>Government Services:</strong> Join government hospitals, dispensaries, and health centers through state and central government recruitment exams</li>
+            <li><strong>Hospital Employment:</strong> Work in private hospitals, wellness centers, and integrated medicine facilities that offer AYUSH treatments</li>
+            <li><strong>Postgraduate Studies:</strong> Pursue MD/MS in Ayurveda, MD in Homeopathy, or MD in Unani Medicine for specialization and better career prospects</li>
+            <li><strong>Teaching Positions:</strong> Join AYUSH colleges as faculty members after completing postgraduate degrees and gaining clinical experience</li>
+            <li><strong>Research & Academics:</strong> Contribute to research in traditional medicine, drug development, and clinical studies at research institutions</li>
