@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Meeting with Expert MBBS Admission Counsellor | RN Counselling</title>
+    <meta name="description" content="Book one-to-one video counselling sessions with expert MBBS admission counsellors. Get personalized guidance for MBBS & medical admissions.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #0a58ca;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 88, 202, 0.8), rgba(10, 88, 202, 0.8)), url('generated/video-meeting-hero-background.dim_1200x400.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #ff7a00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #0a58ca;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #0a58ca;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* What Includes Section */
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .include-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .include-item img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .include-item h3 {
+            color: #0a58ca;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Packages Section */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .package-card {
+            border: 2px solid #0a58ca;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .package-card h3 {
+            color: #0a58ca;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            color: #ff7a00;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .package-features li:before {
+            content: "✓ ";
+            color: #ff7a00;
+            font-weight: bold;
+        }
+
+        /* Booking Form Section */
+        .booking-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #0a58ca;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover {
+            border-color: #0a58ca;
+            background-color: #f0f7ff;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+        }
+
+        .radio-option.selected {
+            border-color: #0a58ca;
+            background-color: #f0f7ff;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Why Choose Section */
+        .why-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .why-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+            border-left: 4px solid #ff7a00;
+            border-radius: 5px;
+        }
+
+        .why-list li:before {
+            content: "✓ ";
+            color: #0a58ca;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff7a00;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 0.5rem 1rem;
+            background-color: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: #e66d00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .call { background-color: #0a58ca; }
+        .sticky-social .whatsapp { background-color: #25D366; }
+        .sticky-social .telegram { background-color: #0088cc; }
+        .sticky-social .instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background-color: rgba(255,255,255,0.1);
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .includes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event, this)">Courses ▼</a>
+                        <div class="dropdown-content">
+                            <a href="mbbs.html">MBBS</a>
+                            <a href="#">BDS</a>
+                            <a href="#">AYUSH</a>
+                            <a href="#">Nursing</a>
+                            <a href="#">Paramedical</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event, this)">Services ▼</a>
+                        <div class="dropdown-content">
+                            <a href="mbbscoun.html">MBBS Counselling</a>
+                            <a href="meeting.html">Video Meeting</a>
+                            <a href="#">Document Verification</a>
+                            <a href="#">Seat Allotment</a>
+                        </div>
+                    </li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Video Meeting with Expert MBBS Admission Counsellor</h1>
+                <p>Get one-to-one personalized guidance through a live video meeting with our experienced counsellors for MBBS & medical admissions.</p>
+                <div class="cta-buttons">
+                    <a href="#booking-form" class="btn btn-primary">Book Video Meeting</a>
+                    <a href="#packages" class="btn btn-secondary">View Meeting Packages</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What This Video Meeting Includes -->
+        <section>
+            <div class="container">
+                <h2>What This Video Meeting Includes</h2>
+                <div class="includes-grid">
+                    <div class="include-item">
+                        <img src="generated/one-on-one-icon-transparent.dim_64x64.png" alt="1:1 Session">
+                        <div>
+                            <h3>1:1 Live Video Counselling</h3>
+                            <p>Personal one-on-one session with expert counsellor</p>
+                        </div>
+                    </div>
+                    <div class="include-item">
+                        <img src="generated/neet-guidance-icon-transparent.dim_64x64.png" alt="NEET Guidance">
+                        <div>
+                            <h3>MBBS Admission & NEET Guidance</h3>
+                            <p>Complete guidance on MBBS admission process</p>
+                        </div>
+                    </div>
+                    <div class="include-item">
+                        <img src="generated/college-discussion-icon-transparent.dim_64x64.png" alt="College Discussion">
+                        <div>
+                            <h3>College & Quota Discussion</h3>
+                            <p>Detailed discussion on college options and quotas</p>
+                        </div>
+                    </div>
+                    <div class="include-item">
+                        <img src="generated/strategy-advice-icon-transparent.dim_64x64.png" alt="Strategy">
+                        <div>
+                            <h3>Counselling Strategy Advice</h3>
+                            <p>Expert strategy for successful counselling</p>
+                        </div>
+                    </div>
+                    <div class="include-item">
+                        <img src="generated/career-clarity-icon-transparent.dim_64x64.png" alt="Career Clarity">
+                        <div>
+                            <h3>Career & Admission Clarity</h3>
+                            <p>Clear roadmap for your medical career</p>
+                        </div>
+                    </div>
+                    <div class="include-item">
+                        <img src="generated/parents-students-icon-transparent.dim_64x64.png" alt="Students & Parents">
+                        <div>
+                            <h3>Suitable for Students & Parents</h3>
+                            <p>Both students and parents can join the session</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meeting Packages -->
+        <section id="packages">
+            <div class="container">
+                <h2>Video Meeting Packages</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <h3>One-Time Video Meeting</h3>
+                        <p>Duration: 30 minutes</p>
+                        <div class="package-price">₹299/-</div>
+                        <ul class="package-features">
+                            <li>One-to-one expert guidance</li>
+                            <li>Personalized advice</li>
+                            <li>MBBS admission clarity</li>
+                            <li>College selection help</li>
+                        </ul>
+                        <a href="#booking-form" class="btn btn-primary">Book Meeting</a>
+                    </div>
+                    <div class="package-card">
+                        <h3>Four Video Meetings Package</h3>
+                        <p>4 sessions × 30 minutes</p>
+                        <div class="package-price">₹999/-</div>
+                        <ul class="package-features">
+                            <li>Step-by-step counselling</li>
+                            <li>Follow-up guidance</li>
+                            <li>Priority scheduling</li>
+                            <li>Complete admission support</li>
+                        </ul>
+                        <a href="#booking-form" class="btn btn-primary">Book Meeting</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Form -->
+        <section id="booking-form">
+            <div class="container">
+                <h2>Book Your Video Meeting</h2>
+                <form class="booking-form" id="meetingBookingForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email ID *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number *</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course *</label>
+                        <select id="course" name="course" required>
+                            <option value="">Select Course</option>
+                            <option value="MBBS">MBBS</option>
+                            <option value="BDS">BDS</option>
+                            <option value="AYUSH">AYUSH</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="neetRank">NEET Rank</label>
+                        <input type="text" id="neetRank" name="neetRank">
+                    </div>
+                    <div class="form-group">
+                        <label for="query">Query / Any Other Entrance Exam</label>
+                        <textarea id="query" name="query"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeSlot">Select Time Slot *</label>
+                        <select id="timeSlot" name="timeSlot" required>
+                            <option value="">Select Time Slot</option>
+                            <option value="8:00-8:30 PM">8:00–8:30 PM</option>
+                            <option value="8:30-9:00 PM">8:30–9:00 PM</option>
+                            <option value="9:00-9:30 PM">9:00–9:30 PM</option>
+                            <option value="9:30-10:00 PM">9:30–10:00 PM</option>
+                            <option value="10:00-10:30 PM">10:00–10:30 PM</option>
+                            <option value="10:30-11:00 PM">10:30–11:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Package *</label>
+                        <div class="radio-group">
+                            <label class="radio-option" onclick="selectPackage(this, '299')">
+                                <input type="radio" name="package" value="One-Time ₹299" required>
+                                <div>
+                                    <strong>One-Time Meeting</strong><br>
+                                    <span>₹299/-</span>
+                                </div>
+                            </label>
+                            <label class="radio-option" onclick="selectPackage(this, '999')">
+                                <input type="radio" name="package" value="Four Meetings ₹999" required>
+                                <div>
+                                    <strong>Four Meetings Package</strong><br>
+                                    <span>₹999/-</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">👉 Proceed to Payment</button>
+                    <div class="success-message" id="successMessage">
+                        Your payment was successful. Your details have been saved. Our representative will call you shortly to proceed further.
+                    </div>
+                </form>
+                <!-- Paste Google Sheet integration script URL here -->
+            </div>
+        </section>
+
+        <!-- Why Choose RN Counselling -->
+        <section>
+            <div class="container">
+                <h2>Why Choose RN Counselling for Video Meeting</h2>
+                <ul class="why-list">
+                    <li>Experienced admission counsellors</li>
+                    <li>Honest & transparent guidance</li>
+                    <li>Student-focused approach</li>
+                    <li>Convenient evening slots</li>
+                    <li>Affordable counselling access</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Still confused about your MBBS admission?</h2>
+                <div class="cta-buttons">
+                    <a href="#booking-form" class="btn btn-primary">Book Video Meeting</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for MBBS and medical admission counselling. Expert guidance for your medical career.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 Phone: +91 96738 82382</p>
+                <p>📧 Email: info@rncounselling.com</p>
+                <p>📍 Location: Mumbai, Maharashtra</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn">Call</a>
+                    <a href="https://wa.me/919673882382" class="social-btn">WhatsApp</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn">Telegram</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="call" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" class="whatsapp" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="telegram" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" class="instagram" title="Instagram">📷</a>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Dropdown toggle for mobile
+        function toggleDropdown(event, element) {
+            if (window.innerWidth <= 768) {
+                event.preventDefault();
+                const dropdown = element.parentElement;
+                dropdown.classList.toggle('active');
+            }
+        }
+
+        // Package selection
+        function selectPackage(element, price) {
+            document.querySelectorAll('.radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('meetingBookingForm');
+            const formData = new FormData(form);
+            
+            // Get selected package
+            const selectedPackage = formData.get('package');
+            let paymentUrl = '';
+            
+            // Determine payment URL based on package
+            if (selectedPackage === 'One-Time ₹299') {
+                paymentUrl = 'https://azorpay.com/payment299';
+            } else if (selectedPackage === 'Four Meetings ₹999') {
+                paymentUrl = 'https://azorpay.com/payment999';
+            }
+            
+            // Store form data in sessionStorage for post-payment submission
+            const bookingData = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                contactNumber: formData.get('contactNumber'),
+                course: formData.get('course'),
+                neetRank: formData.get('neetRank'),
+                query: formData.get('query'),
+                date: formData.get('date'),
+                timeSlot: formData.get('timeSlot'),
+                package: selectedPackage
+            };
+            
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Redirect to payment gateway
+            window.location.href = paymentUrl;
+        }
+
+        // Check for payment success on page load
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentStatus = urlParams.get('payment');
+            
+            if (paymentStatus === 'success') {
+                // Retrieve stored booking data
+                const bookingData = sessionStorage.getItem('bookingData');
+                
+                if (bookingData) {
+                    // Here you would send the data to Google Sheets
+                    // This is where the Google Sheet integration script would be called
+                    
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // Clear stored data
+                    sessionStorage.removeItem('bookingData');
+                    
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Set minimum date for date picker to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    </script>
+</body>
+</html>
