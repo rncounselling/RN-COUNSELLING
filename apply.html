@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Medical Counselling - RN Counselling</title>
-    <meta name="description" content="Apply for medical counselling services at RN Counselling. Complete your application in 4 easy steps.">
+    <title>Apply Now - RN Counselling</title>
     <style>
         * {
             margin: 0;
@@ -12,39 +11,24 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --medical-blue: #1e40af;
-            --medical-blue-light: #3b82f6;
-            --medical-blue-dark: #1e3a8a;
-            --medical-orange: #f97316;
-            --medical-orange-light: #fb923c;
-            --medical-orange-dark: #ea580c;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --border-color: #e5e7eb;
-            --success-green: #10b981;
-            --error-red: #ef4444;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #ffffff;
+            color: #333;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: white;
-            padding-top: 80px;
         }
 
         /* Header Styles */
-        .header {
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-container {
@@ -52,10 +36,8 @@
             margin: 0 auto;
             padding: 0 1rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
+            align-items: center;
         }
 
         .logo-section {
@@ -64,217 +46,179 @@
             gap: 1rem;
         }
 
-        .logo {
+        .logo-section img {
             height: 50px;
             width: auto;
         }
 
-        .brand-info h1 {
+        .brand-name {
             font-size: 1.5rem;
-            color: var(--medical-blue);
-            font-weight: 700;
-            margin-bottom: 0.25rem;
+            font-weight: bold;
         }
 
-        .brand-info p {
-            font-size: 0.875rem;
-            color: var(--medical-orange);
-            font-weight: 500;
-        }
-
-        .nav-links {
+        nav ul {
+            list-style: none;
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .nav-links a {
-            padding: 0.5rem 1rem;
-            background: var(--medical-blue);
+        nav a {
             color: white;
             text-decoration: none;
-            border-radius: 0.375rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            font-size: 0.875rem;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            background: var(--medical-blue-dark);
-            transform: translateY(-2px);
+        nav a:hover {
+            color: #ff7a00;
         }
 
-        .nav-links a.active {
-            background: var(--medical-orange);
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        /* Main Content */
-        .main-content {
+        /* Main Content - CRITICAL FIX: Added top padding to prevent header overlap */
+        main {
+            padding-top: 120px;
+            min-height: calc(100vh - 80px);
+            padding-bottom: 2rem;
+        }
+
+        .form-container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem 4rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .page-header {
+        .form-header {
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        .page-header h2 {
+        .form-header h1 {
+            color: #0a58ca;
             font-size: 2rem;
-            color: var(--medical-blue);
             margin-bottom: 0.5rem;
         }
 
-        .page-header p {
-            font-size: 1.125rem;
-            color: var(--text-light);
+        .form-header p {
+            color: #666;
+            font-size: 1rem;
         }
 
-        /* Form Container */
-        .form-container {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+        /* Progress Indicator */
+        .progress-container {
+            margin-bottom: 2rem;
         }
 
-        /* Step Indicator */
-        .step-indicator {
+        .progress-steps {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .step-indicator::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--border-color);
-            z-index: 0;
+            margin-bottom: 1rem;
         }
 
         .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
             flex: 1;
+            text-align: center;
+            position: relative;
         }
 
         .step-number {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: var(--border-color);
-            color: var(--text-light);
-            display: flex;
+            background-color: #e0e0e0;
+            color: #666;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
         .step.active .step-number {
-            background: var(--medical-blue);
+            background-color: #0a58ca;
             color: white;
         }
 
         .step.completed .step-number {
-            background: var(--success-green);
+            background-color: #28a745;
             color: white;
         }
 
         .step-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-align: center;
-            font-weight: 500;
+            font-size: 0.875rem;
+            color: #666;
         }
 
-        .step.active .step-label {
-            color: var(--medical-blue);
-            font-weight: 600;
+        .progress-bar {
+            height: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
         }
 
-        /* Form Steps */
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #0a58ca;
+            transition: width 0.3s;
+        }
+
+        /* Form Styles */
         .form-step {
             display: none;
-            animation: fadeIn 0.3s ease;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .form-step.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .step-title {
-            font-size: 1.5rem;
-            color: var(--medical-blue);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Form Fields */
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: #333;
             font-weight: 500;
-            font-size: 0.875rem;
         }
 
-        .form-group label .required {
-            color: var(--error-red);
-            margin-left: 0.25rem;
+        label .required {
+            color: #dc3545;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        input, select, textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.375rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--medical-blue);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            border-color: #0a58ca;
         }
 
-        .form-group input.error,
-        .form-group select.error {
-            border-color: var(--error-red);
+        input.error, select.error {
+            border-color: #dc3545;
         }
 
         .error-message {
-            color: var(--error-red);
+            color: #dc3545;
             font-size: 0.875rem;
             margin-top: 0.25rem;
             display: none;
@@ -284,66 +228,26 @@
             display: block;
         }
 
-        .success-message {
-            color: var(--success-green);
+        .info-text {
+            color: #666;
             font-size: 0.875rem;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            font-weight: 500;
             display: none;
-            padding: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 0.375rem;
         }
 
         .success-message.show {
             display: block;
         }
 
-        /* Checkbox Groups */
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: auto;
-            cursor: pointer;
-        }
-
-        .checkbox-item label {
-            margin: 0;
-            cursor: pointer;
-            font-weight: 400;
-        }
-
-        /* Agreement Checkbox */
-        .agreement-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .agreement-checkbox input[type="checkbox"] {
-            width: auto;
-            margin-top: 0.25rem;
-            cursor: pointer;
-        }
-
-        .agreement-checkbox label {
-            margin: 0;
-            cursor: pointer;
-            font-size: 0.875rem;
-        }
-
-        /* Navigation Buttons */
-        .form-navigation {
+        /* Button Styles */
+        .form-buttons {
             display: flex;
             justify-content: space-between;
             gap: 1rem;
@@ -353,104 +257,71 @@
         .btn {
             padding: 0.75rem 2rem;
             border: none;
-            border-radius: 0.375rem;
+            border-radius: 4px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            transition: all 0.3s;
         }
 
         .btn-primary {
-            background: var(--medical-blue);
+            background-color: #0a58ca;
             color: white;
         }
 
-        .btn-primary:hover {
-            background: var(--medical-blue-dark);
-            transform: translateY(-2px);
+        .btn-primary:hover:not(:disabled) {
+            background-color: #084298;
         }
 
         .btn-secondary {
-            background: var(--text-light);
+            background-color: #6c757d;
             color: white;
         }
 
         .btn-secondary:hover {
-            background: var(--text-dark);
+            background-color: #5a6268;
         }
 
         .btn-success {
-            background: var(--medical-orange);
+            background-color: #ff7a00;
             color: white;
         }
 
-        .btn-success:hover {
-            background: var(--medical-orange-dark);
-            transform: translateY(-2px);
+        .btn-success:hover:not(:disabled) {
+            background-color: #e66d00;
         }
 
         .btn:disabled {
-            opacity: 0.5;
+            opacity: 0.6;
             cursor: not-allowed;
-            transform: none !important;
         }
 
-        /* Success Modal */
-        .modal {
+        /* Submission Success Message */
+        .submission-success {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 2rem;
-            max-width: 500px;
-            width: 100%;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            animation: slideUp 0.3s ease;
+            margin-top: 2rem;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .submission-success.show {
+            display: block;
         }
 
-        .modal-content h3 {
-            color: var(--success-green);
+        .submission-success h2 {
+            color: #28a745;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
-        .modal-content p {
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--medical-blue-dark);
+        /* Footer Styles - UPDATED: Blue background */
+        footer {
+            background-color: #0a58ca;
             color: white;
             padding: 3rem 0 1rem;
             margin-top: 4rem;
@@ -462,7 +333,7 @@
             padding: 0 1rem;
         }
 
-        .footer-grid {
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
@@ -470,71 +341,48 @@
         }
 
         .footer-section h3 {
-            color: var(--medical-orange);
             margin-bottom: 1rem;
-            font-size: 1.25rem;
+            color: #ff7a00;
         }
 
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
+        .footer-section p, .footer-section a {
+            color: white;
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
         }
 
         .footer-section a:hover {
-            color: white;
+            color: #ff7a00;
         }
 
         .social-buttons {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+            gap: 1rem;
             margin-top: 1rem;
         }
 
         .social-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ff7a00;
+            color: white;
             text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn.call {
-            background: var(--success-green);
-            color: white;
-        }
-
-        .social-btn.whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .social-btn.telegram {
-            background: #0088cc;
-            color: white;
-        }
-
-        .social-btn.instagram {
-            background: #E4405F;
-            color: white;
+            transition: transform 0.3s;
         }
 
         .social-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+            transform: scale(1.1);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.875rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         /* Sticky Social Buttons */
@@ -549,76 +397,67 @@
         }
 
         .sticky-social a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff7a00;
             color: white;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
         }
 
         .sticky-social a:hover {
             transform: scale(1.1);
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            body {
-                padding-top: 140px;
+            nav ul {
+                display: none;
             }
 
-            .header-container {
-                flex-direction: column;
-                align-items: flex-start;
+            .mobile-menu-toggle {
+                display: block;
             }
 
-            .nav-links {
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .nav-links a {
-                width: 100%;
-                text-align: center;
-            }
-
-            .page-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .page-header p {
-                font-size: 1rem;
+            main {
+                padding-top: 100px;
             }
 
             .form-container {
-                padding: 1.5rem;
+                padding: 1rem 0.5rem;
+            }
+
+            .form-step {
+                padding: 1.5rem 1rem;
+            }
+
+            .progress-steps {
+                flex-wrap: wrap;
             }
 
             .step-label {
-                font-size: 0.625rem;
+                font-size: 0.75rem;
             }
 
-            .step-number {
-                width: 35px;
-                height: 35px;
-                font-size: 0.875rem;
-            }
-
-            .checkbox-group {
-                grid-template-columns: 1fr;
-            }
-
-            .form-navigation {
+            .form-buttons {
                 flex-direction: column;
             }
 
             .btn {
                 width: 100%;
+            }
+
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .logo-section img {
+                height: 40px;
             }
 
             .sticky-social {
@@ -629,131 +468,154 @@
             .sticky-social a {
                 width: 45px;
                 height: 45px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                height: 40px;
-            }
-
-            .brand-info h1 {
-                font-size: 1.25rem;
-            }
-
-            .brand-info p {
-                font-size: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header>
         <div class="header-container">
             <div class="logo-section">
-                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo" class="logo">
-                <div class="brand-info">
-                    <h1>RN Counselling</h1>
-                    <p>Trusted Medical Admission Guidance</p>
-                </div>
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
             </div>
-            <nav class="nav-links">
-                <a href="apply.html" class="active">Apply Now</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="notification.html">Notifications</a>
-                <a href="packages.html">Packages</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </nav>
+            <button class="mobile-menu-toggle">☰</button>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="page-header">
-            <h2>Apply for Medical Counselling</h2>
-            <p>Complete your application in 4 easy steps</p>
-        </div>
-
+    <main>
         <div class="form-container">
-            <!-- Step Indicator -->
-            <div class="step-indicator">
-                <div class="step active" data-step="1">
-                    <div class="step-number">1</div>
-                    <div class="step-label">Personal Info</div>
+            <div class="form-header">
+                <h1>Apply for NEET UG Counselling</h1>
+                <p>Fill out the form below to get started with expert counselling services</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Personal Info</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Academic Info</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Preferences</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Confirmation</div>
+                    </div>
                 </div>
-                <div class="step" data-step="2">
-                    <div class="step-number">2</div>
-                    <div class="step-label">Academic Info</div>
-                </div>
-                <div class="step" data-step="3">
-                    <div class="step-number">3</div>
-                    <div class="step-label">Preferences</div>
-                </div>
-                <div class="step" data-step="4">
-                    <div class="step-number">4</div>
-                    <div class="step-label">Confirmation</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 25%"></div>
                 </div>
             </div>
 
-            <!-- Form -->
+            <!-- Application Form -->
             <form id="applicationForm">
                 <!-- Step 1: Personal Information -->
                 <div class="form-step active" data-step="1">
-                    <h3 class="step-title">Personal Information</h3>
+                    <h2 style="color: #0a58ca; margin-bottom: 1.5rem;">Personal Information</h2>
                     
                     <div class="form-group">
-                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <label for="fullName">Full Name (As per NEET/12th) <span class="required">*</span></label>
                         <input type="text" id="fullName" name="fullName" required>
                         <div class="error-message" id="fullNameError">Please enter your full name</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="studentMobile">Student Mobile <span class="required">*</span></label>
-                        <input type="tel" id="studentMobile" name="studentMobile" pattern="[0-9]{10}" required>
-                        <div class="error-message" id="studentMobileError">Please enter a valid 10-digit mobile number</div>
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="parentMobile">Parent Mobile <span class="required">*</span></label>
-                        <input type="tel" id="parentMobile" name="parentMobile" pattern="[0-9]{10}" required>
-                        <div class="error-message" id="parentMobileError">Please enter a valid 10-digit mobile number</div>
+                        <label for="studentMobile">Student Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="studentMobile" name="studentMobile" maxlength="10" required>
+                        <div class="error-message" id="studentMobileError">Please enter exactly 10 digits</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="state">State <span class="required">*</span></label>
-                        <select id="state" name="state" required>
-                            <option value="">Select State</option>
-                            <option value="Andhra Pradesh">Andhra Pradesh</option>
-                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                            <option value="Assam">Assam</option>
-                            <option value="Bihar">Bihar</option>
-                            <option value="Chhattisgarh">Chhattisgarh</option>
-                            <option value="Goa">Goa</option>
-                            <option value="Gujarat">Gujarat</option>
-                            <option value="Haryana">Haryana</option>
-                            <option value="Himachal Pradesh">Himachal Pradesh</option>
-                            <option value="Jharkhand">Jharkhand</option>
-                            <option value="Karnataka">Karnataka</option>
-                            <option value="Kerala">Kerala</option>
-                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                            <option value="Maharashtra">Maharashtra</option>
-                            <option value="Manipur">Manipur</option>
-                            <option value="Meghalaya">Meghalaya</option>
-                            <option value="Mizoram">Mizoram</option>
-                            <option value="Nagaland">Nagaland</option>
-                            <option value="Odisha">Odisha</option>
-                            <option value="Punjab">Punjab</option>
-                            <option value="Rajasthan">Rajasthan</option>
-                            <option value="Sikkim">Sikkim</option>
-                            <option value="Tamil Nadu">Tamil Nadu</option>
-                            <option value="Telangana">Telangana</option>
-                            <option value="Tripura">Tripura</option>
-                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                            <option value="Uttarakhand">Uttarakhand</option>
-                            <option value="West Bengal">West Bengal</option>
+                        <label for="parentMobile">Parent Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="parentMobile" name="parentMobile" maxlength="10" required>
+                        <div class="error-message" id="parentMobileError">Please enter exactly 10 digits</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <input type="date" id="dob" name="dob" required>
+                        <div class="error-message" id="dobError">Please select your date of birth</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender <span class="required">*</span></label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
                         </select>
-                        <div class="error-message" id="stateError">Please select your state</div>
+                        <div class="error-message" id="genderError">Please select your gender</div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Academic Information -->
+                <div class="form-step" data-step="2">
+                    <h2 style="color: #0a58ca; margin-bottom: 1.5rem;">Academic Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="neetRank">NEET Rank</label>
+                        <input type="number" id="neetRank" name="neetRank">
+                        <div class="info-text">Optional - Leave blank if not applicable</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neetScore">NEET Score</label>
+                        <input type="number" id="neetScore" name="neetScore">
+                        <div class="info-text">Optional - Leave blank if not applicable</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="percentage12th">12th Percentage <span class="required">*</span></label>
+                        <input type="number" id="percentage12th" name="percentage12th" step="0.01" min="0" max="100" required>
+                        <div class="error-message" id="percentage12thError">Please enter a valid percentage (0-100)</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="domicile">State of Domicile <span class="required">*</span></label>
+                        <select id="domicile" name="domicile" required>
+                            <option value="">Select State</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message" id="domicileError">Please select your state of domicile</div>
                     </div>
 
                     <div class="form-group">
@@ -768,149 +630,80 @@
                         </select>
                         <div class="error-message" id="categoryError">Please select your category</div>
                     </div>
-                </div>
 
-                <!-- Step 2: Academic Information -->
-                <div class="form-step" data-step="2">
-                    <h3 class="step-title">Academic Information</h3>
-                    
-                    <div class="form-group">
-                        <label for="neetRank">NEET Rank <span class="required">*</span></label>
-                        <input type="number" id="neetRank" name="neetRank" min="1" required>
-                        <div class="error-message" id="neetRankError">Please enter your NEET rank</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="neetScore">NEET Score <span class="required">*</span></label>
-                        <input type="number" id="neetScore" name="neetScore" min="0" max="720" required>
-                        <div class="error-message" id="neetScoreError">Please enter your NEET score (0-720)</div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(2)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
                     </div>
                 </div>
 
                 <!-- Step 3: Counselling Preferences -->
                 <div class="form-step" data-step="3">
-                    <h3 class="step-title">Counselling Preferences</h3>
+                    <h2 style="color: #0a58ca; margin-bottom: 1.5rem;">Counselling Preferences</h2>
                     
                     <div class="form-group">
-                        <label>Courses <span class="required">*</span></label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mbbs" name="courses" value="MBBS">
-                                <label for="mbbs">MBBS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="bds" name="courses" value="BDS">
-                                <label for="bds">BDS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="bams" name="courses" value="BAMS">
-                                <label for="bams">BAMS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="bhms" name="courses" value="BHMS">
-                                <label for="bhms">BHMS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="bums" name="courses" value="BUMS">
-                                <label for="bums">BUMS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="bsms" name="courses" value="BSMS">
-                                <label for="bsms">BSMS</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="nursing" name="courses" value="Nursing">
-                                <label for="nursing">Nursing</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="paramedical" name="courses" value="Paramedical">
-                                <label for="paramedical">Paramedical</label>
-                            </div>
-                        </div>
-                        <div class="error-message" id="coursesError">Please select at least one course</div>
+                        <label for="preferredCourse">Preferred Course <span class="required">*</span></label>
+                        <select id="preferredCourse" name="preferredCourse" required>
+                            <option value="">Select Course</option>
+                            <option value="MBBS">MBBS</option>
+                            <option value="BDS">BDS</option>
+                            <option value="BAMS">BAMS</option>
+                            <option value="BHMS">BHMS</option>
+                            <option value="BUMS">BUMS</option>
+                            <option value="B.Sc Nursing">B.Sc Nursing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message" id="preferredCourseError">Please select your preferred course</div>
                     </div>
 
                     <div class="form-group">
-                        <label>Quota <span class="required">*</span></label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="aiq" name="quota" value="AIQ">
-                                <label for="aiq">All India Quota (AIQ)</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="stateQuota" name="quota" value="State Quota">
-                                <label for="stateQuota">State Quota</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="deemedUniversity" name="quota" value="Deemed University">
-                                <label for="deemedUniversity">Deemed University</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="privateCollege" name="quota" value="Private College">
-                                <label for="privateCollege">Private College</label>
-                            </div>
-                        </div>
-                        <div class="error-message" id="quotaError">Please select at least one quota</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="package">Package <span class="required">*</span></label>
+                        <label for="package">Package Selection <span class="required">*</span></label>
                         <select id="package" name="package" required>
                             <option value="">Select Package</option>
-                            <option value="MBBS/BDS Basic">MBBS/BDS Basic</option>
-                            <option value="MBBS/BDS Premium">MBBS/BDS Premium</option>
-                            <option value="AYUSH Basic">AYUSH Basic</option>
-                            <option value="AYUSH Premium">AYUSH Premium</option>
-                            <option value="Nursing/Paramedical Basic">Nursing/Paramedical Basic</option>
-                            <option value="Nursing/Paramedical Premium">Nursing/Paramedical Premium</option>
+                            <option value="MBBS/BDS Basic - ₹20,499/-">MBBS/BDS Basic - ₹20,499/-</option>
+                            <option value="MBBS/BDS Premium - ₹29,999/-">MBBS/BDS Premium - ₹29,999/-</option>
+                            <option value="AYUSH Basic - ₹15,499/-">AYUSH Basic - ₹15,499/-</option>
+                            <option value="AYUSH Premium - ₹24,999/-">AYUSH Premium - ₹24,999/-</option>
+                            <option value="Nursing/Paramedical Basic - ₹10,499/-">Nursing/Paramedical Basic - ₹10,499/-</option>
+                            <option value="Nursing/Paramedical Premium - ₹19,999/-">Nursing/Paramedical Premium - ₹19,999/-</option>
                         </select>
                         <div class="error-message" id="packageError">Please select a package</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="referenceCode">Reference Code (Optional)</label>
+                        <label for="referenceCode">Reference Code</label>
                         <input type="text" id="referenceCode" name="referenceCode">
-                        <div class="success-message" id="referenceSuccess">🎉 Congratulations! You got a discount.</div>
+                        <div class="info-text">Get upto 5% to 25% discount</div>
+                        <div class="success-message" id="referenceSuccess">Congratulations! You get discount in above package.</div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(3)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
                     </div>
                 </div>
 
-                <!-- Step 4: Confirmation and Submission -->
+                <!-- Step 4: Confirmation -->
                 <div class="form-step" data-step="4">
-                    <h3 class="step-title">Confirmation and Submission</h3>
+                    <h2 style="color: #0a58ca; margin-bottom: 1.5rem;">Review & Submit</h2>
                     
-                    <div class="form-group">
-                        <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                            Please review your information before submitting. You can go back to previous steps to make any changes.
-                        </p>
+                    <div id="reviewContent" style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <!-- Review content will be populated by JavaScript -->
                     </div>
 
-                    <div class="agreement-checkbox">
-                        <input type="checkbox" id="agreement" name="agreement" required>
-                        <label for="agreement">
-                            I agree to the terms and conditions and confirm that all the information provided is accurate. <span class="required">*</span>
-                        </label>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(4)">Previous</button>
+                        <button type="submit" class="btn btn-success">Submit Application</button>
                     </div>
-                    <div class="error-message" id="agreementError">You must agree to the terms and conditions</div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <div class="form-navigation">
-                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Back</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-                    <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">Submit Application</button>
                 </div>
             </form>
+
+            <!-- Submission Success Message -->
+            <div class="submission-success" id="submissionSuccess">
+                <h2>Your detail saved successfully, our representative will call you to proceed.</h2>
+            </div>
         </div>
     </main>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <h3>✅ Application Submitted Successfully!</h3>
-            <p>Thank you for applying to RN Counselling. We have received your application and will contact you shortly.</p>
-            <button id="closeModal" class="btn btn-primary">Close</button>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>
@@ -918,8 +711,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>RN Counselling</h3>
-                    <p>Trusted Medical Admission Guidance</p>
-                    <p>Your partner in securing the best medical college seat based on your merit and preferences.</p>
+                    <p>Expert NEET UG Counselling Services by RN Enterprises – Since 2015</p>
+                    <p>Guiding students to their dream medical colleges with personalized counselling and expert advice.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -930,73 +723,355 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact Information</h3>
-                    <p>📍 2nd Floor, Tower Building, Arif Colony, Aurangabad‑431001</p>
-                    <p>📧 rnenterprises77764@gmail.com</p>
-                    <p>📞 +91 9673882382</p>
+                    <p>📞 +91 96738 82382</p>
+                    <p>📧 info@rncounselling.com</p>
+                    <p>📍 Mumbai, Maharashtra</p>
+                    <div class="social-buttons">
+                        <a href="tel:+919673882382" class="social-btn">📞</a>
+                        <a href="https://wa.me/919673882382" class="social-btn">💬</a>
+                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn">✈️</a>
+                        <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn">📷</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="contact-buttons">
-                <a href="tel:+919673882382" class="contact-btn call">📞 Call</a>
-                <a href="https://wa.me/919673882382" target="_blank" rel="noopener" class="contact-btn whatsapp">💬 WhatsApp</a>
-                <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener" class="contact-btn telegram">✈️ Telegram</a>
-                <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener" class="contact-btn instagram">📷 Instagram</a>
-            </div>
-
             <div class="footer-bottom">
-                <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+                <p>&copy; 2025 RN Counselling. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" title="Instagram">📷</a>
+    </div>
+
     <script>
-    // Step navigation logic
-    const steps = document.querySelectorAll('.form-step');
-    let currentStep = 0;
+        let currentStep = 1;
+        const totalSteps = 4;
+        const validReferralCodes = ['NEET2026', 'NEET25%', 'NEET15%', 'NEET20%', 'NEET10%'];
 
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const submitBtn = document.getElementById("submitBtn");
-
-    nextBtn.addEventListener('click', () => {
-        steps[currentStep].style.display = 'none';
-        currentStep++;
-        steps[currentStep].style.display = 'block';
-        updateButtons();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        steps[currentStep].style.display = 'none';
-        currentStep--;
-        steps[currentStep].style.display = 'block';
-        updateButtons();
-    });
-
-    function updateButtons() {
-        prevBtn.style.display = currentStep > 0 ? "inline-block" : "none";
-        nextBtn.style.display = currentStep < steps.length - 1 ? "inline-block" : "none";
-        submitBtn.style.display = currentStep === steps.length - 1 ? "inline-block" : "none";
-    }
-
-    steps.forEach((s, i) => s.style.display = i === 0 ? "block" : "none");
-
-    // Reference code discount logic
-    document.querySelector("[name='reference']").addEventListener('input', (e)=>{
-        const code = e.target.value.trim().toUpperCase();
-        const validCodes = ["NEET2026","NEET25%","NEET15%","NEET20%","NEET10%"];
-        const successBox = document.getElementById('successMsg');
-        if(validCodes.includes(code)){
-            successBox.style.display = "block";
-            successBox.innerHTML = "🎉 Congratulations! You have earned a discount using this referral code.";
-        } else {
-            successBox.innerHTML = "";
+        // Validate mobile number (exactly 10 digits)
+        function validateMobile(input) {
+            const value = input.value.trim();
+            const isValid = /^\d{10}$/.test(value);
+            return isValid;
         }
-    });
 
-    // Success modal close
-    document.getElementById("closeModal").addEventListener("click", ()=>{
-        document.getElementById("successModal").style.display="none";
-    });
-    </script>
-</body>
-</html
+        // Validate email
+        function validateEmail(input) {
+            const value = input.value.trim();
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            return isValid;
+        }
+
+        // Validate required field
+        function validateRequired(input) {
+            return input.value.trim() !== '';
+        }
+
+        // Validate percentage
+        function validatePercentage(input) {
+            const value = parseFloat(input.value);
+            return !isNaN(value) && value >= 0 && value <= 100;
+        }
+
+        // Show error message
+        function showError(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.classList.add('error');
+            error.classList.add('show');
+        }
+
+        // Hide error message
+        function hideError(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.classList.remove('error');
+            error.classList.remove('show');
+        }
+
+        // Validate Step 1
+        function validateStep1() {
+            let isValid = true;
+
+            // Full Name
+            const fullName = document.getElementById('fullName');
+            if (!validateRequired(fullName)) {
+                showError('fullName', 'fullNameError');
+                isValid = false;
+            } else {
+                hideError('fullName', 'fullNameError');
+            }
+
+            // Email
+            const email = document.getElementById('email');
+            if (!validateEmail(email)) {
+                showError('email', 'emailError');
+                isValid = false;
+            } else {
+                hideError('email', 'emailError');
+            }
+
+            // Student Mobile
+            const studentMobile = document.getElementById('studentMobile');
+            if (!validateMobile(studentMobile)) {
+                showError('studentMobile', 'studentMobileError');
+                isValid = false;
+            } else {
+                hideError('studentMobile', 'studentMobileError');
+            }
+
+            // Parent Mobile
+            const parentMobile = document.getElementById('parentMobile');
+            if (!validateMobile(parentMobile)) {
+                showError('parentMobile', 'parentMobileError');
+                isValid = false;
+            } else {
+                hideError('parentMobile', 'parentMobileError');
+            }
+
+            // Date of Birth
+            const dob = document.getElementById('dob');
+            if (!validateRequired(dob)) {
+                showError('dob', 'dobError');
+                isValid = false;
+            } else {
+                hideError('dob', 'dobError');
+            }
+
+            // Gender
+            const gender = document.getElementById('gender');
+            if (!validateRequired(gender)) {
+                showError('gender', 'genderError');
+                isValid = false;
+            } else {
+                hideError('gender', 'genderError');
+            }
+
+            return isValid;
+        }
+
+        // Validate Step 2
+        function validateStep2() {
+            let isValid = true;
+
+            // 12th Percentage
+            const percentage12th = document.getElementById('percentage12th');
+            if (!validatePercentage(percentage12th)) {
+                showError('percentage12th', 'percentage12thError');
+                isValid = false;
+            } else {
+                hideError('percentage12th', 'percentage12thError');
+            }
+
+            // Domicile
+            const domicile = document.getElementById('domicile');
+            if (!validateRequired(domicile)) {
+                showError('domicile', 'domicileError');
+                isValid = false;
+            } else {
+                hideError('domicile', 'domicileError');
+            }
+
+            // Category
+            const category = document.getElementById('category');
+            if (!validateRequired(category)) {
+                showError('category', 'categoryError');
+                isValid = false;
+            } else {
+                hideError('category', 'categoryError');
+            }
+
+            return isValid;
+        }
+
+        // Validate Step 3
+        function validateStep3() {
+            let isValid = true;
+
+            // Preferred Course
+            const preferredCourse = document.getElementById('preferredCourse');
+            if (!validateRequired(preferredCourse)) {
+                showError('preferredCourse', 'preferredCourseError');
+                isValid = false;
+            } else {
+                hideError('preferredCourse', 'preferredCourseError');
+            }
+
+            // Package
+            const packageSelect = document.getElementById('package');
+            if (!validateRequired(packageSelect)) {
+                showError('package', 'packageError');
+                isValid = false;
+            } else {
+                hideError('package', 'packageError');
+            }
+
+            return isValid;
+        }
+
+        // Next Step
+        function nextStep(step) {
+            let isValid = false;
+
+            // Validate current step
+            if (step === 1) {
+                isValid = validateStep1();
+            } else if (step === 2) {
+                isValid = validateStep2();
+            } else if (step === 3) {
+                isValid = validateStep3();
+            }
+
+            // Only proceed if validation passes
+            if (!isValid) {
+                return;
+            }
+
+            if (currentStep < totalSteps) {
+                // Hide current step
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('completed');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+
+                // Show next step
+                currentStep++;
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+
+                // Update progress bar
+                const progress = (currentStep / totalSteps) * 100;
+                document.querySelector('.progress-bar-fill').style.width = progress + '%';
+
+                // Populate review if on step 4
+                if (currentStep === 4) {
+                    populateReview();
+                }
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Previous Step
+        function previousStep(step) {
+            if (currentStep > 1) {
+                // Hide current step
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+
+                // Show previous step
+                currentStep--;
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('completed');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+
+                // Update progress bar
+                const progress = (currentStep / totalSteps) * 100;
+                document.querySelector('.progress-bar-fill').style.width = progress + '%';
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Populate Review
+        function populateReview() {
+            const reviewContent = document.getElementById('reviewContent');
+            const formData = new FormData(document.getElementById('applicationForm'));
+            
+            let html = '<h3 style="color: #0a58ca; margin-bottom: 1rem;">Please review your information:</h3>';
+            
+            html += '<div style="margin-bottom: 1rem;"><strong>Personal Information:</strong></div>';
+            html += `<p><strong>Full Name:</strong> ${formData.get('fullName')}</p>`;
+            html += `<p><strong>Email:</strong> ${formData.get('email')}</p>`;
+            html += `<p><strong>Student Mobile:</strong> ${formData.get('studentMobile')}</p>`;
+            html += `<p><strong>Parent Mobile:</strong> ${formData.get('parentMobile')}</p>`;
+            html += `<p><strong>Date of Birth:</strong> ${formData.get('dob')}</p>`;
+            html += `<p><strong>Gender:</strong> ${formData.get('gender')}</p>`;
+            
+            html += '<div style="margin: 1.5rem 0 1rem;"><strong>Academic Information:</strong></div>';
+            html += `<p><strong>NEET Rank:</strong> ${formData.get('neetRank') || 'Not provided'}</p>`;
+            html += `<p><strong>NEET Score:</strong> ${formData.get('neetScore') || 'Not provided'}</p>`;
+            html += `<p><strong>12th Percentage:</strong> ${formData.get('percentage12th')}%</p>`;
+            html += `<p><strong>State of Domicile:</strong> ${formData.get('domicile')}</p>`;
+            html += `<p><strong>Category:</strong> ${formData.get('category')}</p>`;
+            
+            html += '<div style="margin: 1.5rem 0 1rem;"><strong>Counselling Preferences:</strong></div>';
+            html += `<p><strong>Preferred Course:</strong> ${formData.get('preferredCourse')}</p>`;
+            html += `<p><strong>Package:</strong> ${formData.get('package')}</p>`;
+            html += `<p><strong>Reference Code:</strong> ${formData.get('referenceCode') || 'Not provided'}</p>`;
+            
+            reviewContent.innerHTML = html;
+        }
+
+        // Reference Code Validation
+        document.getElementById('referenceCode').addEventListener('input', function() {
+            const code = this.value.trim().toUpperCase();
+            const successMessage = document.getElementById('referenceSuccess');
+            
+            if (validReferralCodes.includes(code)) {
+                successMessage.classList.add('show');
+            } else {
+                successMessage.classList.remove('show');
+            }
+        });
+
+        // Real-time validation for mobile numbers
+        document.getElementById('studentMobile').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        document.getElementById('parentMobile').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        // Form Submission
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzyXpYRGv8F-TJSRgsCH643nhIhSes9_iDR3Lsu6f8HJy78sNnPW9cHLjDyyB5xmLPU/exec', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                // Hide form and show success message
+                document.getElementById('applicationForm').style.display = 'none';
+                document.querySelector('.progress-container').style.display = 'none';
+                document.getElementById('submissionSuccess').classList.add('show');
+
+                // Scroll to success message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                alert('There was an error submitting your application. Please try again.');
+                console.error('Submission error:', error);
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if (nav.style.display === 'flex') {
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.backgroundColor = '#0a58ca';
+                nav.style.padding = '1rem';
