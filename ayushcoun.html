@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUSH Counselling Services - BAMS, BHMS & BUMS Admissions | RN Counselling</title>
+    <meta name="description" content="Get expert AYUSH counselling services for BAMS, BHMS, and BUMS admissions. Complete NEET UG AYUSH counselling support with college selection and seat allotment assistance.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #0a58ca;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 88, 202, 0.85), rgba(10, 88, 202, 0.85)), url('assets/generated/ayush-counselling-hero-background.dim_1200x400.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #ff7a00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #0a58ca;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .section-light {
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #0a58ca;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Why AYUSH Section */
+        .why-ayush-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .why-card h3 {
+            color: #0a58ca;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff7a00;
+        }
+
+        .service-card h3 {
+            color: #0a58ca;
+            margin-bottom: 1rem;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .step-number {
+            background-color: #ff7a00;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            color: #0a58ca;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Packages Section */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .package-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .package-card.premium {
+            border-color: #ff7a00;
+            position: relative;
+        }
+
+        .package-badge {
+            background-color: #ff7a00;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .package-card h3 {
+            color: #0a58ca;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .package-features li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            margin-top: 2rem;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table th {
+            background-color: #0a58ca;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .check {
+            color: #28a745;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .comparison-table .cross {
+            color: #dc3545;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #ff7a00;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+            color: #0a58ca;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: white;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0a58ca;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #ff7a00;
+        }
+
+        .faq-question.active:after {
+            content: "−";
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: #495057;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .final-cta h2 {
+            color: #0a58ca;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff7a00;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: #0a58ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: #ff7a00;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .phone {
+            background-color: #0a58ca;
+        }
+
+        .sticky-social .whatsapp {
+            background-color: #25d366;
+        }
+
+        .sticky-social .telegram {
+            background-color: #0088cc;
+        }
+
+        .sticky-social .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav.mobile-active ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #0a58ca;
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background-color: rgba(255,255,255,0.1);
+                margin-top: 0.5rem;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .why-ayush-grid,
+            .services-grid,
+            .process-steps,
+            .packages-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.875rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event, this)">Courses ▾</a>
+                        <div class="dropdown-content">
+                            <a href="mbbs.html">MBBS</a>
+                            <a href="bds.html">BDS</a>
+                            <a href="ayush.html">AYUSH (BAMS/BHMS/BUMS)</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event, this)">Services ▾</a>
+                        <div class="dropdown-content">
+                            <a href="mbbscoun.html">MBBS Counselling</a>
+                            <a href="bdscoun.html">BDS Counselling</a>
+                            <a href="ayushcoun.html">AYUSH Counselling</a>
+                        </div>
+                    </li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>AYUSH Counselling Services – BAMS, BHMS & BUMS Admissions with Expert Guidance</h1>
+                <p>Comprehensive NEET UG AYUSH counselling support including BAMS, BHMS, and BUMS admissions in government and private colleges.</p>
+                <div class="cta-buttons">
+                    <a href="apply.html" class="btn btn-primary">Apply Now</a>
+                    <a href="https://wa.me/919673882382" class="btn btn-secondary">Book Free Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why AYUSH Counselling Is Important -->
+        <section class="section-light">
+            <div class="section-container">
+                <h2 class="section-title">Why AYUSH Counselling Is Important</h2>
+                <div class="why-ayush-grid">
+                    <div class="why-card">
+                        <h3>Growing Demand</h3>
+                        <p>Alternative medicine is gaining popularity with increasing career opportunities in AYUSH fields.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Limited Seats</h3>
+                        <p>Competition for BAMS, BHMS, and BUMS seats is intense with limited availability in government colleges.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Complex Rules</h3>
+                        <p>State-wise counselling processes and quota systems require expert guidance for optimal results.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Professional Support</h3>
+                        <p>Expert counselling ensures you make informed decisions and secure the best possible college.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our AYUSH Counselling Services Include -->
+        <section>
+            <div class="section-container">
+                <h2 class="section-title">Our AYUSH Counselling Services Include</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>NEET UG AYUSH Counselling</h3>
+                        <p>Complete guidance for BAMS, BHMS, and BUMS admissions through NEET UG counselling process.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>AIQ and State Quota Guidance</h3>
+                        <p>Expert support for both All India Quota and State quota counselling processes.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>College Shortlisting</h3>
+                        <p>Personalized college recommendations based on your NEET score, preferences, and budget.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Documentation Guidance</h3>
+                        <p>Complete assistance with document preparation and verification for counselling registration.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Choice Filling & Locking</h3>
+                        <p>Strategic choice filling support to maximize your chances of getting preferred colleges.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Admission Support</h3>
+                        <p>Step-by-step guidance from mock allotment to final reporting at your allotted college.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-Step AYUSH Counselling Process -->
+        <section class="section-light">
+            <div class="section-container">
+                <h2 class="section-title">Step-by-Step AYUSH Counselling Process</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Profile Evaluation</h3>
+                        <p>Comprehensive analysis of your NEET score, category, domicile, and preferences.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>College Shortlisting</h3>
+                        <p>Personalized list of AYUSH colleges based on your profile and quota selection.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Registration Support</h3>
+                        <p>Complete assistance with counselling registration and document verification.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Choice Filling Strategy</h3>
+                        <p>Expert guidance on filling and locking your college choices strategically.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3>Mock Allotment Review</h3>
+                        <p>Analysis of mock results and revision of choices if needed before final allotment.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <h3>Final Allotment & Reporting</h3>
+                        <p>Guidance on seat acceptance, document submission, and college reporting procedures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AYUSH Counselling Packages -->
+        <section>
+            <div class="section-container">
+                <h2 class="section-title">Our AYUSH Counselling Packages</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <h3>AYUSH BASIC PACKAGE</h3>
+                        <ul class="package-features">
+                            <li>Profile review and NEET score analysis</li>
+                            <li>College list based on your preferences</li>
+                            <li>Limited choice-filling support</li>
+                            <li>Government and private college guidance</li>
+                            <li>Email and WhatsApp support</li>
+                            <li>Basic documentation assistance</li>
+                        </ul>
+                        <a href="apply.html" class="btn btn-primary" style="width: 100%; text-align: center;">Apply Now</a>
+                    </div>
+                    <div class="package-card premium">
+                        <span class="package-badge">RECOMMENDED</span>
+                        <h3>AYUSH PREMIUM PACKAGE</h3>
+                        <ul class="package-features">
+                            <li>Full AIQ + State counselling support</li>
+                            <li>Unlimited consultation sessions</li>
+                            <li>Dedicated AYUSH counsellor</li>
+                            <li>Priority support and quick responses</li>
+                            <li>Complete choice filling strategy</li>
+                            <li>Mock allotment analysis and revision</li>
+                            <li>Seat upgrade guidance</li>
+                            <li>Final reporting assistance</li>
+                            <li>Post-admission support</li>
+                        </ul>
+                        <a href="apply.html" class="btn btn-primary" style="width: 100%; text-align: center;">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Comparison -->
+        <section class="section-light">
+            <div class="section-container">
+                <h2 class="section-title">Package Comparison</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Basic Package</th>
+                            <th>Premium Package</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Profile Analysis</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>AIQ + State Counselling</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Unlimited Support</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Mock Allotment Analysis</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Dedicated Counsellor</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Priority Access</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Why Choose RN Counselling -->
+        <section>
+            <div class="section-container">
+                <h2 class="section-title">Why Choose RN Counselling</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Experienced Counsellors</h3>
+                        <p>Our team has years of experience in AYUSH admissions and counselling guidance.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>AYUSH-Specific Expertise</h3>
+                        <p>Specialized knowledge of BAMS, BHMS, and BUMS courses and college selection.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Pan-India Support</h3>
+                        <p>We provide counselling support for AYUSH admissions across all states in India.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Transparent Guidance</h3>
+                        <p>Honest advice with no hidden charges or false promises about admissions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section-light">
+            <div class="section-container">
+                <h2 class="section-title">What Our Students Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="assets/generated/ayush-student-testimonial-1.dim_150x150.jpg" alt="Student" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Priya Sharma</h4>
+                                <p>BAMS Student, Government College</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"RN Counselling helped me secure BAMS admission with expert guidance and support. Their counsellors understood my preferences and guided me through the entire process smoothly."</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="assets/generated/ayush-student-testimonial-2.dim_150x150.jpg" alt="Student" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Rahul Verma</h4>
+                                <p>BHMS Student, Private College</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"The premium package was worth every penny. My dedicated counsellor helped me navigate both AIQ and state counselling, and I got my preferred BHMS college. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="assets/generated/ayush-student-testimonial-1.dim_150x150.jpg" alt="Student" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Anjali Patel</h4>
+                                <p>BUMS Student, Government College</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"I was confused about AYUSH courses, but RN Counselling explained everything clearly. Their choice filling strategy helped me secure a government BUMS seat. Thank you!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <div class="section-container">
+                <h2 class="section-title">Frequently Asked Questions About AYUSH Counselling</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Is NEET required for AYUSH courses?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes, NEET UG is mandatory for admission to BAMS, BHMS, and BUMS courses in India. You need to qualify NEET UG and participate in counselling to secure a seat in AYUSH colleges.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Do you support State AYUSH counselling?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes, we provide comprehensive support for both All India Quota (AIQ) and State quota AYUSH counselling. Our counsellors are familiar with state-specific processes and can guide you through your state's counselling.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Can I change my allotted seat later?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes, seat upgradation is possible in subsequent counselling rounds if better options become available. We provide guidance on seat upgrade strategies and help you make informed decisions about accepting or upgrading your allotted seat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            What's the difference between BAMS, BHMS, and BUMS?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                BAMS (Bachelor of Ayurvedic Medicine and Surgery) focuses on Ayurveda, BHMS (Bachelor of Homeopathic Medicine and Surgery) specializes in Homeopathy, and BUMS (Bachelor of Unani Medicine and Surgery) is based on Unani medicine. All are 5.5-year degree programs including internship.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            When does AYUSH counselling start?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                AYUSH counselling typically starts after NEET UG results are declared, usually in July-August. The exact dates are announced by the counselling authorities. We keep our students updated with all important dates and deadlines.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="section-container">
+                <h2>Ready to Start Your AYUSH Admission Journey?</h2>
+                <div class="cta-buttons">
+                    <a href="apply.html" class="btn btn-primary">Apply Now</a>
+                    <a href="https://wa.me/919673882382" class="btn btn-secondary">Book Free Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for AYUSH admissions. Expert guidance for BAMS, BHMS, and BUMS counselling since 2015.</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn" title="Call">📞</a>
