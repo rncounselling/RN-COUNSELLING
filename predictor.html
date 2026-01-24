@@ -1,70 +1,948 @@
-import List "mo:core/List";
-import Map "mo:core/Map";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Predictor - Estimate Medical Colleges by NEET Score | RN Counselling</title>
+    <meta name="description" content="Get accurate college predictions based on your NEET score, category, and domicile. Expert analysis with ₹999 detailed prediction package from RN Counselling.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-module {
-  type OldBookingForm = {
-    fullName : Text;
-    email : Text;
-    contactNumber : Text;
-    course : Text;
-    neetRank : Text;
-    queryVal : Text;
-    date : Text;
-    timeSlot : Text;
-    package : Text;
-    transactionId : ?Text;
-    paymentStatus : Text;
-    timestamp : Int;
-  };
+        :root {
+            --medical-blue: #0a58ca;
+            --medical-orange: #ff7a00;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --success-green: #28a745;
+            --error-red: #dc3545;
+        }
 
-  type OldProduct = {
-    id : Text;
-    name : Text;
-    description : Text;
-    priceInCents : Nat;
-    currency : Text;
-  };
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
 
-  type OldActor = {
-    products : Map.Map<Text, OldProduct>;
-    bookings : List.List<OldBookingForm>;
-    configuration : ?{ secretKey : Text; allowedCountries : [Text] };
-  };
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
 
-  type NewProduct = {
-    id : Text;
-    name : Text;
-    description : Text;
-    priceInCents : Nat;
-    currency : Text;
-  };
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  public type PredictionForm = {
-    fullName : Text;
-    contactNumber : Text;
-    neetScore : Nat;
-    rank : Text;
-    domicile : Text;
-    category : Text;
-    coursePreference : Text;
-    quotaType : Text;
-    paymentStatus : Text;
-    timestamp : Int;
-  };
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-  type NewActor = {
-    products : Map.Map<Text, NewProduct>;
-    predictions : List.List<PredictionForm>;
-    configuration : ?{ secretKey : Text; allowedCountries : [Text] };
-  };
+        .logo-section img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
 
-  public func run(old : OldActor) : NewActor {
-    let newProducts = old.products.map<Text, OldProduct, NewProduct>(
-      func(_id, oldProduct) {
-        { oldProduct with priceInCents = oldProduct.priceInCents };
-      }
-    );
-    let newPredictions = List.empty<PredictionForm>();
-    { products = newProducts; predictions = newPredictions; configuration = old.configuration };
-  };
-};
+        .brand-text h1 {
+            font-size: 1.5rem;
+            color: var(--medical-blue);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        nav {
+            display: none;
+        }
+
+        nav.desktop-nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--medical-blue);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--medical-blue);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medical-blue);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 88, 202, 0.95), rgba(255, 122, 0, 0.85)), url('/assets/generated/college-predictor-hero-background.dim_1200x400.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--medical-orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--medical-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--medical-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: var(--white);
+        }
+
+        .how-it-works-content {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--medical-blue);
+        }
+
+        .info-card h3 {
+            color: var(--medical-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .disclaimer strong {
+            color: #856404;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--white);
+        }
+
+        .predictor-form {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--medical-blue);
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-group input.error + .error-message,
+        .form-group select.error + .error-message {
+            display: block;
+        }
+
+        /* Sample Results Section */
+        .sample-results {
+            background: var(--bg-light);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--medical-blue);
+        }
+
+        .result-card h3 {
+            color: var(--medical-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        .result-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .probability {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .probability.high {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .probability.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .probability.low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .sample-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e7f3ff;
+            border-radius: 8px;
+            color: var(--medical-blue);
+            font-weight: 600;
+        }
+
+        /* Package Section */
+        .package-section {
+            background: var(--white);
+        }
+
+        .package-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, var(--medical-blue), #0847a8);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(10, 88, 202, 0.3);
+            text-align: center;
+        }
+
+        .package-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .package-features li:before {
+            content: "✓";
+            font-weight: 700;
+            color: var(--medical-orange);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Confirmation Section */
+        .confirmation {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .confirmation h3 {
+            color: #155724;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .confirmation p {
+            color: #155724;
+            line-height: 1.8;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--white);
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--medical-blue);
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active:after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--medical-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--medical-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            color: var(--medical-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--medical-orange);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .phone {
+            background: var(--medical-blue);
+        }
+
+        .sticky-social .whatsapp {
+            background: #25d366;
+        }
+
+        .sticky-social .telegram {
+            background: #0088cc;
+        }
+
+        .sticky-social .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            nav.desktop-nav {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .predictor-form {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .predictor-form {
+                padding: 1.5rem;
+            }
+
+            .package-price {
+                font-size: 2.5rem;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="/assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <div class="brand-text">
+                    <h1>RN Counselling</h1>
+                    <p>Trusted Medical Admission Guidance</p>
+                </div>
+            </div>
+            <nav class="desktop-nav">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <span class="dropdown-toggle">Courses ▾</span>
+                    <div class="dropdown-menu">
+                        <a href="mbbs.html">MBBS</a>
+                        <a href="bds.html">BDS</a>
+                        <a href="ayush.html">AYUSH</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="dropdown-toggle">Services ▾</span>
+                    <div class="dropdown-menu">
+                        <a href="mbbscoun.html">MBBS Counselling</a>
+                        <a href="bdscoun.html">BDS Counselling</a>
+                        <a href="ayushcoun.html">AYUSH Counselling</a>
+                        <a href="meeting.html">Video Meeting</a>
+                        <a href="predictor.html">College Predictor</a>
+                    </div>
+                </div>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="alert('Mobile menu - Please use desktop navigation')">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>College Predictor – Estimate Your Possible Medical Colleges by NEET Score</h1>
+                <p>Get personalized, approximate college predictions based on your NEET score, category, and domicile.</p>
+                <div class="cta-buttons">
+                    <a href="#predictor-form" class="btn btn-primary">Try Predictor</a>
+                    <a href="https://wa.me/919673882382" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">How Our College Predictor Works</h2>
+                <div class="section-content">
+                    <p>Our College Predictor uses advanced algorithms and historical cut-off data from previous years to provide you with accurate college predictions based on your NEET score, category, and domicile state.</p>
+                </div>
+                <div class="how-it-works-content">
+                    <div class="info-card">
+                        <h3>📊 Data-Driven Analysis</h3>
+                        <p>We analyze thousands of data points from previous NEET counselling rounds to predict your chances accurately.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 Personalized Results</h3>
+                        <p>Get college predictions tailored to your specific NEET score, category, domicile, and course preference.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>👨‍⚕️ Expert Guidance</h3>
+                        <p>Our experienced counsellors review and validate predictions to ensure you get the most reliable information.</p>
+                    </div>
+                </div>
+                <div class="disclaimer">
+                    <strong>Important Note:</strong> Predictions are approximate and based on past cut-off trends. Actual admissions depend on various factors including seat availability, counselling rounds, and competition levels.
+                </div>
+            </div>
+        </section>
+
+        <!-- Sample Results Section -->
+        <section class="sample-results">
+            <div class="container">
+                <h2 class="section-title">Sample College Predictions</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>AIIMS Delhi</h3>
+                        <div class="result-info">
+                            <span>📍 Location: New Delhi</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 680-720</span>
+                        </div>
+                        <span class="probability high">High Probability</span>
+                    </div>
+                    <div class="result-card">
+                        <h3>Maulana Azad Medical College</h3>
+                        <div class="result-info">
+                            <span>📍 Location: New Delhi</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 650-690</span>
+                        </div>
+                        <span class="probability high">High Probability</span>
+                    </div>
+                    <div class="result-card">
+                        <h3>King George's Medical University</h3>
+                        <div class="result-info">
+                            <span>📍 Location: Lucknow, UP</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 620-660</span>
+                        </div>
+                        <span class="probability medium">Medium Probability</span>
+                    </div>
+                    <div class="result-card">
+                        <h3>Grant Medical College</h3>
+                        <div class="result-info">
+                            <span>📍 Location: Mumbai, Maharashtra</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 600-640</span>
+                        </div>
+                        <span class="probability medium">Medium Probability</span>
+                    </div>
+                    <div class="result-card">
+                        <h3>Bangalore Medical College</h3>
+                        <div class="result-info">
+                            <span>📍 Location: Bangalore, Karnataka</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 590-630</span>
+                        </div>
+                        <span class="probability medium">Medium Probability</span>
+                    </div>
+                    <div class="result-card">
+                        <h3>Osmania Medical College</h3>
+                        <div class="result-info">
+                            <span>📍 Location: Hyderabad, Telangana</span>
+                            <span>🎓 Course: MBBS</span>
+                            <span>📈 Cut-off Range: 580-620</span>
+                        </div>
+                        <span class="probability low">Low Probability</span>
+                    </div>
+                </div>
+                <div class="sample-note">
+                    📌 This is a sample preview. Get your personalized predictions by filling the form below!
+                </div>
+            </div>
+        </section>
+
+        <!-- Predictor Form Section -->
+        <section class="form-section" id="predictor-form">
+            <div class="container">
+                <h2 class="section-title">Get Your College Predictions</h2>
+                <form class="predictor-form" id="predictionForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <span class="error-message">Please enter your full name</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number *</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+                        <span class="error-message">Please enter a valid 10-digit phone number</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="neetScore">NEET Score *</label>
+                        <input type="number" id="neetScore" name="neetScore" min="0" max="720" required>
+                        <span class="error-message">Please enter a valid NEET score (0-720)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="rank">All India Rank *</label>
+                        <input type="text" id="rank" name="rank" required>
+                        <span class="error-message">Please enter your All India Rank</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="domicile">Domicile State *</label>
+                        <select id="domicile" name="domicile" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <span class="error-message">Please select your domicile state</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Caste Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="General">General</option>
+                            <option value="OBC">OBC</option>
+                            <option value="SC">SC</option>
+                            <option value="ST">ST</option>
+                            <option value="EWS">EWS</option>
+                        </select>
+                        <span class="error-message">Please select your category</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="coursePreference">Preferred Course *</label>
+                        <select id="coursePreference" name="coursePreference" required>
+                            <option value="">Select Course</option>
+                            <option value="MBBS">MBBS</option>
+                            <option value="BDS">BDS</option>
+                            <option value="AYUSH">AYUSH</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="error-message">Please select your preferred course</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quotaType">Quota *</label>
+                        <select id="quotaType" name="quotaType" required>
+                            <option value="">Select Quota</option>
