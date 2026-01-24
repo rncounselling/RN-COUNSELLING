@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study MBBS in Nepal - Affordable Medical Education | RN Counselling</title>
+    <meta name="description" content="Pursue MBBS in Nepal with globally recognized universities. NMC approved, English medium, affordable fees. Expert guidance for Nepal medical studies.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #0a58ca;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff7a00;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #0a58ca;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Why Study Section */
+        .why-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .why-card h3 {
+            color: #0a58ca;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .why-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Universities List */
+        .universities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .university-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #ff7a00;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .university-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .university-card h3 {
+            color: #0a58ca;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            color: #0a58ca;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff7a00;
+            font-weight: bold;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .final-cta h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .social-button:hover {
+            background-color: #e66d00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .phone {
+            background-color: #0a58ca;
+        }
+
+        .sticky-social .whatsapp {
+            background-color: #25D366;
+        }
+
+        .sticky-social .telegram {
+            background-color: #0088cc;
+        }
+
+        .sticky-social .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav.mobile-active ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #0a58ca;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            nav.mobile-active ul li {
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background-color: rgba(255,255,255,0.1);
+                margin-top: 0.5rem;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .why-study-grid,
+            .universities-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" onclick="return false;">Courses ▾</a>
+                        <div class="dropdown-content">
+                            <a href="mbbs.html">MBBS</a>
+                            <a href="bds.html">BDS</a>
+                            <a href="ayush.html">AYUSH</a>
+                            <a href="veterinary.html">Veterinary</a>
+                            <a href="nursing.html">Nursing</a>
+                            <a href="study-abroad.html">Study Abroad</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" onclick="return false;">Services ▾</a>
+                        <div class="dropdown-content">
+                            <a href="mbbscoun.html">MBBS Counselling</a>
+                            <a href="bdscoun.html">BDS Counselling</a>
+                            <a href="ayushcoun.html">AYUSH Counselling</a>
+                            <a href="meeting.html">Video Meeting</a>
+                            <a href="predictor.html">College Predictor</a>
+                        </div>
+                    </li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Study MBBS in Nepal – Affordable Medical Education Abroad</h1>
+                <p>Pursue your MBBS degree in Nepal with globally recognized medical universities offering quality education and clinical exposure.</p>
+                <a href="contact.html" class="cta-button">Contact Us for More Info</a>
+            </div>
+        </section>
+
+        <!-- Why Study MBBS in Nepal -->
+        <section>
+            <div class="container">
+                <h2>Why Study MBBS in Nepal?</h2>
+                <div class="why-study-grid">
+                    <div class="why-card">
+                        <h3>Similar Curriculum to India</h3>
+                        <p>Nepal follows a medical curriculum similar to India with familiar teaching methods, making it easier for Indian students to adapt and excel.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>NMC Recognition</h3>
+                        <p>Medical degrees from recognized Nepalese universities are approved by NMC (National Medical Commission), allowing you to practice in India after clearing NEXT/FMGE.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>English Medium</h3>
+                        <p>All medical programs are taught in English, eliminating language barriers and ensuring comprehensive understanding of medical concepts.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Proximity to India</h3>
+                        <p>Nepal's geographical proximity and cultural similarities make it a comfortable choice for Indian students, with easy travel access and familiar environment.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Affordable Fees</h3>
+                        <p>Compared to private medical colleges in India, Nepal offers quality medical education at significantly lower costs, making it accessible to more students.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Modern Facilities</h3>
+                        <p>Nepalese medical universities are equipped with modern infrastructure, advanced laboratories, and well-equipped hospitals for comprehensive clinical training.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Universities -->
+        <section>
+            <div class="container">
+                <h2>Top Medical Universities in Nepal</h2>
+                <div class="universities-grid">
+                    <div class="university-card">
+                        <h3>Kathmandu Medical College</h3>
+                        <p>One of the premier medical institutions in Nepal with excellent infrastructure and experienced faculty.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>B.P. Koirala Institute of Health Sciences</h3>
+                        <p>A government-run autonomous health sciences university offering comprehensive medical education.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Nobel Medical College</h3>
+                        <p>Known for its modern facilities and quality medical education with strong clinical exposure.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Nepalese Army Institute of Health Sciences</h3>
+                        <p>A prestigious institution offering high-quality medical education with disciplined environment.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Chitwan Medical College</h3>
+                        <p>Well-established medical college with excellent teaching hospital and clinical facilities.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Manipal College of Medical Sciences</h3>
+                        <p>Part of the renowned Manipal group, offering world-class medical education in Nepal.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Universal College of Medical Sciences</h3>
+                        <p>Provides comprehensive medical education with focus on practical clinical training.</p>
+                    </div>
+                    <div class="university-card">
+                        <h3>Janaki Medical College</h3>
+                        <p>Modern medical college with state-of-the-art facilities and experienced medical professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Duration & Eligibility -->
+        <section>
+            <div class="container">
+                <h2>Course Duration & Eligibility</h2>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>Course Duration</h3>
+                        <ul>
+                            <li>Total Duration: 5 years (including internship)</li>
+                            <li>Academic Years: 4.5 years of classroom and clinical training</li>
+                            <li>Internship: 1 year of mandatory rotatory internship</li>
+                            <li>Degree Awarded: MBBS (Bachelor of Medicine, Bachelor of Surgery)</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h3>Eligibility Criteria</h3>
+                        <ul>
+                            <li>NEET qualification is mandatory for Indian students</li>
+                            <li>Completed 10+2 with Physics, Chemistry, and Biology</li>
+                            <li>Minimum 50% marks in PCB (45% for reserved categories)</li>
+                            <li>Age criteria as per NMC guidelines (17 years minimum)</li>
+                            <li>Valid passport for international travel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fee Structure -->
+        <section>
+            <div class="container">
+                <h2>Fee Structure (Approximate)</h2>
+                <div class="info-box">
+                    <h3>Total Course Investment</h3>
+                    <ul>
+                        <li>Total Course Fee: ₹45-60 lakhs for the complete 5-year program</li>
+                        <li>Fee varies by college, facilities, and location</li>
+                        <li>Additional costs include accommodation, food, and travel</li>
+                        <li>Payment structure options available (yearly/semester-wise)</li>
+                        <li>Some colleges offer scholarships based on merit</li>
+                        <li>Living expenses are relatively affordable compared to other countries</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: #666; font-style: italic;">
+                        Note: Fee structure may vary between universities. Contact us for exact fee details and payment plans for specific colleges.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Opportunities -->
+        <section>
+            <div class="container">
+                <h2>Career Opportunities After MBBS in Nepal</h2>
+                <div class="why-study-grid">
+                    <div class="why-card">
+                        <h3>Global Recognition</h3>
+                        <p>MBBS degrees from recognized Nepalese universities are globally recognized, opening doors to international medical careers.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>NEXT/FMGE Eligibility</h3>
+                        <p>Graduates are eligible to appear for NEXT (National Exit Test) or FMGE to practice medicine in India.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Practice in India</h3>
+                        <p>After clearing the licensing examination, you can practice medicine anywhere in India with full recognition.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>International Opportunities</h3>
+                        <p>Pursue medical careers in various countries after fulfilling their respective licensing requirements.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Postgraduate Studies</h3>
+                        <p>Eligible for postgraduate medical programs (MD/MS) in India and abroad after clearing entrance examinations.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Research & Academics</h3>
+                        <p>Opportunities in medical research, teaching, and academic positions in universities and research institutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Interested in studying MBBS in Nepal?</h2>
+                <a href="contact.html" class="cta-button">Contact Us for More Info</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for medical admission guidance. We help students achieve their dreams of becoming doctors through expert counselling and support.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="mbbs.html">MBBS</a></li>
+                    <li><a href="bds.html">BDS</a></li>
+                    <li><a href="study-abroad.html">Study Abroad</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>Phone: +91 96738 82382</p>
+                <p>Email: info@rncounselling.com</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-button">Call</a>
+                    <a href="https://wa.me/919673882382" class="social-button">WhatsApp</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-button">Telegram</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-button">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="phone" title="Call Us">📞</a>
