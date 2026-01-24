@@ -946,3 +946,111 @@
                         <label for="quotaType">Quota *</label>
                         <select id="quotaType" name="quotaType" required>
                             <option value="">Select Quota</option>
+                            <option value="Government">Government</option>
+                            <option value="Private">Private</option>
+                            <option value="Deemed">Deemed</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="error-message">Please select your quota type</span>
+                    </div>
+
+                    <!-- Package Section -->
+                    <div class="form-group">
+                        <label for="packageSelect">Select Package *</label>
+                        <select id="packageSelect" name="packageSelect" required>
+                            <option value="">Select Package</option>
+                            <option value="999">College Predictor Package – ₹999/-</option>
+                        </select>
+                        <span class="error-message">Please select your package</span>
+                    </div>
+
+                    <div class="form-group payment-btn">
+                        <button type="button" id="proceedPayment" class="btn-primary">
+                            Proceed to Payment
+                        </button>
+                    </div>
+
+                    <p id="paymentMessage" class="success-message" style="display:none;">
+                        Payment successful! Your details have been saved successfully. Our representative will contact you soon.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section class="content-section light-bg">
+            <div class="container">
+                <h2 class="section-title">Approximate College Predictions</h2>
+                <ul class="bullet-list">
+                    <li>1. XYZ Government Medical College, Delhi</li>
+                    <li>2. ABC Medical College, Mumbai</li>
+                    <li>3. Rajiv Gandhi Institute of Medical Sciences, Bangalore</li>
+                    <li>4. KGMU, Lucknow</li>
+                    <li>5. Grant Medical College, Mumbai</li>
+                    <li>6. AIIMS, Bhopal</li>
+                    <li>7. JIPMER, Puducherry</li>
+                    <li>8. Madras Medical College, Chennai</li>
+                    <li>9. PGIMS, Rohtak</li>
+                    <li>10. BJ Medical College, Ahmedabad</li>
+                </ul>
+                <p><strong>Suggestions:</strong> Consider keeping a balance of Government, Deemed, and Private options while locking choices. Focus on cut‑off analysis and realistic selection strategy.</p>
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="content-section">
+            <div class="container center-text">
+                <h2>Want to know your best college possibilities?</h2>
+                <a href="apply.html" class="btn-primary">Apply for Detailed Analysis</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="rn-counselling-logo-transparent.png" alt="RN Counselling Logo">
+                    <p>Guiding your path to medical education success since 2015.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>📞 +91-9876543210</p>
+                    <p>📧 info@rncounselling.com</p>
+                    <p>📍 India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 RN Counselling. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Payment Integration Script -->
+        <script>
+            document.getElementById('proceedPayment').addEventListener('click', function() {
+                const packageSelect = document.getElementById('packageSelect').value;
+                if (packageSelect === '999') {
+                    // ⚠ Replace with your real Razorpay payment link
+                    window.open('https://razorpay.com/payment999', '_blank');
+                }
+                // After payment success, integrate Google Sheet script here
+                // Example:
+                // fetch('YOUR_GOOGLE_SHEET_SCRIPT_URL', {
+                //     method: 'POST',
+                //     body: new FormData(document.getElementById('predictionForm'))
+                // }).then(() => {
+                //     document.getElementById('paymentMessage').style.display = 'block';
+                // });
+            });
+        </script>
+    </main>
+</body>
+</html>
