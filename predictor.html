@@ -1,0 +1,70 @@
+import List "mo:core/List";
+import Map "mo:core/Map";
+
+module {
+  type OldBookingForm = {
+    fullName : Text;
+    email : Text;
+    contactNumber : Text;
+    course : Text;
+    neetRank : Text;
+    queryVal : Text;
+    date : Text;
+    timeSlot : Text;
+    package : Text;
+    transactionId : ?Text;
+    paymentStatus : Text;
+    timestamp : Int;
+  };
+
+  type OldProduct = {
+    id : Text;
+    name : Text;
+    description : Text;
+    priceInCents : Nat;
+    currency : Text;
+  };
+
+  type OldActor = {
+    products : Map.Map<Text, OldProduct>;
+    bookings : List.List<OldBookingForm>;
+    configuration : ?{ secretKey : Text; allowedCountries : [Text] };
+  };
+
+  type NewProduct = {
+    id : Text;
+    name : Text;
+    description : Text;
+    priceInCents : Nat;
+    currency : Text;
+  };
+
+  public type PredictionForm = {
+    fullName : Text;
+    contactNumber : Text;
+    neetScore : Nat;
+    rank : Text;
+    domicile : Text;
+    category : Text;
+    coursePreference : Text;
+    quotaType : Text;
+    paymentStatus : Text;
+    timestamp : Int;
+  };
+
+  type NewActor = {
+    products : Map.Map<Text, NewProduct>;
+    predictions : List.List<PredictionForm>;
+    configuration : ?{ secretKey : Text; allowedCountries : [Text] };
+  };
+
+  public func run(old : OldActor) : NewActor {
+    let newProducts = old.products.map<Text, OldProduct, NewProduct>(
+      func(_id, oldProduct) {
+        { oldProduct with priceInCents = oldProduct.priceInCents };
+      }
+    );
+    let newPredictions = List.empty<PredictionForm>();
+    { products = newProducts; predictions = newPredictions; configuration = old.configuration };
+  };
+};
