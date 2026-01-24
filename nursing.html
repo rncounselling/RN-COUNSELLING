@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Sc Nursing Course - Eligibility, Admission & Career Opportunities | RN Counselling</title>
+    <meta name="description" content="Complete guide to B.Sc Nursing course - eligibility criteria, admission process, career opportunities, and expert counselling guidance for nursing students.">
+    <link rel="icon" type="image/png" href="assets/generated/rn-counselling-logo-transparent.dim_200x200.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --medical-blue: #0a58ca;
+            --medical-orange: #ff7a00;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #212529;
+            --text-gray: #6c757d;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--medical-blue);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--medical-blue);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light-bg);
+            color: var(--medical-blue);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medical-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 88, 202, 0.85), rgba(10, 88, 202, 0.85)), url('assets/generated/nursing-hero-background.dim_1200x400.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 150px 1.5rem 80px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--medical-orange);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 122, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--medical-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--medical-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--medical-orange);
+            font-weight: bold;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--medical-blue);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            color: var(--medical-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Image Section */
+        .image-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--light-bg);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            color: var(--medical-blue);
+            margin-bottom: 2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--white);
+        }
+
+        .faq-item {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--medical-blue);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #e9ecef;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--medical-blue);
+            color: var(--white);
+            padding: 3rem 1.5rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--medical-orange);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--medical-orange);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-button:hover {
+            transform: scale(1.1);
+            background-color: #ff8c1a;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--medical-orange);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                gap: 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem;
+                width: 100%;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 1rem;
+                display: none;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 120px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .logo-section img {
+                height: 40px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo">
+                <div class="brand-name">RN Counselling</div>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mainNav">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event, 'coursesDropdown')">Courses ▾</a>
+                    <div class="dropdown-content" id="coursesDropdown">
+                        <a href="mbbs.html">MBBS</a>
+                        <a href="bds.html">BDS</a>
+                        <a href="ayush.html">AYUSH</a>
+                        <a href="veterinary.html">Veterinary</a>
+                        <a href="nursing.html">Nursing</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event, 'servicesDropdown')">Services ▾</a>
+                    <div class="dropdown-content" id="servicesDropdown">
+                        <a href="mbbscoun.html">MBBS Counselling</a>
+                        <a href="bdscoun.html">BDS Counselling</a>
+                        <a href="ayushcoun.html">AYUSH Counselling</a>
+                        <a href="services-nursing-counselling.html">Nursing Counselling</a>
+                        <a href="predictor.html">College Predictor</a>
+                    </div>
+                </div>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>B.Sc Nursing – Course Details, Admission & Career Opportunities</h1>
+        <p>Learn about Nursing course eligibility, admission process, duration, and career scope after NEET or other qualifying exams.</p>
+        <a href="services-nursing-counselling.html" class="cta-button">Need Help with Nursing Admission? → Explore Nursing Counselling</a>
+    </section>
+
+    <!-- What is B.Sc Nursing Section -->
+    <section class="content-section">
+        <h2 class="section-title">What is B.Sc Nursing?</h2>
+        <div class="section-content">
+            <p>Bachelor of Science in Nursing (B.Sc Nursing) is a four-year undergraduate healthcare-focused program that prepares students for professional patient care, clinical assistance, and public health services. The course combines theoretical knowledge with practical clinical training to develop skilled nursing professionals who can work in hospitals, clinics, community health centers, and various healthcare settings. B.Sc Nursing graduates play a crucial role in the healthcare system, providing compassionate care, assisting in medical procedures, and promoting health education.</p>
+        </div>
+        <div class="image-section">
+            <img src="assets/generated/nursing-course-overview.dim_800x400.png" alt="B.Sc Nursing Course Overview">
+        </div>
+    </section>
+
+    <!-- Course Duration Section -->
+    <section class="content-section" style="background-color: var(--light-bg);">
+        <h2 class="section-title">Course Duration</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Academic Program</h3>
+                <p style="font-size: 2rem; color: var(--medical-orange); font-weight: 700; margin: 1rem 0;">4 Years</p>
+                <p>Comprehensive theoretical and practical nursing education covering all essential subjects and clinical rotations.</p>
+            </div>
+            <div class="info-card">
+                <h3>Internship</h3>
+                <p style="font-size: 2rem; color: var(--medical-orange); font-weight: 700; margin: 1rem 0;">6 Months</p>
+                <p>Mandatory clinical internship in hospitals to gain hands-on experience in patient care and nursing procedures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Criteria Section -->
+    <section class="content-section">
+        <h2 class="section-title">Eligibility Criteria</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Educational Qualification</h3>
+                <ul>
+                    <li>10+2 with Physics, Chemistry, Biology & English</li>
+                    <li>From a recognized board</li>
+                    <li>Minimum aggregate: 45% (General category)</li>
+                    <li>40% for Reserved categories (SC/ST/OBC)</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Entrance Examination</h3>
+                <ul>
+                    <li>NEET qualification (for many states)</li>
+                    <li>State-level nursing entrance exams</li>
+                    <li>Some colleges conduct their own entrance tests</li>
+                    <li>Merit-based admission in certain institutions</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Age & Other Criteria</h3>
+                <ul>
+                    <li>Minimum age: 17 years (as on 31st December)</li>
+                    <li>No upper age limit in most states</li>
+                    <li>Medical fitness certificate required</li>
+                    <li>Both male and female candidates eligible</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Process Section -->
+    <section class="content-section" style="background-color: var(--light-bg);">
+        <h2 class="section-title">Admission Process (High-Level Overview)</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Entrance Examination</h3>
+                <p>Appear in NEET or state-level nursing entrance examination as per college requirements.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Counselling Registration</h3>
+                <p>Register for nursing counselling rounds conducted by state authorities or individual colleges.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Choice Filling</h3>
+                <p>Fill your preferred nursing colleges and courses based on your rank and eligibility.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Seat Allotment & Reporting</h3>
+                <p>Receive seat allotment, complete document verification, and report to the assigned college.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Nursing Colleges Section -->
+    <section class="content-section">
+        <h2 class="section-title">Types of Nursing Colleges</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Government Nursing Colleges</h3>
+                <p>State-run institutions offering quality nursing education at affordable fees. These colleges are highly sought after due to lower costs and excellent clinical training facilities.</p>
+            </div>
+            <div class="info-card">
+                <h3>Private Nursing Colleges</h3>
+                <p>Private institutions with modern infrastructure and facilities. Fees are higher but offer good placement opportunities and advanced learning environments.</p>
+            </div>
+            <div class="info-card">
+                <h3>Deemed Universities / Autonomous Institutes</h3>
+                <p>Autonomous nursing institutions with their own curriculum and examination systems, often providing specialized nursing programs and research opportunities.</p>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="assets/generated/nursing-college-building.dim_600x400.png" alt="Nursing College Building">
+        </div>
+    </section>
+
+    <!-- Fee Structure Section -->
+    <section class="content-section" style="background-color: var(--light-bg);">
+        <h2 class="section-title">Fee Structure (Approximate)</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Government Colleges</h3>
+                <p style="font-size: 1.8rem; color: var(--medical-blue); font-weight: 700; margin: 1rem 0;">₹25,000 – ₹1,00,000</p>
+                <p>Per year (approximate)</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-gray);">Most affordable option with quality education and clinical training.</p>
+            </div>
+            <div class="info-card">
+                <h3>Private Colleges</h3>
+                <p style="font-size: 1.8rem; color: var(--medical-blue); font-weight: 700; margin: 1rem 0;">₹1,00,000 – ₹4,00,000</p>
+                <p>Per year (approximate)</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-gray);">Higher fees but with modern facilities and infrastructure.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--text-gray); font-style: italic;">
+            <strong>Note:</strong> Fees vary significantly by state, college type, and location. Always verify current fees with the specific institution.
+        </p>
+    </section>
+
+    <!-- Career Scope Section -->
+    <section class="content-section">
+        <h2 class="section-title">Career Scope After B.Sc Nursing</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Registered Nurse</h3>
+                <p>Work as a professional nurse in hospitals, clinics, and healthcare facilities providing direct patient care.</p>
+            </div>
+            <div class="info-card">
+                <h3>Clinical Instructor</h3>
+                <p>Teach and train nursing students in colleges and training institutes, sharing clinical expertise.</p>
+            </div>
+            <div class="info-card">
+                <h3>Hospital & Community Health Roles</h3>
+                <p>Work in various healthcare settings including community health centers, primary health centers, and public health programs.</p>
+            </div>
+            <div class="info-card">
+                <h3>Nursing Officer</h3>
+                <p>Government and private hospital positions with excellent job security and career growth opportunities.</p>
+            </div>
+            <div class="info-card">
+                <h3>Specialized Nursing</h3>
+                <p>Specialize in areas like ICU, Emergency, Pediatrics, Oncology, Cardiology, and more with additional training.</p>
+            </div>
+            <div class="info-card">
+                <h3>Higher Education</h3>
+                <p>Pursue M.Sc Nursing, Public Health Nursing, Nursing Administration, or research opportunities for career advancement.</p>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="assets/generated/nursing-career-scope.dim_500x350.png" alt="Nursing Career Opportunities">
+        </div>
+    </section>
+
+    <!-- Why Expert Guidance Helps Section -->
+    <section class="content-section" style="background-color: var(--light-bg);">
+        <h2 class="section-title">Why Expert Guidance Helps</h2>
+        <div class="section-content">
+            <p>Nursing admission through counselling can be complex with multiple entrance exams, state-specific processes, and varying eligibility criteria. Professional guidance from experienced counsellors helps you:</p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 2rem;">
+                <li style="padding: 1rem; background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--medical-orange);">
+                    <strong>Navigate Multiple Options:</strong> Understand different nursing entrance exams and choose the best path for your career goals.
+                </li>
+                <li style="padding: 1rem; background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--medical-orange);">
+                    <strong>Avoid Costly Mistakes:</strong> Prevent errors in application, choice filling, and document submission that could cost you a seat.
+                </li>
+                <li style="padding: 1rem; background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--medical-orange);">
+                    <strong>Maximize Seat Allocation:</strong> Strategic college selection based on your rank, category, and preferences for best results.
+                </li>
+                <li style="padding: 1rem; background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--medical-orange);">
+                    <strong>Save Time & Stress:</strong> Expert support throughout the admission process reduces anxiety and ensures smooth progression.
+                </li>
+            </ul>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="services-nursing-counselling.html" class="cta-button">Explore Nursing Counselling Services</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-section faq-section">
+        <h2 class="section-title">Frequently Asked Questions – Nursing Course</h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Is NEET compulsory for B.Sc Nursing?
+            </div>
+            <div class="faq-answer">
+                <p>NEET is mandatory for B.Sc Nursing admission in many states and government colleges. However, some states and private colleges conduct their own entrance examinations. It's important to check the specific requirements of the colleges and states you're interested in. NEET qualification opens up more opportunities across different states.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What is the minimum qualification for B.Sc Nursing?
+            </div>
+            <div class="faq-answer">
+                <p>The minimum qualification is 10+2 with Physics, Chemistry, Biology, and English from a recognized board. General category students need a minimum of 45% aggregate marks, while reserved category students (SC/ST/OBC) need 40%. The candidate must be at least 17 years old as on 31st December of the admission year.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Can male students apply for B.Sc Nursing?
+            </div>
+            <div class="faq-answer">
+                <p>Yes, absolutely! Male students are eligible and encouraged to apply for B.Sc Nursing. The nursing profession welcomes both male and female candidates. In fact, there is growing demand for male nurses in various healthcare settings, especially in emergency departments, ICUs, and psychiatric nursing. The eligibility criteria and admission process are the same for all genders.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What are career options after B.Sc Nursing?
+            </div>
+            <div class="faq-answer">
+                <p>B.Sc Nursing graduates have diverse career opportunities including: Registered Nurse in hospitals and clinics, Nursing Officer in government/private sectors, Clinical Instructor in nursing colleges, Community Health Nurse, Specialized nursing roles (ICU, Emergency, Pediatrics, etc.), Healthcare Administrator, and opportunities in research and public health. You can also pursue higher education like M.Sc Nursing for advanced career prospects.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What is the scope of B.Sc Nursing in government sector?
+            </div>
+            <div class="faq-answer">
+                <p>B.Sc Nursing has excellent scope in the government sector. Graduates can work as Staff Nurses in government hospitals, Primary Health Centers (PHCs), Community Health Centers (CHCs), and various government healthcare programs. Government nursing positions offer job security, good salary packages, pension benefits, and opportunities for career advancement. Many state and central government departments regularly recruit nursing professionals through competitive examinations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="cta-section">
+        <h2>Confused about Nursing admission and career opportunities?</h2>
+        <a href="meeting.html" class="cta-button">Talk to a Nursing Admission Expert</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner in medical education counselling since 2015. We guide students towards their dream medical careers with expert advice and personalized support.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="mbbs.html">MBBS Course</a>
+                <a href="bds.html">BDS Course</a>
+                <a href="ayush.html">AYUSH Courses</a>
+                <a href="veterinary.html">Veterinary Course</a>
+                <a href="nursing.html">Nursing Course</a>
+                <a href="apply.html">Apply Now</a>
