@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latest Notifications | RN Counselling</title>
+
+<!-- ===== USE SAME CSS FROM YOUR MAIN FILE ===== -->
+<!-- (PASTE YOUR COMPLETE <style> TAG HERE – UNCHANGED) -->
+
+</head>
+<body>
+
+<!-- ===== HEADER (SAME AS PROVIDED) ===== -->
+<header>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="generated/rn-counselling-logo-transparent.dim_200x200.png">
+            <span class="brand-name">RN Counselling</span>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="apply.html">Apply Now</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main style="margin-top:90px;">
+
+<!-- ================= SECTION 1 ================= -->
+<section>
+<div class="container">
+<h2>📢 Latest Admission Notifications</h2>
+
+<div class="packages-grid">
+
+<div class="package-card">
+<h3>NEET UG Counselling Round-1 Started</h3>
+<p>Registration open till 5 Feb 2025</p>
+</div>
+
+<div class="package-card">
+<h3>MBBS Private College Seat Update</h3>
+<p>Limited seats available – Maharashtra</p>
+</div>
+
+<div class="package-card">
+<h3>BDS Admission Notice</h3>
+<p>New colleges added under state quota</p>
+</div>
+
+<div class="package-card">
+<h3>AYUSH Counselling Alert</h3>
+<p>Choice filling extended by 2 days</p>
+</div>
+
+<div class="package-card">
+<h3>Deemed University Fees Update</h3>
+<p>Latest official structure released</p>
+</div>
+
+<div class="package-card">
+<h3>NRI Quota MBBS Seats</h3>
+<p>Fresh vacancy announced</p>
+</div>
+
+<div class="package-card">
+<h3>Management Quota Update</h3>
+<p>Direct admission window open</p>
+</div>
+
+<div class="package-card">
+<h3>Document Verification Notice</h3>
+<p>Mandatory for Round-2 candidates</p>
+</div>
+
+<div class="package-card">
+<h3>Security Deposit Update</h3>
+<p>Refund rules clarified</p>
+</div>
+
+<div class="package-card">
+<h3>Last Date Reminder</h3>
+<p>Choice locking closes tonight</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="final-cta">
+<div class="container">
+<h2>🔔 Paid Notification Alert Service</h2>
+<p style="max-width:700px;margin:auto;">
+Get **instant WhatsApp & Telegram alerts** for MBBS, BDS, AYUSH counselling updates,
+seat vacancies, last dates, fee changes & special opportunities.
+</p>
+
+<div class="booking-form" style="margin-top:30px;">
+
+<form id="notifyForm">
+
+<div class="form-group">
+<label>Full Name *</label>
+<input type="text" name="name" required>
+</div>
+
+<div class="form-group">
+<label>Mobile Number *</label>
+<input type="tel" name="mobile" pattern="[0-9]{10}" required>
+</div>
+
+<div class="form-group">
+<label>Email *</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="form-group">
+<label>Interested Course *</label>
+<select name="course" required>
+<option value="">Select</option>
+<option>MBBS</option>
+<option>BDS</option>
+<option>AYUSH</option>
+</select>
+</div>
+
+<button type="button" class="btn btn-primary" onclick="payNow()">
+💳 Pay ₹999 & Activate Alerts
+</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER (SAME AS PROVIDED) ===== -->
+<footer>
+<div class="copyright">
+<p>© 2025 RN Counselling. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+function toggleMobileMenu(){
+document.getElementById("mainNav").classList.toggle("active");
+}
+
+/* ===== PAYMENT ===== */
+function payNow(){
+
+const form = document.getElementById("notifyForm");
+if(!form.checkValidity()){
+alert("Please fill all required fields");
+return;
+}
+
+const data = new FormData(form);
+const obj = Object.fromEntries(data.entries());
+sessionStorage.setItem("notifyData", JSON.stringify(obj));
+
+/* RAZORPAY PAYMENT LINK */
+window.location.href = "https://rzp.io/rzp/NOTIFICATION999";
+}
+
+/* ===== PAYMENT SUCCESS HANDLER ===== */
+window.onload = function(){
+const params = new URLSearchParams(window.location.search);
+if(params.get("payment") === "success"){
+
+const savedData = sessionStorage.getItem("notifyData");
+if(savedData){
+
+/* 👉 GOOGLE SHEET SCRIPT URL HERE
+fetch("YOUR_GOOGLE_SCRIPT_URL",{
+method:"POST",
+body: savedData
+});
+*/
+
+alert("Payment Successful! Notification service activated.");
+sessionStorage.removeItem("notifyData");
+}
+}
+}
+</script>
+
+</body>
+</html>
