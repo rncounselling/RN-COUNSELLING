@@ -1,198 +1,744 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latest Notifications | RN Counselling</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Notifications & Premium Counselling Services | RN Counselling</title>
+    <meta name="description" content="Stay updated with latest admission notifications and get premium counselling services with real-time updates for medical course admissions in India.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- ===== USE SAME CSS FROM YOUR MAIN FILE ===== -->
-<!-- (PASTE YOUR COMPLETE <style> TAG HERE – UNCHANGED) -->
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
 
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0a58ca;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #0a58ca;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Notification Cards */
+        .notifications-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .notification-card {
+            background: #f8f9fa;
+            border-left: 4px solid #ff7a00;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .notification-card h3 {
+            color: #0a58ca;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .notification-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .notification-card a {
+            color: #ff7a00;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .notification-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Premium Section */
+        .premium-section {
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(10, 88, 202, 0.3);
+        }
+
+        .premium-section h2 {
+            color: white;
+        }
+
+        .premium-description {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Form Styles */
+        .premium-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0a58ca;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #ff7a00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-block {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #e66d00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-call {
+            background-color: #28a745;
+        }
+
+        .sticky-whatsapp {
+            background-color: #25d366;
+        }
+
+        .sticky-telegram {
+            background-color: #0088cc;
+        }
+
+        .sticky-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: left;
+            }
+
+            main {
+                margin-top: 120px;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .premium-section {
+                padding: 2rem 1rem;
+            }
+
+            .premium-form {
+                padding: 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- ===== HEADER (SAME AS PROVIDED) ===== -->
-<header>
-    <div class="header-container">
-        <div class="logo-section">
-            <img src="generated/rn-counselling-logo-transparent.dim_200x200.png">
-            <span class="brand-name">RN Counselling</span>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-        <nav id="mainNav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="notification.html">Notifications</a></li>
-                <li><a href="packages.html">Packages</a></li>
-                <li><a href="apply.html">Apply Now</a></li>
-            </ul>
-        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Regular Notifications Section -->
+        <section id="notifications">
+            <h1>Latest Notifications & Updates</h1>
+            
+            <!-- Edit notifications below - replace with actual notification content -->
+            <div class="notifications-container">
+                <div class="notification-card">
+                    <h3>NEET UG 2025 Counselling Schedule Released</h3>
+                    <p>The Medical Counselling Committee (MCC) has announced the tentative schedule for NEET UG 2025 counselling. Registration begins from June 15, 2025. <a href="#">Read More →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>State Quota Counselling Updates - Maharashtra</h3>
+                    <p>Maharashtra State Common Entrance Test Cell has released important updates regarding state quota counselling for MBBS/BDS admissions. Check eligibility criteria and important dates. <a href="#">View Details →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>AYUSH Counselling 2025 - Important Notice</h3>
+                    <p>AACCC has published the revised counselling schedule for BAMS, BHMS, BUMS, and BNYS courses. Document verification starts from June 20, 2025. <a href="#">Download Notice →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>Deemed University Counselling - Round 1 Results</h3>
+                    <p>First round seat allotment results for deemed universities have been declared. Candidates can check their allotment status and proceed with admission formalities. <a href="#">Check Results →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>All India Quota Mop-Up Round Announced</h3>
+                    <p>MCC has announced the mop-up round for All India Quota seats. Registration window opens from July 5-8, 2025. Don't miss this opportunity! <a href="#">Register Now →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>BDS Counselling - Seat Matrix Updated</h3>
+                    <p>Updated seat matrix for BDS courses across government and private dental colleges has been released. Check available seats in your preferred colleges. <a href="#">View Seat Matrix →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>Nursing Admission 2025 - Application Open</h3>
+                    <p>Applications are now open for B.Sc Nursing admissions in top government and private nursing colleges. Last date to apply: June 30, 2025. <a href="#">Apply Here →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>Study MBBS Abroad - New Guidelines</h3>
+                    <p>NMC has issued new guidelines for students planning to study MBBS abroad. Important information regarding eligibility and recognition. <a href="#">Read Guidelines →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>Allied Health Sciences Admission Notice</h3>
+                    <p>Admissions open for various Allied Health Science programs including BMLT, BPT, Radiology, and Optometry. Multiple colleges accepting applications. <a href="#">Explore Courses →</a></p>
+                </div>
+
+                <div class="notification-card">
+                    <h3>Veterinary Counselling Schedule 2025</h3>
+                    <p>Veterinary Council of India has announced the counselling schedule for BVSc & AH admissions. Registration starts from June 18, 2025. <a href="#">View Schedule →</a></p>
+                </div>
+            </div>
+            <!-- End of editable notifications section -->
+        </section>
+
+        <!-- Premium Notification Counselling Section -->
+        <section id="premium-counselling">
+            <div class="premium-section">
+                <h2>Premium Notification Counselling</h2>
+                <p class="premium-description">
+                    Get real-time admission updates, expert counselling support, and personalized guidance throughout your medical admission journey. Our premium notification service ensures you never miss important deadlines, counselling schedules, or seat availability updates. Similar to comprehensive notification alert systems, we provide timely SMS and WhatsApp alerts for all critical admission events.
+                </p>
+
+                <div class="premium-form">
+                    <form id="premiumForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                            <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State <span class="required">*</span></label>
+                            <select id="state" name="state" required>
+                                <option value="">Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Ladakh">Ladakh</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message/Query</label>
+                            <textarea id="message" name="message" placeholder="Enter your specific requirements or queries..."></textarea>
+                        </div>
+
+                        <!-- Paste Google Sheet script link here -->
+                        <!-- Example: Replace the form action with your Google Apps Script Web App URL -->
+                        <!-- The form will submit data to Google Sheets after successful payment -->
+
+                        <!-- Add Razorpay payment link here -->
+                        <!-- Payment button will redirect to Razorpay payment gateway -->
+                        <button type="button" class="btn btn-primary btn-block" onclick="initiatePayment()">
+                            Proceed to Payment – ₹999/-
+                        </button>
+
+                        <div id="successMessage" class="success-message">
+                            Thank you! Your registration has been submitted successfully. You will receive confirmation via email and SMS shortly.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner in medical education counselling since 2015. We provide expert guidance for MBBS, BDS, AYUSH, Nursing, and other medical courses.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="meeting.html">Video Meeting</a>
+                <a href="predictor.html">College Predictor</a>
+                <a href="notification.html">Notifications</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 Phone: +91 96738 82382</p>
+                <p>📧 Email: info@rncounselling.com</p>
+                <p>📍 Location: Mumbai, Maharashtra</p>
+                
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn">📞 Call</a>
+                    <a href="https://wa.me/919673882382" class="social-btn" target="_blank">💬 WhatsApp</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn" target="_blank">✈️ Telegram</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn" target="_blank">📷 Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="sticky-call" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" target="_blank" class="sticky-whatsapp" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" class="sticky-telegram" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" class="sticky-instagram" title="Instagram">📷</a>
     </div>
-</header>
 
-<main style="margin-top:90px;">
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
 
-<!-- ================= SECTION 1 ================= -->
-<section>
-<div class="container">
-<h2>📢 Latest Admission Notifications</h2>
+        // Payment and form submission logic
+        function initiatePayment() {
+            // Validate form before payment
+            const form = document.getElementById('premiumForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
-<div class="packages-grid">
+            // Get form data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                state: document.getElementById('state').value,
+                message: document.getElementById('message').value
+            };
 
-<div class="package-card">
-<h3>NEET UG Counselling Round-1 Started</h3>
-<p>Registration open till 5 Feb 2025</p>
-</div>
+            // Store form data temporarily
+            sessionStorage.setItem('premiumFormData', JSON.stringify(formData));
 
-<div class="package-card">
-<h3>MBBS Private College Seat Update</h3>
-<p>Limited seats available – Maharashtra</p>
-</div>
+            // Add Razorpay payment link here
+            // Example: window.location.href = 'https://razorpay.com/payment-link-here';
+            // For now, simulate payment success
+            alert('Redirecting to payment gateway...\n\nNote: Add your Razorpay payment link in the JavaScript code.');
+            
+            // Simulate successful payment (remove this in production)
+            setTimeout(() => {
+                handlePaymentSuccess();
+            }, 1000);
+        }
 
-<div class="package-card">
-<h3>BDS Admission Notice</h3>
-<p>New colleges added under state quota</p>
-</div>
+        function handlePaymentSuccess() {
+            // Retrieve form data
+            const formData = JSON.parse(sessionStorage.getItem('premiumFormData'));
+            
+            if (formData) {
+                // Paste Google Sheet script link here
+                // Submit data to Google Sheets
+                // Example:
+                // fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+                //     method: 'POST',
+                //     body: JSON.stringify(formData)
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     console.log('Success:', data);
+                // });
 
-<div class="package-card">
-<h3>AYUSH Counselling Alert</h3>
-<p>Choice filling extended by 2 days</p>
-</div>
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('premiumForm').reset();
+                sessionStorage.removeItem('premiumFormData');
 
-<div class="package-card">
-<h3>Deemed University Fees Update</h3>
-<p>Latest official structure released</p>
-</div>
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
 
-<div class="package-card">
-<h3>NRI Quota MBBS Seats</h3>
-<p>Fresh vacancy announced</p>
-</div>
-
-<div class="package-card">
-<h3>Management Quota Update</h3>
-<p>Direct admission window open</p>
-</div>
-
-<div class="package-card">
-<h3>Document Verification Notice</h3>
-<p>Mandatory for Round-2 candidates</p>
-</div>
-
-<div class="package-card">
-<h3>Security Deposit Update</h3>
-<p>Refund rules clarified</p>
-</div>
-
-<div class="package-card">
-<h3>Last Date Reminder</h3>
-<p>Choice locking closes tonight</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- ================= SECTION 2 ================= -->
-<section class="final-cta">
-<div class="container">
-<h2>🔔 Paid Notification Alert Service</h2>
-<p style="max-width:700px;margin:auto;">
-Get **instant WhatsApp & Telegram alerts** for MBBS, BDS, AYUSH counselling updates,
-seat vacancies, last dates, fee changes & special opportunities.
-</p>
-
-<div class="booking-form" style="margin-top:30px;">
-
-<form id="notifyForm">
-
-<div class="form-group">
-<label>Full Name *</label>
-<input type="text" name="name" required>
-</div>
-
-<div class="form-group">
-<label>Mobile Number *</label>
-<input type="tel" name="mobile" pattern="[0-9]{10}" required>
-</div>
-
-<div class="form-group">
-<label>Email *</label>
-<input type="email" name="email" required>
-</div>
-
-<div class="form-group">
-<label>Interested Course *</label>
-<select name="course" required>
-<option value="">Select</option>
-<option>MBBS</option>
-<option>BDS</option>
-<option>AYUSH</option>
-</select>
-</div>
-
-<button type="button" class="btn btn-primary" onclick="payNow()">
-💳 Pay ₹999 & Activate Alerts
-</button>
-
-</form>
-
-</div>
-</div>
-</section>
-
-</main>
-
-<!-- ===== FOOTER (SAME AS PROVIDED) ===== -->
-<footer>
-<div class="copyright">
-<p>© 2025 RN Counselling. All rights reserved.</p>
-</div>
-</footer>
-
-<script>
-function toggleMobileMenu(){
-document.getElementById("mainNav").classList.toggle("active");
-}
-
-/* ===== PAYMENT ===== */
-function payNow(){
-
-const form = document.getElementById("notifyForm");
-if(!form.checkValidity()){
-alert("Please fill all required fields");
-return;
-}
-
-const data = new FormData(form);
-const obj = Object.fromEntries(data.entries());
-sessionStorage.setItem("notifyData", JSON.stringify(obj));
-
-/* RAZORPAY PAYMENT LINK */
-window.location.href = "https://rzp.io/rzp/NOTIFICATION999";
-}
-
-/* ===== PAYMENT SUCCESS HANDLER ===== */
-window.onload = function(){
-const params = new URLSearchParams(window.location.search);
-if(params.get("payment") === "success"){
-
-const savedData = sessionStorage.getItem("notifyData");
-if(savedData){
-
-/* 👉 GOOGLE SHEET SCRIPT URL HERE
-fetch("YOUR_GOOGLE_SCRIPT_URL",{
-method:"POST",
-body: savedData
-});
-*/
-
-alert("Payment Successful! Notification service activated.");
-sessionStorage.removeItem("notifyData");
-}
-}
-}
-</script>
-
+        // Handle payment callback (call this function when payment is successful)
+        // This should be triggered by your payment gateway callback
+        window.addEventListener('message', function(event) {
+            // Verify the origin of the message for security
+            if (event.data.status === 'payment_success') {
+                handlePaymentSuccess();
+            }
+        });
+    </script>
 </body>
 </html>
