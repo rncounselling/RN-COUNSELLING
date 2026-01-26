@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Allied Health Science programs including BMLT, BPT, Radiology, Optometry. Get expert guidance for admission process and career opportunities in India.">
+    <title>Allied Health Sciences Courses, Admission & Career Opportunities | RN Counselling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --medical-blue: #0a58ca;
+            --medical-orange: #ff7a00;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--medical-blue);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu > li > a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu > li > a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            color: var(--dark-gray);
+            padding: 0.75rem 1.5rem;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 88, 202, 0.8), rgba(10, 88, 202, 0.8)), url('assets/generated/allied-hero-background.dim_1200x400.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--medical-orange);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e66900;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        section h2 {
+            color: var(--medical-blue);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        section p, section ul {
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        section ul {
+            list-style-position: inside;
+        }
+
+        section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Program Cards */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .program-card h3 {
+            color: var(--medical-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Process Flow */
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 2rem auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .process-step::after {
+            content: '→';
+            display: inline-block;
+            margin-left: 1rem;
+            color: var(--medical-orange);
+            font-size: 1.5rem;
+        }
+
+        .process-step:last-child::after {
+            content: '';
+        }
+
+        .process-step h4 {
+            color: var(--medical-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Fee Table */
+        .fee-table {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .fee-row {
+            display: flex;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .fee-row:last-child {
+            border-bottom: none;
+        }
+
+        .fee-row:nth-child(odd) {
+            background-color: var(--light-gray);
+        }
+
+        .fee-type {
+            flex: 1;
+            font-weight: bold;
+            color: var(--medical-blue);
+        }
+
+        .fee-amount {
+            flex: 1;
+            text-align: right;
+        }
+
+        /* Career Grid */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .career-item {
+            background: white;
+            padding: 1.5rem;
+            border-left: 4px solid var(--medical-orange);
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .career-item h4 {
+            color: var(--medical-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--medical-blue);
+            color: white;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #094bb5;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            background: white;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--medical-blue), var(--medical-orange));
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--medical-blue);
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--medical-orange);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--medical-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: #e66900;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .call { background-color: #25d366; }
+        .sticky-social .whatsapp { background-color: #25d366; }
+        .sticky-social .telegram { background-color: #0088cc; }
+        .sticky-social .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-top: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu > li {
+                width: 100%;
+            }
+
+            .nav-menu > li > a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                background-color: rgba(255, 255, 255, 0.1);
+                margin-top: 0;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                padding: 0.75rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+
+            .process-step::after {
+                content: '↓';
+                display: block;
+                margin: 1rem 0;
+            }
+
+            .process-step:last-child::after {
+                content: '';
+            }
+
+            .fee-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .fee-amount {
+                text-align: left;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo">
+                <a href="index.html" class="brand-name">RN Counselling</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Courses ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="mbbs.html">MBBS</a>
+                            <a href="bds.html">BDS</a>
+                            <a href="ayush.html">AYUSH</a>
+                            <a href="veterinary.html">Veterinary</a>
+                            <a href="nursing.html">B.Sc Nursing</a>
+                            <a href="allied.html">Allied Health Sciences</a>
+                            <a href="study-abroad.html">Study Abroad</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Services ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="mbbscoun.html">MBBS Counselling</a>
+                            <a href="bdscoun.html">BDS Counselling</a>
+                            <a href="ayushcoun.html">AYUSH Counselling</a>
+                            <a href="notification.html">Notification Alert</a>
+                            <a href="meeting.html">Video Meeting</a>
+                            <a href="predictor.html">College Predictor</a>
+                        </div>
+                    </li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Allied Health Sciences – Courses, Admission & Career Opportunities</h1>
+                <p>Explore growing medical allied programs offering vital healthcare career paths across India.</p>
+                <a href="meeting.html" class="cta-button">Need Guidance? → Talk to an Expert</a>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section>
+            <div class="container">
+                <h2>What are Allied Health Sciences?</h2>
+                <p>Allied Health Sciences encompass a diverse range of healthcare professions that support and complement medical and nursing services. These programs prepare students for vital roles in diagnostic services, therapeutic interventions, and healthcare management. Popular Allied Health Science programs include B.Sc. in Medical Laboratory Technology (BMLT), Radiology, Physiotherapy, Operation Theatre Technology, Optometry, and Nursing Assistants. These courses offer excellent career opportunities in India's rapidly growing healthcare sector, providing essential support services that are crucial for patient care and medical diagnosis.</p>
+            </div>
+        </section>
+
+        <!-- Course Duration & Structure -->
+        <section>
+            <div class="container">
+                <h2>Course Duration & Structure</h2>
+                <p>Most Allied Health Science programs follow a structured curriculum designed to provide both theoretical knowledge and practical skills:</p>
+                <ul>
+                    <li><strong>Duration:</strong> Typically 3-4 years for undergraduate programs</li>
+                    <li><strong>Internship:</strong> 6-month mandatory internship in hospitals or healthcare facilities</li>
+                    <li><strong>Curriculum:</strong> Combination of classroom lectures, laboratory work, and clinical training</li>
+                    <li><strong>Specialization:</strong> Students can choose specific areas based on their interests and career goals</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Eligibility Criteria -->
+        <section>
+            <div class="container">
+                <h2>Eligibility Criteria</h2>
+                <p>To pursue Allied Health Science courses, candidates must meet the following requirements:</p>
+                <ul>
+                    <li><strong>Educational Qualification:</strong> 10+2 (Physics, Chemistry, Biology) mandatory</li>
+                    <li><strong>Minimum Marks:</strong> 50% aggregate for General category, 40% for Reserved categories</li>
+                    <li><strong>Age Requirement:</strong> Minimum 17 years of age at the time of admission</li>
+                    <li><strong>Entrance Exams:</strong> Some institutions conduct entrance tests, while others offer merit-based admission</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Popular Programs -->
+        <section>
+            <div class="container">
+                <h2>Popular Allied Health Science Programs</h2>
+                <div class="program-grid">
+                    <div class="program-card">
+                        <h3>BMLT</h3>
+                        <p>Bachelor of Medical Laboratory Technology - Diagnostic testing and laboratory management</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>BPT</h3>
+                        <p>Bachelor of Physiotherapy - Rehabilitation and physical therapy services</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>B.Sc. Radiology</h3>
+                        <p>Imaging technology and diagnostic radiology services</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>B.Sc. Optometry</h3>
+                        <p>Eye care, vision testing, and optical services</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>B.Sc. Anaesthesia & OT</h3>
+                        <p>Operation theatre technology and anaesthesia assistance</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>B.Sc. Cardiac Care</h3>
+                        <p>Cardiac technology and cardiovascular care services</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admission Process -->
+        <section>
+            <div class="container">
+                <h2>Admission Process Overview</h2>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <h4>Step 1</h4>
+                        <p>10+2 Qualification (PCB)</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>Step 2</h4>
+                        <p>Entrance Exam or Merit</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>Step 3</h4>
+                        <p>Counselling Process</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>Step 4</h4>
+                        <p>Seat Allotment</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>Step 5</h4>
+                        <p>College Admission</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Types of Colleges -->
+        <section>
+            <div class="container">
+                <h2>Types of Allied Health Science Colleges</h2>
+                <p>Allied Health Science programs are offered by various types of institutions across India:</p>
+                <ul>
+                    <li><strong>Government Medical Colleges:</strong> Affiliated with state medical universities, offering quality education at affordable fees</li>
+                    <li><strong>Private Institutions:</strong> Well-equipped facilities with modern infrastructure and industry partnerships</li>
+                    <li><strong>Deemed Universities:</strong> Autonomous institutions with specialized programs and research opportunities</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Fee Structure -->
+        <section>
+            <div class="container">
+                <h2>Fee Structure</h2>
+                <div class="fee-table">
+                    <div class="fee-row">
+                        <div class="fee-type">Government Colleges</div>
+                        <div class="fee-amount">₹30,000 – ₹80,000 per year</div>
+                    </div>
+                    <div class="fee-row">
+                        <div class="fee-type">Private Colleges</div>
+                        <div class="fee-amount">₹1,00,000 – ₹2,50,000 per year</div>
+                    </div>
+                    <div class="fee-row">
+                        <div class="fee-type">Deemed Universities</div>
+                        <div class="fee-amount">₹2,00,000 – ₹3,50,000 per year</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem; font-style: italic;"><strong>Note:</strong> Fees vary by state, course, and institution. Additional costs may include hostel, examination, and other charges.</p>
+            </div>
+        </section>
+
+        <!-- Career Scope -->
+        <section>
+            <div class="container">
+                <h2>Career Opportunities</h2>
+                <p>Allied Health Science graduates have diverse career opportunities in India's expanding healthcare sector:</p>
+                <div class="career-grid">
+                    <div class="career-item">
+                        <h4>Hospital Technician Roles</h4>
+                        <p>Work in various hospital departments providing technical support and patient care services</p>
+                    </div>
+                    <div class="career-item">
+                        <h4>Diagnostic Services</h4>
+                        <p>Laboratory testing, imaging, and diagnostic procedures in hospitals and diagnostic centers</p>
+                    </div>
+                    <div class="career-item">
+                        <h4>Rehabilitation Centers</h4>
+                        <p>Physiotherapy, occupational therapy, and rehabilitation services for patients</p>
+                    </div>
+                    <div class="career-item">
+                        <h4>Research Support</h4>
+                        <p>Clinical research, medical research laboratories, and pharmaceutical companies</p>
+                    </div>
+                    <div class="career-item">
+                        <h4>Healthcare Management</h4>
+                        <p>Administrative roles in hospitals, clinics, and healthcare organizations</p>
+                    </div>
+                    <div class="career-item">
+                        <h4>Private Practice</h4>
+                        <p>Establish own diagnostic centers, physiotherapy clinics, or optical stores</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Expert Guidance -->
+        <section>
+            <div class="container">
+                <h2>Why Choose Expert Guidance?</h2>
+                <p>Navigating the admission process for Allied Health Science programs can be complex with multiple courses, varying eligibility criteria, and different admission procedures across institutions. Our expert counsellors provide personalized guidance to help you:</p>
+                <ul>
+                    <li>Choose the right Allied Health Science program based on your interests and career goals</li>
+                    <li>Understand admission requirements and entrance exam patterns</li>
+                    <li>Select the best colleges within your budget and preferences</li>
+                    <li>Complete application processes and documentation correctly</li>
+                    <li>Make informed decisions about your healthcare career path</li>
+                </ul>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="apply.html" class="cta-button">Explore Allied Health Counselling</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            What are Allied Health Science courses?
+                        </button>
+                        <div class="faq-answer">
+                            <p>Allied Health Science courses are healthcare programs that prepare students for supportive roles in the medical field. These include Medical Laboratory Technology, Radiology, Physiotherapy, Operation Theatre Technology, Optometry, Cardiac Care Technology, and other paramedical courses. These professionals work alongside doctors and nurses to provide comprehensive patient care, diagnostic services, and therapeutic interventions.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Which course is best after 12th (PCB)?
+                        </button>
+                        <div class="faq-answer">
+                            <p>The best Allied Health Science course depends on your interests and career goals. Popular choices include BMLT for those interested in laboratory work, BPT for rehabilitation services, B.Sc. Radiology for imaging technology, and B.Sc. Optometry for eye care. Consider factors like job opportunities, salary prospects, work environment, and your personal aptitude when choosing. Our counsellors can help you make an informed decision based on your profile.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Is NEET required for allied courses?
+                        </button>
+                        <div class="faq-answer">
+                            <p>NEET is generally not required for most Allied Health Science courses. However, some premier institutions and certain states may have their own entrance examinations. Many colleges offer admission based on 10+2 merit or conduct their own entrance tests. The admission criteria vary by institution and state. It's important to check specific requirements for your chosen course and college.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            What is the salary range after B.Sc. Allied Health Sciences?
+                        </button>
+                        <div class="faq-answer">
+                            <p>Starting salaries for Allied Health Science graduates typically range from ₹2.5 to ₹4 lakhs per annum in government hospitals and ₹3 to ₹6 lakhs per annum in private healthcare facilities. With experience and specialization, professionals can earn ₹6-12 lakhs per annum or more. Salaries vary based on the specific field, location, employer type, and individual skills. Private practice and entrepreneurship opportunities can offer even higher earning potential.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Confused about choosing the right Allied Health Science course?</h2>
+                <p>Get personalized guidance from our expert admission counsellors</p>
+                <a href="meeting.html" class="cta-button">Talk to an Allied Admission Expert</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for medical education counselling since 2015. We provide expert guidance for MBBS, BDS, AYUSH, Veterinary, Nursing, Allied Health Sciences, and Study Abroad admissions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="notification.html">Notifications</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 Phone: +91 96738 82382</p>
+                <p>📧 Email: info@rncounselling.com</p>
+                <p>📍 Address: Mumbai, Maharashtra, India</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn">Call</a>
+                    <a href="https://wa.me/919673882382" class="social-btn">WhatsApp</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn">Telegram</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="call" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" class="whatsapp" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="telegram" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" class="instagram" title="Instagram">📷</a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-question').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+                button.classList.add('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const header = document.querySelector('header');
+            
+            if (!header.contains(event.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
