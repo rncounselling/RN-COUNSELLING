@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study MBBS in Kyrgyzstan - Quality Education at Affordable Cost | RN Counselling</title>
+    <meta name="description" content="Pursue your MBBS degree in Kyrgyzstan with globally recognized universities. Learn about admission process, eligibility, fees, and benefits with RN Counselling.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 90px;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .content-section h2 {
+            color: #0a58ca;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #ff7a00;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .content-section h3 {
+            color: #0a58ca;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .content-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* University List */
+        .university-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .university-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #ff7a00;
+        }
+
+        .university-card h4 {
+            color: #0a58ca;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Advantages Grid */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .advantage-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .advantage-item h4 {
+            color: #0a58ca;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .process-steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #ff7a00;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #ff7a00 0%, #ff9500 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            border: none;
+            padding: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #ff7a00;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #ff7a00;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-button:hover {
+            transform: scale(1.1);
+            background-color: #ff9500;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #ff7a00;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+            background-color: #0a58ca;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #0a58ca;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                margin-top: 80px;
+                padding: 1rem;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <nav id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Study MBBS in Kyrgyzstan – Quality Education at Affordable Cost</h1>
+                <p>Pursue your MBBS degree in Kyrgyzstan with globally recognized universities offering English-medium instruction and affordable MBBS programs for Indian students.</p>
+            </section>
+
+            <!-- Overview Section -->
+            <section class="content-section">
+                <h2>Overview</h2>
+                <p>Kyrgyzstan has emerged as a popular destination for Indian students seeking quality medical education at affordable costs. The country offers globally recognized MBBS programs with English-medium instruction, making it an ideal choice for international students.</p>
+                <p>With its NMC-approved universities, modern infrastructure, and experienced faculty, Kyrgyzstan provides excellent medical training that prepares students for successful careers in medicine. The country's safe environment and welcoming culture make it comfortable for Indian students to pursue their medical dreams.</p>
+            </section>
+
+            <!-- Course Duration Section -->
+            <section class="content-section">
+                <h2>Course Duration</h2>
+                <p>The MBBS program in Kyrgyzstan follows a structured curriculum designed to provide comprehensive medical education:</p>
+                <ul>
+                    <li><strong>Total Duration:</strong> 5 years</li>
+                    <li><strong>Academic Study:</strong> 4.5 years of classroom and practical training</li>
+                    <li><strong>Internship:</strong> 1 year of mandatory clinical internship</li>
+                </ul>
+                <p>The curriculum is designed according to international standards and includes both theoretical knowledge and practical clinical experience.</p>
+            </section>
+
+            <!-- Eligibility Criteria Section -->
+            <section class="content-section">
+                <h2>Eligibility Criteria</h2>
+                <p>To pursue MBBS in Kyrgyzstan, Indian students must meet the following eligibility requirements:</p>
+                <ul>
+                    <li><strong>NEET Qualification:</strong> Must qualify NEET examination as per NMC guidelines</li>
+                    <li><strong>Educational Qualification:</strong> Completed 10+2 with Physics, Chemistry, and Biology</li>
+                    <li><strong>Minimum Marks:</strong> At least 50% aggregate marks in PCB (40% for reserved categories)</li>
+                    <li><strong>Age Criteria:</strong> Candidates must be between 17-25 years of age</li>
+                    <li><strong>English Proficiency:</strong> Basic English language proficiency (no IELTS/TOEFL required)</li>
+                </ul>
+            </section>
+
+            <!-- Medium of Instruction Section -->
+            <section class="content-section">
+                <h2>Medium of Instruction</h2>
+                <p>All MBBS programs in Kyrgyzstan for international students are conducted in <strong>English medium</strong>. This eliminates the language barrier and allows Indian students to focus on their medical studies without the need to learn a new language.</p>
+                <p>However, students are also taught basic Russian language skills to help them communicate with local patients during their clinical rotations and internship.</p>
+            </section>
+
+            <!-- Top Universities Section -->
+            <section class="content-section">
+                <h2>Top Universities in Kyrgyzstan</h2>
+                <p>Kyrgyzstan is home to several prestigious medical universities that are recognized by NMC (National Medical Commission) and WHO. Here are some of the top universities offering MBBS programs:</p>
+                <div class="university-list">
+                    <div class="university-card">
+                        <h4>Kyrgyz State Medical Academy (KSMA)</h4>
+                        <p>One of the oldest and most prestigious medical institutions in Central Asia, offering world-class medical education with modern facilities.</p>
+                    </div>
+                    <div class="university-card">
+                        <h4>Osh State University</h4>
+                        <p>A leading university with a strong medical program, known for its experienced faculty and comprehensive clinical training.</p>
+                    </div>
+                    <div class="university-card">
+                        <h4>Asian Medical Institute</h4>
+                        <p>A modern medical institution with state-of-the-art infrastructure and a focus on practical medical training.</p>
+                    </div>
+                    <div class="university-card">
+                        <h4>International School of Medicine (ISM)</h4>
+                        <p>An internationally recognized medical school offering English-medium MBBS programs with excellent clinical exposure.</p>
+                    </div>
+                    <div class="university-card">
+                        <h4>Jalalabad State University</h4>
+                        <p>A well-established university with a strong medical program and affordable fee structure for international students.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advantages Section -->
+            <section class="content-section">
+                <h2>Advantages of Studying MBBS in Kyrgyzstan</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <h4>💰 Affordable Cost</h4>
+                        <p>Low tuition fees and living expenses compared to other countries, making it budget-friendly for Indian families.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>✅ NMC Approved</h4>
+                        <p>All major universities are recognized by NMC (formerly MCI), WHO, and other international medical bodies.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>🛡️ Safe Environment</h4>
+                        <p>Kyrgyzstan offers a safe and peaceful environment for international students with a welcoming culture.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>📝 Simple Admission</h4>
+                        <p>Straightforward admission process with minimal documentation and no entrance exams beyond NEET.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>🌍 Global Recognition</h4>
+                        <p>Degrees are recognized worldwide, allowing graduates to practice medicine in India and other countries.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>🏥 Quality Education</h4>
+                        <p>High-quality medical education with modern facilities, experienced faculty, and excellent clinical training.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admission Process Section -->
+            <section class="content-section">
+                <h2>Admission Process</h2>
+                <p>The admission process for MBBS in Kyrgyzstan is straightforward and student-friendly. Here are the key steps:</p>
+                <ol class="process-steps">
+                    <li><strong>Apply with Documents:</strong> Submit your application along with required documents including NEET scorecard, 10+2 marksheets, passport copy, and photographs.</li>
+                    <li><strong>Receive Offer Letter:</strong> Once your application is reviewed and approved, you will receive an official offer letter from the university.</li>
+                    <li><strong>Pay Admission Fee:</strong> Pay the initial admission fee as specified by the university to confirm your seat.</li>
+                    <li><strong>Visa Process:</strong> Apply for a student visa with the invitation letter from the university. Our team assists with the entire visa application process.</li>
+                    <li><strong>Fly to Kyrgyzstan:</strong> Travel to Kyrgyzstan and complete the enrollment formalities at the university to begin your MBBS journey.</li>
+                </ol>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Interested in Studying MBBS in Kyrgyzstan?</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Get expert guidance and complete support for your MBBS admission in Kyrgyzstan. Contact us today!</p>
+                <a href="contact.html" class="cta-button">Contact Us for More Information</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for medical education counselling. We guide aspiring doctors to achieve their dreams through expert counselling and personalized support.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="study-abroad.html">Study Abroad</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 Phone: +91 96738 82382</p>
+                <p>📧 Email: info@rncounselling.com</p>
+                <p>📍 Location: Mumbai, Maharashtra, India</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-button" aria-label="Call us">📞</a>
+                    <a href="https://wa.me/919673882382" class="social-button" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-button" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-button" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" aria-label="Call us">📞</a>
+        <a href="https://wa.me/919673882382" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
