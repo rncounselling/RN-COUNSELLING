@@ -1,31 +1,420 @@
-<header class="main-header">
-    <div class="header-container">
-        <div class="logo">
-            <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
-            <span>RN Counselling</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study MBBS in Philippines - Affordable Medical Education | RN Counselling</title>
+    <meta name="description" content="Pursue your MBBS degree in Philippines with globally recognized medical universities. Quality education and clinical exposure with RN Counselling guidance.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px - 400px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff7a00;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0a58ca;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff7a00;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            background-color: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-button:hover {
+            background-color: #e66d00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Sticky Social Buttons */
+        .sticky-social {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .sticky-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sticky-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .sticky-social .call {
+            background-color: #0a58ca;
+        }
+
+        .sticky-social .whatsapp {
+            background-color: #25D366;
+        }
+
+        .sticky-social .telegram {
+            background-color: #0088cc;
+        }
+
+        .sticky-social .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            main {
+                margin-top: 140px;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-social {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .sticky-social a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-section img {
+                height: 40px;
+            }
+
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1>Study MBBS in Philippines – Affordable Medical Education Abroad</h1>
+                <p>Pursue your MBBS degree in the Philippines with globally recognized medical universities offering quality education and clinical exposure.</p>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <a href="contact.html" class="cta-button">Contact Us for More Information</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <!-- RN Counselling Info -->
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner in medical education counselling. We guide aspiring medical students to achieve their dreams with expert advice and personalized support.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="study-abroad.html">Study Abroad</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><strong>Phone:</strong> +91 96738 82382</p>
+                <p><strong>Email:</strong> info@rncounselling.com</p>
+                <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-button">Call</a>
+                    <a href="https://wa.me/919673882382" class="social-button" target="_blank">WhatsApp</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-button" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-button" target="_blank">Instagram</a>
+                </div>
+            </div>
         </div>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
+        <div class="copyright">
+            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
 
-            <div class="dropdown">
-                <a href="#">Courses ▾</a>
-                <div class="dropdown-menu">
-                    <a href="mbbs.html">MBBS</a>
-                    <a href="bds.html">BDS</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <a href="#">Services ▾</a>
-                <div class="dropdown-menu">
-                    <a href="study-abroad.html">Study Abroad</a>
-                    <a href="counselling.html">Counselling</a>
-                </div>
-            </div>
-
-            <a href="apply.html" class="apply-btn">Apply Now</a>
-            <a href="packages.html">Packages</a>
-        </nav>
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="tel:+919673882382" class="call" title="Call Us">📞</a>
+        <a href="https://wa.me/919673882382" class="whatsapp" target="_blank" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="telegram" target="_blank" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" class="instagram" target="_blank" title="Instagram">📷</a>
     </div>
-</header>
+</body>
+</html>
