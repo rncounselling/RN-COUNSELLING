@@ -577,7 +577,7 @@
             sessionStorage.setItem('notificationFormData', JSON.stringify(formData));
             
             // Redirect to Razorpay payment link
-            window.location.href = https://rzp.io/rzp/HyKcShL;
+            window.location.href = RAZORPAY_PAYMENT_LINK;
         });
         
         // ============================================
@@ -608,7 +608,7 @@
             
             try {
                 // Submit data to Google Sheets
-                const response = await fetch(https://script.google.com/macros/s/AKfycbwnjv2XcarIMxSY1Xi4OxaA0sFRrA18PHQyn-KUsA60qMn000diFCqO7xaT8snBm3HQ/exec, {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: {
