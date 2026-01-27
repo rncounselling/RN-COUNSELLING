@@ -1010,3 +1010,54 @@
                 } else if (this.type === 'tel') {
                     const phoneRegex = /^[0-9]{10}$/;
                     if (!phoneRegex.test(this.value)) {
+                        formGroup.classList.add('error');
+                }
+            } else if (!this.value.trim()) {
+                formGroup.classList.add('error');
+            }
+        });
+    });
+
+    // Function to collect form data
+    function collectFormData() {
+        return {
+            fullName: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            contactNumber: document.getElementById('contactNumber').value,
+            state: document.getElementById('state').value,
+            message: document.getElementById('message').value
+        };
+    }
+
+    // Payment initiation logic
+    function initiatePayment(data) {
+        // ⚠️ Replace this placeholder with your real Razorpay payment link
+        const razorpayLink = 'https://razorpay.com/payment-link-here';
+        // Redirect to Razorpay payment page
+        window.location.href = `${razorpayLink}?name=${encodeURIComponent(data.fullName)}&contact=${encodeURIComponent(data.contactNumber)}`;
+
+        // After successful payment redirect back to: notification.html?payment=success
+    }
+
+    // Handle successful payment and save to Google Sheets
+    function handlePaymentSuccess() {
+        const formData = collectFormData();
+
+        // ⚠️ Replace this placeholder with your actual Google Apps Script URL
+        const googleSheetURL = 'https://script.google.com/macros/s/AKfycbw-DxiYIkH7J6cjZqDDp1WAGE9JSozSZKo7iy9735wf-UeBdsvJ0BgWeV5Ef3pGpzwFpw/exec';
+
+        fetch(googleSheetURL, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.text())
+        .then(result => {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('premiumForm').reset();
+        })
+        .catch(error => console.error('Error submitting to sheet:', error));
+    }
+</script>
+</body>
+</html>
