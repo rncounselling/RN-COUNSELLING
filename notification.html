@@ -12,381 +12,287 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #fff;
+            background-color: #ffffff;
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 100%);
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
             color: white;
             padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 1rem;
         }
 
         .logo-section img {
             height: 50px;
-            width: auto;
+            width: 50px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
         }
 
         .logo-section h1 {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        nav ul {
-            list-style: none;
+        .header-nav {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        nav a {
+        .header-nav a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
         }
 
-        nav a:hover {
-            opacity: 0.8;
+        .header-nav a:hover {
+            background: rgba(255,255,255,0.2);
         }
 
-        /* Main Content */
+        /* Container */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .hero-section {
+        /* Page Title */
+        .page-title {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 100%);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
         }
 
-        .hero-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-        }
-
-        /* Notification Cards Section */
-        .notifications-section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
+        .page-title h2 {
+            color: #0a58ca;
             font-size: 2rem;
-            color: #0a58ca;
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 0.5rem;
         }
 
-        .notifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .notification-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .notification-card:hover {
-            border-color: #0a58ca;
-            box-shadow: 0 5px 15px rgba(10, 88, 202, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .notification-icon {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 15px;
-        }
-
-        .notification-card h3 {
-            color: #0a58ca;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .notification-card p {
+        .page-title p {
             color: #666;
-            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Notification List Section */
+        .notification-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .notification-section h3 {
+            color: #0a58ca;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #ff7a00;
+            padding-bottom: 0.5rem;
+        }
+
+        .notification-list {
+            list-style: none;
+        }
+
+        .notification-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #dee2e6;
+            color: #333;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
-        .notification-date {
-            color: #999;
-            font-size: 0.9rem;
-            font-style: italic;
+        .notification-list li:last-child {
+            border-bottom: none;
         }
 
-        .notification-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
+        .notification-list li::before {
+            content: "📢 ";
+            margin-right: 0.5rem;
         }
 
-        .btn-download, .btn-view {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-download {
-            background-color: #ff7a00;
-            color: white;
-        }
-
-        .btn-download:hover {
-            background-color: #e66d00;
-        }
-
-        .btn-view {
-            background-color: #0a58ca;
-            color: white;
-        }
-
-        .btn-view:hover {
-            background-color: #084298;
-        }
-
-        /* Premium Notification Section */
-        .premium-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 40px;
+        /* Form Section */
+        .form-section {
+            background: white;
             border-radius: 10px;
-            margin-top: 60px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border: 2px solid #0a58ca;
         }
 
-        .premium-section h2 {
+        .form-section h3 {
             color: #0a58ca;
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
-        .premium-section .intro-text {
+        .form-section p {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .premium-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .feature-item {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #ff7a00;
-        }
-
-        .feature-item h4 {
-            color: #0a58ca;
-            margin-bottom: 10px;
-        }
-
-        /* Form Styles */
-        .registration-form {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             color: #333;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
+            padding: 0.75rem;
+            border: 2px solid #dee2e6;
             border-radius: 5px;
             font-size: 1rem;
             transition: border-color 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #0a58ca;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .form-group input.error {
+            border-color: #dc3545;
         }
 
         .error-message {
             color: #dc3545;
-            font-size: 0.9rem;
-            margin-top: 5px;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
             display: none;
         }
 
-        .form-group.error input,
-        .form-group.error select,
-        .form-group.error textarea {
-            border-color: #dc3545;
-        }
-
-        .form-group.error .error-message {
-            display: block;
-        }
-
-        .price-display {
-            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 100%);
+        /* Payment Section */
+        .payment-section {
+            background: linear-gradient(135deg, #ff7a00 0%, #ff9500 100%);
             color: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
             text-align: center;
-            margin: 20px 0;
         }
 
-        .price-display h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .payment-section h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
         }
 
-        .price-display .amount {
+        .payment-section .price {
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 700;
+            margin: 0.5rem 0;
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, #ff7a00 0%, #e66d00 100%);
+        .payment-section p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Button */
+        .btn-payment {
+            width: 100%;
+            padding: 1rem;
+            background: #0a58ca;
             color: white;
-            padding: 15px 40px;
             border: none;
             border-radius: 5px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
-            transition: all 0.3s;
+            transition: background 0.3s;
+            margin-top: 1rem;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
+        .btn-payment:hover {
+            background: #084298;
         }
 
-        .submit-btn:disabled {
-            background: #ccc;
+        .btn-payment:disabled {
+            background: #6c757d;
             cursor: not-allowed;
-            transform: none;
         }
 
         /* Success Message */
         .success-message {
             display: none;
             background: #d4edda;
-            border: 2px solid #c3e6cb;
+            border: 2px solid #28a745;
             color: #155724;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
+            margin-top: 2rem;
         }
 
-        .success-message.show {
-            display: block;
+        .success-message h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .success-message h3 {
-            margin-bottom: 10px;
-        }
-
-        /* Footer Styles */
+        /* Footer */
         footer {
-            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 100%);
+            background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
             color: white;
-            padding: 40px 20px 20px;
-            margin-top: 60px;
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
 
-        .footer-content {
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 2rem;
         }
 
-        .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
 
         .footer-section p,
         .footer-section a {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255,255,255,0.9);
             text-decoration: none;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
 
         .footer-section a:hover {
@@ -395,106 +301,57 @@
 
         .social-buttons {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background: white;
             color: #0a58ca;
-            padding: 10px 20px;
-            border-radius: 5px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: bold;
+            transition: transform 0.3s;
         }
 
         .social-btn:hover {
-            background: #ff7a00;
-            color: white;
+            transform: scale(1.1);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Sticky Social Buttons */
-        .sticky-social {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 999;
-        }
-
-        .sticky-social a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-
-        .sticky-social a:hover {
-            transform: scale(1.1);
-        }
-
-        .sticky-social .phone { background: #0a58ca; }
-        .sticky-social .whatsapp { background: #25D366; }
-        .sticky-social .telegram { background: #0088cc; }
-        .sticky-social .instagram { background: #E4405F; }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
             }
 
-            nav ul {
-                flex-wrap: wrap;
+            .header-nav {
                 justify-content: center;
             }
 
-            .hero-section h1 {
-                font-size: 1.8rem;
+            .page-title h2 {
+                font-size: 1.5rem;
             }
 
-            .hero-section p {
-                font-size: 1rem;
+            .notification-section,
+            .form-section {
+                padding: 1.5rem;
             }
 
-            .notifications-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .sticky-social {
-                bottom: 10px;
-                right: 10px;
-            }
-
-            .sticky-social a {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
+            .payment-section .price {
+                font-size: 2rem;
             }
         }
     </style>
@@ -504,487 +361,231 @@
     <header>
         <div class="header-container">
             <div class="logo-section">
-                <img src="/assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
+                <img src="assets/generated/rn-counselling-logo-transparent.dim_200x200.png" alt="RN Counselling Logo">
                 <h1>RN Counselling</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="apply.html">Apply Now</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
+            <nav class="header-nav">
+                <a href="index.html">Home</a>
+                <a href="apply.html">Apply Now</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact Us</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <h1>📢 Notification Alert Service</h1>
-        <p>Stay updated with the latest NEET counselling notifications and never miss important deadlines</p>
-    </div>
-
-    <!-- Main Container -->
+    <!-- Main Content -->
     <div class="container">
-        <!-- Regular Notifications Section -->
-        <section class="notifications-section">
-            <h2 class="section-title">Latest Notifications</h2>
-            <div class="notifications-grid">
-                <!-- EDIT NOTIFICATION 1: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>NEET UG 2026 Counselling Schedule Released</h3>
-                    <p>MCC has released the official counselling schedule for NEET UG 2026. Check important dates and registration details.</p>
-                    <p class="notification-date">Posted: January 15, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>Notification Alert Service</h2>
+            <p>Stay updated with the latest admission notifications and counselling schedules</p>
+        </div>
+
+        <!-- Latest Notifications Section -->
+        <div class="notification-section">
+            <h3>Latest Notifications</h3>
+            <ul class="notification-list">
+                <!-- EDITABLE: Update these notification texts as needed -->
+                <li>NEET UG 2026 Counselling Registration has started - Apply before the deadline</li>
+                <li>AIQ Round 1 Seat Allotment Result declared - Check your allotment status now</li>
+                <li>State Quota Counselling Schedule announced for Maharashtra - Important dates inside</li>
+                <li>AYUSH Counselling 2026 Registration extended till 15th February 2026</li>
+                <li>BDS Seat Matrix released for All India Quota - View available seats</li>
+                <li>Document Verification dates announced for Round 2 - Prepare your documents</li>
+                <li>Mop-up Round Registration opens on 20th February 2026 - Last chance for admission</li>
+                <li>NEET PG Counselling Schedule released - Check important dates</li>
+                <li>Deemed University Counselling starts from 25th February 2026</li>
+                <li>Management Quota Seats available in top medical colleges - Limited seats remaining</li>
+                <!-- END EDITABLE SECTION -->
+            </ul>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="form-section">
+            <h3>Register for Premium Notification Service</h3>
+            <p>Get instant alerts on your WhatsApp for all important counselling updates</p>
+
+            <form id="notificationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    <span class="error-message" id="nameError">Please enter your full name</span>
                 </div>
 
-                <!-- EDIT NOTIFICATION 2: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>State Quota Counselling Updates</h3>
-                    <p>Important updates regarding state quota counselling for MBBS and BDS admissions. Registration opens soon.</p>
-                    <p class="notification-date">Posted: January 12, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
+                <div class="form-group">
+                    <label for="whatsappNumber">WhatsApp Number *</label>
+                    <input type="tel" id="whatsappNumber" name="whatsappNumber" required placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}">
+                    <span class="error-message" id="phoneError">Please enter a valid 10-digit WhatsApp number</span>
                 </div>
 
-                <!-- EDIT NOTIFICATION 3: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>AYUSH Counselling 2026 Notification</h3>
-                    <p>AACCC has announced the counselling schedule for BAMS, BHMS, and BUMS courses. Check eligibility criteria.</p>
-                    <p class="notification-date">Posted: January 10, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
+                <div class="form-group">
+                    <label for="state">State *</label>
+                    <input type="text" id="state" name="state" required placeholder="Enter your state">
+                    <span class="error-message" id="stateError">Please enter your state</span>
                 </div>
 
-                <!-- EDIT NOTIFICATION 4: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Deemed University Counselling Dates</h3>
-                    <p>Counselling dates for deemed universities announced. Online registration and choice filling process details inside.</p>
-                    <p class="notification-date">Posted: January 8, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
+                <div class="form-group">
+                    <label for="category">Category *</label>
+                    <input type="text" id="category" name="category" required placeholder="e.g., General, OBC, SC, ST, EWS">
+                    <span class="error-message" id="categoryError">Please enter your category</span>
                 </div>
 
-                <!-- EDIT NOTIFICATION 5: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Nursing Admission Notification 2026</h3>
-                    <p>B.Sc Nursing admission notification released. Check eligibility, important dates, and application process.</p>
-                    <p class="notification-date">Posted: January 5, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <h4>Service Fee</h4>
+                    <div class="price">₹999/-</div>
+                    <p>One-time payment for complete counselling session notifications</p>
                 </div>
 
-                <!-- EDIT NOTIFICATION 6: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Veterinary Counselling Schedule</h3>
-                    <p>VCI has released the counselling schedule for BVSc & AH admissions. Registration process starts soon.</p>
-                    <p class="notification-date">Posted: January 3, 2026</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
+                <button type="submit" class="btn-payment" id="paymentBtn">
+                    Proceed to Payment
+                </button>
+            </form>
 
-                <!-- EDIT NOTIFICATION 7: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Mop-Up Round Counselling Notice</h3>
-                    <p>Mop-up round counselling notification for remaining vacant seats. Last chance for admission in medical courses.</p>
-                    <p class="notification-date">Posted: December 28, 2025</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
-
-                <!-- EDIT NOTIFICATION 8: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Document Verification Guidelines</h3>
-                    <p>Important guidelines for document verification during counselling. Check required documents and verification process.</p>
-                    <p class="notification-date">Posted: December 25, 2025</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
-
-                <!-- EDIT NOTIFICATION 9: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Seat Matrix 2026 Released</h3>
-                    <p>Complete seat matrix for NEET UG 2026 counselling released. Check available seats in all medical colleges.</p>
-                    <p class="notification-date">Posted: December 20, 2025</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
-
-                <!-- EDIT NOTIFICATION 10: Update title, description, date, and links -->
-                <div class="notification-card">
-                    <img src="/assets/generated/notification-bell-red-transparent.dim_32x32.png" alt="Notification" class="notification-icon">
-                    <h3>Fee Structure Update 2026</h3>
-                    <p>Updated fee structure for medical and dental colleges. Check tuition fees, hostel charges, and other expenses.</p>
-                    <p class="notification-date">Posted: December 15, 2025</p>
-                    <div class="notification-buttons">
-                        <a href="#" class="btn-download">Download PDF</a>
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h4>✅ Registration Successful!</h4>
+                <p>You will receive updates soon on your registered WhatsApp number.</p>
             </div>
-        </section>
-
-        <!-- Premium Notification Service Section -->
-        <section class="premium-section">
-            <h2>🔔 Premium Notification Counselling Service</h2>
-            <p class="intro-text">Get instant WhatsApp notifications for all important counselling updates, deadlines, and opportunities. Never miss a crucial date!</p>
-
-            <div class="premium-features">
-                <div class="feature-item">
-                    <h4>✅ Instant WhatsApp Alerts</h4>
-                    <p>Receive real-time notifications directly on WhatsApp for all counselling updates</p>
-                </div>
-                <div class="feature-item">
-                    <h4>✅ Personalized Updates</h4>
-                    <p>Get notifications tailored to your selected courses and preferences</p>
-                </div>
-                <div class="feature-item">
-                    <h4>✅ Important Deadlines</h4>
-                    <p>Never miss registration, choice filling, or document verification deadlines</p>
-                </div>
-                <div class="feature-item">
-                    <h4>✅ Seat Vacancy Alerts</h4>
-                    <p>Get notified about vacant seats and mop-up round opportunities</p>
-                </div>
-            </div>
-
-            <!-- Registration Form -->
-            <div class="registration-form">
-                <h3 style="color: #0a58ca; margin-bottom: 20px; text-align: center;">Register for Premium Notification Service</h3>
-                
-                <form id="notificationForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fullName">Full Name *</label>
-                            <input type="text" id="fullName" name="fullName" required>
-                            <span class="error-message">Please enter your full name</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                            <span class="error-message">Please enter a valid email address</span>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">WhatsApp Number *</label>
-                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-                            <span class="error-message">Please enter a valid 10-digit phone number</span>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="neetScore">NEET Score *</label>
-                            <input type="number" id="neetScore" name="neetScore" min="0" max="720" required>
-                            <span class="error-message">Please enter a valid NEET score (0-720)</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="additionalInfo">Additional Information (Optional)</label>
-                        <textarea id="additionalInfo" name="additionalInfo" placeholder="Any specific requirements or questions..."></textarea>
-                    </div>
-
-                    <div class="price-display">
-                        <h3>Service Fee</h3>
-                        <p class="amount">₹999</p>
-                        <p>One-time payment for complete counselling season</p>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Proceed to Payment
-                    </button>
-                </form>
-
-                <div class="success-message" id="successMessage">
-                    <h3>✅ Registration Successful!</h3>
-                    <p>Thank you for registering for our Premium Notification Service. You will start receiving WhatsApp notifications shortly.</p>
-                    <p>Our team will contact you within 24 hours for confirmation.</p>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-container">
             <div class="footer-section">
-                <h3>RN Counselling</h3>
-                <p>Your trusted partner for medical admission counselling since 2015. We have successfully guided 500+ students to their dream medical colleges.</p>
+                <h4>RN Counselling</h4>
+                <p>Expert guidance for medical admissions since 2015. Helping students achieve their dreams of becoming doctors.</p>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h4>Quick Links</h4>
                 <a href="index.html">Home</a>
                 <a href="apply.html">Apply Now</a>
                 <a href="packages.html">Packages</a>
                 <a href="neet.html">NEET UG</a>
-                <a href="contact.html">Contact Us</a>
             </div>
             <div class="footer-section">
-                <h3>Contact Information</h3>
+                <h4>Contact Information</h4>
                 <p>📞 Phone: +91 96738 82382</p>
                 <p>📧 Email: info@rncounselling.com</p>
-                <p>📍 Address: Mumbai, Maharashtra</p>
-                <div class="social-buttons" style="margin-top: 15px;">
-                    <a href="tel:+919673882382" class="social-btn">Call</a>
-                    <a href="https://wa.me/919673882382" class="social-btn">WhatsApp</a>
-                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn">Telegram</a>
-                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn">Instagram</a>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn" title="Call">📞</a>
+                    <a href="https://wa.me/919673882382" class="social-btn" target="_blank" title="WhatsApp">💬</a>
+                    <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn" target="_blank" title="Telegram">✈️</a>
+                    <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn" target="_blank" title="Instagram">📷</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+            <p>© 2025 RN Counselling. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Sticky Social Buttons -->
-    <div class="sticky-social">
-        <a href="tel:+919673882382" class="phone" title="Call Us">📞</a>
-        <a href="https://wa.me/919673882382" class="whatsapp" title="WhatsApp">💬</a>
-        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="telegram" title="Telegram">✈️</a>
-        <a href="https://www.instagram.com/ugmedicalcounselling" class="instagram" title="Instagram">📷</a>
-    </div>
-
-    <!-- JavaScript -->
     <script>
         // ============================================
-        // CONFIGURATION PLACEHOLDERS
+        // CONFIGURATION - REPLACE THESE PLACEHOLDERS
         // ============================================
         
-        // PLACEHOLDER 1: Insert your Google Sheets Apps Script URL here
-        // This is where the form data will be sent after successful payment
-        const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_APPS_SCRIPT_URL_HERE';
-        // Example: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'
+        // TODO: Replace with your actual Razorpay payment link
+        const RAZORPAY_PAYMENT_LINK = 'https://razorpay.com/payment-link-placeholder';
         
-        // PLACEHOLDER 2: Insert your Razorpay payment link URL here
-        // Users will be redirected to this URL for payment
-        const RAZORPAY_PAYMENT_URL = 'YOUR_RAZORPAY_PAYMENT_LINK_URL_HERE';
-        // Example: 'https://razorpay.me/@yourbusiness/999'
+        // TODO: Replace with your Google Sheets Apps Script Web App URL
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
         
         // ============================================
         // FORM VALIDATION AND SUBMISSION
         // ============================================
         
         const form = document.getElementById('notificationForm');
-        const submitBtn = document.getElementById('submitBtn');
+        const paymentBtn = document.getElementById('paymentBtn');
         const successMessage = document.getElementById('successMessage');
         
-        // Store form data temporarily
-        let formData = {};
-        
-        // Form validation function
+        // Validate form inputs
         function validateForm() {
             let isValid = true;
-            const formGroups = form.querySelectorAll('.form-group');
             
-            formGroups.forEach(group => {
-                const input = group.querySelector('input, select, textarea');
-                const errorMessage = group.querySelector('.error-message');
-                
-                // Skip optional fields
-                if (!input.required) return;
-                
-                // Reset error state
-                group.classList.remove('error');
-                
-                // Validate based on input type
-                if (input.type === 'email') {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(input.value)) {
-                        group.classList.add('error');
-                        isValid = false;
-                    }
-                } else if (input.type === 'tel') {
-                    const phoneRegex = /^[0-9]{10}$/;
-                    if (!phoneRegex.test(input.value)) {
-                        group.classList.add('error');
-                        isValid = false;
-                    }
-                } else if (input.type === 'number') {
-                    const score = parseInt(input.value);
-                    if (isNaN(score) || score < 0 || score > 720) {
-                        group.classList.add('error');
-                        isValid = false;
-                    }
-                } else if (input.tagName === 'SELECT') {
-                    if (input.multiple) {
-                        // For multiple select, check if at least one option is selected
-                        const selectedOptions = Array.from(input.selectedOptions);
-                        if (selectedOptions.length === 0) {
-                            group.classList.add('error');
-                            isValid = false;
-                        }
-                    } else {
-                        if (!input.value) {
-                            group.classList.add('error');
-                            isValid = false;
-                        }
-                    }
-                } else {
-                    if (!input.value.trim()) {
-                        group.classList.add('error');
-                        isValid = false;
-                    }
-                }
-            });
+            // Full Name validation
+            const fullName = document.getElementById('fullName');
+            const nameError = document.getElementById('nameError');
+            if (fullName.value.trim().length < 2) {
+                fullName.classList.add('error');
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                fullName.classList.remove('error');
+                nameError.style.display = 'none';
+            }
+            
+            // WhatsApp Number validation (10 digits)
+            const whatsappNumber = document.getElementById('whatsappNumber');
+            const phoneError = document.getElementById('phoneError');
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(whatsappNumber.value)) {
+                whatsappNumber.classList.add('error');
+                phoneError.style.display = 'block';
+                isValid = false;
+            } else {
+                whatsappNumber.classList.remove('error');
+                phoneError.style.display = 'none';
+            }
+            
+            // State validation
+            const state = document.getElementById('state');
+            const stateError = document.getElementById('stateError');
+            if (state.value.trim().length < 2) {
+                state.classList.add('error');
+                stateError.style.display = 'block';
+                isValid = false;
+            } else {
+                state.classList.remove('error');
+                stateError.style.display = 'none';
+            }
+            
+            // Category validation
+            const category = document.getElementById('category');
+            const categoryError = document.getElementById('categoryError');
+            if (category.value.trim().length < 2) {
+                category.classList.add('error');
+                categoryError.style.display = 'block';
+                isValid = false;
+            } else {
+                category.classList.remove('error');
+                categoryError.style.display = 'none';
+            }
             
             return isValid;
         }
         
-        // Collect form data
-        function collectFormData() {
-            const coursesSelect = document.getElementById('courses');
-            const selectedCourses = Array.from(coursesSelect.selectedOptions).map(option => option.value);
-            
-            return {
-                fullName: document.getElementById('fullName').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                neetRoll: document.getElementById('neetRoll').value.trim(),
-                neetScore: document.getElementById('neetScore').value.trim(),
-                category: document.getElementById('category').value,
-                courses: selectedCourses.join(', '),
-                state: document.getElementById('state').value.trim(),
-                additionalInfo: document.getElementById('additionalInfo').value.trim(),
-                timestamp: new Date().toISOString(),
-                paymentStatus: 'Pending'
-            };
-        }
-        
-        // Initiate payment process
-        function initiatePayment(data) {
-            // Store form data temporarily (in sessionStorage for persistence across page navigation)
-            sessionStorage.setItem('notificationFormData', JSON.stringify(data));
-            
-            // Disable submit button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Redirecting to Payment...';
-            
-            // Redirect to Razorpay payment link
-            // Note: Replace RAZORPAY_PAYMENT_URL with your actual Razorpay payment link
-            if (RAZORPAY_PAYMENT_URL === 'YOUR_RAZORPAY_PAYMENT_LINK_URL_HERE') {
-                alert('Please configure the Razorpay payment URL in the JavaScript section.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Proceed to Payment';
-                return;
-            }
-            
-            // Redirect to payment page
-            window.location.href = RAZORPAY_PAYMENT_URL;
-        }
-        
-        // Handle payment success
-        async function handlePaymentSuccess() {
-            // Retrieve stored form data
-            const storedData = sessionStorage.getItem('notificationFormData');
-            if (!storedData) {
-                console.error('No form data found');
-                return;
-            }
-            
-            const data = JSON.parse(storedData);
-            data.paymentStatus = 'Completed';
-            
-            // Send data to Google Sheets
-            if (GOOGLE_SHEETS_URL === 'YOUR_GOOGLE_SHEETS_APPS_SCRIPT_URL_HERE') {
-                console.error('Please configure the Google Sheets URL in the JavaScript section.');
-                // For demo purposes, show success message anyway
-                showSuccessMessage();
-                return;
-            }
-            
-            try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Google Apps Script requires no-cors mode
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                // Note: With no-cors mode, we can't read the response
-                // Assume success if no error is thrown
-                console.log('Data sent to Google Sheets successfully');
-                
-                // Clear stored data
-                sessionStorage.removeItem('notificationFormData');
-                
-                // Show success message
-                showSuccessMessage();
-                
-            } catch (error) {
-                console.error('Error sending data to Google Sheets:', error);
-                alert('There was an error processing your registration. Please contact support.');
-            }
-        }
-        
-        // Show success message and reset form
-        function showSuccessMessage() {
-            form.style.display = 'none';
-            successMessage.classList.add('show');
-            
-            // Reset form after a delay
-            setTimeout(() => {
-                form.reset();
-                form.style.display = 'block';
-                successMessage.classList.remove('show');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Proceed to Payment';
-            }, 5000);
-        }
-        
-        // Form submit event listener
+        // Handle form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Validate form
+            // Validate form before proceeding
             if (!validateForm()) {
-                alert('Please fill in all required fields correctly.');
                 return;
             }
             
-            // Collect form data
-            const data = collectFormData();
+            // Store form data in sessionStorage for retrieval after payment
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                whatsappNumber: document.getElementById('whatsappNumber').value,
+                state: document.getElementById('state').value,
+                category: document.getElementById('category').value,
+                timestamp: new Date().toISOString()
+            };
             
-            // Initiate payment
-            initiatePayment(data);
+            sessionStorage.setItem('notificationFormData', JSON.stringify(formData));
+            
+            // Redirect to Razorpay payment link
+            window.location.href = RAZORPAY_PAYMENT_LINK;
         });
         
-        // Check if returning from payment (you can add a query parameter to detect this)
-        // For example: notification.html?payment=success
-        window.addEventListener('load', function() {
+        // ============================================
+        // PAYMENT SUCCESS HANDLING
+        // ============================================
+        
+        // Check if returning from successful payment
+        window.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const paymentStatus = urlParams.get('payment');
             
@@ -993,71 +594,60 @@
             }
         });
         
-        // Real-time validation on input
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                const formGroup = this.closest('.form-group');
-                if (!this.required) return;
-                
-                formGroup.classList.remove('error');
-                
-                if (this.type === 'email') {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(this.value)) {
-                        formGroup.classList.add('error');
-                    }
-                } else if (this.type === 'tel') {
-                    const phoneRegex = /^[0-9]{10}$/;
-                    if (!phoneRegex.test(this.value)) {
-                        formGroup.classList.add('error');
-                }
-            } else if (!this.value.trim()) {
-                formGroup.classList.add('error');
+        // Handle successful payment
+        async function handlePaymentSuccess() {
+            // Retrieve stored form data
+            const storedData = sessionStorage.getItem('notificationFormData');
+            
+            if (!storedData) {
+                console.error('No form data found');
+                return;
             }
+            
+            const formData = JSON.parse(storedData);
+            
+            try {
+                // Submit data to Google Sheets
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: formData.fullName,
+                        whatsappNumber: formData.whatsappNumber,
+                        state: formData.state,
+                        category: formData.category,
+                        serviceFee: '999',
+                        paymentStatus: 'Success',
+                        timestamp: formData.timestamp
+                    })
+                });
+                
+                // Show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Clear stored data
+                sessionStorage.removeItem('notificationFormData');
+                
+                // Reset form
+                form.reset();
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                alert('Registration successful! However, there was an issue saving your data. Please contact us directly.');
+            }
+        }
+        
+        // Real-time validation on input
+        document.getElementById('whatsappNumber').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
         });
-    });
-
-    // Function to collect form data
-    function collectFormData() {
-        return {
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            contactNumber: document.getElementById('contactNumber').value,
-            state: document.getElementById('state').value,
-            message: document.getElementById('message').value
-        };
-    }
-
-    // Payment initiation logic
-    function initiatePayment(data) {
-        // ⚠️ Replace this placeholder with your real Razorpay payment link
-        const razorpayLink = 'https://razorpay.com/payment-link-here';
-        // Redirect to Razorpay payment page
-        window.location.href = `${razorpayLink}?name=${encodeURIComponent(data.fullName)}&contact=${encodeURIComponent(data.contactNumber)}`;
-
-        // After successful payment redirect back to: notification.html?payment=success
-    }
-
-    // Handle successful payment and save to Google Sheets
-    function handlePaymentSuccess() {
-        const formData = collectFormData();
-
-        // ⚠️ Replace this placeholder with your actual Google Apps Script URL
-        const googleSheetURL = 'https://script.google.com/macros/s/AKfycbw-DxiYIkH7J6cjZqDDp1WAGE9JSozSZKo7iy9735wf-UeBdsvJ0BgWeV5Ef3pGpzwFpw/exec';
-
-        fetch(googleSheetURL, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.text())
-        .then(result => {
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('premiumForm').reset();
-        })
-        .catch(error => console.error('Error submitting to sheet:', error));
-    }
-</script>
+    </script>
 </body>
 </html>
