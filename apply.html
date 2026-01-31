@@ -1079,34 +1079,38 @@
         function proceedToPayment() {
             const selectedPackage = document.querySelector('input[name="package"]:checked');
             if (!selectedPackage) {
-                alert('Please select a package');
-                return;
-            }
+               function proceedToPayment() {
+    const selectedPackage = document.querySelector('input[name="package"]:checked');
+    if (!selectedPackage) {
+        alert('Please select a package');
+        return;
+    }
 
-            const packageData = selectedPackage.value.split('|');
-            const packagePrice = parseInt(packageData[1]);
-            const discountAmount = Math.round((packagePrice * discountPercentage) / 100);
-            const finalAmount = packagePrice - discountAmount;
+    const packageData = selectedPackage.value.split('|');
+    const packagePrice = packageData[1];
 
-            // Placeholder for Razorpay integration
-            // User will add actual Razorpay payment links later
-            const paymentLinks = {
-                '20499': 'https://rzp.io/rzp/MUiTKEZ0',
-                '29999': 'https://rzp.io/rzp/ihEyuNUa',
-                '15499': 'https://rzp.io/rzp/0Ed7Isa0',
-                '23999': 'https://rzp.io/rzp/noF2WW5n',
-                '7500': 'https://rzp.io/rzp/UMxPR2B0',
-                '12999': 'https://rzp.io/rzp/3J90XtVP'
-            };
+    const paymentLinks = {
+        '20499': 'https://rzp.io/rzp/MUiTKEZ0',
+        '29999': 'https://rzp.io/rzp/ihEyuNUa',
+        '15499': 'https://rzp.io/rzp/0Ed7Isa0',
+        '23999': 'https://rzp.io/rzp/noF2WW5n',
+        '7500': 'https://rzp.io/rzp/UMxPR2B0',
+        '12999': 'https://rzp.io/rzp/3J90XtVP'
+    };
 
-            // Simulate payment process
-            // In production, redirect to Razorpay payment page
-            // window.location.href = paymentLinks[packagePrice.toString()];
+    const paymentURL = paymentLinks[packagePrice];
+
+    if (!paymentURL) {
+        alert('Payment link not found for selected package');
+        return;
+    }
+
+    // ✅ Redirect to Razorpay
+    window.location.href = paymentURL;
+}
+
 
             // For now, simulate successful payment after 2 seconds
-            setTimeout(() => {
-                handlePaymentSuccess();
-            }, 2000);
         }
 
         // Handle payment success
