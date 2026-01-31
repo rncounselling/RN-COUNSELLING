@@ -1076,11 +1076,10 @@
         }
 
         // Proceed to payment
-        function proceedToPayment() {
-            const selectedPackage = document.querySelector('input[name="package"]:checked');
-            if (!selectedPackage) {
-               function proceedToPayment() {
+        // Proceed to payment
+function proceedToPayment() {
     const selectedPackage = document.querySelector('input[name="package"]:checked');
+
     if (!selectedPackage) {
         alert('Please select a package');
         return;
@@ -1105,8 +1104,10 @@
         return;
     }
 
-    // ✅ Redirect to Razorpay
+    // Redirect to Razorpay
     window.location.href = paymentURL;
+}
+
 }
 
 
