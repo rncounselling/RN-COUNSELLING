@@ -1084,7 +1084,9 @@ function proceedToPayment() {
         alert('Please select a package');
         return;
     }
-
+    // Submit form to Google Sheets first
+    submitFormToGoogleSheets()
+        .then(() => { 
     const packageData = selectedPackage.value.split('|');
     const packageName = packageData[0];
     const originalPrice = packageData[1];   // 👈 FIXED
