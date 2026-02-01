@@ -1086,27 +1086,53 @@ function proceedToPayment() {
     }
 
     const packageData = selectedPackage.value.split('|');
-    const packagePrice = packageData[1];
+    const packageName = packageData[0];
+    const originalPrice = packageData[1];   // 👈 FIXED
+    const discountKey = discountPercentage.toString(); // "0", "10", "15"
 
     const paymentLinks = {
-        '20499': 'https://rzp.io/rzp/MUiTKEZ0',
-        '29999': 'https://rzp.io/rzp/ihEyuNUa',
-        '15499': 'https://rzp.io/rzp/0Ed7Isa0',
-        '23999': 'https://rzp.io/rzp/noF2WW5n',
-        '7500': 'https://rzp.io/rzp/UMxPR2B0',
-        '12999': 'https://rzp.io/rzp/3J90XtVP'
+        '20499': {
+            '0': 'https://rzp.io/rzp/MUiTKEZ0',
+            '10': 'PASTE_18449_LINK_HERE',
+            '15': 'PASTE_17424_LINK_HERE'
+        },
+        '29999': {
+            '0': 'https://rzp.io/rzp/ihEyuNUa',
+            '10': 'PASTE_26999_LINK_HERE',
+            '15': 'PASTE_25499_LINK_HERE'
+        },
+        '15499': {
+            '0': 'https://rzp.io/rzp/0Ed7Isa0',
+            '10': 'PASTE_13949_LINK_HERE',
+            '15': 'PASTE_13174_LINK_HERE'
+        },
+        '23999': {
+            '0': 'https://rzp.io/rzp/noF2WW5n',
+            '10': 'PASTE_21599_LINK_HERE',
+            '15': 'PASTE_20399_LINK_HERE'
+        },
+        '7500': {
+            '0': 'https://rzp.io/rzp/UMxPR2B0',
+            '10': 'PASTE_6750_LINK_HERE',
+            '15': 'PASTE_6375_LINK_HERE'
+        },
+        '12999': {
+            '0': 'https://rzp.io/rzp/3J90XtVP',
+            '10': 'PASTE_11699_LINK_HERE',
+            '15': 'PASTE_11049_LINK_HERE'
+        }
     };
 
-    const paymentURL = paymentLinks[packagePrice];
+    const paymentURL = paymentLinks[originalPrice]?.[discountKey];
 
     if (!paymentURL) {
-        alert('Payment link not found for selected package');
+        alert('Payment link not found for this amount/discount.');
         return;
     }
 
     // Redirect to Razorpay
     window.location.href = paymentURL;
-    }
+}
             // For now, simulate successful payment after 2 seconds
         
         // Handle payment success
