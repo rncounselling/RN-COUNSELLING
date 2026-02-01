@@ -1083,123 +1083,131 @@ function proceedToPayment() {
         alert('Please select a package');
         return;
     }
-    // Submit form to Google Sheets first
+
     submitFormToGoogleSheets()
-        .then(() => { 
-    const packageData = selectedPackage.value.split('|');
-    const packageName = packageData[0];
-    const originalPrice = packageData[1];   // 👈 FIXED
-    const discountKey = discountPercentage.toString(); // "0", "10", "15"
-
-    const paymentLinks = {
-        '20499': {
-            '0': 'https://rzp.io/rzp/MUiTKEZ0',
-            '10': 'PASTE_18449_LINK_HERE',
-            '15': 'PASTE_17424_LINK_HERE'
-        },
-        '29999': {
-            '0': 'https://rzp.io/rzp/ihEyuNUa',
-            '10': 'PASTE_26999_LINK_HERE',
-            '15': 'PASTE_25499_LINK_HERE'
-        },
-        '15499': {
-            '0': 'https://rzp.io/rzp/0Ed7Isa0',
-            '10': 'PASTE_13949_LINK_HERE',
-            '15': 'PASTE_13174_LINK_HERE'
-        },
-        '23999': {
-            '0': 'https://rzp.io/rzp/noF2WW5n',
-            '10': 'PASTE_21599_LINK_HERE',
-            '15': 'PASTE_20399_LINK_HERE'
-        },
-        '7500': {
-            '0': 'https://rzp.io/rzp/UMxPR2B0',
-            '10': 'PASTE_6750_LINK_HERE',
-            '15': 'PASTE_6375_LINK_HERE'
-        },
-        '12999': {
-            '0': 'https://rzp.io/rzp/3J90XtVP',
-            '10': 'PASTE_11699_LINK_HERE',
-            '15': 'PASTE_11049_LINK_HERE'
-        }
-    };
-
-    const paymentURL = paymentLinks[originalPrice]?.[discountKey];
-
-    if (!paymentURL) {
-        alert('Payment link not found for this amount/discount.');
-        return;
-    }
-
-    // Redirect to Razorpay
-    window.location.href = paymentURL;
-}
-            // For now, simulate successful payment after 2 seconds
-        
-        // Submit form to Google Sheets
-        function submitFormToGoogleSheets() {
-            const form = document.getElementById('applicationForm');
-            const formData = new FormData(form);
-
-            // Add calculated fields
-            const selectedPackage = document.querySelector('input[name="package"]:checked');
+        .then(() => {
             const packageData = selectedPackage.value.split('|');
-            const packagePrice = parseInt(packageData[1]);
-            const discountAmount = Math.round((packagePrice * discountPercentage) / 100);
-            const finalAmount = packagePrice - discountAmount;
+            const originalPrice = packageData[1];
+            const discountKey = discountPercentage.toString();
 
-            formData.append('packageName', packageData[0]);
-            formData.append('originalPrice', packagePrice);
-            formData.append('discountPercentage', discountPercentage);
-            formData.append('discountAmount', discountAmount);
-            formData.append('finalAmount', finalAmount);
-            formData.append('appliedReferralCode', appliedReferralCode);
-            formData.append('timestamp', new Date().toISOString());
-
-            // Google Apps Script Web App URL (user needs to add their own)
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzeHvrUzRdOHUf_wG5cX3hPDs_BeQS9bZdmAqHvkglKfPyBHKyn9Dwc__OBxP6wINpk/exec';
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    showSuccessMessage();
-                } else {
-                    throw new Error('Submission failed');
+            const paymentLinks = {
+                '20499': {
+                    '0': 'https://rzp.io/rzp/MUiTKEZ0',
+                    '10': 'PASTE_18449_LINK_HERE',
+                    '15': 'PASTE_17424_LINK_HERE'
+                },
+                '29999': {
+                    '0': 'https://rzp.io/rzp/ihEyuNUa',
+                    '10': 'PASTE_26999_LINK_HERE',
+                    '15': 'PASTE_25499_LINK_HERE'
+                },
+                '15499': {
+                    '0': 'https://rzp.io/rzp/0Ed7Isa0',
+                    '10': 'PASTE_13949_LINK_HERE',
+                    '15': 'PASTE_13174_LINK_HERE'
+                },
+                '23999': {
+                    '0': 'https://rzp.io/rzp/noF2WW5n',
+                    '10': 'PASTE_21599_LINK_HERE',
+                    '15': 'PASTE_20399_LINK_HERE'
+                },
+                '7500': {
+                    '0': 'https://rzp.io/rzp/UMxPR2B0',
+                    '10': 'PASTE_6750_LINK_HERE',
+                    '15': 'PASTE_6375_LINK_HERE'
+                },
+                '12999': {
+                    '0': 'https://rzp.io/rzp/3J90XtVP',
+                    '10': 'PASTE_11699_LINK_HERE',
+                    '15': 'PASTE_11049_LINK_HERE'
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Still show success message for demo purposes
-                showSuccessMessage();
-            });
-        }
+            };
 
-        // Show success message
-        function showSuccessMessage() {
-            document.getElementById('applicationForm').style.display = 'none';
-            document.querySelector('.progress-steps').style.display = 'none';
-            document.getElementById('successMessage').classList.add('show');
-        }
+            const paymentURL = paymentLinks[originalPrice]?.[discountKey];
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add input event listeners for real-time validation
-            document.getElementById('fullName').addEventListener('input', function() {
-                validateField(this, 'fullNameError', this.value.trim().length > 0);
-            });
+            if (!paymentURL) {
+                alert('Payment link not found.');
+                return;
+            }
 
-            document.getElementById('email').addEventListener('input', function() {
-                validateField(this, 'emailError', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value));
-            });
-
-            document.getElementById('mobile').addEventListener('input', function() {
-                validateField(this, 'mobileError', /^[0-9]{10}$/.test(this.value));
-            });
+            window.location.href = paymentURL;
+        })
+        .catch(err => {
+            alert("Form saving failed. Please try again.");
+            console.error(err);
         });
-    </script>
+}
+
+
+/* =======================
+   SAVE TO GOOGLE SHEET
+======================= */
+function submitFormToGoogleSheets() {
+    return new Promise((resolve, reject) => {
+
+        const form = document.getElementById('applicationForm');
+        const formData = new FormData(form);
+
+        const selectedPackage = document.querySelector('input[name="package"]:checked');
+        const packageData = selectedPackage.value.split('|');
+        const packagePrice = parseInt(packageData[1]);
+
+        const discountAmount = Math.round((packagePrice * discountPercentage) / 100);
+        const finalAmount = packagePrice - discountAmount;
+
+        formData.append('packageName', packageData[0]);
+        formData.append('originalPrice', packagePrice);
+        formData.append('discountPercentage', discountPercentage);
+        formData.append('discountAmount', discountAmount);
+        formData.append('finalAmount', finalAmount);
+        formData.append('appliedReferralCode', appliedReferralCode);
+        formData.append('timestamp', new Date().toISOString());
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzeHvrUzRdOHUf_wG5cX3hPDs_BeQS9bZdmAqHvkglKfPyBHKyn9Dwc__OBxP6wINpk/exec';
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                resolve();
+            } else {
+                reject("Google Sheet error");
+            }
+        })
+        .catch(error => reject(error));
+    });
+}
+
+
+/* =======================
+   FORM UI
+======================= */
+function showSuccessMessage() {
+    document.getElementById('applicationForm').style.display = 'none';
+    document.querySelector('.progress-steps').style.display = 'none';
+    document.getElementById('successMessage').classList.add('show');
+}
+
+
+/* =======================
+   VALIDATION INIT
+======================= */
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('fullName').addEventListener('input', function () {
+        validateField(this, 'fullNameError', this.value.trim().length > 0);
+    });
+
+    document.getElementById('email').addEventListener('input', function () {
+        validateField(this, 'emailError', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value));
+    });
+
+    document.getElementById('mobile').addEventListener('input', function () {
+        validateField(this, 'mobileError', /^[0-9]{10}$/.test(this.value));
+    });
+});
+</script>
 </body>
 </html>
