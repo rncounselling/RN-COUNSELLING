@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET PG Counselling | RN Counselling</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #222; background: #fff; }
+
+    /* ===== HEADER ===== */
+    header {
+      background: #0a2c6e;
+      color: #fff;
+      padding: 0;
+    }
+    .top-bar {
+      background: #061d50;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 6px 40px;
+      font-size: 13px;
+    }
+    .top-bar a { color: #cce0ff; text-decoration: none; }
+    .top-bar a:hover { color: #fff; }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+    }
+    .logo img { height: 60px; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text h1 { font-size: 26px; color: #fff; letter-spacing: 1px; }
+    .logo-text span { font-size: 13px; color: #a8c7ff; }
+
+    nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    nav a:hover, nav a.active { background: #1a56db; }
+    nav a.btn-consult {
+      background: #e63946;
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-weight: 600;
+    }
+    nav a.btn-consult:hover { background: #c1121f; }
+
+    /* ===== HERO BANNER ===== */
+    .hero {
+      background: linear-gradient(135deg, #0a2c6e 0%, #1a56db 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .hero h2 { font-size: 36px; margin-bottom: 12px; }
+    .hero p { font-size: 17px; color: #cce0ff; max-width: 700px; margin: 0 auto 28px; }
+    .hero .btn-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #e63946;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c1121f; }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #fff; color: #0a2c6e; }
+
+    /* ===== MAIN CONTENT ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+    h2.section-title {
+      font-size: 28px;
+      color: #0a2c6e;
+      border-left: 5px solid #e63946;
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+    p.intro {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    /* ===== INFO CARDS ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: #f0f6ff;
+      border-radius: 10px;
+      padding: 24px 20px;
+      border-top: 4px solid #1a56db;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card h3 { font-size: 17px; color: #0a2c6e; margin-bottom: 10px; }
+    .card p, .card li { font-size: 14.5px; color: #555; line-height: 1.7; }
+    .card ul { padding-left: 18px; }
+
+    /* ===== TABLE ===== */
+    .table-section { margin-bottom: 40px; overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+    }
+    th {
+      background: #0a2c6e;
+      color: #fff;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #dde4f0;
+      color: #444;
+    }
+    tr:nth-child(even) td { background: #f5f8ff; }
+    tr:hover td { background: #e8f0fe; }
+
+    /* ===== STEPS ===== */
+    .steps { margin-bottom: 40px; }
+    .step {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .step-num {
+      min-width: 40px; height: 40px;
+      background: #1a56db;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 16px;
+    }
+    .step-body h4 { font-size: 16px; color: #0a2c6e; margin-bottom: 4px; }
+    .step-body p { font-size: 14.5px; color: #555; line-height: 1.6; }
+
+    /* ===== CTA BOX ===== */
+    .cta-box {
+      background: linear-gradient(135deg, #0a2c6e, #1a56db);
+      color: #fff;
+      border-radius: 12px;
+      padding: 36px 30px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .cta-box h3 { font-size: 24px; margin-bottom: 10px; }
+    .cta-box p { font-size: 15px; color: #cce0ff; margin-bottom: 22px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0a2c6e;
+      color: #cce0ff;
+      padding: 40px 40px 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #1a56db;
+      padding-bottom: 6px;
+    }
+    .footer-col p, .footer-col li, .footer-col a {
+      font-size: 14px;
+      color: #a8c7ff;
+      line-height: 1.8;
+      text-decoration: none;
+    }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid #1a3a7a;
+      padding-top: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #7aa3d4;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .header-main { flex-direction: column; gap: 14px; text-align: center; }
+      nav { justify-content: center; }
+      .hero h2 { font-size: 24px; }
+      .top-bar { justify-content: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<header>
+  <div class="top-bar">
+    <a href="tel:+919999999999">&#128222; +91-XXXXXXXXXX</a>
+    <a href="mailto:info@rncounselling.com">&#9993; info@rncounselling.com</a>
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank">&#128172; WhatsApp</a>
+  </div>
+
+  <!-- ===== HEADER MAIN ===== -->
+  <div class="header-main">
+    <div class="logo-text">
+      <h1>RN Counselling</h1>
+      <span>Expert Medical Admission Guidance</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="neetug.html">NEET UG</a>
+      <a href="pg.html" class="active">NEET PG</a>
+      <a href="mbbs.html">MBBS</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn-consult">Free Consultation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <h2>NEET PG Counselling 2025</h2>
+  <p>Complete guidance for MD / MS / DNB admission — Registration, Eligibility, Schedule, Seat Allotment & more.</p>
+  <div class="btn-group">
+    <a href="contact.html" class="btn-primary">Get Free Counselling</a>
+    <a href="#process" class="btn-outline">View Process</a>
+  </div>
+</section>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
+
+  <!-- INTRO -->
+  <h2 class="section-title">What is NEET PG?</h2>
+  <p class="intro">
+    NEET PG (National Eligibility cum Entrance Test – Postgraduate) is the national-level entrance exam conducted by the National Board of Examinations in Medical Sciences (NBEMS) for admission to MD, MS, and Diploma programmes in government and private medical colleges across India. Clearing NEET PG is mandatory for MBBS graduates seeking postgraduate specialisation in medicine.
+  </p>
+
+  <!-- KEY HIGHLIGHTS CARDS -->
+  <h2 class="section-title">Key Highlights</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Conducting Body</h3>
+      <p>National Board of Examinations in Medical Sciences (NBEMS), New Delhi</p>
+    </div>
+    <div class="card">
+      <h3>Courses Offered</h3>
+      <ul>
+        <li>MD (Doctor of Medicine)</li>
+        <li>MS (Master of Surgery)</li>
+        <li>PG Diploma</li>
+        <li>DNB (Broad Speciality)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Eligibility</h3>
+      <ul>
+        <li>MBBS degree from recognised college</li>
+        <li>Completed 1-year internship</li>
+        <li>Registered with State/Central Medical Council</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Exam Mode</h3>
+      <p>Computer-Based Test (CBT) | 200 MCQs | 3.5 Hours | Negative Marking Applicable</p>
+    </div>
+    <div class="card">
+      <h3>Counselling Authority</h3>
+      <p>MCC (Medical Counselling Committee) for AIQ &amp; Central seats; respective State Counselling Authorities for state quota</p>
+    </div>
+    <div class="card">
+      <h3>Total Seats (Approx.)</h3>
+      <p>~45,000+ PG Medical seats across government &amp; private colleges in India</p>
+    </div>
+  </div>
+
+  <!-- COUNSELLING SCHEDULE TABLE -->
+  <h2 class="section-title">NEET PG Counselling Schedule 2025</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Activity</th>
+          <th>Tentative Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Round 1</td><td>Registration &amp; Fee Payment</td><td>To be announced</td></tr>
+        <tr><td>Round 1</td><td>Choice Filling &amp; Locking</td><td>To be announced</td></tr>
+        <tr><td>Round 1</td><td>Seat Allotment Result</td><td>To be announced</td></tr>
+        <tr><td>Round 1</td><td>Reporting to Allotted College</td><td>To be announced</td></tr>
+        <tr><td>Round 2</td><td>Registration &amp; Choice Filling</td><td>To be announced</td></tr>
+        <tr><td>Round 2</td><td>Seat Allotment Result</td><td>To be announced</td></tr>
+        <tr><td>Round 2</td><td>Reporting to Allotted College</td><td>To be announced</td></tr>
+        <tr><td>Mop-Up Round</td><td>Registration &amp; Choice Filling</td><td>To be announced</td></tr>
+        <tr><td>Mop-Up Round</td><td>Seat Allotment &amp; Reporting</td><td>To be announced</td></tr>
+        <tr><td>Stray Vacancy</td><td>Stray Vacancy Round (if applicable)</td><td>To be announced</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEAT MATRIX TABLE -->
+  <h2 class="section-title">NEET PG Seat Matrix – Category Wise (Approx.)</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>AIQ Seats (%)</th>
+          <th>State Quota (%)</th>
+          <th>Reservation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>General (UR)</td><td>50%</td><td>50%</td><td>—</td></tr>
+        <tr><td>EWS</td><td>10%</td><td>10%</td><td>EWS Certificate Required</td></tr>
+        <tr><td>OBC (Non-Creamy Layer)</td><td>27%</td><td>As per State Rules</td><td>OBC-NCL Certificate</td></tr>
+        <tr><td>SC</td><td>15%</td><td>As per State Rules</td><td>SC Certificate</td></tr>
+        <tr><td>ST</td><td>7.5%</td><td>As per State Rules</td><td>ST Certificate</td></tr>
+        <tr><td>PwBD</td><td>5% horizontal</td><td>5% horizontal</td><td>Disability Certificate</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REGISTRATION PROCESS -->
+  <h2 class="section-title" id="process">NEET PG Counselling Registration – Step by Step</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Register on MCC Website</h4>
+        <p>Visit the official MCC portal (mcc.nic.in). Register using your NEET PG Roll Number, date of birth, and basic details. Pay the registration fee online.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Document Verification</h4>
+        <p>Upload and verify all required documents: MBBS degree/certificate, internship completion certificate, NEET PG scorecard, ID proof, category certificate (if applicable), and MCI/NMC registration.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Choice Filling</h4>
+        <p>Fill and arrange your preferred colleges and courses in order of priority. Choose wisely based on your rank, category, and preferred specialisation. Lock your choices before the deadline.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Seat Allotment</h4>
+        <p>Seats are allotted based on NEET PG rank, category, choices filled, and seat availability. Check the allotment result on the MCC portal.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Reporting to College</h4>
+        <p>Report to the allotted college within the stipulated time with original documents. Complete the admission formalities, fee payment, and document submission at the college.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h4>Upgrade / Mop-Up Round</h4>
+        <p>If not satisfied with the allotted seat, you may participate in Round 2 for upgradation. Vacant seats are filled through the Mop-Up round open to all eligible candidates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTS REQUIRED -->
+  <h2 class="section-title">Documents Required for NEET PG Counselling</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Academic Documents</h3>
+      <ul>
+        <li>MBBS Degree Certificate / Provisional Certificate</li>
+        <li>MBBS Marksheets (All Years)</li>
+        <li>Internship Completion Certificate</li>
+        <li>NEET PG Admit Card &amp; Scorecard</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Registration &amp; ID</h3>
+      <ul>
+        <li>MCI / NMC / State Medical Council Registration</li>
+        <li>Aadhaar Card / Passport / Voter ID</li>
+        <li>Passport-size Photographs (recent)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Category Certificates</h3>
+      <ul>
+        <li>OBC-NCL / SC / ST / EWS Certificate (if applicable)</li>
+        <li>PwBD Certificate (if applicable)</li>
+        <li>Domicile / Residence Certificate (for state quota)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOP SPECIALISATIONS TABLE -->
+  <h2 class="section-title">Top MD / MS Specialisations – NEET PG</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Specialisation</th>
+          <th>Type</th>
+          <th>Duration</th>
+          <th>Approx. AIQ Cut-off Range (General)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>General Medicine</td><td>MD</td><td>3 Years</td><td>Top 500 – 1500</td></tr>
+        <tr><td>General Surgery</td><td>MS</td><td>3 Years</td><td>Top 1000 – 2500</td></tr>
+        <tr><td>Orthopaedics</td><td>MS</td><td>3 Years</td><td>Top 1500 – 3500</td></tr>
+        <tr><td>Paediatrics</td><td>MD</td><td>3 Years</td><td>Top 2000 – 4000</td></tr>
+        <tr><td>Obstetrics &amp; Gynaecology</td><td>MS</td><td>3 Years</td><td>Top 3000 – 6000</td></tr>
+        <tr><td>Radiology / Radio-Diagnosis</td><td>MD</td><td>3 Years</td><td>Top 100 – 400</td></tr>
+        <tr><td>Anaesthesia</td><td>MD</td><td>3 Years</td><td>Top 5000 – 10000</td></tr>
+        <tr><td>Dermatology (DVL)</td><td>MD</td><td>3 Years</td><td>Top 50 – 200</td></tr>
+        <tr><td>Psychiatry</td><td>MD</td><td>3 Years</td><td>Top 6000 – 12000</td></tr>
+        <tr><td>Ophthalmology</td><td>MS</td><td>3 Years</td><td>Top 4000 – 8000</td></tr>
+        <tr><td>ENT (Otorhinolaryngology)</td><td>MS</td><td>3 Years</td><td>Top 5000 – 9000</td></tr>
+        <tr><td>Community Medicine</td><td>MD</td><td>3 Years</td><td>Top 15000 – 25000</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#888;margin-top:8px;">* Cut-off ranges are approximate and vary year to year based on number of candidates and seats. Contact us for latest data.</p>
+  </div>
+
+  <!-- CTA BOX -->
+  <div class="cta-box">
+    <h3>Need Help with NEET PG Counselling?</h3>
+    <p>Our experts guide you through every step — from rank analysis and college selection to document verification and admission formalities.</p>
+    <div class="btn-group" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary">Book Free Consultation</a>
+      <a href="tel:+919999999999" class="btn-outline">Call Us Now</a>
+    </div>
+  </div>
+
+</div><!-- end .container -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>RN Counselling</h4>
+      <p>Expert guidance for NEET UG, NEET PG, MBBS, and all medical admissions in India and abroad.</p>
+      <br>
+      <p>&#128205; [Your Full Address Here]<br>[City, State, PIN Code]</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="neetug.html">NEET UG</a></li>
+        <li><a href="pg.html">NEET PG</a></li>
+        <li><a href="mbbs.html">MBBS Admission</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="#">NEET UG Counselling</a></li>
+        <li><a href="#">NEET PG Counselling</a></li>
+        <li><a href="#">MBBS in India</a></li>
+        <li><a href="#">MBBS Abroad</a></li>
+        <li><a href="#">College Prediction</a></li>
+        <li><a href="#">Document Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>&#128222; <a href="tel:+919999999999">+91-9673882382</a></p>
+      <p>&#9993; <a href="mailto:info@rncounselling.com">info@rncounselling.com</a></p>
+      <p>&#128172; <a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Us</a></p>
+      <br>
+      <p>Mon – Sat: 9:00 AM – 7:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 RN Counselling. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
