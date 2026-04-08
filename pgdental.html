@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MDS Dental Counselling | RN Counselling</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #222; background: #fff; }
+
+    /* ===== HEADER ===== */
+    header { background: #0a2c6e; color: #fff; padding: 0; }
+    .top-bar {
+      background: #061d50;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 6px 40px;
+      font-size: 13px;
+    }
+    .top-bar a { color: #cce0ff; text-decoration: none; }
+    .top-bar a:hover { color: #fff; }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo-text h1 { font-size: 26px; color: #fff; letter-spacing: 1px; }
+    .logo-text span { font-size: 13px; color: #a8c7ff; }
+
+    nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    nav a:hover { background: #1a56db; }
+    nav a.btn-apply {
+      background: #e63946;
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-weight: 600;
+    }
+    nav a.btn-apply:hover { background: #c1121f; }
+    nav a.btn-packages {
+      background: #17a34a;
+      border-radius: 4px;
+      padding: 8px 14px;
+      font-weight: 600;
+    }
+    nav a.btn-packages:hover { background: #15803d; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #0a2c6e 0%, #0e7490 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .hero h2 { font-size: 36px; margin-bottom: 12px; }
+    .hero p { font-size: 17px; color: #cce0ff; max-width: 700px; margin: 0 auto 28px; }
+    .btn-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #e63946; color: #fff;
+      padding: 12px 28px; border-radius: 25px;
+      text-decoration: none; font-weight: 600; font-size: 15px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c1121f; }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border: 2px solid #fff;
+      padding: 12px 28px; border-radius: 25px;
+      text-decoration: none; font-weight: 600; font-size: 15px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #fff; color: #0a2c6e; }
+
+    /* ===== MAIN ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+    h2.section-title {
+      font-size: 27px; color: #0a2c6e;
+      border-left: 5px solid #e63946;
+      padding-left: 14px; margin-bottom: 20px; margin-top: 10px;
+    }
+    p.intro { font-size: 15.5px; line-height: 1.8; color: #444; margin-bottom: 30px; }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px; margin-bottom: 40px;
+    }
+    .card {
+      background: #f0f6ff; border-radius: 10px;
+      padding: 24px 20px; border-top: 4px solid #0e7490;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card h3 { font-size: 17px; color: #0a2c6e; margin-bottom: 10px; }
+    .card p, .card li { font-size: 14.5px; color: #555; line-height: 1.7; }
+    .card ul { padding-left: 18px; }
+
+    /* TABLE */
+    .table-section { margin-bottom: 40px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+    th { background: #0a2c6e; color: #fff; padding: 12px 14px; text-align: left; }
+    td { padding: 11px 14px; border-bottom: 1px solid #dde4f0; color: #444; }
+    tr:nth-child(even) td { background: #f5f8ff; }
+    tr:hover td { background: #e8f0fe; }
+
+    /* STEPS */
+    .steps { margin-bottom: 40px; }
+    .step { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 18px; }
+    .step-num {
+      min-width: 40px; height: 40px;
+      background: #0e7490; color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 16px;
+    }
+    .step-body h4 { font-size: 16px; color: #0a2c6e; margin-bottom: 4px; }
+    .step-body p { font-size: 14.5px; color: #555; line-height: 1.6; }
+
+    /* INFO BOX */
+    .info-box {
+      background: #fff8e1; border-left: 5px solid #f59e0b;
+      border-radius: 8px; padding: 18px 22px; margin-bottom: 30px;
+    }
+    .info-box p { font-size: 14.5px; color: #555; line-height: 1.7; }
+    .info-box strong { color: #92400e; }
+
+    /* CTA BOX */
+    .cta-box {
+      background: linear-gradient(135deg, #0a2c6e, #0e7490);
+      color: #fff; border-radius: 12px;
+      padding: 36px 30px; text-align: center; margin-bottom: 50px;
+    }
+    .cta-box h3 { font-size: 24px; margin-bottom: 10px; }
+    .cta-box p { font-size: 15px; color: #cce0ff; margin-bottom: 22px; }
+
+    /* FOOTER */
+    footer { background: #0a2c6e; color: #cce0ff; padding: 40px 40px 20px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px; margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      color: #fff; font-size: 16px; margin-bottom: 14px;
+      border-bottom: 2px solid #1a56db; padding-bottom: 6px;
+    }
+    .footer-col p, .footer-col li, .footer-col a {
+      font-size: 14px; color: #a8c7ff; line-height: 1.8; text-decoration: none;
+    }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid #1a3a7a; padding-top: 16px;
+      text-align: center; font-size: 13px; color: #7aa3d4;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .header-main { flex-direction: column; text-align: center; }
+      nav { justify-content: center; }
+      .hero h2 { font-size: 24px; }
+      .top-bar { justify-content: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<header>
+  <div class="top-bar">
+    <a href="tel:+919999999999">&#128222; +91-9673882382</a>
+    <a href="mailto:info@rncounselling.com">&#9993; info@rncounselling.com</a>
+    <a href="https://wa.me/919673882382" target="_blank">&#128172; WhatsApp</a>
+  </div>
+
+  <!-- ===== HEADER MAIN ===== -->
+  <div class="header-main">
+    <div class="logo-text">
+      <h1>RN Counselling</h1>
+      <span>Expert Medical Admission Guidance</span>
+    </div>
+    <nav>
+      <a href="pg.html">Home</a>
+      <a href="pgapply.html" class="btn-apply">Apply Now</a>
+      <a href="pgpackages.html" class="btn-packages">Packages</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <h2>MDS Dental Counselling 2025</h2>
+  <p>Complete guidance for Master of Dental Surgery (MDS) admissions — Eligibility, AIQ &amp; State Quota, Counselling Rounds, Seat Matrix, Specialisations and Documents.</p>
+  <div class="btn-group">
+    <a href="pgapply.html" class="btn-primary">Apply Now</a>
+    <a href="#process" class="btn-outline">View Process</a>
+  </div>
+</section>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+  <!-- INTRO -->
+  <h2 class="section-title">What is MDS Dental Counselling?</h2>
+  <p class="intro">
+    MDS (Master of Dental Surgery) is the postgraduate degree for BDS graduates seeking to specialise in a branch of dentistry. Admission to MDS courses across India is based on <strong>NEET MDS scores</strong>, followed by a centralised counselling process. The <strong>Medical Counselling Committee (MCC)</strong> manages All India Quota (AIQ) seats while respective <strong>State Dental Counselling Authorities</strong> handle state quota seats. RN Counselling provides complete end-to-end support — from rank analysis to final college reporting — so you can secure your best available MDS seat.
+  </p>
+
+  <!-- KEY HIGHLIGHTS -->
+  <h2 class="section-title">Key Highlights</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Course</h3>
+      <p>MDS – Master of Dental Surgery<br><br>Duration: <strong>3 Years</strong></p>
+    </div>
+    <div class="card">
+      <h3>Entrance Exam</h3>
+      <p>NEET MDS – conducted by <strong>NBE (National Board of Examinations)</strong><br><br>Score valid for the current admission year only.</p>
+    </div>
+    <div class="card">
+      <h3>Conducting Body</h3>
+      <p><strong>AIQ Counselling:</strong> MCC (mcc.nic.in)<br><br>
+      <strong>State Quota:</strong> Respective State Dental Counselling Authority</p>
+    </div>
+    <div class="card">
+      <h3>Eligibility</h3>
+      <ul>
+        <li>BDS degree from MCI/DCI recognised college</li>
+        <li>1-year rotating internship completed</li>
+        <li>Valid NEET MDS score &amp; rank</li>
+        <li>DCI / State Dental Council registration</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Total Seats (Approx.)</h3>
+      <p>6,500+ MDS seats across government &amp; private dental colleges in India, including AIQ, State Quota, Management &amp; NRI quota.</p>
+    </div>
+    <div class="card">
+      <h3>Quota Split</h3>
+      <ul>
+        <li>50% – All India Quota (AIQ)</li>
+        <li>50% – State Quota</li>
+        <li>Management / NRI quota in private colleges</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COUNSELLING ROUNDS -->
+  <h2 class="section-title">MDS Counselling Rounds – Overview</h2>
+  <div class="info-box">
+    <p><strong>Note:</strong> MCC conducts AIQ counselling in multiple rounds. Candidates may participate in both AIQ and state counselling simultaneously to maximise seat opportunities. Always verify exact schedules on the official MCC portal (mcc.nic.in).</p>
+  </div>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Type</th>
+          <th>Who Can Apply</th>
+          <th>Key Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Round 1</td>
+          <td>AIQ – MCC</td>
+          <td>All NEET MDS qualified candidates</td>
+          <td>Registration, choice filling, seat allotment</td>
+        </tr>
+        <tr>
+          <td>Round 2</td>
+          <td>AIQ – MCC</td>
+          <td>Fresh + Round 1 upgradation seekers</td>
+          <td>Revised choice filling &amp; allotment</td>
+        </tr>
+        <tr>
+          <td>Mop-Up Round</td>
+          <td>AIQ – MCC</td>
+          <td>Candidates without a seat</td>
+          <td>Filling of remaining vacant AIQ seats</td>
+        </tr>
+        <tr>
+          <td>Stray Vacancy Round</td>
+          <td>AIQ – MCC</td>
+          <td>Limited eligible candidates</td>
+          <td>Last-chance allotment for leftover seats</td>
+        </tr>
+        <tr>
+          <td>State Round 1 &amp; 2</td>
+          <td>State Quota</td>
+          <td>State domicile / eligible candidates</td>
+          <td>Allotment of 50% state quota seats</td>
+        </tr>
+        <tr>
+          <td>State Mop-Up</td>
+          <td>State Quota</td>
+          <td>As per state rules</td>
+          <td>Filling of vacant state quota seats</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- STEP BY STEP PROCESS -->
+  <h2 class="section-title" id="process">Step-by-Step MDS Counselling Process</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Check Eligibility &amp; Confirm Score</h4>
+        <p>Verify your NEET MDS rank, score, and category. Confirm your BDS internship is complete and your DCI / State Dental Council registration is active.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Register on MCC Portal</h4>
+        <p>Visit mcc.nic.in during the registration window. Provide your NEET MDS Roll Number, date of birth, and required personal details. Pay the non-refundable registration fee online (Government: ₹1,000 approx; Private: ₹5,000 approx).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Upload &amp; Verify Documents</h4>
+        <p>Submit all required scanned documents during the verification window. Documents must be clear, valid, and in the prescribed format. Errors at this stage can delay or cancel your allotment.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Choice Filling &amp; Locking</h4>
+        <p>Browse available MDS specialisations and dental colleges. Arrange your preferences in the most strategic order — this single step determines your final seat. Lock choices before the deadline; no changes are allowed after locking.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Seat Allotment Result</h4>
+        <p>MCC publishes seat allotment results on the portal. Log in to view your allotted specialisation and college. Review carefully before deciding to accept, float (upgrade), or slide.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h4>Accept Seat &amp; Pay Security Deposit</h4>
+        <p>Accept the allotted seat online and pay the security deposit within the stipulated time to hold your seat. Missing this deadline forfeits the allotment.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h4>Report to the Allotted College</h4>
+        <p>Physically report to the dental college with all original documents within the reporting window. Complete admission formalities, pay the full fees, and submit documents to complete enrolment.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <h4>Participate in Further Rounds (Optional)</h4>
+        <p>If you want a better college or specialisation, participate in Round 2 or the Mop-Up Round. Accepting a new allotment automatically cancels your previous seat — plan carefully.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEAT MATRIX -->
+  <h2 class="section-title">MDS Seat Matrix – Category-Wise Reservation (AIQ)</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>AIQ Reservation</th>
+          <th>Certificate Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>General (UR)</td><td>Open Merit</td><td>—</td></tr>
+        <tr><td>EWS (Economically Weaker Section)</td><td>10%</td><td>EWS Certificate (current financial year)</td></tr>
+        <tr><td>OBC – Non-Creamy Layer</td><td>27%</td><td>OBC-NCL Certificate (current financial year)</td></tr>
+        <tr><td>SC (Scheduled Caste)</td><td>15%</td><td>SC Caste Certificate</td></tr>
+        <tr><td>ST (Scheduled Tribe)</td><td>7.5%</td><td>ST Caste Certificate</td></tr>
+        <tr><td>PwBD (Persons with Benchmark Disability)</td><td>5% (Horizontal)</td><td>Disability Certificate (Competent Authority)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOP MDS SPECIALISATIONS -->
+  <h2 class="section-title">Top MDS Specialisations &amp; Approximate AIQ Cut-off Ranks</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Specialisation</th>
+          <th>Duration</th>
+          <th>Approx. AIQ Cut-off (General)</th>
+          <th>Career Scope</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Oral &amp; Maxillofacial Surgery (OMFS)</td><td>3 Years</td><td>Top 10 – 50</td><td>Very High</td></tr>
+        <tr><td>Orthodontics &amp; Dentofacial Orthopaedics</td><td>3 Years</td><td>Top 20 – 100</td><td>Very High</td></tr>
+        <tr><td>Conservative Dentistry &amp; Endodontics</td><td>3 Years</td><td>Top 50 – 200</td><td>High</td></tr>
+        <tr><td>Prosthodontics &amp; Crown Bridge</td><td>3 Years</td><td>Top 100 – 300</td><td>High</td></tr>
+        <tr><td>Periodontics</td><td>3 Years</td><td>Top 150 – 400</td><td>High</td></tr>
+        <tr><td>Paedodontics (Paediatric Dentistry)</td><td>3 Years</td><td>Top 200 – 500</td><td>High</td></tr>
+        <tr><td>Oral Medicine &amp; Radiology</td><td>3 Years</td><td>Top 300 – 700</td><td>Moderate–High</td></tr>
+        <tr><td>Oral Pathology &amp; Microbiology</td><td>3 Years</td><td>Top 500 – 1,000</td><td>Moderate</td></tr>
+        <tr><td>Public Health Dentistry</td><td>3 Years</td><td>Top 700 – 1,500</td><td>Moderate</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#888;margin-top:8px;">* Cut-off ranges are approximate and vary year to year. Contact us for rank analysis specific to your NEET MDS score.</p>
+  </div>
+
+  <!-- DOCUMENTS REQUIRED -->
+  <h2 class="section-title">Documents Required for MDS Counselling</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Academic &amp; Exam Documents</h3>
+      <ul>
+        <li>BDS Degree / Provisional Certificate</li>
+        <li>BDS Marksheets (All Years)</li>
+        <li>Internship Completion Certificate</li>
+        <li>NEET MDS Admit Card &amp; Score Card / Rank Letter</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Registration &amp; Identity</h3>
+      <ul>
+        <li>DCI / State Dental Council Registration Certificate</li>
+        <li>Aadhaar Card / Passport / Voter ID</li>
+        <li>Passport-size Photographs (recent, colour)</li>
+        <li>Date of Birth Certificate / 10th Marksheet</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Category &amp; Domicile</h3>
+      <ul>
+        <li>OBC-NCL / SC / ST / EWS Certificate (if applicable)</li>
+        <li>PwBD Certificate – Competent Authority (if applicable)</li>
+        <li>Domicile / Residence Certificate (for State Quota)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GOVERNMENT VS PRIVATE -->
+  <h2 class="section-title">Government vs Private MDS Colleges – Fee Comparison</h2>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>College Type</th>
+          <th>Quota</th>
+          <th>Approximate Annual Fee</th>
+          <th>Stipend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Government Dental College</td><td>AIQ / State</td><td>₹30,000 – ₹1,50,000</td><td>Yes (₹15,000–₹25,000/month)</td></tr>
+        <tr><td>Private Dental College</td><td>AIQ / State</td><td>₹3,00,000 – ₹6,00,000</td><td>Varies / Often Nil</td></tr>
+        <tr><td>Private Dental College</td><td>Management Quota</td><td>₹8,00,000 – ₹20,00,000</td><td>Nil</td></tr>
+        <tr><td>Deemed University</td><td>NRI Quota</td><td>₹15,00,000 – ₹30,00,000</td><td>Nil</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#888;margin-top:8px;">* Fees are indicative. Verify exact fees with the respective college/state authority before admission.</p>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <h2 class="section-title">Why Choose RN Counselling for MDS Guidance?</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Rank &amp; College Analysis</h3>
+      <p>We analyse your NEET MDS rank and predict the best MDS specialisations and dental colleges you can realistically target across all quotas.</p>
+    </div>
+    <div class="card">
+      <h3>Choice Filling Strategy</h3>
+      <p>Our experts prepare a personalised, optimised choice list. The right order of preferences is the single most decisive factor in securing your preferred MDS seat.</p>
+    </div>
+    <div class="card">
+      <h3>State Counselling Support</h3>
+      <p>We guide you through state quota dental counselling alongside AIQ — ensuring you maximise every available seat opportunity in parallel.</p>
+    </div>
+    <div class="card">
+      <h3>Document Checklist &amp; Verification</h3>
+      <p>We provide a complete document checklist and review all your papers before submission to prevent rejections or avoidable delays.</p>
+    </div>
+    <div class="card">
+      <h3>Round-by-Round Updates</h3>
+      <p>Get timely alerts and expert advice at every counselling round — from registration opening through final seat allotment.</p>
+    </div>
+    <div class="card">
+      <h3>Post-Allotment Assistance</h3>
+      <p>We support you during college reporting, fee payment, and all enrolment formalities until you are successfully admitted.</p>
+    </div>
+  </div>
+
+  <!-- CTA BOX -->
+  <div class="cta-box">
+    <h3>Get Expert Guidance for MDS Dental Admission</h3>
+    <p>Secure your MDS seat with the right strategy. Our counsellors are ready to guide you from NEET MDS rank to final admission.</p>
+    <div class="btn-group">
+      <a href="pgapply.html" class="btn-primary">Apply Now</a>
+      <a href="pgpackages.html" class="btn-outline">View Packages</a>
+    </div>
+  </div>
+
+</div><!-- end .container -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>RN Counselling</h4>
+      <p>Expert guidance for NEET UG, NEET PG, MD/MS, MDS and all medical admissions in India and abroad.</p>
+      <br>
+      <p>&#128205; [Your Full Address Here]<br>[City, State, PIN Code]</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="pg.html">NEET PG</a></li>
+        <li><a href="pgmedical.html">For Medical</a></li>
+        <li><a href="pgdental.html">For Dental</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="#">NEET UG Counselling</a></li>
+        <li><a href="#">NEET PG Counselling</a></li>
+        <li><a href="#">MD / MS Admission</a></li>
+        <li><a href="#">MDS Dental Admission</a></li>
+        <li><a href="#">College Prediction</a></li>
+        <li><a href="#">Document Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>&#128222; <a href="tel:+919999999999">+91-9673882382</a></p>
+      <p>&#9993; <a href="mailto:info@rncounselling.com">info@rncounselling.com</a></p>
+      <p>&#128172; <a href="https://wa.me/919673882382" target="_blank">WhatsApp Us</a></p>
+      <br>
+      <p>Mon – Sat: 9:00 AM – 7:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 RN Counselling. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
