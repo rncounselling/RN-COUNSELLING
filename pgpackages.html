@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UG Packages - RN Counselling</title>
+    <meta name="description" content="Explore our MBBS and BDS counselling packages for UG medical admissions. Expert guidance for NEET-UG students across India.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ff7a00;
+            border-bottom-color: #ff7a00;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 60%, #1a237e 100%);
+            color: white;
+            padding: 110px 20px 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,122,0,0.25);
+            border: 1px solid rgba(255,122,0,0.5);
+            color: #ffb347;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span { color: #ff7a00; }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ff7a00;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* ─── SECTION WRAPPERS ─── */
+        .section-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a58ca;
+            margin-bottom: 8px;
+        }
+
+        .section-title .underline {
+            width: 60px;
+            height: 4px;
+            background: #ff7a00;
+            border-radius: 2px;
+            margin: 0 auto 12px;
+        }
+
+        .section-title p {
+            color: #555;
+            font-size: 1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ─── PACKAGES SECTION ─── */
+        .packages-section {
+            padding: 60px 0 40px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+            gap: 28px;
+        }
+
+        /* ─── PACKAGE CARD ─── */
+        .pkg-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s, box-shadow 0.25s;
+            position: relative;
+        }
+
+        .pkg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(10,88,202,0.15);
+        }
+
+        .pkg-card .ribbon {
+            position: absolute;
+            top: 20px;
+            right: -28px;
+            background: #fff;
+            color: #ff7a00;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 36px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .pkg-card-header {
+            padding: 28px 28px 22px;
+            color: white;
+            position: relative;
+        }
+
+        .pkg-card-header.blue {
+            background: linear-gradient(135deg, #0a58ca, #1976d2);
+        }
+
+        .pkg-card-header.orange {
+            background: linear-gradient(135deg, #e65100, #ff7a00);
+        }
+
+        .pkg-plan-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 6px;
+        }
+
+        .pkg-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .pkg-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .pkg-price-sub {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        .pkg-coverage {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pkg-body {
+            padding: 24px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pkg-features-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0a58ca;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .pkg-features {
+            list-style: none;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .pkg-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            font-size: 0.9rem;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pkg-features li:last-child { border-bottom: none; }
+
+        .check-icon {
+            width: 18px;
+            height: 18px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            font-size: 0.65rem;
+            color: #2e7d32;
+            font-weight: 800;
+        }
+
+        .ideal-for-box {
+            background: #f0f7ff;
+            border-left: 4px solid #0a58ca;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+        }
+
+        .ideal-for-box .ideal-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0a58ca;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .ideal-for-box ul { list-style: none; }
+
+        .ideal-for-box ul li {
+            font-size: 0.88rem;
+            color: #444;
+            padding: 3px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .ideal-for-box ul li::before {
+            content: "→";
+            color: #0a58ca;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .note-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+
+        .note-box .note-label {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .discount-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .pkg-apply-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #0a58ca, #1976d2);
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(10,88,202,0.25);
+        }
+
+        .pkg-apply-btn:hover {
+            background: linear-gradient(135deg, #084298, #0a58ca);
+            box-shadow: 0 6px 20px rgba(10,88,202,0.35);
+            transform: translateY(-1px);
+        }
+
+        .pkg-apply-btn.orange-btn {
+            background: linear-gradient(135deg, #e65100, #ff7a00);
+            box-shadow: 0 4px 12px rgba(255,122,0,0.3);
+        }
+
+        .pkg-apply-btn.orange-btn:hover {
+            background: linear-gradient(135deg, #bf360c, #e65100);
+            box-shadow: 0 6px 20px rgba(255,122,0,0.4);
+        }
+
+        /* ─── SCOPE OF SERVICES ─── */
+        .scope-section {
+            background: white;
+            padding: 70px 0;
+            margin-top: 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #fafbff;
+            border: 1px solid #e8edf5;
+            border-left: 4px solid #0a58ca;
+            border-radius: 0 12px 12px 0;
+            padding: 20px 22px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 6px 20px rgba(10,88,202,0.1);
+            transform: translateX(3px);
+        }
+
+        .service-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .service-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .service-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0a58ca;
+            line-height: 1.3;
+        }
+
+        .service-card p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ─── CTA STRIP ─── */
+        .cta-strip {
+            background: linear-gradient(135deg, #0a58ca, #1a237e);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-strip h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-strip p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 30px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            display: inline-block;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(255,122,0,0.4);
+        }
+
+        .cta-btn-primary:hover {
+            background: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,122,0,0.5);
+        }
+
+        .cta-btn-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-wa:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: white;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background-color: #0a2a6e;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 16px;
+            color: #ff7a00;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover { color: #ff7a00; }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 9px 20px;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .social-btn:hover { background: #e66d00; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.55);
+            font-size: 0.85rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .packages-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 10px 20px;
+            }
+
+            nav ul { gap: 1.2rem; }
+
+            .hero { padding: 140px 20px 50px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 25px; }
+
+            .section-title h2 { font-size: 1.5rem; }
+
+            .packages-section { padding: 40px 0 30px; }
+
+            .services-grid { grid-template-columns: 1fr; }
+
+            .cta-strip h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── HEADER ─── -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pgpackages.html" class="active">Packages</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-badge">UG Medical Counselling 2025</div>
+        <h1>MBBS &amp; BDS <span>Counselling Packages</span></h1>
+        <p>Expert-guided admission counselling for NEET-UG students. Choose the plan that fits your rank, goals, and budget.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Students Guided</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">28</div>
+                <div class="stat-label">States Covered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">24/7</div>
+                <div class="stat-label">WhatsApp Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MBBS PACKAGES -->
+    <section class="packages-section">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>MBBS Counselling Packages</h2>
+                <div class="underline"></div>
+                <p>Structured counselling support for NEET-UG MBBS aspirants — from rank evaluation to final college reporting.</p>
+            </div>
+            <div class="packages-grid">
+                <!-- MBBS BASIC -->
+                <div class="pkg-card">
+                    <div class="pkg-card-header blue">
+                        <div class="pkg-plan-label">MBBS — Basic Plan</div>
+                        <div class="pkg-name">MBBS Basic Package</div>
+                        <div class="pkg-price">₹50,000</div>
+                        <div class="pkg-price-sub">+ GST (18%) &nbsp;|&nbsp; Total ₹59,000 incl. GST</div>
+                        <span class="pkg-coverage">📍 AIQ + State Govt. Colleges · Any 2 States</span>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-features-title">Services Included</div>
+                        <ul class="pkg-features">
+                            <li><span class="check-icon">✓</span> 24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+                            <li><span class="check-icon">✓</span> Counselling for two states of your choice</li>
+                            <li><span class="check-icon">✓</span> Complete guidance for college selection according to NEET score and budget</li>
+                            <li><span class="check-icon">✓</span> Advice on all required certificates — Domicile, Category, Minority, GAP, EWS, Physically Challenged and NRI</li>
+                            <li><span class="check-icon">✓</span> Bond and bank guarantee details for relevant states explained in detail</li>
+                            <li><span class="check-icon">✓</span> Detailed College Analysis — Seat Matrix, clinical facts and fee structure</li>
+                            <li><span class="check-icon">✓</span> Complete support for MCC and home state counselling registration</li>
+                            <li><span class="check-icon">✓</span> Safety of security deposit is our responsibility</li>
+                            <li><span class="check-icon">✓</span> State-wise list of top Government colleges provided</li>
+                            <li><span class="check-icon">✓</span> Round-wise strategy to proceed with the counselling</li>
+                            <li><span class="check-icon">✓</span> Choice filling support during every round from our experts</li>
+                            <li><span class="check-icon">✓</span> Merit list and seat matrix discussed with parents and student during all rounds</li>
+                            <li><span class="check-icon">✓</span> Choice filling preferences for all rounds done under guidance of Ashok Sir</li>
+                        </ul>
+                        <div class="note-box">
+                            <div class="note-label">📌 Important Note</div>
+                            Registration fees &amp; security deposit (if applicable) will be paid by parents only.
+                        </div>
+                        <div class="discount-tag">🎖️ 10% off for Army / Police / Siblings / Single Parent</div>
+                        <a href="apply-ug.html" class="pkg-apply-btn">Apply Now →</a>
+                    </div>
+                </div>
+
+                <!-- MBBS PREMIUM -->
+                <div class="pkg-card">
+                    <div class="ribbon">PREMIUM</div>
+                    <div class="pkg-card-header orange">
+                        <div class="pkg-plan-label">MBBS — Premium Plan</div>
+                        <div class="pkg-name">MBBS Premium Package</div>
+                        <div class="pkg-price">₹1,00,000</div>
+                        <div class="pkg-price-sub">+ GST (18%) &nbsp;|&nbsp; Total ₹1,18,000 incl. GST</div>
+                        <span class="pkg-coverage">📍 AIQ + MCC + All States as Required</span>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-features-title">Services Included</div>
+                        <ul class="pkg-features">
+                            <li><span class="check-icon">✓</span> 24/7 Query Support on WhatsApp Messages (Not on Calls)</li>
+                            <li><span class="check-icon">✓</span> Counselling for more than two states as per your requirements</li>
+                            <li><span class="check-icon">✓</span> Online NEET mock tests on our mobile app for preparation support</li>
+                            <li><span class="check-icon">✓</span> Previous year cut-offs for Govt. and Pvt. colleges as required</li>
+                            <li><span class="check-icon">✓</span> Complete guidance for college selection according to NEET score and budget</li>
+                            <li><span class="check-icon">✓</span> Advice on all required certificates — Domicile, Category, Minority, GAP, EWS, Physically Challenged and NRI</li>
+                            <li><span class="check-icon">✓</span> Bond and bank guarantee details for relevant states explained in detail</li>
+                            <li><span class="check-icon">✓</span> Detailed College Analysis — Seat Matrix, clinical facts and fee structure</li>
+                            <li><span class="check-icon">✓</span> Complete support for MCC / Home State / Deemed and Open Pvt. States</li>
+                            <li><span class="check-icon">✓</span> Safety of security deposit is our responsibility</li>
+                            <li><span class="check-icon">✓</span> All updates on court cases for fees, seats, domicile or eligibility criteria explained immediately</li>
+                            <li><span class="check-icon">✓</span> State-wise list of top Government colleges provided</li>
+                            <li><span class="check-icon">✓</span> Round-wise strategy to proceed with the counselling</li>
+                            <li><span class="check-icon">✓</span> Choice filling support during every round from our experts</li>
+                            <li><span class="check-icon">✓</span> Merit list and seat matrix discussed with parents and student during all rounds</li>
+                            <li><span class="check-icon">✓</span> Choice filling preferences for all rounds done under guidance of Ashok Sir</li>
+                            <li><span class="check-icon">✓</span> Guidance for physical round of counselling during Mop Up / Stray Vacancy</li>
+                            <li><span class="check-icon">✓</span> Refund policy of security deposit explained in detail</li>
+                            <li><span class="check-icon">✓</span> Documentation help at the time of reporting at allotted college</li>
+                            <li><span class="check-icon">✓</span> Video meeting with our expert counsellor after every round of counselling</li>
+                            <li><span class="check-icon">✓</span> Details on least expensive options for Management Quota, NRI, and other quota seats</li>
+                        </ul>
+                        <div class="note-box">
+                            <div class="note-label">📌 Important Note</div>
+                            Registration fees &amp; security deposit (if applicable) will be paid by parents only. Book now to avail our services.
+                        </div>
+                        <div class="discount-tag">🎖️ 10% off for Army / Police / Siblings / Single Parent</div>
+                        <a href="apply-ug.html" class="pkg-apply-btn orange-btn">Apply Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BDS PACKAGES -->
+    <section class="packages-section" style="padding-top: 20px; padding-bottom: 60px;">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>BDS Counselling Packages</h2>
+                <div class="underline"></div>
+                <p>Professional dental admission counselling for NEET-UG BDS aspirants — domicile rules, bond conditions, and round-wise strategy covered.</p>
+            </div>
+            <div class="packages-grid">
+
+                <!-- DENTAL BASIC -->
+                <div class="pkg-card">
+                    <div class="pkg-card-header blue">
+                        <div class="pkg-plan-label">BDS — Single-State Counselling Plan</div>
+                        <div class="pkg-name">Dental Basic Package</div>
+                        <div class="pkg-price">₹20,000</div>
+                        <div class="pkg-price-sub">+ GST (18%)</div>
+                        <span class="pkg-coverage">📍 One Selected State + MCC Support</span>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-features-title">Services Included</div>
+                        <ul class="pkg-features">
+                            <li><span class="check-icon">✓</span> One selected state BDS counselling — complete end-to-end support</li>
+                            <li><span class="check-icon">✓</span> MCC counselling support where applicable</li>
+                            <li><span class="check-icon">✓</span> Choice filling guidance for all rounds</li>
+                            <li><span class="check-icon">✓</span> Document checklist and certificate guidance</li>
+                            <li><span class="check-icon">✓</span> College analysis — seat matrix, fee structure, clinical facts</li>
+                            <li><span class="check-icon">✓</span> Round-wise strategy tailored to rank and category</li>
+                            <li><span class="check-icon">✓</span> Merit list and seat matrix discussion with parents and student</li>
+                            <li><span class="check-icon">✓</span> 24/7 WhatsApp support for counselling queries and reminders</li>
+                        </ul>
+                        <div class="ideal-for-box">
+                            <div class="ideal-title">✅ Ideal For</div>
+                            <ul>
+                                <li>Students with strong domicile advantage in one state</li>
+                                <li>Candidates targeting government colleges in a specific region</li>
+                                <li>Families seeking focused and cost-effective counselling</li>
+                            </ul>
+                        </div>
+                        <a href="apply-ug.html" class="pkg-apply-btn">Apply Now →</a>
+                    </div>
+                </div>
+
+                <!-- DENTAL PREMIUM -->
+                <div class="pkg-card">
+                    <div class="ribbon">PREMIUM</div>
+                    <div class="pkg-card-header orange">
+                        <div class="pkg-plan-label">BDS — Dual-State Counselling Plan</div>
+                        <div class="pkg-name">Dental Premium Package</div>
+                        <div class="pkg-price">₹30,000</div>
+                        <div class="pkg-price-sub">+ GST (18%)</div>
+                        <span class="pkg-coverage">📍 Two Selected States + MCC Support</span>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-features-title">Services Included</div>
+                        <ul class="pkg-features">
+                            <li><span class="check-icon">✓</span> Two selected state BDS counselling processes — complete support</li>
+                            <li><span class="check-icon">✓</span> MCC counselling support where applicable</li>
+                            <li><span class="check-icon">✓</span> Choice filling guidance for all rounds in both states</li>
+                            <li><span class="check-icon">✓</span> Document checklist and certificate guidance</li>
+                            <li><span class="check-icon">✓</span> Detailed college analysis — seat matrix, fee structure, clinical facts</li>
+                            <li><span class="check-icon">✓</span> Round-wise strategy across both states</li>
+                            <li><span class="check-icon">✓</span> Merit list and seat matrix discussion with parents and student</li>
+                            <li><span class="check-icon">✓</span> 24/7 WhatsApp support for all counselling queries</li>
+                            <li><span class="check-icon">✓</span> Comparative analysis of fee structures, bond rules, and college quality across states</li>
+                            <li><span class="check-icon">✓</span> Seat probability assessment — past trend comparison</li>
+                        </ul>
+                        <div class="ideal-for-box" style="border-left-color: #ff7a00; background: #fff8f0;">
+                            <div class="ideal-title" style="color: #e65100;">✅ Ideal For</div>
+                            <ul>
+                                <li>Students with borderline ranks seeking wider seat probability</li>
+                                <li>Candidates wanting to compare options across two states</li>
+                                <li>Families comparing fee structures, bond rules, and college quality</li>
+                            </ul>
+                        </div>
+                        <a href="apply-ug.html" class="pkg-apply-btn orange-btn">Apply Now →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SCOPE OF SERVICES -->
+    <section class="scope-section">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>Scope of Services</h2>
+                <div class="underline"></div>
+                <p>Applicable to both Medical &amp; Dental packages. End-to-end support from rank evaluation to final college reporting.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">💬</div><h3>24×7 Counselling Support</h3></div>
+                    <p>WhatsApp queries, timeline reminders, and quick clarifications during choice filling. Dedicated counselling dashboard for tracking timelines, document checklists, and updates.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🎯</div><h3>College Selection Based on Rank &amp; Budget</h3></div>
+                    <p>Personalized shortlisting by AIR, category rank, state domicile, and budget. Transparent analysis of realistic options, borderline possibilities, and comparative fee structures.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">📁</div><h3>Complete Document Guidance</h3></div>
+                    <p>Checklist for MCC and state counselling. Category certificate guidance — validity, format, and issuing authority. Special quota support: PwD, Defence, Minority, Ex-servicemen. Error prevention in uploads.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">📋</div><h3>Bond &amp; Bank Guarantee Guidance</h3></div>
+                    <p>State-wise bond explanation — service duration, penalty amount, rural service requirements. Bank guarantee details — amount, validity, and bank format. Risk assessment before choice filling.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🏫</div><h3>In-Depth College Analysis</h3></div>
+                    <p>Faculty strength, student-teacher ratio, university affiliation, clinical exposure, patient inflow, and internship quality. Honest discussion of strengths, limitations, and PG ecosystem.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">📝</div><h3>Registration Support (MCC &amp; State)</h3></div>
+                    <p>Step-by-step guidance for MCC registration, choice locking, and state portal registrations. Timeline tracking to prevent missed deadlines and common registration mistakes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">📊</div><h3>Merit List Analysis</h3></div>
+                    <p>Understanding state merit list structure, category-wise ranking, and seat allocation logic. Realistic seat probability with past trend comparison for opening and closing ranks.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🏛️</div><h3>State-wise Top Government Colleges</h3></div>
+                    <p>Curated list of top government colleges per state — including underrated but strong colleges. Ranked by clinical exposure, academic stability, internship quality, and rank-range mapping.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🔄</div><h3>Round-wise Choice Filling Strategy</h3></div>
+                    <p>Separate strategy for Round 1, Round 2, Mop-Up, and Stray Vacancy. Tailored to rank, category advantage, and state-specific trends. Avoids overloading unsafe choices.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">✅</div><h3>Complete Choice Filling for All Rounds</h3></div>
+                    <p>Customized choice lists prepared by counsellors with practical ordering to maximize upgrade chances. Dynamic updates based on seat allotment results and vacancy matrix.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">⚖️</div><h3>Round-to-Round Decision Support</h3></div>
+                    <p>Post-allotment counselling after each round — when to upgrade, when to freeze, risk analysis before surrendering a seat. Emotional support for students and parents under pressure.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">💰</div><h3>Complete Fee Structure Disclosure</h3></div>
+                    <p>Transparent breakup of tuition fees, hostel fees, caution deposits, and university charges. State-wise comparison and financial planning to avoid last-minute surprises.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🗂️</div><h3>Reporting Document Guidance</h3></div>
+                    <p>State and college-specific reporting checklist — originals vs photocopies and number of sets required. Guidance on admission letters, fee receipts, and bond documents to prevent rejection.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">🏠</div><h3>Hostel &amp; PG Accommodation Guidance</h3></div>
+                    <p>Government hostel availability overview, allocation rules, and cost-benefit analysis of hostel vs PG accommodation. City-specific practical insights for first-year students.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-header"><div class="service-icon">💵</div><h3>Internship Stipend Information</h3></div>
+                    <p>State-wise and college-wise stipend policies — amount, mode, and regularity of payment. Comparison across government colleges and impact on living expenses and PG preparation planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+        <h2>Ready to Secure Your Medical Seat?</h2>
+        <p>Join 500+ students who trusted RN Counselling for expert guidance in their MBBS &amp; BDS admissions.</p>
+        <div class="cta-buttons">
+            <a href="apply-ug.html" class="cta-btn-primary">Apply Now →</a>
+            <a href="https://wa.me/919673882382" class="cta-btn-wa" target="_blank" rel="noopener">
+                <span>💬</span> Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for medical admission guidance. Expert NEET-UG counselling across India.</p>
+                <p>Helping 500+ students achieve their dreams.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="pgpackages.html">Packages</a>
+                <a href="apply-ug.html">Apply Now</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 +91 96738 82382</p>
+                <p>💬 WhatsApp available 24/7</p>
+                <div class="social-buttons">
+                    <a href="tel:+919673882382" class="social-btn">📞 Call</a>
+                    <a href="https://wa.me/919673882382" class="social-btn" target="_blank" rel="noopener">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
