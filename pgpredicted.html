@@ -835,8 +835,7 @@
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify(formData),
-        // Note: Apps Script requires no-cors for cross-origin POSTs from static pages
-        // mode: "no-cors",   // uncomment if CORS errors appear; response will be opaque
+         mode: "no-cors
       });
 
       // With no-cors mode the response is always opaque (ok=false) — treat as success
