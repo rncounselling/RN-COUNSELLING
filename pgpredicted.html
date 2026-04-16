@@ -15,10 +15,10 @@
   <style>
     /* ===== DESIGN TOKENS ===== */
     :root {
-      --primary:      #1a4fa0;   /* deep blue */
+      --primary:      #1a4fa0;
       --primary-dark: #133a7a;
       --secondary:    #e8f0fe;
-      --accent:       #f97316;   /* orange CTA */
+      --accent:       #f97316;
       --accent-dark:  #dc6309;
       --text:         #1e293b;
       --muted:        #64748b;
@@ -30,13 +30,11 @@
       --shadow:       0 4px 24px rgba(26,79,160,0.10);
     }
 
-    /* ===== RESET ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== TOPBAR ===== */
     .topbar {
       background: var(--primary-dark);
       color: #c9d8f5;
@@ -47,7 +45,6 @@
     }
     .topbar a { color: #f97316; }
 
-    /* ===== NAVBAR ===== */
     header { background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
     .nav-container {
       max-width: 1200px;
@@ -90,7 +87,6 @@
     }
     .nav-cta:hover { background: var(--accent-dark) !important; }
 
-    /* Dropdown */
     .nav-dropdown { position: relative; }
     .nav-dropdown > a::after { content: " ▾"; font-size: 10px; }
     .dropdown-menu {
@@ -106,16 +102,10 @@
       overflow: hidden;
       z-index: 200;
     }
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 16px;
-      font-size: 13px;
-      border-radius: 0;
-    }
+    .dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; border-radius: 0; }
     .dropdown-menu a.active-sub { background: var(--secondary); color: var(--primary); font-weight: 600; }
     .nav-dropdown:hover .dropdown-menu { display: block; }
 
-    /* Hamburger */
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .hamburger span { width: 25px; height: 3px; background: var(--primary); border-radius: 2px; transition: 0.3s; }
     .mobile-nav {
@@ -136,7 +126,6 @@
     .mobile-nav a.active-sub { color: var(--primary); font-weight: 600; }
     .mobile-nav.open { display: flex; }
 
-    /* ===== PAGE HERO ===== */
     .page-hero {
       background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
       color: var(--white);
@@ -148,10 +137,8 @@
     .breadcrumb { font-size: 12px; opacity: 0.75; margin-bottom: 16px; }
     .breadcrumb a { opacity: 1; text-decoration: underline; }
 
-    /* ===== MAIN LAYOUT ===== */
     .page-wrap { max-width: 800px; margin: 0 auto; padding: 48px 16px 64px; }
 
-    /* ===== CARD ===== */
     .card {
       background: var(--white);
       border-radius: 16px;
@@ -160,24 +147,10 @@
     }
     @media (max-width: 600px) { .card { padding: 24px 18px; } }
 
-    .card-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-    .card-subtitle {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
+    .card-title { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .card-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
 
-    /* ===== FORM ===== */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px 24px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
     @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group.full { grid-column: 1 / -1; }
@@ -204,17 +177,14 @@
     }
     input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,79,160,0.10); }
 
-    /* Score field note */
     .score-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
-    /* Tom Select overrides */
     .ts-wrapper { width: 100%; }
     .ts-wrapper.focus .ts-control { border-color: var(--primary) !important; box-shadow: 0 0 0 3px rgba(26,79,160,0.10) !important; }
     .ts-dropdown { border-radius: 8px; border: 1.5px solid var(--border); }
     .ts-dropdown .option.selected { background: var(--secondary); color: var(--primary); }
     .ts-dropdown .option:hover { background: var(--secondary); }
 
-    /* ===== SUBMIT BUTTON ===== */
     .btn-submit {
       display: block;
       width: 100%;
@@ -234,32 +204,14 @@
     .btn-submit:active { transform: scale(0.99); }
     .btn-submit:disabled { background: #a0aec0; cursor: not-allowed; }
 
-    /* Lock icon */
-    .secure-note {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 10px;
-    }
+    .secure-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 10px; }
     .secure-note i { color: var(--success); }
 
-    /* ===== STATUS MESSAGES ===== */
-    .alert {
-      display: none;
-      padding: 14px 18px;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-top: 16px;
-    }
+    .alert { display: none; padding: 14px 18px; border-radius: 8px; font-size: 14px; margin-top: 16px; }
     .alert-error { background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; }
     .alert-success { background: #dcfce7; color: #166534; border-left: 4px solid #22c55e; }
 
-    /* ===== PROCESSING BANNER ===== */
-    #processingSection {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-    }
+    #processingSection { display: none; text-align: center; padding: 40px 20px; }
     #processingSection .spinner {
       width: 52px; height: 52px;
       border: 5px solid var(--secondary);
@@ -272,18 +224,11 @@
     #processingSection h3 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
     #processingSection p { color: var(--muted); font-size: 13px; max-width: 380px; margin: auto; }
 
-    /* ===== RESULTS SECTION ===== */
-    #resultsSection {
-      display: none;
-      margin-top: 32px;
-      border-top: 2px dashed var(--border);
-      padding-top: 28px;
-    }
+    #resultsSection { display: none; margin-top: 32px; border-top: 2px dashed var(--border); padding-top: 28px; }
     .result-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
     .result-header i { color: var(--success); font-size: 22px; }
     .result-header h2 { font-size: 18px; font-weight: 700; color: var(--text); }
 
-    /* Loader inside results */
     #reportLoader { text-align: center; padding: 24px 0; }
     #reportLoader .mini-spinner {
       width: 36px; height: 36px;
@@ -295,7 +240,6 @@
     }
     #reportLoader p { color: var(--muted); font-size: 13px; }
 
-    /* Download button */
     #downloadBtn {
       display: none;
       align-items: center;
@@ -315,23 +259,9 @@
     }
     #downloadBtn:hover { background: var(--primary-dark); }
 
-    /* Info badges */
-    .info-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .badge {
-      background: var(--secondary);
-      color: var(--primary);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 12px;
-      font-weight: 600;
-    }
+    .info-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .badge { background: var(--secondary); color: var(--primary); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; }
 
-    /* ===== HOW IT WORKS ===== */
     .steps-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -341,13 +271,7 @@
       padding: 0 16px;
     }
     @media (max-width: 600px) { .steps-row { grid-template-columns: 1fr; } }
-    .step-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 22px 18px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
+    .step-card { background: var(--white); border-radius: 12px; padding: 22px 18px; text-align: center; box-shadow: var(--shadow); }
     .step-num {
       width: 38px; height: 38px;
       background: var(--primary);
@@ -360,12 +284,7 @@
     .step-card h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
     .step-card p { font-size: 12px; color: var(--muted); }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--primary-dark);
-      color: #c9d8f5;
-      padding: 48px 0 0;
-    }
+    footer { background: var(--primary-dark); color: #c9d8f5; padding: 48px 0 0; }
     .footer-grid {
       max-width: 1200px;
       margin: auto;
@@ -385,27 +304,13 @@
       background: rgba(255,255,255,0.12);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      color: var(--white);
+      font-size: 14px; color: var(--white);
       transition: background 0.2s;
     }
     .footer-socials a:hover { background: var(--accent); }
 
-    .footer-col h4 {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--white);
-      margin-bottom: 14px;
-    }
-    .footer-col a {
-      display: block;
-      font-size: 13px;
-      color: #a5b4c8;
-      margin-bottom: 8px;
-      transition: color 0.2s;
-    }
+    .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--white); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 13px; color: #a5b4c8; margin-bottom: 8px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--white); }
     .footer-col a.active-footer { color: var(--accent); }
 
@@ -422,7 +327,6 @@
     }
     .footer-bottom a { color: var(--accent); }
 
-    /* ===== UTILS ===== */
     .text-center { text-align: center; }
     .hidden { display: none !important; }
   </style>
@@ -438,7 +342,6 @@
 <!-- ===== NAVBAR ===== -->
 <header>
   <div class="nav-container">
-    <!-- Logo -->
     <div class="logo">
       <div class="logo-icon">RN</div>
       <div class="logo-text">
@@ -447,7 +350,6 @@
       </div>
     </div>
 
-    <!-- Desktop Nav -->
     <nav id="desktopNav">
       <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
       <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
@@ -463,13 +365,11 @@
       <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact" class="nav-cta">Contact Us</a>
     </nav>
 
-    <!-- Hamburger -->
     <div class="hamburger" id="hamburger" onclick="toggleMobile()">
       <span></span><span></span><span></span>
     </div>
   </div>
 
-  <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobileNav">
     <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
     <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
@@ -514,7 +414,7 @@
 <div class="page-wrap">
   <div class="card">
 
-    <!-- ── FORM SECTION ── -->
+    <!-- FORM SECTION -->
     <div id="formSection">
       <div class="card-title"><i class="fa-regular fa-clipboard"></i> Applicant Details</div>
       <div class="card-subtitle">All fields are required. Your data is kept strictly confidential.</div>
@@ -522,25 +422,21 @@
       <form id="predictorForm" novalidate>
         <div class="form-grid">
 
-          <!-- Full Name -->
           <div class="form-group">
             <label for="fullName">Full Name <span class="req">*</span></label>
             <input type="text" id="fullName" name="fullName" placeholder="Dr. / Mr. / Ms. Surname" required />
           </div>
 
-          <!-- Contact No -->
           <div class="form-group">
             <label for="contactNo">Contact No <span class="req">*</span></label>
             <input type="tel" id="contactNo" name="contactNo" placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{7,15}" required />
           </div>
 
-          <!-- Email -->
           <div class="form-group">
             <label for="emailId">Email ID <span class="req">*</span></label>
             <input type="email" id="emailId" name="emailId" placeholder="you@email.com" required />
           </div>
 
-          <!-- Category -->
           <div class="form-group">
             <label for="category">Category <span class="req">*</span></label>
             <select id="category" name="category" required>
@@ -555,11 +451,9 @@
             </select>
           </div>
 
-          <!-- Dream Branch -->
           <div class="form-group full">
             <label for="dreamBranch">Dream Branch(es) <span class="req">*</span></label>
             <select id="dreamBranch" name="dreamBranch" multiple placeholder="Search or select branches...">
-              <!-- MD Branches -->
               <optgroup label="MD Branches">
                 <option value="MD General Medicine">MD General Medicine</option>
                 <option value="MD Paediatrics">MD Paediatrics</option>
@@ -581,7 +475,6 @@
                 <option value="MD Physical Medicine">MD Physical Medicine & Rehabilitation</option>
                 <option value="MD Radiation Oncology">MD Radiation Oncology</option>
               </optgroup>
-              <!-- MS Branches -->
               <optgroup label="MS Branches">
                 <option value="MS General Surgery">MS General Surgery</option>
                 <option value="MS Orthopaedics">MS Orthopaedics</option>
@@ -590,7 +483,6 @@
                 <option value="MS Ophthalmology">MS Ophthalmology</option>
                 <option value="MS Anatomy">MS Anatomy</option>
               </optgroup>
-              <!-- Diploma -->
               <optgroup label="Diploma Courses">
                 <option value="Diploma Anaesthesiology">Diploma in Anaesthesiology</option>
                 <option value="Diploma Child Health">Diploma in Child Health (DCH)</option>
@@ -604,7 +496,6 @@
             </select>
           </div>
 
-          <!-- NEET Score -->
           <div class="form-group full">
             <label for="neetScore">NEET PG / Mock Test Score <span class="req">*</span></label>
             <input type="number" id="neetScore" name="neetScore" min="0" max="1800" placeholder="Enter your score (0 – 1800)" required />
@@ -626,31 +517,27 @@
       </form>
     </div><!-- /#formSection -->
 
-    <!-- ── PROCESSING SECTION ── -->
+    <!-- PROCESSING SECTION -->
     <div id="processingSection">
       <div class="spinner"></div>
       <h3>Processing Your Payment…</h3>
       <p>Please wait while we verify your payment and prepare your prediction report. Do not close this tab.</p>
     </div>
 
-    <!-- ── RESULTS SECTION ── -->
+    <!-- RESULTS SECTION -->
     <div id="resultsSection">
       <div class="result-header">
         <i class="fa-solid fa-circle-check"></i>
         <h2>Payment Verified — Your Report is Ready!</h2>
       </div>
 
-      <div class="info-badges" id="resultBadges">
-        <!-- Populated dynamically by JS -->
-      </div>
+      <div class="info-badges" id="resultBadges"></div>
 
-      <!-- Report loader (shown while PDF is being generated) -->
       <div id="reportLoader">
         <div class="mini-spinner"></div>
         <p>Generating Your Personalised Report… <br/>Comparing your score against 3-year cutoff data.</p>
       </div>
 
-      <!-- Download button (shown after report is ready) -->
       <button id="downloadBtn" onclick="downloadReport()">
         <i class="fa-solid fa-file-pdf"></i> Download PDF Prediction Report
       </button>
@@ -662,7 +549,6 @@
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-grid">
-    <!-- Brand -->
     <div class="footer-brand">
       <div class="logo">
         <div class="logo-icon">RN</div>
@@ -681,7 +567,6 @@
       </div>
     </div>
 
-    <!-- Quick Links -->
     <div class="footer-col">
       <h4>Quick Links</h4>
       <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
@@ -692,7 +577,6 @@
       <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
     </div>
 
-    <!-- Services -->
     <div class="footer-col">
       <h4>Services</h4>
       <a href="#">MBBS Counselling</a>
@@ -703,7 +587,6 @@
       <a href="#">Document Verification</a>
     </div>
 
-    <!-- Contact -->
     <div class="footer-col footer-contact">
       <h4>Contact</h4>
       <p><i class="fa-solid fa-phone"></i> +91 97630 77764</p>
@@ -725,24 +608,17 @@
 <!-- ===== JAVASCRIPT ===== -->
 <script>
   // ─────────────────────────────────────────
-  //  CONFIG  — replace placeholders before go-live
+  //  CONFIG
   // ─────────────────────────────────────────
   const CONFIG = {
-    // Google Sheets Apps Script webhook URL (Sheet-1: form submissions)
-    GOOGLE_SHEET_WEBHOOK: "https://script.google.com/macros/s/AKfycbxvZJAO4zBppgiCYeyuJ-l89n236Vf89OKifXx-gemIRewqMtA79dYGHcCcWgy824hB8w/exec",
-
-    // Razorpay hosted payment page URL
+    GOOGLE_SHEET_WEBHOOK:  "https://script.google.com/macros/s/AKfycbxvZJAO4zBppgiCYeyuJ-l89n236Vf89OKifXx-gemIRewqMtA79dYGHcCcWgy824hB8w/exec",
     RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/V7SVyw9",
-
-    // Google Sheets Apps Script URL for cutoff data (Sheet-2)
-    CUTOFF_DATA_API: "https://script.google.com/macros/s/YOUR_CUTOFF_DEPLOYMENT_ID/exec",
-
-    // Amount in INR (display only — actual amount set in Razorpay dashboard)
-    PAYMENT_AMOUNT_DISPLAY: "₹499",
+    CUTOFF_DATA_API:       "https://script.google.com/macros/s/YOUR_CUTOFF_DEPLOYMENT_ID/exec",
+    PAYMENT_AMOUNT_DISPLAY:"₹499",
   };
 
   // ─────────────────────────────────────────
-  //  TOM SELECT — searchable multi-select
+  //  TOM SELECT
   // ─────────────────────────────────────────
   const branchSelect = new TomSelect("#dreamBranch", {
     plugins: ["remove_button", "checkbox_options"],
@@ -752,16 +628,14 @@
   });
 
   // ─────────────────────────────────────────
-  //  MOBILE MENU TOGGLE
+  //  MOBILE MENU
   // ─────────────────────────────────────────
   function toggleMobile() {
     document.getElementById("mobileNav").classList.toggle("open");
   }
 
   // ─────────────────────────────────────────
-  //  POST-PAYMENT STATE
-  //  URL param ?status=processing  → show processing screen
-  //  URL param ?status=paid        → show results
+  //  POST-PAYMENT STATE CHECK
   // ─────────────────────────────────────────
   (function checkPaymentStatus() {
     const params = new URLSearchParams(window.location.search);
@@ -769,9 +643,8 @@
 
     if (status === "processing") {
       showProcessing();
-      // Poll for payment confirmation (replace with real webhook/server check)
       setTimeout(() => {
-        const mockPaid = true; // ← replace with real verification call
+        const mockPaid = true;
         if (mockPaid) showResults(params);
       }, 4000);
     }
@@ -797,15 +670,15 @@
     alertEl.style.display   = "none";
     successEl.style.display = "none";
 
-    // ── Collect values ──
-    const fullName   = document.getElementById("fullName").value.trim();
-    const contactNo  = document.getElementById("contactNo").value.trim();
-    const emailId    = document.getElementById("emailId").value.trim();
-    const category   = document.getElementById("category").value;
-    const branches   = branchSelect.getValue();   // array
-    const neetScore  = document.getElementById("neetScore").value;
+    // Collect values
+    const fullName  = document.getElementById("fullName").value.trim();
+    const contactNo = document.getElementById("contactNo").value.trim();
+    const emailId   = document.getElementById("emailId").value.trim();
+    const category  = document.getElementById("category").value;
+    const branches  = branchSelect.getValue();   // array
+    const neetScore = document.getElementById("neetScore").value;
 
-    // ── Basic validation ──
+    // Validation
     if (!fullName || !contactNo || !emailId || !category || branches.length === 0 || neetScore === "") {
       showAlert(alertEl, "Please fill in all required fields before proceeding.");
       return;
@@ -815,51 +688,42 @@
       return;
     }
 
-    // ── Disable button & show progress ──
-    submitBtn.disabled   = true;
-    submitBtn.innerHTML  = '<i class="fa-solid fa-spinner fa-spin"></i> &nbsp; Submitting…';
+    submitBtn.disabled  = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> &nbsp; Submitting…';
 
-    const formData = {
-      timestamp:   new Date().toISOString(),
-      fullName,
-      contactNo,
-      emailId,
-      category,
-      dreamBranches: branches.join(", "),
-      neetScore: Number(neetScore),
-    };
-
-    // ── Step 1: Push data to Google Sheet ──
+    // ── Step 1: Push data to Google Sheet via GET request ──
+    // GET + query params is the most reliable method for Google Apps Script
+    // webhooks from a browser (avoids CORS preflight issues entirely).
     try {
-      const response = await fetch(CONFIG.GOOGLE_SHEET_WEBHOOK, {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(formData),
-         mode: "no-cors
+      const params = new URLSearchParams({
+        timestamp:     new Date().toISOString(),
+        fullName:      fullName,
+        contactNo:     contactNo,
+        emailId:       emailId,
+        category:      category,
+        dreamBranches: branches.join(", "),
+        neetScore:     neetScore,
       });
 
-      // With no-cors mode the response is always opaque (ok=false) — treat as success
-      // if (response.ok || response.type === "opaque") { ... }
+      await fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${params.toString()}`, {
+        method: "GET",
+        mode:   "no-cors",   // opaque response — that's fine, data still saves
+      });
 
-      console.log("[RN Predictor] Data pushed to Google Sheet:", formData);
+      console.log("[RN Predictor] Data sent to Google Sheet.");
     } catch (err) {
       console.error("[RN Predictor] Sheet submission error:", err);
-      // Non-blocking: proceed to payment even if sheet write fails (data logged in console)
+      // Non-blocking — proceed to payment regardless
     }
 
-    // ── Step 2: Redirect to Razorpay Payment Link ──
-    // Append return URL so Razorpay can redirect back with status
+    // ── Step 2: Redirect to Razorpay ──
     const returnUrl = encodeURIComponent(
       `${window.location.origin}${window.location.pathname}?status=processing&email=${encodeURIComponent(emailId)}`
     );
-
-    // NOTE: Razorpay hosted payment links support callback_url as a query param on some plans.
-    // Adjust this pattern to match your Razorpay plan configuration.
     const paymentUrl = `${CONFIG.RAZORPAY_PAYMENT_LINK}?callback_url=${returnUrl}`;
 
     submitBtn.innerHTML = '<i class="fa-solid fa-lock"></i> &nbsp; Redirecting to Payment…';
 
-    // Small delay so the user sees the redirect message
     setTimeout(() => {
       window.location.href = paymentUrl;
     }, 800);
@@ -869,17 +733,16 @@
   //  UI STATE HELPERS
   // ─────────────────────────────────────────
   function showProcessing() {
-    document.getElementById("formSection").style.display      = "none";
+    document.getElementById("formSection").style.display       = "none";
     document.getElementById("processingSection").style.display = "block";
     document.getElementById("resultsSection").style.display    = "none";
   }
 
   function showResults(params) {
-    document.getElementById("formSection").style.display      = "none";
+    document.getElementById("formSection").style.display       = "none";
     document.getElementById("processingSection").style.display = "none";
     document.getElementById("resultsSection").style.display    = "block";
 
-    // Show user's submitted details as badges if available
     const badges = document.getElementById("resultBadges");
     const score  = params && params.get("score");
     const email  = params && params.get("email");
@@ -887,42 +750,35 @@
     if (score) badges.innerHTML += `<span class="badge">Score: ${score}</span>`;
     badges.innerHTML += `<span class="badge"><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Payment Confirmed</span>`;
 
-    // Simulate server-side PDF generation (replace with real API poll)
     generateReport();
   }
 
   function showAlert(el, msg) {
-    el.textContent    = msg;
-    el.style.display  = "block";
+    el.textContent   = msg;
+    el.style.display = "block";
     el.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   // ─────────────────────────────────────────
   //  REPORT GENERATION
-  //  Replace with real server-side call to CUTOFF_DATA_API
   // ─────────────────────────────────────────
   async function generateReport() {
     const loader      = document.getElementById("reportLoader");
     const downloadBtn = document.getElementById("downloadBtn");
 
-    loader.style.display      = "flex";
+    loader.style.display       = "flex";
     loader.style.flexDirection = "column";
-    loader.style.alignItems   = "center";
+    loader.style.alignItems    = "center";
     downloadBtn.style.display  = "none";
 
     try {
-      // ── Real implementation: call cutoff comparison API ──
-      // const res = await fetch(`${CONFIG.CUTOFF_DATA_API}?email=${encodeURIComponent(email)}&score=${score}`);
-      // const data = await res.json();
-      // Store data.pdfUrl and use it in downloadReport()
-
-      // ── Placeholder: simulate 3-second server processing ──
+      // Replace with real API call to CUTOFF_DATA_API when ready
       await new Promise(resolve => setTimeout(resolve, 3000));
 
       loader.style.display      = "none";
       downloadBtn.style.display = "flex";
 
-      console.log("[RN Predictor] Report generation complete. Ready for download.");
+      console.log("[RN Predictor] Report ready for download.");
     } catch (err) {
       console.error("[RN Predictor] Report generation error:", err);
       loader.querySelector("p").textContent =
@@ -932,10 +788,8 @@
 
   // ─────────────────────────────────────────
   //  PDF DOWNLOAD
-  //  Replace placeholder URL with real generated PDF link from server
   // ─────────────────────────────────────────
   function downloadReport() {
-    // PLACEHOLDER — replace with actual PDF URL returned from your backend API
     const pdfUrl = "YOUR_GENERATED_PDF_URL";
 
     if (pdfUrl === "YOUR_GENERATED_PDF_URL") {
