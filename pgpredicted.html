@@ -335,7 +335,7 @@
 
 <!-- ===== TOPBAR ===== -->
 <div class="topbar">
-  Free Counselling Helpline: <a href="tel:+919876543210">+91 98765 43210</a> &nbsp;|&nbsp;
+  Free Counselling Helpline: <a href="tel:+919763077764">+91 97630 77764</a> &nbsp;|&nbsp;
   <a href="mailto:info@rncounselling.com">info@rncounselling.com</a>
 </div>
 
@@ -356,8 +356,8 @@
       <div class="nav-dropdown">
         <a href="#" class="active">College Predictor</a>
         <div class="dropdown-menu">
-          <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">MBBS Predictor</a>
-          <a href="pgpredictor.html" class="active-sub">PG Predictor</a>
+          <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">MD/MS/MDS Predictor</a>
+          <a href="pgpredicted.html" class="active-sub">PG Predictor</a>
         </div>
       </div>
       <a href="https://rncounselling.github.io/RN-COUNSELLING/#services">Services</a>
@@ -371,11 +371,8 @@
   </div>
 
   <div class="mobile-nav" id="mobileNav">
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
     <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
     <a href="pgpredictor.html" class="active-sub">PG College Predictor</a>
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/#services">Services</a>
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/#about">About Us</a>
     <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
   </div>
 </header>
@@ -388,7 +385,7 @@
     PG Predictor
   </div>
   <h1><i class="fa-solid fa-graduation-cap"></i> PG College Predictor</h1>
-  <p>Enter your NEET PG score and preferences — get a personalised list of colleges you can expect, based on 3 years of cutoff data.</p>
+  <p>Enter your NEET PG score and preferences — get a personalised list of colleges you can expect, based on 5 years of cutoff data.</p>
 </section>
 
 <!-- ===== HOW IT WORKS ===== -->
@@ -493,6 +490,17 @@
                 <option value="Diploma Orthopaedics">Diploma in Orthopaedics</option>
                 <option value="Diploma Radio-Diagnosis">Diploma in Radio-Diagnosis</option>
               </optgroup>
+              <optgroup label="MDS Branches">
+                <option value="Oral & Maxillofacial Surgery (OMFS)">Oral & Maxillofacial Surgery (OMFS)</option>
+                <option value="Orthodontics & Dentofacial Orthopaedicss">Orthodontics & Dentofacial Orthopaedics</option>
+                <option value="Conservative Dentistry & Endodontics">Conservative Dentistry & Endodontics</option>
+                <option value="Prosthodontics & Crown Bridge">Prosthodontics & Crown Bridge</option>
+                <option value="Periodontics">Periodontics</option
+                <option value="Paedodontics (Paediatric Dentistry)">Paedodontics (Paediatric Dentistry)</option
+                <option value="Oral Medicine & Radiology">Oral Medicine & Radiology</option   
+                <option value="Oral Pathology & Microbiology">Oral Pathology & Microbiology</option                                                                      
+                <option value="Public Health Dentistry">Public Health Dentistry</option                                            
+                </optgroup>                                          
             </select>
           </div>
 
@@ -569,9 +577,6 @@
 
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#about">About Us</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#services">Our Services</a>
       <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
       <a href="pgpredictor.html" class="active-footer">PG Predictor</a>
       <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
@@ -579,13 +584,9 @@
 
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">MBBS Counselling</a>
-      <a href="#">PG Counselling</a>
-      <a href="#">AYUSH Counselling</a>
-      <a href="#">BDS Counselling</a>
-      <a href="#">College Predictor</a>
-      <a href="#">Document Verification</a>
-    </div>
+      <a href="index.html">MBBS Counselling</a>
+      <a href="pg.html">PG Counselling</a>
+      </div>
 
     <div class="footer-col footer-contact">
       <h4>Contact</h4>
@@ -613,7 +614,6 @@
   const CONFIG = {
     GOOGLE_SHEET_WEBHOOK:  "https://script.google.com/macros/s/AKfycbzVCakeCOiA57AYbtuQwO3eSd-dejb5UOdSlFLvJekUw6dtKcULMBj-JAYCJhAIhLKe1w/exec",
     RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/SR14k5pC",
-    CUTOFF_DATA_API:       "https://script.google.com/macros/s/YOUR_CUTOFF_DEPLOYMENT_ID/exec",
     PAYMENT_AMOUNT_DISPLAY:"₹499",
   };
 
@@ -759,51 +759,6 @@
     el.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
-  // ─────────────────────────────────────────
-  //  REPORT GENERATION
-  // ─────────────────────────────────────────
-  async function generateReport() {
-    const loader      = document.getElementById("reportLoader");
-    const downloadBtn = document.getElementById("downloadBtn");
-
-    loader.style.display       = "flex";
-    loader.style.flexDirection = "column";
-    loader.style.alignItems    = "center";
-    downloadBtn.style.display  = "none";
-
-    try {
-      // Replace with real API call to CUTOFF_DATA_API when ready
-      await new Promise(resolve => setTimeout(resolve, 3000));
-
-      loader.style.display      = "none";
-      downloadBtn.style.display = "flex";
-
-      console.log("[RN Predictor] Report ready for download.");
-    } catch (err) {
-      console.error("[RN Predictor] Report generation error:", err);
-      loader.querySelector("p").textContent =
-        "There was an issue generating your report. Please contact support.";
-    }
-  }
-
-  // ─────────────────────────────────────────
-  //  PDF DOWNLOAD
-  // ─────────────────────────────────────────
-  function downloadReport() {
-    const pdfUrl = "YOUR_GENERATED_PDF_URL";
-
-    if (pdfUrl === "YOUR_GENERATED_PDF_URL") {
-      alert("PDF download URL not configured. Please contact RN Counselling support.");
-      return;
-    }
-
-    const link    = document.createElement("a");
-    link.href     = pdfUrl;
-    link.download = "RN_Counselling_PG_Prediction_Report.pdf";
-    link.target   = "_blank";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 
     console.log("[RN Predictor] PDF download triggered.");
   }
