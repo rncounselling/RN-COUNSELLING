@@ -221,7 +221,6 @@
     #processingSection h3 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
     #processingSection p { color: var(--muted); font-size: 13px; max-width: 380px; margin: auto; }
 
-    /* ── Results / Thank-you section ── */
     #resultsSection { display: none; margin-top: 32px; border-top: 2px dashed var(--border); padding-top: 28px; }
     .result-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
     .result-header i { color: var(--success); font-size: 28px; }
@@ -234,32 +233,12 @@
       padding: 28px 24px;
       text-align: center;
     }
-    .thankyou-box .big-icon {
-      font-size: 48px;
-      color: var(--success);
-      margin-bottom: 16px;
-    }
-    .thankyou-box h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #166534;
-      margin-bottom: 12px;
-    }
-    .thankyou-box p {
-      font-size: 15px;
-      color: #166534;
-      line-height: 1.7;
-      max-width: 480px;
-      margin: 0 auto;
-    }
+    .thankyou-box .big-icon { font-size: 48px; color: var(--success); margin-bottom: 16px; }
+    .thankyou-box h3 { font-size: 20px; font-weight: 700; color: #166534; margin-bottom: 12px; }
+    .thankyou-box p { font-size: 15px; color: #166534; line-height: 1.7; max-width: 480px; margin: 0 auto; }
     .thankyou-box .delivery-note {
-      margin-top: 18px;
-      font-size: 13px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      margin-top: 18px; font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
     }
     .thankyou-box .delivery-note i { color: var(--accent); }
 
@@ -290,12 +269,8 @@
 
     footer { background: var(--primary-dark); color: #c9d8f5; padding: 48px 0 0; }
     .footer-grid {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 32px;
+      max-width: 1200px; margin: auto; padding: 0 24px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
     }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
@@ -304,12 +279,9 @@
     .footer-brand p { font-size: 13px; margin-top: 10px; opacity: 0.78; line-height: 1.7; }
     .footer-socials { display: flex; gap: 10px; margin-top: 16px; }
     .footer-socials a {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,0.12);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--white);
-      transition: background 0.2s;
+      width: 34px; height: 34px; background: rgba(255,255,255,0.12);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--white); transition: background 0.2s;
     }
     .footer-socials a:hover { background: var(--accent); }
 
@@ -323,11 +295,8 @@
 
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.10);
-      text-align: center;
-      padding: 16px 24px;
-      font-size: 12px;
-      color: #6b8aa8;
-      margin-top: 36px;
+      text-align: center; padding: 16px 24px;
+      font-size: 12px; color: #6b8aa8; margin-top: 36px;
     }
     .footer-bottom a { color: var(--accent); }
 
@@ -455,7 +424,6 @@
 
           <div class="form-group full">
             <label for="dreamBranch">Dream Branch(es) <span class="req">*</span></label>
-            <!-- FIX 1: All MDS <option> closing tags were malformed — corrected below -->
             <select id="dreamBranch" name="dreamBranch" multiple placeholder="Search or select branches...">
               <optgroup label="MD Branches">
                 <option value="MD General Medicine">MD General Medicine</option>
@@ -538,7 +506,7 @@
       <p>Please wait while we verify your payment. Do not close this tab.</p>
     </div>
 
-    <!-- RESULTS SECTION — thank-you message only, no PDF -->
+    <!-- RESULTS / THANK-YOU SECTION -->
     <div id="resultsSection">
       <div class="result-header">
         <i class="fa-solid fa-circle-check"></i>
@@ -547,7 +515,6 @@
 
       <div class="info-badges" id="resultBadges"></div>
 
-      <!-- FIX 4: replaced PDF generation with a thank-you message -->
       <div class="thankyou-box">
         <div class="big-icon">
           <i class="fa-solid fa-circle-check"></i>
@@ -562,7 +529,8 @@
           <i class="fa-solid fa-envelope"></i> Email &nbsp;— delivery within 4 hours
         </p>
         <p class="delivery-note" style="margin-top:10px;">
-          <i class="fa-solid fa-phone"></i> Need help? Call us: <a href="tel:+919763077764" style="color:var(--accent);font-weight:600;">+91 97630 77764</a>
+          <i class="fa-solid fa-phone"></i> Need help? Call us:
+          <a href="tel:+919763077764" style="color:var(--accent);font-weight:600;">+91 97630 77764</a>
         </p>
       </div>
 
@@ -625,16 +593,13 @@
 
 <!-- JAVASCRIPT -->
 <script>
-  // ─── CONFIG ───────────────────────────────
+  // ─── CONFIG ───────────────────────────────────────────────────────────────
   const CONFIG = {
     GOOGLE_SHEET_WEBHOOK:  "https://script.google.com/macros/s/AKfycbzVCakeCOiA57AYbtuQwO3eSd-dejb5UOdSlFLvJekUw6dtKcULMBj-JAYCJhAIhLKe1w/exec",
-    RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/V7SVyw9",
-    PAYMENT_AMOUNT_DISPLAY: "₹499",
+    RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/SR14k5pC",
   };
 
-  // ─── TOM SELECT (FIX 1: initialised after DOM is ready) ──────────────────
-  // Tom Select must be initialised AFTER all <option> tags are properly closed.
-  // The malformed MDS options were preventing Tom Select from reading them.
+  // ─── TOM SELECT ───────────────────────────────────────────────────────────
   const branchSelect = new TomSelect("#dreamBranch", {
     plugins: ["remove_button", "checkbox_options"],
     placeholder: "Search or select branches…",
@@ -642,29 +607,53 @@
     create: false,
   });
 
-  // ─── MOBILE MENU ──────────────────────────
+  // ─── MOBILE MENU ──────────────────────────────────────────────────────────
   function toggleMobile() {
     document.getElementById("mobileNav").classList.toggle("open");
   }
 
-  // ─── POST-PAYMENT STATE CHECK ─────────────
-  // Runs on page load — if Razorpay redirected back with ?status=paid or ?status=processing
+  // ─── SAVE TO GOOGLE SHEET ─────────────────────────────────────────────────
+  // Sends a GET request (no-cors) — response is opaque but data saves correctly.
+  function saveToSheet(params) {
+    const qs = new URLSearchParams(params);
+    return fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${qs.toString()}`, {
+      method: "GET",
+      mode:   "no-cors",
+    }).catch(err => console.error("[RN Predictor] Sheet error:", err));
+  }
+
+  // ─── POST-PAYMENT STATE CHECK (runs on every page load) ───────────────────
   (function checkPaymentStatus() {
     const params = new URLSearchParams(window.location.search);
     const status = params.get("status");
 
-    if (status === "processing") {
-      showProcessing();
-      // After 3 s show the thank-you screen
-      setTimeout(() => showResults(params), 3000);
+    if (status === "paid") {
+      // Save PAID row to Google Sheet
+      const email     = params.get("email")     || "";
+      const contact   = params.get("contact")   || "";
+      const name      = params.get("name")       || "";
+
+      saveToSheet({
+        timestamp:     new Date().toISOString(),
+        fullName:      decodeURIComponent(name),
+        contactNo:     decodeURIComponent(contact),
+        emailId:       decodeURIComponent(email),
+        paymentStatus: "PAID",                      // ← KEY CHANGE
+      });
+
+      showResults(params);
     }
 
-    if (status === "paid") {
-      showResults(params);
+    if (status === "processing") {
+      showProcessing();
+      setTimeout(() => {
+        const p = new URLSearchParams(window.location.search);
+        showResults(p);
+      }, 3000);
     }
   })();
 
-  // ─── FORM SUBMIT ──────────────────────────
+  // ─── FORM SUBMIT ──────────────────────────────────────────────────────────
   document.getElementById("predictorForm").addEventListener("submit", function (e) {
     e.preventDefault();
     handleFormSubmit();
@@ -678,15 +667,14 @@
     alertEl.style.display   = "none";
     successEl.style.display = "none";
 
-    // Collect values
     const fullName  = document.getElementById("fullName").value.trim();
     const contactNo = document.getElementById("contactNo").value.trim();
     const emailId   = document.getElementById("emailId").value.trim();
     const category  = document.getElementById("category").value;
-    const branches  = branchSelect.getValue();   // returns array of selected values
+    const branches  = branchSelect.getValue();
     const neetScore = document.getElementById("neetScore").value;
 
-    // ── Validation ──
+    // Validation
     if (!fullName || !contactNo || !emailId || !category || branches.length === 0 || neetScore === "") {
       showAlert(alertEl, "Please fill in all required fields before proceeding.");
       return;
@@ -699,46 +687,38 @@
     submitBtn.disabled  = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> &nbsp; Submitting…';
 
-    // ── FIX 2 & 3: Save to Google Sheet via GET (no-cors, most reliable for Apps Script) ──
-    try {
-      const qs = new URLSearchParams({
-        timestamp:     new Date().toISOString(),
-        fullName:      fullName,
-        contactNo:     contactNo,
-        emailId:       emailId,
-        category:      category,
-        dreamBranches: branches.join(", "),
-        neetScore:     neetScore,
-      });
+    // ── Step 1: Save PENDING row to Google Sheet ──────────────────────────
+    await saveToSheet({
+      timestamp:     new Date().toISOString(),
+      fullName:      fullName,
+      contactNo:     contactNo,
+      emailId:       emailId,
+      category:      category,
+      dreamBranches: branches.join(", "),
+      neetScore:     neetScore,
+      paymentStatus: "PENDING",                     // ← KEY CHANGE
+    });
 
-      // GET + no-cors avoids CORS preflight entirely.
-      // The response will be "opaque" (we can't read it) but the data DOES save.
-      await fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${qs.toString()}`, {
-        method: "GET",
-        mode:   "no-cors",
-      });
+    console.log("[RN Predictor] PENDING row saved.");
 
-      console.log("[RN Predictor] Data sent to Google Sheet.");
-    } catch (err) {
-      // Non-blocking — proceed to payment even if sheet write fails
-      console.error("[RN Predictor] Sheet submission error:", err);
-    }
-
-    // ── Redirect to Razorpay ──
-    // Build the return URL so Razorpay sends the user back here with ?status=paid
-    const returnUrl  = encodeURIComponent(
-      `${window.location.origin}${window.location.pathname}?status=paid&email=${encodeURIComponent(emailId)}`
+    // ── Step 2: Redirect to Razorpay ──────────────────────────────────────
+    // Pass name, contact, email in the callback URL so we can write the PAID
+    // row when the user lands back on this page.
+    const returnUrl = encodeURIComponent(
+      `${window.location.origin}${window.location.pathname}` +
+      `?status=paid` +
+      `&email=${encodeURIComponent(emailId)}` +
+      `&contact=${encodeURIComponent(contactNo)}` +
+      `&name=${encodeURIComponent(fullName)}`
     );
     const paymentUrl = `${CONFIG.RAZORPAY_PAYMENT_LINK}?callback_url=${returnUrl}`;
 
     submitBtn.innerHTML = '<i class="fa-solid fa-lock"></i> &nbsp; Redirecting to Payment…';
 
-    setTimeout(() => {
-      window.location.href = paymentUrl;
-    }, 800);
+    setTimeout(() => { window.location.href = paymentUrl; }, 800);
   }
 
-  // ─── UI HELPERS ───────────────────────────
+  // ─── UI HELPERS ───────────────────────────────────────────────────────────
   function showProcessing() {
     document.getElementById("formSection").style.display       = "none";
     document.getElementById("processingSection").style.display = "block";
@@ -750,15 +730,14 @@
     document.getElementById("processingSection").style.display = "none";
     document.getElementById("resultsSection").style.display    = "block";
 
-    // Show email badge if available in the URL
     const badges = document.getElementById("resultBadges");
     const email  = params && params.get("email");
-    if (email) {
-      badges.innerHTML += `<span class="badge"><i class="fa-solid fa-envelope"></i> ${decodeURIComponent(email)}</span>`;
-    }
+    const name   = params && params.get("name");
+
+    if (name)  badges.innerHTML += `<span class="badge"><i class="fa-solid fa-user"></i> ${decodeURIComponent(name)}</span>`;
+    if (email) badges.innerHTML += `<span class="badge"><i class="fa-solid fa-envelope"></i> ${decodeURIComponent(email)}</span>`;
     badges.innerHTML += `<span class="badge"><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Payment Confirmed</span>`;
 
-    // Scroll to results
     document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
