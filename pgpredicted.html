@@ -7,13 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <!-- Tom Select for searchable multi-select -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"/>
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
   <style>
-    /* ===== DESIGN TOKENS ===== */
     :root {
       --primary:      #1a4fa0;
       --primary-dark: #133a7a;
@@ -224,40 +221,47 @@
     #processingSection h3 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
     #processingSection p { color: var(--muted); font-size: 13px; max-width: 380px; margin: auto; }
 
+    /* ── Results / Thank-you section ── */
     #resultsSection { display: none; margin-top: 32px; border-top: 2px dashed var(--border); padding-top: 28px; }
     .result-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-    .result-header i { color: var(--success); font-size: 22px; }
-    .result-header h2 { font-size: 18px; font-weight: 700; color: var(--text); }
+    .result-header i { color: var(--success); font-size: 28px; }
+    .result-header h2 { font-size: 20px; font-weight: 700; color: var(--text); }
 
-    #reportLoader { text-align: center; padding: 24px 0; }
-    #reportLoader .mini-spinner {
-      width: 36px; height: 36px;
-      border: 4px solid var(--secondary);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      margin: 0 auto 12px;
+    .thankyou-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
     }
-    #reportLoader p { color: var(--muted); font-size: 13px; }
-
-    #downloadBtn {
-      display: none;
+    .thankyou-box .big-icon {
+      font-size: 48px;
+      color: var(--success);
+      margin-bottom: 16px;
+    }
+    .thankyou-box h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 12px;
+    }
+    .thankyou-box p {
+      font-size: 15px;
+      color: #166534;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .thankyou-box .delivery-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 14px;
-      background: var(--primary);
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.2s;
+      gap: 6px;
     }
-    #downloadBtn:hover { background: var(--primary-dark); }
+    .thankyou-box .delivery-note i { color: var(--accent); }
 
     .info-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
     .badge { background: var(--secondary); color: var(--primary); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; }
@@ -333,13 +337,13 @@
 </head>
 <body>
 
-<!-- ===== TOPBAR ===== -->
+<!-- TOPBAR -->
 <div class="topbar">
   Free Counselling Helpline: <a href="tel:+919763077764">+91 97630 77764</a> &nbsp;|&nbsp;
   <a href="mailto:info@rncounselling.com">info@rncounselling.com</a>
 </div>
 
-<!-- ===== NAVBAR ===== -->
+<!-- NAVBAR -->
 <header>
   <div class="nav-container">
     <div class="logo">
@@ -371,13 +375,14 @@
   </div>
 
   <div class="mobile-nav" id="mobileNav">
+    <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
     <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
     <a href="pgpredictor.html" class="active-sub">PG College Predictor</a>
     <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="page-hero">
   <div class="breadcrumb">
     <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a> &rsaquo;
@@ -388,7 +393,7 @@
   <p>Enter your NEET PG score and preferences — get a personalised list of colleges you can expect, based on 5 years of cutoff data.</p>
 </section>
 
-<!-- ===== HOW IT WORKS ===== -->
+<!-- HOW IT WORKS -->
 <div class="steps-row">
   <div class="step-card">
     <div class="step-num">1</div>
@@ -402,12 +407,12 @@
   </div>
   <div class="step-card">
     <div class="step-num">3</div>
-    <h4>Download Report</h4>
-    <p>Receive a PDF with predicted colleges ranked by your score and preferences.</p>
+    <h4>Receive Report</h4>
+    <p>Get your personalised predictor file on your email &amp; WhatsApp within 4 hours.</p>
   </div>
 </div>
 
-<!-- ===== MAIN CARD ===== -->
+<!-- MAIN CARD -->
 <div class="page-wrap">
   <div class="card">
 
@@ -450,11 +455,12 @@
 
           <div class="form-group full">
             <label for="dreamBranch">Dream Branch(es) <span class="req">*</span></label>
+            <!-- FIX 1: All MDS <option> closing tags were malformed — corrected below -->
             <select id="dreamBranch" name="dreamBranch" multiple placeholder="Search or select branches...">
               <optgroup label="MD Branches">
                 <option value="MD General Medicine">MD General Medicine</option>
                 <option value="MD Paediatrics">MD Paediatrics</option>
-                <option value="MD Dermatology">MD Dermatology, Venereology & Leprosy</option>
+                <option value="MD Dermatology">MD Dermatology, Venereology &amp; Leprosy</option>
                 <option value="MD Radio-Diagnosis">MD Radio-Diagnosis</option>
                 <option value="MD Psychiatry">MD Psychiatry</option>
                 <option value="MD Anaesthesiology">MD Anaesthesiology</option>
@@ -464,18 +470,18 @@
                 <option value="MD Pharmacology">MD Pharmacology</option>
                 <option value="MD Physiology">MD Physiology</option>
                 <option value="MD Anatomy">MD Anatomy</option>
-                <option value="MD Forensic Medicine">MD Forensic Medicine & Toxicology</option>
+                <option value="MD Forensic Medicine">MD Forensic Medicine &amp; Toxicology</option>
                 <option value="MD Community Medicine">MD Community Medicine</option>
                 <option value="MD Respiratory Medicine">MD Respiratory Medicine</option>
                 <option value="MD Geriatrics">MD Geriatrics</option>
                 <option value="MD Nuclear Medicine">MD Nuclear Medicine</option>
-                <option value="MD Physical Medicine">MD Physical Medicine & Rehabilitation</option>
+                <option value="MD Physical Medicine">MD Physical Medicine &amp; Rehabilitation</option>
                 <option value="MD Radiation Oncology">MD Radiation Oncology</option>
               </optgroup>
               <optgroup label="MS Branches">
                 <option value="MS General Surgery">MS General Surgery</option>
                 <option value="MS Orthopaedics">MS Orthopaedics</option>
-                <option value="MS OBGY">MS Obstetrics & Gynaecology (OBGY)</option>
+                <option value="MS OBGY">MS Obstetrics &amp; Gynaecology (OBGY)</option>
                 <option value="MS ENT">MS ENT (Otorhinolaryngology)</option>
                 <option value="MS Ophthalmology">MS Ophthalmology</option>
                 <option value="MS Anatomy">MS Anatomy</option>
@@ -483,7 +489,7 @@
               <optgroup label="Diploma Courses">
                 <option value="Diploma Anaesthesiology">Diploma in Anaesthesiology</option>
                 <option value="Diploma Child Health">Diploma in Child Health (DCH)</option>
-                <option value="Diploma Obstetrics">Diploma in Obstetrics & Gynaecology</option>
+                <option value="Diploma Obstetrics">Diploma in Obstetrics &amp; Gynaecology</option>
                 <option value="Diploma Ophthalmology">Diploma in Ophthalmology</option>
                 <option value="Diploma ENT">Diploma in ENT</option>
                 <option value="Diploma Dermatology">Diploma in Dermatology</option>
@@ -491,16 +497,16 @@
                 <option value="Diploma Radio-Diagnosis">Diploma in Radio-Diagnosis</option>
               </optgroup>
               <optgroup label="MDS Branches">
-                <option value="Oral & Maxillofacial Surgery (OMFS)">Oral & Maxillofacial Surgery (OMFS)</option>
-                <option value="Orthodontics & Dentofacial Orthopaedicss">Orthodontics & Dentofacial Orthopaedics</option>
-                <option value="Conservative Dentistry & Endodontics">Conservative Dentistry & Endodontics</option>
-                <option value="Prosthodontics & Crown Bridge">Prosthodontics & Crown Bridge</option>
-                <option value="Periodontics">Periodontics</option
-                <option value="Paedodontics (Paediatric Dentistry)">Paedodontics (Paediatric Dentistry)</option
-                <option value="Oral Medicine & Radiology">Oral Medicine & Radiology</option   
-                <option value="Oral Pathology & Microbiology">Oral Pathology & Microbiology</option                                                                      
-                <option value="Public Health Dentistry">Public Health Dentistry</option                                            
-                </optgroup>                                          
+                <option value="Oral &amp; Maxillofacial Surgery (OMFS)">Oral &amp; Maxillofacial Surgery (OMFS)</option>
+                <option value="Orthodontics &amp; Dentofacial Orthopaedics">Orthodontics &amp; Dentofacial Orthopaedics</option>
+                <option value="Conservative Dentistry &amp; Endodontics">Conservative Dentistry &amp; Endodontics</option>
+                <option value="Prosthodontics &amp; Crown Bridge">Prosthodontics &amp; Crown Bridge</option>
+                <option value="Periodontics">Periodontics</option>
+                <option value="Paedodontics (Paediatric Dentistry)">Paedodontics (Paediatric Dentistry)</option>
+                <option value="Oral Medicine &amp; Radiology">Oral Medicine &amp; Radiology</option>
+                <option value="Oral Pathology &amp; Microbiology">Oral Pathology &amp; Microbiology</option>
+                <option value="Public Health Dentistry">Public Health Dentistry</option>
+              </optgroup>
             </select>
           </div>
 
@@ -529,32 +535,43 @@
     <div id="processingSection">
       <div class="spinner"></div>
       <h3>Processing Your Payment…</h3>
-      <p>Please wait while we verify your payment and prepare your prediction report. Do not close this tab.</p>
+      <p>Please wait while we verify your payment. Do not close this tab.</p>
     </div>
 
-    <!-- RESULTS SECTION -->
+    <!-- RESULTS SECTION — thank-you message only, no PDF -->
     <div id="resultsSection">
       <div class="result-header">
         <i class="fa-solid fa-circle-check"></i>
-        <h2>Payment Verified — Your Report is Ready!</h2>
+        <h2>Payment Successful!</h2>
       </div>
 
       <div class="info-badges" id="resultBadges"></div>
 
-      <div id="reportLoader">
-        <div class="mini-spinner"></div>
-        <p>Generating Your Personalised Report… <br/>Comparing your score against 3-year cutoff data.</p>
+      <!-- FIX 4: replaced PDF generation with a thank-you message -->
+      <div class="thankyou-box">
+        <div class="big-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3>Thank you for your payment!</h3>
+        <p>
+          Your Predictor file will be received on your <strong>email &amp; WhatsApp within 4 hours</strong>.
+          Please keep an eye on your inbox and WhatsApp messages.
+        </p>
+        <p class="delivery-note">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp &nbsp;+&nbsp;
+          <i class="fa-solid fa-envelope"></i> Email &nbsp;— delivery within 4 hours
+        </p>
+        <p class="delivery-note" style="margin-top:10px;">
+          <i class="fa-solid fa-phone"></i> Need help? Call us: <a href="tel:+919763077764" style="color:var(--accent);font-weight:600;">+91 97630 77764</a>
+        </p>
       </div>
 
-      <button id="downloadBtn" onclick="downloadReport()">
-        <i class="fa-solid fa-file-pdf"></i> Download PDF Prediction Report
-      </button>
     </div><!-- /#resultsSection -->
 
   </div><!-- /.card -->
 </div><!-- /.page-wrap -->
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -586,7 +603,7 @@
       <h4>Services</h4>
       <a href="index.html">MBBS Counselling</a>
       <a href="pg.html">PG Counselling</a>
-      </div>
+    </div>
 
     <div class="footer-col footer-contact">
       <h4>Contact</h4>
@@ -606,47 +623,40 @@
 </footer>
 
 
-<!-- ===== JAVASCRIPT ===== -->
+<!-- JAVASCRIPT -->
 <script>
-  // ─────────────────────────────────────────
-  //  CONFIG
-  // ─────────────────────────────────────────
+  // ─── CONFIG ───────────────────────────────
   const CONFIG = {
     GOOGLE_SHEET_WEBHOOK:  "https://script.google.com/macros/s/AKfycbzVCakeCOiA57AYbtuQwO3eSd-dejb5UOdSlFLvJekUw6dtKcULMBj-JAYCJhAIhLKe1w/exec",
     RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/SR14k5pC",
-    PAYMENT_AMOUNT_DISPLAY:"₹499",
+    PAYMENT_AMOUNT_DISPLAY: "₹499",
   };
 
-  // ─────────────────────────────────────────
-  //  TOM SELECT
-  // ─────────────────────────────────────────
+  // ─── TOM SELECT (FIX 1: initialised after DOM is ready) ──────────────────
+  // Tom Select must be initialised AFTER all <option> tags are properly closed.
+  // The malformed MDS options were preventing Tom Select from reading them.
   const branchSelect = new TomSelect("#dreamBranch", {
     plugins: ["remove_button", "checkbox_options"],
-    placeholder: "Search or select MD/MS branches…",
-    maxOptions: 60,
+    placeholder: "Search or select branches…",
+    maxOptions: 100,
     create: false,
   });
 
-  // ─────────────────────────────────────────
-  //  MOBILE MENU
-  // ─────────────────────────────────────────
+  // ─── MOBILE MENU ──────────────────────────
   function toggleMobile() {
     document.getElementById("mobileNav").classList.toggle("open");
   }
 
-  // ─────────────────────────────────────────
-  //  POST-PAYMENT STATE CHECK
-  // ─────────────────────────────────────────
+  // ─── POST-PAYMENT STATE CHECK ─────────────
+  // Runs on page load — if Razorpay redirected back with ?status=paid or ?status=processing
   (function checkPaymentStatus() {
     const params = new URLSearchParams(window.location.search);
     const status = params.get("status");
 
     if (status === "processing") {
       showProcessing();
-      setTimeout(() => {
-        const mockPaid = true;
-        if (mockPaid) showResults(params);
-      }, 4000);
+      // After 3 s show the thank-you screen
+      setTimeout(() => showResults(params), 3000);
     }
 
     if (status === "paid") {
@@ -654,9 +664,7 @@
     }
   })();
 
-  // ─────────────────────────────────────────
-  //  FORM SUBMIT
-  // ─────────────────────────────────────────
+  // ─── FORM SUBMIT ──────────────────────────
   document.getElementById("predictorForm").addEventListener("submit", function (e) {
     e.preventDefault();
     handleFormSubmit();
@@ -675,10 +683,10 @@
     const contactNo = document.getElementById("contactNo").value.trim();
     const emailId   = document.getElementById("emailId").value.trim();
     const category  = document.getElementById("category").value;
-    const branches  = branchSelect.getValue();   // array
+    const branches  = branchSelect.getValue();   // returns array of selected values
     const neetScore = document.getElementById("neetScore").value;
 
-    // Validation
+    // ── Validation ──
     if (!fullName || !contactNo || !emailId || !category || branches.length === 0 || neetScore === "") {
       showAlert(alertEl, "Please fill in all required fields before proceeding.");
       return;
@@ -691,11 +699,9 @@
     submitBtn.disabled  = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> &nbsp; Submitting…';
 
-    // ── Step 1: Push data to Google Sheet via GET request ──
-    // GET + query params is the most reliable method for Google Apps Script
-    // webhooks from a browser (avoids CORS preflight issues entirely).
+    // ── FIX 2 & 3: Save to Google Sheet via GET (no-cors, most reliable for Apps Script) ──
     try {
-      const params = new URLSearchParams({
+      const qs = new URLSearchParams({
         timestamp:     new Date().toISOString(),
         fullName:      fullName,
         contactNo:     contactNo,
@@ -705,20 +711,23 @@
         neetScore:     neetScore,
       });
 
-      await fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${params.toString()}`, {
+      // GET + no-cors avoids CORS preflight entirely.
+      // The response will be "opaque" (we can't read it) but the data DOES save.
+      await fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${qs.toString()}`, {
         method: "GET",
-        mode:   "no-cors",   // opaque response — that's fine, data still saves
+        mode:   "no-cors",
       });
 
       console.log("[RN Predictor] Data sent to Google Sheet.");
     } catch (err) {
+      // Non-blocking — proceed to payment even if sheet write fails
       console.error("[RN Predictor] Sheet submission error:", err);
-      // Non-blocking — proceed to payment regardless
     }
 
-    // ── Step 2: Redirect to Razorpay ──
-    const returnUrl = encodeURIComponent(
-      `${window.location.origin}${window.location.pathname}?status=processing&email=${encodeURIComponent(emailId)}`
+    // ── Redirect to Razorpay ──
+    // Build the return URL so Razorpay sends the user back here with ?status=paid
+    const returnUrl  = encodeURIComponent(
+      `${window.location.origin}${window.location.pathname}?status=paid&email=${encodeURIComponent(emailId)}`
     );
     const paymentUrl = `${CONFIG.RAZORPAY_PAYMENT_LINK}?callback_url=${returnUrl}`;
 
@@ -729,9 +738,7 @@
     }, 800);
   }
 
-  // ─────────────────────────────────────────
-  //  UI STATE HELPERS
-  // ─────────────────────────────────────────
+  // ─── UI HELPERS ───────────────────────────
   function showProcessing() {
     document.getElementById("formSection").style.display       = "none";
     document.getElementById("processingSection").style.display = "block";
@@ -743,24 +750,22 @@
     document.getElementById("processingSection").style.display = "none";
     document.getElementById("resultsSection").style.display    = "block";
 
+    // Show email badge if available in the URL
     const badges = document.getElementById("resultBadges");
-    const score  = params && params.get("score");
     const email  = params && params.get("email");
-    if (email) badges.innerHTML += `<span class="badge"><i class="fa-solid fa-envelope"></i> ${decodeURIComponent(email)}</span>`;
-    if (score) badges.innerHTML += `<span class="badge">Score: ${score}</span>`;
+    if (email) {
+      badges.innerHTML += `<span class="badge"><i class="fa-solid fa-envelope"></i> ${decodeURIComponent(email)}</span>`;
+    }
     badges.innerHTML += `<span class="badge"><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Payment Confirmed</span>`;
 
-    generateReport();
+    // Scroll to results
+    document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function showAlert(el, msg) {
     el.textContent   = msg;
     el.style.display = "block";
     el.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
-
-    console.log("[RN Predictor] PDF download triggered.");
   }
 </script>
 
