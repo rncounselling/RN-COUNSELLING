@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees Installment Plan - RN Counselling</title>
+    <meta name="description" content="Pay your RN Counselling fees in easy installments. Choose your MD/MS or MDS package and pay in 2-3 easy installments.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background-color: #0a58ca;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ff7a00;
+            border-bottom-color: #ff7a00;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: linear-gradient(135deg, #0a58ca 0%, #0d47a1 60%, #1a237e 100%);
+            color: white;
+            padding: 110px 20px 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,122,0,0.25);
+            border: 1px solid rgba(255,122,0,0.5);
+            color: #ffb347;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span { color: #ff7a00; }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* ─── SECTION WRAPPERS ─── */
+        .section-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a58ca;
+            margin-bottom: 8px;
+        }
+
+        .section-title .underline {
+            width: 60px;
+            height: 4px;
+            background: #ff7a00;
+            border-radius: 2px;
+            margin: 0 auto 12px;
+        }
+
+        .section-title p {
+            color: #555;
+            font-size: 1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ─── HOW IT WORKS ─── */
+        .how-it-works {
+            padding: 60px 0 40px;
+        }
+
+        .steps-box {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 36px 40px;
+            border-top: 5px solid #0a58ca;
+        }
+
+        .steps-box .notice {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-left: 5px solid #ff7a00;
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: #5d4037;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .steps-box .notice strong {
+            color: #e65100;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: #f0f7ff;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            background: #0a58ca;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 auto 14px;
+        }
+
+        .step-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0a58ca;
+            margin-bottom: 8px;
+        }
+
+        .step-item p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ─── PACKAGES ─── */
+        .packages-section {
+            padding: 50px 0 20px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .pkg-select-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .pkg-select-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(10,88,202,0.15);
+        }
+
+        .pkg-select-card.selected {
+            border-color: #ff7a00;
+            box-shadow: 0 8px 28px rgba(255,122,0,0.25);
+        }
+
+        .pkg-select-card.selected .selected-check {
+            display: flex;
+        }
+
+        .selected-check {
+            display: none;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 26px;
+            height: 26px;
+            background: #ff7a00;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            z-index: 5;
+        }
+
+        .pkg-select-header {
+            padding: 22px 18px 16px;
+            color: white;
+            text-align: center;
+        }
+
+        .pkg-select-header.blue {
+            background: linear-gradient(135deg, #0a58ca, #1976d2);
+        }
+
+        .pkg-select-header.orange {
+            background: linear-gradient(135deg, #e65100, #ff7a00);
+        }
+
+        .pkg-select-header .pkg-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 6px;
+        }
+
+        .pkg-select-header .pkg-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .pkg-select-header .pkg-total {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .pkg-select-header .pkg-total-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .pkg-select-body {
+            padding: 16px 18px;
+            text-align: center;
+        }
+
+        .pkg-select-body .installment-count {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .pkg-select-body .installment-count strong {
+            color: #0a58ca;
+        }
+
+        .select-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #f0f7ff;
+            border: 2px solid #0a58ca;
+            border-radius: 8px;
+            color: #0a58ca;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pkg-select-card.selected .select-btn {
+            background: #0a58ca;
+            color: white;
+        }
+
+        .select-btn:hover {
+            background: #0a58ca;
+            color: white;
+        }
+
+        /* ─── RIBBON ─── */
+        .ribbon {
+            position: absolute;
+            top: 14px;
+            right: -24px;
+            background: #fff;
+            color: #ff7a00;
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 4px 30px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        /* ─── INSTALLMENT SECTION ─── */
+        .installment-section {
+            padding: 20px 0 60px;
+        }
+
+        .installment-panel {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 36px 40px;
+            border-top: 5px solid #0a58ca;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .installment-panel.orange-top {
+            border-top-color: #ff7a00;
+        }
+
+        .installment-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .installment-panel-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0a58ca;
+            margin-bottom: 6px;
+        }
+
+        .installment-panel.orange-top .installment-panel-title {
+            color: #e65100;
+        }
+
+        .installment-panel-sub {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 28px;
+        }
+
+        .installment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .inst-card {
+            background: #f0f7ff;
+            border: 2px solid #c7dcf7;
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .inst-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(10,88,202,0.15);
+        }
+
+        .inst-card.orange-card {
+            background: #fff8f0;
+            border-color: #ffd0a0;
+        }
+
+        .inst-card.orange-card:hover {
+            box-shadow: 0 8px 24px rgba(255,122,0,0.15);
+        }
+
+        .inst-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #0a58ca;
+            margin-bottom: 8px;
+        }
+
+        .inst-card.orange-card .inst-num {
+            color: #e65100;
+        }
+
+        .inst-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a2a6e;
+            margin-bottom: 4px;
+        }
+
+        .inst-label {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 18px;
+        }
+
+        .pay-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #0a58ca, #1976d2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 12px rgba(10,88,202,0.25);
+        }
+
+        .pay-btn:hover {
+            background: linear-gradient(135deg, #084298, #0a58ca);
+            box-shadow: 0 6px 18px rgba(10,88,202,0.35);
+            transform: translateY(-1px);
+        }
+
+        .pay-btn.orange-pay {
+            background: linear-gradient(135deg, #e65100, #ff7a00);
+            box-shadow: 0 4px 12px rgba(255,122,0,0.3);
+        }
+
+        .pay-btn.orange-pay:hover {
+            background: linear-gradient(135deg, #bf360c, #e65100);
+            box-shadow: 0 6px 18px rgba(255,122,0,0.4);
+        }
+
+        .payment-note {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 0.85rem;
+            color: #5d4037;
+        }
+
+        .payment-note strong {
+            color: #e65100;
+        }
+
+        /* ─── CTA STRIP ─── */
+        .cta-strip {
+            background: linear-gradient(135deg, #0a58ca, #1a237e);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-strip h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-strip p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 30px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            display: inline-block;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(255,122,0,0.4);
+        }
+
+        .cta-btn-primary:hover {
+            background: #e66d00;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-wa:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: white;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background-color: #0a2a6e;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 16px;
+            color: #ff7a00;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover { color: #ff7a00; }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 9px 20px;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .social-btn:hover { background: #e66d00; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.55);
+            font-size: 0.85rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 10px 20px;
+            }
+            nav ul { gap: 1.2rem; }
+            .hero { padding: 140px 20px 50px; }
+            .hero h1 { font-size: 2rem; }
+            .packages-grid { grid-template-columns: 1fr 1fr; }
+            .steps-box { padding: 24px 20px; }
+            .installment-panel { padding: 24px 20px; }
+        }
+
+        @media (max-width: 500px) {
+            .packages-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── HEADER ─── -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo">
+                <span class="brand-name">RN Counselling</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="pg.html">Home</a></li>
+                    <li><a href="pgpackages.html">Packages</a></li>
+                    <li><a href="pginstallment.html" class="active">Fees Installment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-badge">PG Medical Counselling 2026</div>
+        <h1>Fees <span>Installment Plan</span></h1>
+        <p>Pay your counselling fees in easy installments. Select your package below and choose the installment that suits you.</p>
+    </section>
+
+    <!-- ─── HOW IT WORKS ─── -->
+    <section class="how-it-works">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>How to Avail Installment</h2>
+                <div class="underline"></div>
+                <p>Follow these simple steps to pay your counselling fees in installments.</p>
+            </div>
+            <div class="steps-box">
+                <div class="notice">
+                    <strong>📌 Important:</strong> To avail installment, first go to the Apply page, fill the application form, choose payment, then click on the payment button. When it's redirected to the payment page, <strong>go back</strong> — your details are saved with us. Then come to this Fees Installment page, choose your package &amp; pay.
+                </div>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <h4>Fill Application Form</h4>
+                        <p>Go to the Apply page, fill your application form, choose your package and click the payment button.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <h4>Go Back from Payment Page</h4>
+                        <p>When you are redirected to the payment page, simply go back. Your details are already saved with us.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <h4>Pay Your Installment Here</h4>
+                        <p>Come to this page, select your package below, and click Pay Now on your chosen installment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── PACKAGE SELECTION ─── -->
+    <section class="packages-section">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>Select Your Package</h2>
+                <div class="underline"></div>
+                <p>Click on your package to view the installment options.</p>
+            </div>
+            <div class="packages-grid">
+
+                <!-- MD/MS BASIC -->
+                <div class="pkg-select-card" onclick="selectPackage('mdms-basic')" id="card-mdms-basic">
+                    <div class="selected-check">✓</div>
+                    <div class="pkg-select-header blue">
+                        <div class="pkg-label">MD/MS</div>
+                        <div class="pkg-title">Basic Package</div>
+                        <div class="pkg-total">₹25,000</div>
+                        <div class="pkg-total-label">Total Fee</div>
+                    </div>
+                    <div class="pkg-select-body">
+                        <div class="installment-count">Pay in <strong>2 installments</strong></div>
+                        <button type="button" class="select-btn">Select Package</button>
+                    </div>
+                </div>
+
+                <!-- MD/MS PREMIUM -->
+                <div class="pkg-select-card" onclick="selectPackage('mdms-premium')" id="card-mdms-premium" style="overflow:visible;">
+                    <div class="ribbon">PREMIUM</div>
+                    <div class="selected-check">✓</div>
+                    <div class="pkg-select-header orange">
+                        <div class="pkg-label">MD/MS</div>
+                        <div class="pkg-title">Premium Package</div>
+                        <div class="pkg-total">₹55,000</div>
+                        <div class="pkg-total-label">Total Fee</div>
+                    </div>
+                    <div class="pkg-select-body">
+                        <div class="installment-count">Pay in <strong>3 installments</strong></div>
+                        <button type="button" class="select-btn">Select Package</button>
+                    </div>
+                </div>
+
+                <!-- MDS BASIC -->
+                <div class="pkg-select-card" onclick="selectPackage('mds-basic')" id="card-mds-basic">
+                    <div class="selected-check">✓</div>
+                    <div class="pkg-select-header blue">
+                        <div class="pkg-label">MDS</div>
+                        <div class="pkg-title">Basic Package</div>
+                        <div class="pkg-total">₹15,000</div>
+                        <div class="pkg-total-label">Total Fee</div>
+                    </div>
+                    <div class="pkg-select-body">
+                        <div class="installment-count">Pay in <strong>2 installments</strong></div>
+                        <button type="button" class="select-btn">Select Package</button>
+                    </div>
+                </div>
+
+                <!-- MDS PREMIUM -->
+                <div class="pkg-select-card" onclick="selectPackage('mds-premium')" id="card-mds-premium" style="overflow:visible;">
+                    <div class="ribbon">PREMIUM</div>
+                    <div class="selected-check">✓</div>
+                    <div class="pkg-select-header orange">
+                        <div class="pkg-label">MDS</div>
+                        <div class="pkg-title">Premium Package</div>
+                        <div class="pkg-total">₹25,000</div>
+                        <div class="pkg-total-label">Total Fee</div>
+                    </div>
+                    <div class="pkg-select-body">
+                        <div class="installment-count">Pay in <strong>2 installments</strong></div>
+                        <button type="button" class="select-btn">Select Package</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── INSTALLMENT PANELS ─── -->
+    <section class="installment-section" id="installmentSection">
+        <div class="section-wrap">
+
+            <!-- MD/MS BASIC -->
+            <div class="installment-panel" id="panel-mdms-basic">
+                <div class="installment-panel-title">MD/MS Basic — Installment Options</div>
+                <div class="installment-panel-sub">Total fee: ₹25,000 &nbsp;|&nbsp; Pay in 2 easy installments</div>
+                <div class="installment-cards">
+                    <div class="inst-card">
+                        <div class="inst-num">1st Installment</div>
+                        <div class="inst-amount">₹10,000</div>
+                        <div class="inst-label">Pay first to confirm registration</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn">Pay Now →</a>
+                    </div>
+                    <div class="inst-card">
+                        <div class="inst-num">2nd Installment</div>
+                        <div class="inst-amount">₹15,000</div>
+                        <div class="inst-label">Pay before counselling begins</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn">Pay Now →</a>
+                    </div>
+                </div>
+                <div class="payment-note">
+                    📌 <strong>Note:</strong> After payment, please save your receipt. For any queries call <strong>+91 97630 77764</strong> or WhatsApp us.
+                </div>
+            </div>
+
+            <!-- MD/MS PREMIUM -->
+            <div class="installment-panel orange-top" id="panel-mdms-premium">
+                <div class="installment-panel-title">MD/MS Premium — Installment Options</div>
+                <div class="installment-panel-sub">Total fee: ₹55,000 &nbsp;|&nbsp; Pay in 3 easy installments</div>
+                <div class="installment-cards">
+                    <div class="inst-card orange-card">
+                        <div class="inst-num">1st Installment</div>
+                        <div class="inst-amount">₹15,000</div>
+                        <div class="inst-label">Pay first to confirm registration</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn orange-pay">Pay Now →</a>
+                    </div>
+                    <div class="inst-card orange-card">
+                        <div class="inst-num">2nd Installment</div>
+                        <div class="inst-amount">₹20,000</div>
+                        <div class="inst-label">Pay before Round 1 begins</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn orange-pay">Pay Now →</a>
+                    </div>
+                    <div class="inst-card orange-card">
+                        <div class="inst-num">3rd Installment</div>
+                        <div class="inst-amount">₹20,000</div>
+                        <div class="inst-label">Pay before Round 2 begins</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn orange-pay">Pay Now →</a>
+                    </div>
+                </div>
+                <div class="payment-note">
+                    📌 <strong>Note:</strong> After payment, please save your receipt. For any queries call <strong>+91 97630 77764</strong> or WhatsApp us.
+                </div>
+            </div>
+
+            <!-- MDS BASIC -->
+            <div class="installment-panel" id="panel-mds-basic">
+                <div class="installment-panel-title">MDS Basic — Installment Options</div>
+                <div class="installment-panel-sub">Total fee: ₹15,000 &nbsp;|&nbsp; Pay in 2 easy installments</div>
+                <div class="installment-cards">
+                    <div class="inst-card">
+                        <div class="inst-num">1st Installment</div>
+                        <div class="inst-amount">₹5,500</div>
+                        <div class="inst-label">Pay first to confirm registration</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn">Pay Now →</a>
+                    </div>
+                    <div class="inst-card">
+                        <div class="inst-num">2nd Installment</div>
+                        <div class="inst-amount">₹9,500</div>
+                        <div class="inst-label">Pay before counselling begins</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn">Pay Now →</a>
+                    </div>
+                </div>
+                <div class="payment-note">
+                    📌 <strong>Note:</strong> After payment, please save your receipt. For any queries call <strong>+91 97630 77764</strong> or WhatsApp us.
+                </div>
+            </div>
+
+            <!-- MDS PREMIUM -->
+            <div class="installment-panel orange-top" id="panel-mds-premium">
+                <div class="installment-panel-title">MDS Premium — Installment Options</div>
+                <div class="installment-panel-sub">Total fee: ₹25,000 &nbsp;|&nbsp; Pay in 2 easy installments</div>
+                <div class="installment-cards">
+                    <div class="inst-card orange-card">
+                        <div class="inst-num">1st Installment</div>
+                        <div class="inst-amount">₹10,000</div>
+                        <div class="inst-label">Pay first to confirm registration</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn orange-pay">Pay Now →</a>
+                    </div>
+                    <div class="inst-card orange-card">
+                        <div class="inst-num">2nd Installment</div>
+                        <div class="inst-amount">₹15,000</div>
+                        <div class="inst-label">Pay before counselling begins</div>
+                        <a href="https://rzp.io/rzp/SR14k5pC" target="_blank" class="pay-btn orange-pay">Pay Now →</a>
+                    </div>
+                </div>
+                <div class="payment-note">
+                    📌 <strong>Note:</strong> After payment, please save your receipt. For any queries call <strong>+91 97630 77764</strong> or WhatsApp us.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── CTA STRIP ─── -->
+    <section class="cta-strip">
+        <h2>Need Help Choosing a Package?</h2>
+        <p>Our counsellors are available 24/7 on WhatsApp to help you select the right plan.</p>
+        <div class="cta-buttons">
+            <a href="pgapply.html" class="cta-btn-primary">Apply Now →</a>
+            <a href="https://wa.me/919763077764" class="cta-btn-wa" target="_blank" rel="noopener">
+                <span>💬</span> Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RN Counselling</h3>
+                <p>Your trusted partner for medical admission guidance. Expert NEET-PG counselling across India.</p>
+                <p>Helping 500+ students achieve their dreams.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="ipg.html">Home</a>
+                <a href="pgpackages.html">Packages</a>
+                <a href="pgapply.html">Apply Now</a>
+                <a href="pginstallment.html">Fees Installment</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 +91 97630 77764</p>
+                <p>💬 WhatsApp available 24/7</p>
+                <div class="social-buttons">
+                    <a href="tel:+919763077764" class="social-btn">📞 Call</a>
+                    <a href="https://wa.me/919763077764" class="social-btn" target="_blank" rel="noopener">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 RN Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ─── JAVASCRIPT ─── -->
+    <script>
+        function selectPackage(pkgId) {
+            // Remove selected state from all cards
+            document.querySelectorAll('.pkg-select-card').forEach(function(card) {
+                card.classList.remove('selected');
+            });
+
+            // Hide all installment panels
+            document.querySelectorAll('.installment-panel').forEach(function(panel) {
+                panel.classList.remove('active');
+            });
+
+            // Select clicked card
+            document.getElementById('card-' + pkgId).classList.add('selected');
+
+            // Show matching panel
+            var panel = document.getElementById('panel-' + pkgId);
+            panel.classList.add('active');
+
+            // Smooth scroll to installment section
+            setTimeout(function() {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
