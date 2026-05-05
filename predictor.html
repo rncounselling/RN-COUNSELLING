@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Predictor - Estimate Medical Colleges by NEET Score | RN Counselling</title>
-    <meta name="description" content="Get accurate college predictions based on your NEET score, category, and domicile. Expert analysis with ₹999 detailed prediction package from RN Counselling. Will also provide predicted college previous cut of, fees structure, etc.">
+    <meta name="description" content="Get accurate college predictions based on your NEET score, category, and domicile. Expert analysis with ₹499 detailed prediction package from RN Counselling.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --medical-blue: #0a58ca;
@@ -31,14 +27,12 @@
             background-color: var(--white);
         }
 
-        /* Header Styles */
+        /* Header */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
         }
 
@@ -51,669 +45,182 @@
             align-items: center;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .logo-section { display: flex; align-items: center; gap: 1rem; }
+        .logo-section img { width: 50px; height: 50px; object-fit: contain; }
+        .brand-text h1 { font-size: 1.5rem; color: var(--medical-blue); font-weight: 700; line-height: 1.2; }
+        .brand-text p { font-size: 0.75rem; color: var(--text-light); }
 
-        .logo-section img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
+        nav { display: none; }
+        nav.desktop-nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a { color: var(--text-dark); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--medical-blue); }
 
-        .brand-text h1 {
-            font-size: 1.5rem;
-            color: var(--medical-blue);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .brand-text p {
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        nav {
-            display: none;
-        }
-
-        nav.desktop-nav {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--medical-blue);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--white);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            min-width: 200px;
-            padding: 0.5rem 0;
-            margin-top: 0.5rem;
+            display: none; position: absolute; top: 100%; left: 0;
+            background: var(--white); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 8px; min-width: 200px; padding: 0.5rem 0; margin-top: 0.5rem;
         }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; color: var(--text-dark); text-decoration: none; transition: background 0.2s; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--medical-blue); }
 
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
+        .mobile-menu-btn { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--medical-blue); }
 
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: background 0.2s;
-        }
+        /* Main */
+        main { margin-top: 80px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        .dropdown-menu a:hover {
-            background: var(--bg-light);
-            color: var(--medical-blue);
-        }
-
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--medical-blue);
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 80px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            background: linear-gradient(135deg, rgba(10, 88, 202, 0.95), rgba(255, 122, 0, 0.85)), url('/assets/generated/college-predictor-hero-background.dim_1200x400.jpg');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 4rem 0;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(10,88,202,0.95), rgba(255,122,0,0.85));
+            color: var(--white); padding: 4rem 0; text-align: center;
         }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95; }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            padding: 0.875rem 2rem; border-radius: 50px; font-weight: 600;
+            text-decoration: none; display: inline-block; transition: all 0.3s;
+            border: none; cursor: pointer; font-size: 1rem;
         }
+        .btn-primary { background: var(--medical-orange); color: var(--white); }
+        .btn-primary:hover { background: #e66d00; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,122,0,0.3); }
+        .btn-secondary { background: var(--white); color: var(--medical-blue); }
+        .btn-secondary:hover { background: var(--bg-light); transform: translateY(-2px); }
 
-        .btn-primary {
-            background: var(--medical-orange);
-            color: var(--white);
-        }
+        /* Sections */
+        section { padding: 4rem 0; }
+        section:nth-child(even) { background: var(--bg-light); }
 
-        .btn-primary:hover {
-            background: #e66d00;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
-        }
+        .section-title { font-size: 2rem; color: var(--medical-blue); margin-bottom: 1.5rem; text-align: center; font-weight: 700; }
+        .section-content { max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-light); line-height: 1.8; }
 
-        .btn-secondary {
-            background: var(--white);
-            color: var(--medical-blue);
-        }
+        .how-it-works { background: var(--white); }
+        .how-it-works-content { display: grid; gap: 1.5rem; margin-top: 2rem; }
 
-        .btn-secondary:hover {
-            background: var(--bg-light);
-            transform: translateY(-2px);
-        }
+        .info-card { background: var(--bg-light); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--medical-blue); }
+        .info-card h3 { color: var(--medical-blue); margin-bottom: 0.5rem; }
 
-        /* Section Styles */
-        section {
-            padding: 4rem 0;
-        }
+        .disclaimer { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem 1.5rem; border-radius: 8px; margin-top: 1.5rem; }
+        .disclaimer strong { color: #856404; }
 
-        section:nth-child(even) {
-            background: var(--bg-light);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: var(--medical-blue);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            background: var(--white);
-        }
-
-        .how-it-works-content {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--medical-blue);
-        }
-
-        .info-card h3 {
-            color: var(--medical-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .disclaimer {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-
-        .disclaimer strong {
-            color: #856404;
-        }
+        /* Sample Results */
+        .sample-results { background: var(--bg-light); }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .result-card { background: var(--white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 4px solid var(--medical-blue); }
+        .result-card h3 { color: var(--medical-blue); margin-bottom: 0.75rem; font-size: 1.125rem; }
+        .result-info { display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-light); font-size: 0.9rem; }
+        .probability { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 600; margin-top: 0.5rem; }
+        .probability.high { background: #d4edda; color: #155724; }
+        .probability.medium { background: #fff3cd; color: #856404; }
+        .probability.low { background: #f8d7da; color: #721c24; }
+        .sample-note { text-align: center; margin-top: 2rem; padding: 1rem; background: #e7f3ff; border-radius: 8px; color: var(--medical-blue); font-weight: 600; }
 
         /* Form Section */
-        .form-section {
-            background: var(--white);
-        }
+        .form-section { background: var(--white); }
 
         .predictor-form {
-            max-width: 700px;
-            margin: 2rem auto;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px; margin: 2rem auto; background: var(--white);
+            padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark); }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.875rem; border: 2px solid var(--border-color);
+            border-radius: 8px; font-size: 1rem; transition: border-color 0.3s;
         }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--medical-blue); }
+        .form-group input.error, .form-group select.error { border-color: var(--error-red); }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.875rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--medical-blue);
-        }
-
-        .form-group input.error,
-        .form-group select.error {
-            border-color: var(--error-red);
-        }
-
-        .error-message {
-            color: var(--error-red);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
+        .error-message { color: var(--error-red); font-size: 0.875rem; margin-top: 0.25rem; display: none; }
         .form-group input.error + .error-message,
-        .form-group select.error + .error-message {
-            display: block;
-        }
+        .form-group select.error + .error-message { display: block; }
 
-        /* Sample Results Section */
-        .sample-results {
-            background: var(--bg-light);
+        /* Submit Button */
+        .submit-btn {
+            width: 100%; padding: 1rem 2rem; background: var(--medical-orange);
+            color: var(--white); border: none; border-radius: 8px; font-size: 1.1rem;
+            font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 0.5rem;
         }
+        .submit-btn:hover { background: #e66d00; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,122,0,0.3); }
+        .submit-btn:disabled { background: #aaa; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        /* Saving Notice */
+        .saving-notice {
+            display: none; background: #fff3cd; color: #856404;
+            padding: 1rem; border-radius: 8px; margin-top: 1rem;
+            border: 1px solid #ffc107; text-align: center; font-weight: 600;
         }
+        .saving-notice.show { display: block; }
 
-        .result-card {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-top: 4px solid var(--medical-blue);
-        }
-
-        .result-card h3 {
-            color: var(--medical-blue);
-            margin-bottom: 0.75rem;
-            font-size: 1.125rem;
-        }
-
-        .result-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .probability {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        .probability.high {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .probability.medium {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .probability.low {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .sample-note {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #e7f3ff;
-            border-radius: 8px;
-            color: var(--medical-blue);
-            font-weight: 600;
-        }
-
-        /* Package Section */
-        .package-section {
-            background: var(--white);
-        }
-
-        .package-card {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: linear-gradient(135deg, var(--medical-blue), #0847a8);
-            color: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(10, 88, 202, 0.3);
-            text-align: center;
-        }
-
-        .package-card h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .package-price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-
-        .package-features {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .package-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .package-features li:before {
-            content: "✓";
-            font-weight: 700;
-            color: var(--medical-orange);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Confirmation Section */
-        .confirmation {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-
-        .confirmation h3 {
-            color: #155724;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .confirmation p {
-            color: #155724;
-            line-height: 1.8;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: var(--bg-light);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 2rem auto;
-        }
-
-        .faq-item {
-            background: var(--white);
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
+        /* FAQ */
+        .faq-section { background: var(--bg-light); }
+        .faq-container { max-width: 800px; margin: 2rem auto; }
+        .faq-item { background: var(--white); margin-bottom: 1rem; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .faq-question {
-            width: 100%;
-            padding: 1.25rem;
-            background: var(--white);
-            border: none;
-            text-align: left;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s;
+            width: 100%; padding: 1.25rem; background: var(--white); border: none;
+            text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-dark);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s;
         }
-
-        .faq-question:hover {
-            background: var(--bg-light);
-        }
-
-        .faq-question:after {
-            content: "+";
-            font-size: 1.5rem;
-            color: var(--medical-blue);
-            transition: transform 0.3s;
-        }
-
-        .faq-question.active:after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-answer.active {
-            max-height: 500px;
-        }
-
-        .faq-answer-content {
-            padding: 1.25rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
+        .faq-question:hover { background: var(--bg-light); }
+        .faq-question:after { content: "+"; font-size: 1.5rem; color: var(--medical-blue); transition: transform 0.3s; }
+        .faq-question.active:after { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-answer.active { max-height: 500px; }
+        .faq-answer-content { padding: 1.25rem; color: var(--text-light); line-height: 1.8; }
 
         /* Footer */
-        footer {
-            background: var(--medical-blue);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: var(--medical-orange);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .social-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
+        footer { background: var(--medical-blue); color: var(--white); padding: 3rem 0 1rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { margin-bottom: 1rem; font-size: 1.25rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; line-height: 1.8; }
+        .footer-section a:hover { color: var(--medical-orange); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .social-buttons { display: flex; gap: 1rem; margin-top: 1rem; }
         .social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--white);
-            color: var(--medical-blue);
-            text-decoration: none;
-            transition: all 0.3s;
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; background: var(--white);
+            color: var(--medical-blue); text-decoration: none; transition: all 0.3s;
         }
+        .social-btn:hover { background: var(--medical-orange); color: var(--white); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
 
-        .social-btn:hover {
-            background: var(--medical-orange);
-            color: var(--white);
-            transform: translateY(-3px);
-        }
+        /* Sticky Social */
+        .sticky-social { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 0.75rem; z-index: 999; }
+        .sticky-social a { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s; }
+        .sticky-social a:hover { transform: scale(1.1); }
+        .sticky-social .phone { background: var(--medical-blue); }
+        .sticky-social .whatsapp { background: #25d366; }
+        .sticky-social .telegram { background: #0088cc; }
+        .sticky-social .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Sticky Social Buttons */
-        .sticky-social {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            z-index: 999;
-        }
-
-        .sticky-social a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-        }
-
-        .sticky-social a:hover {
-            transform: scale(1.1);
-        }
-
-        .sticky-social .phone {
-            background: var(--medical-blue);
-        }
-
-        .sticky-social .whatsapp {
-            background: #25d366;
-        }
-
-        .sticky-social .telegram {
-            background: #0088cc;
-        }
-
-        .sticky-social .instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (min-width: 768px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            nav.desktop-nav {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .predictor-form {
-                padding: 3rem;
-            }
+            .mobile-menu-btn { display: none; }
+            nav.desktop-nav { display: flex; }
+            .hero h1 { font-size: 3rem; }
+            .predictor-form { padding: 3rem; }
         }
 
         @media (max-width: 767px) {
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 2.5rem 0;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .predictor-form {
-                padding: 1.5rem;
-            }
-
-            .package-price {
-                font-size: 2.5rem;
-            }
-
-            .sticky-social {
-                bottom: 10px;
-                right: 10px;
-            }
-
-            .sticky-social a {
-                width: 45px;
-                height: 45px;
-            }
+            .hero h1 { font-size: 1.75rem; }
+            .hero p { font-size: 1rem; }
+            section { padding: 2.5rem 0; }
+            .section-title { font-size: 1.5rem; }
+            .predictor-form { padding: 1.5rem; }
+            .sticky-social { bottom: 10px; right: 10px; }
+            .sticky-social a { width: 45px; height: 45px; }
         }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
         <div class="header-container">
@@ -751,9 +258,9 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+
+        <!-- Hero -->
         <section class="hero">
             <div class="container">
                 <h1>College Predictor – Estimate Your Possible Medical Colleges by NEET Score</h1>
@@ -765,7 +272,7 @@
             </div>
         </section>
 
-        <!-- How It Works Section -->
+        <!-- How It Works -->
         <section class="how-it-works">
             <div class="container">
                 <h2 class="section-title">How Our College Predictor Works</h2>
@@ -792,7 +299,7 @@
             </div>
         </section>
 
-        <!-- Sample Results Section -->
+        <!-- Sample Results -->
         <section class="sample-results">
             <div class="container">
                 <h2 class="section-title">Sample College Predictions</h2>
@@ -858,103 +365,110 @@
             </div>
         </section>
 
-        <!-- Predictor Form Section -->
+        <!-- Predictor Form -->
         <section class="form-section" id="predictor-form">
             <div class="container">
                 <h2 class="section-title">Get Your College Predictions</h2>
-                <form class="predictor-form" id="predictionForm">
+                <form class="predictor-form" id="predictionForm" onsubmit="handleSubmit(event)">
+
                     <div class="form-group">
                         <label for="fullName">Full Name *</label>
                         <input type="text" id="fullName" name="fullName" required>
                         <span class="error-message">Please enter your full name</span>
                     </div>
+
                     <div class="form-group">
                         <label for="contactNumber">Contact Number *</label>
                         <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
                         <span class="error-message">Please enter a valid 10-digit phone number</span>
                     </div>
+
                     <div class="form-group">
                         <label for="neetScore">NEET Score *</label>
                         <input type="number" id="neetScore" name="neetScore" min="0" max="720" required>
                         <span class="error-message">Please enter a valid NEET score (0-720)</span>
                     </div>
+
                     <div class="form-group">
                         <label for="rank">All India Rank *</label>
                         <input type="text" id="rank" name="rank" required>
                         <span class="error-message">Please enter your All India Rank</span>
                     </div>
+
                     <div class="form-group">
                         <label for="domicile">Domicile State *</label>
                         <select id="domicile" name="domicile" required>
                             <option value="">Select State</option>
-                            <option value="Andhra Pradesh">Andhra Pradesh</option>
-                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                            <option value="Assam">Assam</option>
-                            <option value="Bihar">Bihar</option>
-                            <option value="Chhattisgarh">Chhattisgarh</option>
-                            <option value="Delhi">Delhi</option>
-                            <option value="Goa">Goa</option>
-                            <option value="Gujarat">Gujarat</option>
-                            <option value="Haryana">Haryana</option>
-                            <option value="Himachal Pradesh">Himachal Pradesh</option>
-                            <option value="Jharkhand">Jharkhand</option>
-                            <option value="Karnataka">Karnataka</option>
-                            <option value="Kerala">Kerala</option>
-                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                            <option value="Maharashtra">Maharashtra</option>
-                            <option value="Manipur">Manipur</option>
-                            <option value="Meghalaya">Meghalaya</option>
-                            <option value="Mizoram">Mizoram</option>
-                            <option value="Nagaland">Nagaland</option>
-                            <option value="Odisha">Odisha</option>
-                            <option value="Punjab">Punjab</option>
-                            <option value="Rajasthan">Rajasthan</option>
-                            <option value="Sikkim">Sikkim</option>
-                            <option value="Tamil Nadu">Tamil Nadu</option>
-                            <option value="Telangana">Telangana</option>
-                            <option value="Tripura">Tripura</option>
-                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                            <option value="Uttarakhand">Uttarakhand</option>
-                            <option value="West Bengal">West Bengal</option>
+                            <option>Andhra Pradesh</option>
+                            <option>Arunachal Pradesh</option>
+                            <option>Assam</option>
+                            <option>Bihar</option>
+                            <option>Chhattisgarh</option>
+                            <option>Delhi</option>
+                            <option>Goa</option>
+                            <option>Gujarat</option>
+                            <option>Haryana</option>
+                            <option>Himachal Pradesh</option>
+                            <option>Jharkhand</option>
+                            <option>Karnataka</option>
+                            <option>Kerala</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Manipur</option>
+                            <option>Meghalaya</option>
+                            <option>Mizoram</option>
+                            <option>Nagaland</option>
+                            <option>Odisha</option>
+                            <option>Punjab</option>
+                            <option>Rajasthan</option>
+                            <option>Sikkim</option>
+                            <option>Tamil Nadu</option>
+                            <option>Telangana</option>
+                            <option>Tripura</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>West Bengal</option>
                         </select>
                         <span class="error-message">Please select your domicile state</span>
                     </div>
+
                     <div class="form-group">
                         <label for="category">Caste Category *</label>
                         <select id="category" name="category" required>
                             <option value="">Select Category</option>
-                            <option value="General">General</option>
-                            <option value="OBC">OBC</option>
-                            <option value="SC">SC</option>
-                            <option value="ST">ST</option>
-                            <option value="EWS">EWS</option>
+                            <option>General</option>
+                            <option>OBC</option>
+                            <option>SC</option>
+                            <option>ST</option>
+                            <option>EWS</option>
                         </select>
                         <span class="error-message">Please select your category</span>
                     </div>
+
                     <div class="form-group">
                         <label for="coursePreference">Preferred Course *</label>
                         <select id="coursePreference" name="coursePreference" required>
                             <option value="">Select Course</option>
-                            <option value="MBBS">MBBS</option>
-                            <option value="BDS">BDS</option>
-                            <option value="AYUSH">AYUSH</option>
-                            <option value="Other">Other</option>
+                            <option>MBBS</option>
+                            <option>BDS</option>
+                            <option>AYUSH</option>
+                            <option>Other</option>
                         </select>
                         <span class="error-message">Please select your preferred course</span>
                     </div>
+
                     <div class="form-group">
                         <label for="quotaType">Quota *</label>
                         <select id="quotaType" name="quotaType" required>
                             <option value="">Select Quota</option>
-                            <option value="Government">Government</option>
-                            <option value="Private">Private</option>
-                            <option value="Deemed">Deemed</option>
-                            <option value="Other">Other</option>
+                            <option>Government</option>
+                            <option>Private</option>
+                            <option>Deemed</option>
+                            <option>MBBS Abroad</option>
                         </select>
                         <span class="error-message">Please select your quota type</span>
                     </div>
 
-                    <!-- Package Section -->
                     <div class="form-group">
                         <label for="packageSelect">Select Package *</label>
                         <select id="packageSelect" name="packageSelect" required>
@@ -964,93 +478,173 @@
                         <span class="error-message">Please select your package</span>
                     </div>
 
-                    <div class="form-group payment-btn">
-                        <button type="button" id="proceedPayment" class="btn-primary">
-                            Proceed to Payment
+                    <!-- THE CORRECTED BUTTON -->
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            Submit &amp; Proceed to Payment
                         </button>
                     </div>
 
-                    <p id="paymentMessage" class="success-message" style="display:none;">
-                        Payment successful! Your details have been saved successfully. Our representative will contact you soon.
-                    </p>
+                    <div class="saving-notice" id="savingNotice">
+                        ⏳ Saving your details... You will be redirected to payment shortly.
+                    </div>
+
                 </form>
             </div>
         </section>
 
-        <!-- Result Section -->
-        <section class="content-section light-bg">
+        <!-- FAQ Section -->
+        <section class="faq-section">
             <div class="container">
-                <h2 class="section-title">Approximate College Predictions</h2>
-                <ul class="bullet-list">
-                    <li>1. XYZ Government Medical College, Delhi</li>
-                    <li>2. ABC Medical College, Mumbai</li>
-                    <li>3. Rajiv Gandhi Institute of Medical Sciences, Bangalore</li>
-                    <li>4. KGMU, Lucknow</li>
-                    <li>5. Grant Medical College, Mumbai</li>
-                    <li>6. AIIMS, Bhopal</li>
-                    <li>7. JIPMER, Puducherry</li>
-                    <li>8. Madras Medical College, Chennai</li>
-                    <li>9. PGIMS, Rohtak</li>
-                    <li>10. BJ Medical College, Ahmedabad</li>
-                </ul>
-                <p><strong>Suggestions:</strong> Consider keeping a balance of Government, Deemed, and Private options while locking choices. Focus on cut‑off analysis and realistic selection strategy.</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            How accurate are the college predictions?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Our predictions are based on historical cut-off data and are approximately 80-85% accurate. However, actual admissions depend on various factors.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            When will I receive my prediction report?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                You will receive your detailed prediction report within 24-48 hours after payment via email or WhatsApp.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            What does the ₹499 package include?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                The package includes a personalized list of predicted colleges, previous year cut-offs, fees structure, and expert counselling recommendations.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Bottom CTA -->
-        <section class="content-section">
-            <div class="container center-text">
-                <h2>Want to know your best college possibilities?</h2>
-                <a href="apply.html" class="btn-primary">Apply for Detailed Analysis</a>
-            </div>
-        </section>
+    </main>
 
-        <!-- Footer -->
-        <footer class="footer">
+    <!-- Footer -->
+    <footer>
+        <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo">
+                <div class="footer-section">
+                    <img src="rn-counselling-logo-transparent.png.png" alt="RN Counselling Logo" style="width:50px; margin-bottom:0.75rem;">
                     <p>Guiding your path to medical education success since 2015.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <ul>
+                    <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="packages.html">Packages</a></li>
                         <li><a href="apply.html">Apply Now</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>📞 +91-9673882382</p>
+                    <p>📞 +91-9763077764</p>
                     <p>📧 info@rncounselling.com</p>
-                    <p>📍 Aurangabad, Maharastra</p>
+                    <p>📍 Aurangabad, Maharashtra</p>
+                    <div class="social-buttons">
+                        <a href="https://wa.me/919763077764" class="social-btn" title="WhatsApp">💬</a>
+                        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="social-btn" title="Telegram">✈️</a>
+                        <a href="https://www.instagram.com/ugmedicalcounselling" class="social-btn" title="Instagram">📷</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2026 RN Counselling. All Rights Reserved.</p>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- Payment Integration Script -->
-        <script>
-            document.getElementById('proceedPayment').addEventListener('click', function() {
-                const packageSelect = document.getElementById('packageSelect').value;
-                if (packageSelect === '999') {
-                    // ⚠ Replace with your real Razorpay payment link
-                    window.open('https://rzp.io/rzp/Ur0tD2f', '_blank');
-                }
-                // After payment success, integrate Google Sheet script here
-                // Example:
-                // fetch('YOUR_GOOGLE_SHEET_SCRIPT_URL', {
-                //     method: 'POST',
-                //     body: new FormData(document.getElementById('predictionForm'))
-                // }).then(() => {
-                //     document.getElementById('paymentMessage').style.display = 'block';
-                // });
-            });
-        </script>
-    </main>
+    <!-- Sticky Social -->
+    <div class="sticky-social">
+        <a href="tel:+919763077764" class="phone" title="Call">📞</a>
+        <a href="https://wa.me/919763077764" class="whatsapp" title="WhatsApp">💬</a>
+        <a href="https://t.me/+EvRsVyu1zNcyM2Fl" class="telegram" title="Telegram">✈️</a>
+        <a href="https://www.instagram.com/ugmedicalcounselling" class="instagram" title="Instagram">📷</a>
+    </div>
+
+    <script>
+        // ============================================================
+        // STEP 1: Paste your Google Apps Script Web App URL here
+        // ============================================================
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_ux2-5NLRO287K6oeJJR0r6O80q736NXQ_0riOGhm-p9XxvhCB3PKERkda5YCgkUy5A/exec';
+
+        // Payment link for ₹499 package
+        const PAYMENT_URL = 'https://rzp.io/rzp/Ur0tD2f'; // ← replace with your real ₹499 Razorpay link
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('predictionForm');
+
+            // Basic HTML5 validation check
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Collect all form data
+            const data = {
+                timestamp:        new Date().toISOString(),
+                fullName:         document.getElementById('fullName').value.trim(),
+                contactNumber:    document.getElementById('contactNumber').value.trim(),
+                neetScore:        document.getElementById('neetScore').value.trim(),
+                rank:             document.getElementById('rank').value.trim(),
+                domicile:         document.getElementById('domicile').value,
+                category:         document.getElementById('category').value,
+                coursePreference: document.getElementById('coursePreference').value,
+                quotaType:        document.getElementById('quotaType').value,
+                packageSelected:  document.getElementById('packageSelect').value,
+                paymentStatus:    'PENDING'
+            };
+
+            // Disable button and show saving notice
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Saving...';
+            document.getElementById('savingNotice').classList.add('show');
+
+            // Build query string
+            const params = new URLSearchParams(data).toString();
+
+            // Method 1: Image ping (GET) — works from any static site, no CORS issue
+            const img = new Image();
+            img.src = SCRIPT_URL + '?' + params;
+
+            // Method 2: fetch no-cors (POST) — backup
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params
+            }).catch(function() {});
+
+            // Wait 1.5 seconds then redirect to payment
+            setTimeout(function() {
+                window.location.href = PAYMENT_URL;
+            }, 1500);
+        }
+
+        function toggleFAQ(btn) {
+            btn.classList.toggle('active');
+            const answer = btn.nextElementSibling;
+            answer.classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>
