@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RN Counselling | Student Dashboard</title>
+
+  <!--
+    RN COUNSELLING - STUDENT DASHBOARD
+    ---------------------------------------------------------
+    SINGLE FILE VERSION
+    ---------------------------------------------------------
+    IMPORTANT:
+    1. This file is the FRONTEND.
+    2. Put your Google Apps Script Web App URL in GOOGLE_SCRIPT_URL below.
+    3. The Apps Script should verify payment/account status before returning
+       student data. Never trust "paid=true" sent by the browser.
+    4. For production authentication, use a proper session/token system
+       (Firebase Auth or signed server-side sessions). The demo below has
+       a simple frontend login flow so you can connect it gradually.
+  -->
+
+  <style>
+    :root{
+      --navy:#06245f;
+      --navy2:#0b347d;
+      --blue:#1456c4;
+      --blue2:#2563d8;
+      --light-blue:#eef5ff;
+      --text:#17233c;
+      --muted:#6d788c;
+      --border:#e3e9f2;
+      --bg:#f4f7fb;
+      --white:#fff;
+      --green:#18a957;
+      --green-bg:#eaf9f0;
+      --orange:#f39a18;
+      --orange-bg:#fff6e6;
+      --red:#e34b4b;
+      --shadow:0 7px 25px rgba(23,48,93,.08);
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{text-decoration:none;color:inherit}
+
+    /* LOGIN */
+    #loginScreen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:linear-gradient(135deg,#06245f,#1456c4);
+    }
+    .login-wrap{
+      width:min(440px,100%);
+    }
+    .login-brand{
+      text-align:center;
+      color:white;
+      margin-bottom:24px;
+    }
+    .login-logo{
+      width:70px;height:70px;border-radius:50%;
+      background:#fff;color:var(--blue);
+      display:flex;align-items:center;justify-content:center;
+      font-size:25px;font-weight:900;
+      margin:0 auto 12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    }
+    .login-brand h1{margin:0;font-size:28px}
+    .login-brand p{margin:6px 0 0;opacity:.82}
+    .login-card{
+      background:white;border-radius:22px;
+      padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.18);
+    }
+    .login-card h2{margin:0 0 8px;font-size:23px}
+    .login-card .sub{color:var(--muted);margin:0 0 22px}
+    .field{margin-bottom:17px}
+    .field label{
+      display:block;font-size:14px;font-weight:700;margin-bottom:8px;
+    }
+    .input{
+      width:100%;height:48px;border:1px solid #d7deea;
+      border-radius:10px;padding:0 14px;outline:none;
+      background:#fbfcfe;transition:.2s;
+    }
+    .input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,86,196,.10)}
+    .primary-btn{
+      border:0;background:var(--blue);color:#fff;
+      border-radius:10px;padding:13px 18px;font-weight:800;
+      width:100%;transition:.2s;
+    }
+    .primary-btn:hover{background:#0c48b0;transform:translateY(-1px)}
+    .login-note{
+      font-size:12px;color:var(--muted);text-align:center;margin-top:17px;line-height:1.5
+    }
+    .error{
+      background:#fff0f0;color:#c73a3a;border:1px solid #ffd2d2;
+      padding:10px 12px;border-radius:9px;font-size:13px;margin-bottom:15px;display:none
+    }
+
+    /* APP SHELL */
+    #app{display:none;min-height:100vh}
+    .topbar{
+      height:66px;background:var(--navy);color:white;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 24px;position:sticky;top:0;z-index:50;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;min-width:220px
+    }
+    .brand-logo{
+      width:42px;height:42px;border-radius:50%;background:white;
+      color:var(--blue);display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:16px;
+    }
+    .brand-title{font-weight:900;font-size:18px;line-height:1.1}
+    .brand-sub{font-size:10px;opacity:.75;margin-top:3px}
+    .top-contact{font-size:12px;opacity:.95;text-align:center;line-height:1.5}
+    .top-user{display:flex;align-items:center;gap:10px}
+    .avatar{
+      width:38px;height:38px;border-radius:50%;background:#fff;color:var(--blue);
+      display:flex;align-items:center;justify-content:center;font-weight:900;
+    }
+    .hamburger{display:none;border:0;background:transparent;color:white;font-size:24px}
+
+    .layout{display:flex;min-height:calc(100vh - 66px)}
+    .sidebar{
+      width:255px;background:#06245f;color:white;flex-shrink:0;
+      padding:18px 10px;display:flex;flex-direction:column;
+      position:sticky;top:66px;height:calc(100vh - 66px);
+    }
+    .side-label{
+      font-size:10px;text-transform:uppercase;letter-spacing:1px;
+      opacity:.5;padding:8px 14px;
+    }
+    .nav-item{
+      border:0;background:transparent;color:#dce7ff;
+      width:100%;display:flex;align-items:center;gap:12px;
+      padding:12px 14px;border-radius:8px;text-align:left;
+      margin:2px 0;font-size:14px;
+    }
+    .nav-item:hover,.nav-item.active{background:#114a9f;color:white}
+    .nav-icon{width:20px;text-align:center;font-size:17px}
+    .support-box{
+      margin-top:auto;background:#0b347d;border-radius:12px;padding:16px;
+      font-size:12px;color:#dce7ff
+    }
+    .support-box strong{display:block;color:white;font-size:14px;margin-bottom:4px}
+    .wa-btn{
+      width:100%;border:1px solid rgba(255,255,255,.7);
+      color:white;background:transparent;border-radius:8px;padding:9px;
+      margin-top:10px;font-weight:700
+    }
+
+    .content{flex:1;padding:26px;min-width:0}
+    .page-head{
+      display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:20px
+    }
+    .page-head h1{margin:0;font-size:28px}
+    .page-head p{margin:5px 0 0;color:var(--muted)}
+    .app-id{
+      background:#eaf1ff;color:var(--blue);padding:8px 12px;border-radius:8px;
+      font-size:12px;font-weight:800;white-space:nowrap
+    }
+
+    /* CARDS */
+    .stats{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:18px
+    }
+    .card{
+      background:white;border:1px solid var(--border);border-radius:var(--radius);
+      box-shadow:var(--shadow)
+    }
+    .stat{padding:18px;display:flex;gap:13px;align-items:flex-start}
+    .stat-icon{
+      width:42px;height:42px;border-radius:12px;display:flex;align-items:center;
+      justify-content:center;background:#edf4ff;color:var(--blue);font-size:19px
+    }
+    .stat h4{font-size:12px;color:var(--muted);margin:0 0 5px;font-weight:600}
+    .stat .big{font-size:20px;font-weight:900}
+    .stat small{color:var(--muted);display:block;margin-top:4px;font-size:11px}
+    .green{color:var(--green)!important}
+    .orange{color:var(--orange)!important}
+
+    .progress-card{padding:20px;margin-bottom:18px}
+    .section-title{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:17px
+    }
+    .section-title h3{margin:0;font-size:17px}
+    .outline-btn{
+      border:1px solid #bdd0ef;background:white;color:var(--blue);
+      padding:8px 12px;border-radius:8px;font-weight:700;font-size:12px
+    }
+    .steps{
+      display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative
+    }
+    .steps:before{
+      content:"";position:absolute;left:8%;right:8%;top:15px;height:3px;background:#dce3ee
+    }
+    .step{position:relative;text-align:center;z-index:1}
+    .circle{
+      width:32px;height:32px;border-radius:50%;margin:auto;
+      display:flex;align-items:center;justify-content:center;
+      background:#edf0f5;color:#6e7888;font-weight:800;font-size:13px;
+      border:3px solid white;box-shadow:0 0 0 1px #dbe2ed
+    }
+    .step.done .circle{background:var(--green);color:white;box-shadow:none}
+    .step.current .circle{background:var(--blue);color:white;box-shadow:none}
+    .step b{display:block;font-size:11px;margin-top:7px}
+    .step span{display:block;font-size:10px;color:var(--muted);margin-top:3px}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .panel{padding:20px;margin-bottom:18px}
+    .update{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:12px 0;border-top:1px solid var(--border);font-size:12px
+    }
+    .update:first-of-type{border-top:0}
+    .update span{color:var(--muted);white-space:nowrap}
+
+    /* CHOICES */
+    .choice-summary{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px
+    }
+    .mini{
+      background:white;border:1px solid var(--border);border-radius:12px;padding:15px
+    }
+    .mini label{font-size:11px;color:var(--muted);display:block}
+    .mini strong{font-size:22px;display:block;margin-top:4px}
+    .toolbar{
+      display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px
+    }
+    .toolbar .input{height:42px;min-width:190px;flex:1}
+    .select{
+      height:42px;border:1px solid #d7deea;border-radius:9px;padding:0 10px;background:white
+    }
+    .table-wrap{overflow:auto}
+    table{width:100%;border-collapse:collapse;min-width:750px}
+    th,td{padding:12px 10px;border-bottom:1px solid var(--border);text-align:left;font-size:12px}
+    th{font-size:11px;color:var(--muted);font-weight:800;background:#fbfcfe}
+    .badge{
+      display:inline-flex;align-items:center;padding:5px 8px;border-radius:6px;
+      font-size:10px;font-weight:800
+    }
+    .badge.green{background:var(--green-bg)}
+    .badge.blue{background:#eaf1ff;color:var(--blue)!important}
+    .badge.orange{background:var(--orange-bg)}
+    .choice-action{display:flex;gap:5px}
+    .icon-btn{
+      border:1px solid #d9e1ee;background:white;border-radius:7px;
+      width:30px;height:30px;color:var(--blue)
+    }
+    .icon-btn.danger{color:var(--red)}
+
+    /* PROFILE */
+    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .profile-row{padding:12px 0;border-bottom:1px solid var(--border)}
+    .profile-row:last-child{border-bottom:0}
+    .profile-row label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}
+    .profile-row strong{font-size:13px}
+
+    /* DOCUMENTS */
+    .doc-row{
+      display:grid;grid-template-columns:1.5fr .7fr .8fr auto;
+      align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--border)
+    }
+    .doc-name{font-weight:700;font-size:13px}
+    .doc-note{font-size:10px;color:var(--muted);margin-top:3px}
+    .upload-btn{
+      border:1px solid #c9d8ef;background:#f8fbff;color:var(--blue);
+      padding:8px 10px;border-radius:8px;font-size:11px;font-weight:800
+    }
+    input[type=file]{display:none}
+
+    /* PAYMENT / DATES */
+    .payment-row,.date-row{
+      display:flex;justify-content:space-between;gap:15px;
+      padding:14px 0;border-bottom:1px solid var(--border)
+    }
+    .payment-row:last-child,.date-row:last-child{border-bottom:0}
+    .muted{color:var(--muted)}
+    .success-box{
+      background:var(--green-bg);border:1px solid #c9efd9;color:#14773d;
+      border-radius:12px;padding:14px;font-size:12px;margin-bottom:15px
+    }
+
+    /* RIGHT SIDEBAR */
+    .dashboard-bottom{display:grid;grid-template-columns:1.6fr .8fr;gap:18px}
+    .side-info{
+      padding:18px;background:white;border:1px solid var(--border);
+      border-radius:var(--radius);margin-bottom:18px;box-shadow:var(--shadow)
+    }
+    .side-info h4{margin:0 0 10px;font-size:14px}
+    .progress-ring{
+      width:110px;height:110px;border-radius:50%;margin:5px auto 12px;
+      background:conic-gradient(var(--green) 0 72%,#e5eaf1 72% 100%);
+      display:flex;align-items:center;justify-content:center
+    }
+    .progress-ring:after{
+      content:"72%";width:80px;height:80px;background:white;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-weight:900
+    }
+
+    /* MODAL */
+    .modal{
+      position:fixed;inset:0;background:rgba(4,21,54,.55);
+      display:none;align-items:center;justify-content:center;padding:20px;z-index:100
+    }
+    .modal-box{
+      background:white;width:min(520px,100%);border-radius:18px;padding:22px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25)
+    }
+    .modal-head{display:flex;justify-content:space-between;align-items:center}
+    .modal-head h3{margin:0}
+    .close{border:0;background:#f1f4f8;border-radius:50%;width:32px;height:32px}
+    .choice-card{
+      border:1px solid var(--border);border-radius:10px;padding:12px;margin:9px 0;
+      cursor:pointer
+    }
+    .choice-card:hover{border-color:var(--blue);background:#f8fbff}
+
+    .toast{
+      position:fixed;right:20px;bottom:20px;background:#17233c;color:white;
+      padding:12px 16px;border-radius:10px;font-size:12px;display:none;z-index:200;
+      box-shadow:0 10px 30px rgba(0,0,0,.2)
+    }
+
+    /* MOBILE */
+    .mobile-nav{display:none}
+    @media(max-width:1100px){
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .dashboard-bottom{grid-template-columns:1fr}
+    }
+    @media(max-width:800px){
+      .topbar{height:60px;padding:0 14px}
+      .top-contact{display:none}
+      .hamburger{display:block;order:-1}
+      .brand{min-width:0}
+      .brand-title{font-size:15px}
+      .brand-sub{font-size:9px}
+      .top-user .user-name{display:none}
+      .layout{min-height:calc(100vh - 60px)}
+      .sidebar{
+        position:fixed;left:-270px;top:60px;height:calc(100vh - 60px);
+        z-index:80;transition:.25s
+      }
+      .sidebar.open{left:0}
+      .content{padding:18px 14px 82px}
+      .page-head h1{font-size:23px}
+      .page-head{align-items:flex-start}
+      .stats{grid-template-columns:1fr 1fr;gap:10px}
+      .stat{padding:13px}
+      .stat .big{font-size:17px}
+      .steps{grid-template-columns:repeat(3,1fr);row-gap:20px}
+      .steps:before{display:none}
+      .grid-2,.profile-grid{grid-template-columns:1fr}
+      .choice-summary{grid-template-columns:1fr 1fr}
+      .doc-row{grid-template-columns:1fr auto}
+      .doc-row .doc-status{grid-column:1}
+      .doc-row .upload-wrap{grid-column:2;grid-row:1 / span 2}
+      .mobile-nav{
+        display:flex;position:fixed;bottom:0;left:0;right:0;height:62px;
+        background:white;border-top:1px solid var(--border);z-index:70;
+        justify-content:space-around
+      }
+      .mobile-nav button{
+        border:0;background:white;color:#68758a;font-size:10px;display:flex;
+        flex-direction:column;align-items:center;justify-content:center;gap:3px
+      }
+      .mobile-nav button.active{color:var(--blue);font-weight:800}
+    }
+    @media(max-width:480px){
+      .login-card{padding:22px}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat-icon{width:34px;height:34px}
+      .stat{gap:8px}
+      .stat h4{font-size:10px}
+      .page-head{display:block}
+      .app-id{display:inline-block;margin-top:10px}
+      .panel,.progress-card,.side-info{padding:15px}
+      .choice-summary{grid-template-columns:1fr 1fr}
+      .mini strong{font-size:19px}
+      .toolbar{display:grid;grid-template-columns:1fr 1fr}
+      .toolbar .input{min-width:0;grid-column:1/-1}
+      .select{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+<section id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <div class="login-logo">RN</div>
+      <h1>RN Counselling</h1>
+      <p>Expert Medical Admission Guidance</p>
+    </div>
+
+    <div class="login-card">
+      <h2>Student Login</h2>
+      <p class="sub">Access your counselling dashboard</p>
+
+      <div id="loginError" class="error"></div>
+
+      <div class="field">
+        <label>Select Your Course</label>
+        <select id="loginCourse" class="input" required>
+          <option value="">-- Select Your Course --</option>
+          <option value="NEET PG - MD/MS">NEET PG - MD/MS</option>
+          <option value="NEET PG - MDS">NEET PG - MDS</option>
+          <option value="NEET UG - MBBS/BDS & AYUSH">NEET UG - MBBS/BDS & AYUSH</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Email ID / Phone Number</label>
+        <input id="loginId" class="input" type="text"
+               placeholder="Enter registered email or phone number" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="loginPassword" class="input" type="password"
+               placeholder="Enter password provided by RN Counselling" autocomplete="current-password">
+      </div>
+
+      <button class="primary-btn" onclick="login()">Login to Dashboard</button>
+
+      <div class="login-note">
+        Only students with a verified paid application can access the dashboard.<br>
+        Forgot your password? Contact RN Counselling support.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+      <div class="brand-logo">RN</div>
+      <div>
+        <div class="brand-title">RN Counselling</div>
+        <div class="brand-sub">Expert Medical Admission Guidance</div>
+      </div>
+    </div>
+
+    <div class="top-contact">
+      Helpline: +91 9763077764<br>
+      info@rncounselling.com
+    </div>
+
+    <div class="top-user">
+      <span style="font-size:20px">🔔</span>
+      <div class="avatar" id="avatar">NS</div>
+      <span class="user-name" id="topName">Student</span>
+      <button onclick="logout()" style="border:0;background:transparent;color:white;font-size:12px">
+        ▾
+      </button>
+    </div>
+  </header>
+
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="side-label">Main</div>
+
+      <button class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+        <span class="nav-icon">⌂</span> Dashboard
+      </button>
+
+      <button class="nav-item" data-page="profile" onclick="showPage('profile')">
+        <span class="nav-icon">♙</span> My Profile
+      </button>
+
+      <button class="nav-item" data-page="counselling" onclick="showPage('counselling')">
+        <span class="nav-icon">🎓</span> My Counselling
+      </button>
+
+      <button class="nav-item" data-page="choices" onclick="showPage('choices')">
+        <span class="nav-icon">▣</span> College Choices
+      </button>
+
+      <button class="nav-item" data-page="documents" onclick="showPage('documents')">
+        <span class="nav-icon">▤</span> Documents
+      </button>
+
+      <button class="nav-item" data-page="payments" onclick="showPage('payments')">
+        <span class="nav-icon">▤</span> Payments
+      </button>
+
+      <button class="nav-item" data-page="dates" onclick="showPage('dates')">
+        <span class="nav-icon">□</span> Important Dates
+      </button>
+
+      <button class="nav-item" data-page="messages" onclick="showPage('messages')">
+        <span class="nav-icon">✉</span> Messages <span class="badge orange" style="margin-left:auto">2</span>
+      </button>
+
+      <div class="side-label" style="margin-top:12px">Help & Support</div>
+
+      <button class="nav-item" onclick="openWhatsApp()">
+        <span class="nav-icon">◉</span> Contact Support
+      </button>
+
+      <button class="nav-item" onclick="logout()">
+        <span class="nav-icon">↪</span> Logout
+      </button>
+
+      <div class="support-box">
+        <strong>Need Help?</strong>
+        Talk to our counselling experts.
+        <button class="wa-btn" onclick="openWhatsApp()">◉ WhatsApp Us</button>
+        <div style="text-align:center;margin-top:8px;opacity:.7">Mon–Sat | 10 AM – 6 PM</div>
+      </div>
+    </aside>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- =====================================================
+           DASHBOARD PAGE
+      ====================================================== -->
+      <section id="page-dashboard" class="page">
+
+        <div class="page-head">
+          <div>
+            <h1>Student Dashboard 👋</h1>
+            <p>Welcome back, <strong id="welcomeName">Student</strong></p>
+          </div>
+          <div class="app-id">Application ID: <span id="applicationId">RNPG000000</span></div>
+        </div>
+
+        <div class="stats">
+
+          <div class="card stat">
+            <div class="stat-icon">▣</div>
+            <div>
+              <h4>Application Status</h4>
+              <div class="big green" id="applicationStatus">Registered</div>
+              <small id="formDate">Form submitted —</small>
+            </div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-icon">♟</div>
+            <div>
+              <h4>NEET PG Score</h4>
+              <div class="big" id="score">—</div>
+              <small id="rankText">Rank: —</small>
+            </div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-icon">◎</div>
+            <div>
+              <h4>Counselling Type</h4>
+              <div class="big" style="font-size:15px" id="counsellingType">AIQ + State</div>
+              <small id="courseText">MD/MS</small>
+            </div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-icon">✓</div>
+            <div>
+              <h4>Profile Completion</h4>
+              <div class="big" id="profilePercent">85%</div>
+              <small>Complete your profile</small>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="card progress-card">
+          <div class="section-title">
+            <h3>My Counselling Progress</h3>
+            <button class="outline-btn" onclick="showPage('counselling')">View Process</button>
+          </div>
+
+          <div class="steps">
+
+            <div class="step done">
+              <div class="circle">✓</div>
+              <b>Registration</b>
+              <span>Completed</span>
+            </div>
+
+            <div class="step done">
+              <div class="circle">✓</div>
+              <b>Payment</b>
+              <span>Completed</span>
+            </div>
+
+            <div class="step current">
+              <div class="circle">3</div>
+              <b>Documents</b>
+              <span>In Progress</span>
+            </div>
+
+            <div class="step">
+              <div class="circle">4</div>
+              <b>Choice Filling</b>
+              <span>Pending</span>
+            </div>
+
+            <div class="step">
+              <div class="circle">5</div>
+              <b>Seat Allotment</b>
+              <span>Pending</span>
+            </div>
+
+            <div class="step">
+              <div class="circle">6</div>
+              <b>Admission</b>
+              <span>Pending</span>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="grid-2">
+
+          <div class="card panel">
+            <div class="section-title">
+              <h3>Recent Updates</h3>
+              <button class="outline-btn" onclick="showPage('messages')">View All</button>
+            </div>
+
+            <div class="update">
+              <b>NEET PG Counselling Schedule Released</b>
+              <span>10 May</span>
+            </div>
+            <div class="update">
+              <b>Registration information updated</b>
+              <span>09 May</span>
+            </div>
+            <div class="update">
+              <b>Document verification guidelines</b>
+              <span>08 May</span>
+            </div>
+          </div>
+
+
+          <div class="card panel">
+            <div class="section-title">
+              <h3>Important Links</h3>
+            </div>
+
+            <div class="update">
+              <b>MCC Official Website</b>
+              <a href="https://mcc.nic.in/" target="_blank" style="color:var(--blue)">Open ↗</a>
+            </div>
+            <div class="update">
+              <b>NEET PG Information</b>
+              <a href="#" onclick="toast('Add your PDF link here');return false" style="color:var(--blue)">Download</a>
+            </div>
+            <div class="update">
+              <b>State Counselling Website</b>
+              <a href="#" onclick="toast('Add state website link here');return false" style="color:var(--blue)">Visit</a>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="card panel">
+          <div class="section-title">
+            <h3>My College Choices</h3>
+            <button class="outline-btn" onclick="showPage('choices')">Manage Choices</button>
+          </div>
+
+          <div class="choice-summary">
+
+            <div class="mini">
+              <label>Total Choices</label>
+              <strong id="totalChoices">25</strong>
+            </div>
+
+            <div class="mini">
+              <label>All India</label>
+              <strong id="aiqChoices">15</strong>
+            </div>
+
+            <div class="mini">
+              <label>State</label>
+              <strong id="stateChoices">10</strong>
+            </div>
+
+            <div class="mini">
+              <label>Saved</label>
+              <strong id="savedChoices">7</strong>
+            </div>
+
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>College</th>
+                  <th>Course</th>
+                  <th>Quota</th>
+                  <th>Preference</th>
+                </tr>
+              </thead>
+              <tbody id="topChoicesTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           PROFILE PAGE
+      ====================================================== -->
+      <section id="page-profile" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>My Profile</h1>
+            <p>Your registered counselling information</p>
+          </div>
+          <div class="app-id">Application ID: <span class="profile-app-id">—</span></div>
+        </div>
+
+        <div class="grid-2">
+
+          <div class="card panel">
+            <div class="section-title"><h3>Personal Details</h3></div>
+
+            <div class="profile-row">
+              <label>Full Name</label>
+              <strong id="pName">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Mobile Number</label>
+              <strong id="pMobile">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Email</label>
+              <strong id="pEmail">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Category</label>
+              <strong id="pCategory">—</strong>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <div class="section-title"><h3>NEET PG Details</h3></div>
+
+            <div class="profile-row">
+              <label>NEET PG Score</label>
+              <strong id="pScore">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Rank</label>
+              <strong id="pRank">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Preferred Branches</label>
+              <strong id="pBranches">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Counselling</label>
+              <strong id="pCounselling">—</strong>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card panel">
+          <div class="section-title"><h3>Account & Package</h3></div>
+          <div class="profile-grid">
+            <div class="profile-row">
+              <label>Package</label>
+              <strong id="pPackage">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>Payment Status</label>
+              <strong class="green" id="pPayment">PAID ✓</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           COUNSELLING PAGE
+      ====================================================== -->
+      <section id="page-counselling" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>My Counselling</h1>
+            <p>Track your counselling journey</p>
+          </div>
+        </div>
+
+        <div class="card progress-card">
+          <div class="section-title"><h3>Counselling Timeline</h3></div>
+          <div class="steps">
+            <div class="step done"><div class="circle">✓</div><b>Registration</b><span>Completed</span></div>
+            <div class="step done"><div class="circle">✓</div><b>Payment</b><span>Completed</span></div>
+            <div class="step current"><div class="circle">3</div><b>Documents</b><span>In Progress</span></div>
+            <div class="step"><div class="circle">4</div><b>Choice Filling</b><span>Pending</span></div>
+            <div class="step"><div class="circle">5</div><b>Seat Allotment</b><span>Pending</span></div>
+            <div class="step"><div class="circle">6</div><b>Admission</b><span>Pending</span></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card panel">
+            <h3 style="margin-top:0">Counselling Package</h3>
+            <p class="muted" id="cPackage">Premium Counselling</p>
+            <div class="success-box">Payment verified. Your counselling account is active.</div>
+            <button class="outline-btn" onclick="showPage('payments')">View Payment</button>
+          </div>
+
+          <div class="card panel">
+            <h3 style="margin-top:0">Next Action</h3>
+            <p class="muted">Upload all required documents so our team can verify your profile.</p>
+            <button class="primary-btn" style="width:auto" onclick="showPage('documents')">Upload Documents</button>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           COLLEGE CHOICES PAGE
+      ====================================================== -->
+      <section id="page-choices" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>My College Choices</h1>
+            <p>Recommended and saved college preferences</p>
+          </div>
+          <div>
+            <button class="outline-btn" onclick="downloadChoices()">↓ Download Choice List</button>
+          </div>
+        </div>
+
+        <div class="choice-summary">
+          <div class="mini"><label>Total Choices</label><strong id="cTotal">25</strong></div>
+          <div class="mini"><label>Filled</label><strong id="cFilled">18</strong></div>
+          <div class="mini"><label>Saved</label><strong id="cSaved">7</strong></div>
+          <div class="mini"><label>Last Updated</label><strong style="font-size:14px">Today</strong></div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="toolbar">
+            <input id="choiceSearch" class="input" placeholder="Search college, city or course..." oninput="renderChoices()">
+
+            <select id="quotaFilter" class="select" onchange="renderChoices()">
+              <option value="">All Quota</option>
+              <option value="All India">All India</option>
+              <option value="State Quota">State Quota</option>
+            </select>
+
+            <select id="statusFilter" class="select" onchange="renderChoices()">
+              <option value="">All Status</option>
+              <option value="Filled">Filled</option>
+              <option value="Saved">Saved</option>
+              <option value="Not Filled">Not Filled</option>
+            </select>
+
+            <button class="primary-btn" style="width:auto" onclick="openAddChoice()">+ Add Choice</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Priority</th>
+                  <th>College & Course</th>
+                  <th>Quota</th>
+                  <th>Chance</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="choicesTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="card panel">
+          <h3 style="margin-top:0">Choice Filling Instructions</h3>
+          <ul style="font-size:12px;line-height:1.9;color:var(--muted);padding-left:20px">
+            <li>Arrange colleges according to your actual preference.</li>
+            <li>Review course, quota and state carefully before final submission.</li>
+            <li>Our recommended list is based on available cutoff data and is not a guarantee of allotment.</li>
+            <li>Final counselling decisions remain subject to official counselling rules and seat availability.</li>
+          </ul>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           DOCUMENTS PAGE
+      ====================================================== -->
+      <section id="page-documents" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>My Documents</h1>
+            <p>Upload and manage your counselling documents</p>
+          </div>
+        </div>
+
+        <div class="success-box">
+          Documents uploaded here will be stored in your secure RN Counselling Google Drive folder.
+          <strong>Do not upload documents belonging to another student.</strong>
+        </div>
+
+        <div class="card panel">
+          <div class="section-title">
+            <h3>Required Documents</h3>
+            <span class="badge blue">Secure Upload</span>
+          </div>
+
+          <div id="documentsList"></div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           PAYMENTS PAGE
+      ====================================================== -->
+      <section id="page-payments" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>Payments</h1>
+            <p>Your RN Counselling payment history</p>
+          </div>
+        </div>
+
+        <div class="success-box">
+          ✓ Payment verified successfully. Your student dashboard is active.
+        </div>
+
+        <div class="card panel">
+          <div class="payment-row">
+            <div>
+              <b>Counselling Package</b>
+              <div class="muted" id="payPackage">Premium</div>
+            </div>
+            <strong id="payAmount">₹19,999</strong>
+          </div>
+          <div class="payment-row">
+            <div>
+              <b>Payment Status</b>
+              <div class="muted">Razorpay</div>
+            </div>
+            <span class="badge green">PAID ✓</span>
+          </div>
+          <div class="payment-row">
+            <div>
+              <b>Payment ID</b>
+              <div class="muted" id="paymentId">—</div>
+            </div>
+            <span class="muted" id="paymentDate">—</span>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           IMPORTANT DATES
+      ====================================================== -->
+      <section id="page-dates" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>Important Dates</h1>
+            <p>Keep track of your counselling schedule</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="date-row"><div><b>MCC Registration</b><div class="muted">AIQ Counselling</div></div><strong>15 Aug 2026</strong></div>
+          <div class="date-row"><div><b>Choice Filling</b><div class="muted">Round 1</div></div><strong>18 Aug 2026</strong></div>
+          <div class="date-row"><div><b>Choice Locking</b><div class="muted">Round 1</div></div><strong>20 Aug 2026</strong></div>
+          <div class="date-row"><div><b>Seat Allotment</b><div class="muted">Round 1</div></div><strong>23 Aug 2026</strong></div>
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           MESSAGES
+      ====================================================== -->
+      <section id="page-messages" class="page" style="display:none">
+
+        <div class="page-head">
+          <div>
+            <h1>Messages & Updates</h1>
+            <p>Important information from RN Counselling</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="update"><b>Welcome to RN Counselling Student Portal</b><span>New</span></div>
+          <div class="update"><b>Please complete your document upload</b><span>Today</span></div>
+          <div class="update"><b>Choice filling guidance will be updated here</b><span>—</span></div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-nav">
+    <button class="active" onclick="showPage('dashboard')">⌂<span>Home</span></button>
+    <button onclick="showPage('profile')">♙<span>Profile</span></button>
+    <button onclick="showPage('choices')">▣<span>Choices</span></button>
+    <button onclick="showPage('documents')">▤<span>Documents</span></button>
+    <button onclick="toggleSidebar()">☰<span>More</span></button>
+  </nav>
+
+</div>
+
+
+<!-- ADD CHOICE MODAL -->
+<div class="modal" id="choiceModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Add College Choice</h3>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <p class="muted" style="font-size:12px">
+      In the production version, this list will come from your College Master / Cutoff database.
+    </p>
+
+    <input id="collegeSearchModal" class="input" placeholder="Search college..." oninput="renderCollegeOptions()">
+
+    <div id="collegeOptions" style="margin-top:12px;max-height:300px;overflow:auto"></div>
+  </div>
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+/* ==========================================================
+   RN COUNSELLING - CONFIGURATION
+   ==========================================================
+
+   STEP 1:
+   Deploy your Google Apps Script as a Web App.
+
+   Example:
+   https://script.google.com/macros/s/XXXXXXXXXXXXXXXX/exec
+
+   Paste it below.
+
+   The frontend can then call:
+      ?action=login
+      ?action=getStudent
+      ?action=getChoices
+      ?action=getDocuments
+      ?action=uploadDocument
+
+   Your Apps Script decides what data is returned.
+========================================================== */
+
+const CONFIG = {
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  GOOGLE_SCRIPT_URL:
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE",
+
+  // Your WhatsApp number, country code included.
+  WHATSAPP_NUMBER: "919763077764",
+
+  // Demo mode:
+  // true = page works with sample data so you can test the UI.
+  // false = page attempts to connect to Google Apps Script.
+  DEMO_MODE: true
+};
+
+
+/* ==========================================================
+   DEMO STUDENT DATA
+   Replace this with Google Sheet data through Apps Script.
+========================================================== */
+
+let student = {
+  applicationId: "RNPG26081245",
+  name: "Nadeem Shaikh",
+  mobile: "+91 9763077764",
+  email: "student@example.com",
+  category: "General",
+  score: "542",
+  rank: "12,540",
+  branches: "MD General Medicine, Radiology, Pediatrics",
+  counselling: "All India + Maharashtra State",
+  course: "MD/MS",
+  package: "Premium Counselling",
+  paymentStatus: "PAID",
+  paymentId: "pay_RNPG26081245",
+  paymentDate: "08 Aug 2026",
+  formDate: "08 Aug 2026",
+  profilePercent: "85%",
+  amount: "₹19,999"
+};
+
+let choices = [
+  {priority:1,college:"AIIMS New Delhi",course:"MD General Medicine",quota:"All India",chance:"Ambitious",status:"Filled"},
+  {priority:2,college:"JIPMER Puducherry",course:"MD General Medicine",quota:"All India",chance:"Ambitious",status:"Filled"},
+  {priority:3,college:"KEM Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Filled"},
+  {priority:4,college:"Seth GS Medical College, Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Filled"},
+  {priority:5,college:"BJ Medical College, Ahmedabad",course:"MD General Medicine",quota:"All India",chance:"Moderate",status:"Saved"},
+  {priority:6,college:"Maulana Azad Medical College, Delhi",course:"MD General Medicine",quota:"All India",chance:"Moderate",status:"Saved"},
+  {priority:7,college:"Armed Forces Medical College, Pune",course:"MD General Medicine",quota:"State Quota",chance:"Moderate",status:"Saved"},
+  {priority:8,college:"Grant Medical College, Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Not Filled"}
+];
+
+let documents = [
+  {name:"Aadhaar Card",required:true,status:"Pending"},
+  {name:"NEET PG Scorecard",required:true,status:"Pending"},
+  {name:"MBBS Degree / Provisional Certificate",required:true,status:"Pending"},
+  {name:"Internship Completion Certificate",required:true,status:"Pending"},
+  {name:"MBBS Registration Certificate",required:true,status:"Pending"},
+  {name:"Passport Size Photograph",required:true,status:"Pending"},
+  {name:"Category Certificate",required:false,status:"Pending"},
+  {name:"Other Document",required:false,status:"Pending"}
+];
+
+
+/* ==========================================================
+   LOGIN
+========================================================== */
+
+async function login(){
+
+  const course = document.getElementById("loginCourse").value.trim();
+  const loginId = document.getElementById("loginId").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const error = document.getElementById("loginError");
+
+  error.style.display = "none";
+
+  if(!course){
+    error.textContent = "Please select your course.";
+    error.style.display = "block";
+    return;
+  }
+
+  if(!loginId || !password){
+    error.textContent = "Please enter your registered Email/Phone and password.";
+    error.style.display = "block";
+    return;
+  }
+
+  // -------------------------------------------------------
+  // DEMO MODE - FOR HTML TESTING ONLY
+  // -------------------------------------------------------
+  if(CONFIG.DEMO_MODE){
+
+    const demoPasswords = [
+      "RN@2026",
+      "RN#4582",
+      "RN@7391",
+      "RN#6248",
+      "RN@8157",
+      "RN#9364",
+      "RN@2746",
+      "RN#5813",
+      "RN@6925",
+      "RN#3478"
+    ];
+
+    if(!demoPasswords.includes(password)){
+      error.textContent = "Invalid password. Please use the password provided by RN Counselling.";
+      error.style.display = "block";
+      return;
+    }
+
+    localStorage.setItem("rn_logged_in","1");
+    openDashboard();
+    return;
+  }
+
+  // -------------------------------------------------------
+  // PRODUCTION MODE
+  // Google Apps Script checks course + loginId + password
+  // against the Google Sheet.
+  // -------------------------------------------------------
+  try{
+
+    const result = await api("login",{
+      course: course,
+      loginId: loginId,
+      password: password
+    });
+
+    if(result && result.success && result.paid === true){
+
+      student = result.student;
+      choices = result.choices || [];
+      documents = result.documents || documents;
+
+      localStorage.setItem("rn_session_token", result.token || "");
+      openDashboard();
+
+    }else{
+      error.textContent = result.message ||
+        "Login failed. Your Email/Phone, Course or Password is incorrect, or your data is not registered.";
+      error.style.display = "block";
+    }
+
+  }catch(e){
+    error.textContent =
+      "Unable to connect to RN Counselling server. Please try again or contact support.";
+    error.style.display = "block";
+    console.error(e);
+  }
+}
+
+function openDashboard(){
+
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+
+  loadStudentData();
+  renderChoices();
+  renderDocuments();
+}
+
+
+function logout(){
+
+  localStorage.removeItem("rn_logged_in");
+  localStorage.removeItem("rn_session_token");
+
+  document.getElementById("app").style.display = "none";
+  document.getElementById("loginScreen").style.display = "flex";
+
+  document.getElementById("loginPassword").value = "";
+}
+
+
+/* ==========================================================
+   PAGE NAVIGATION
+========================================================== */
+
+function showPage(page){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.style.display = "none";
+  });
+
+  const target = document.getElementById("page-"+page);
+  if(target) target.style.display = "block";
+
+  document.querySelectorAll(".nav-item").forEach(item=>{
+    item.classList.remove("active");
+    if(item.dataset.page === page) item.classList.add("active");
+  });
+
+  document.querySelectorAll(".mobile-nav button").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  document.getElementById("sidebar").classList.remove("open");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+
+/* ==========================================================
+   LOAD STUDENT INFORMATION INTO UI
+========================================================== */
+
+function loadStudentData(){
+
+  const initials = student.name
+    .split(" ")
+    .map(x=>x[0])
+    .join("")
+    .substring(0,2)
+    .toUpperCase();
+
+  document.getElementById("avatar").textContent = initials;
+  document.getElementById("topName").textContent = student.name;
+  document.getElementById("welcomeName").textContent = student.name;
+
+  document.getElementById("applicationId").textContent = student.applicationId;
+
+  document.querySelectorAll(".profile-app-id")
+    .forEach(x=>x.textContent = student.applicationId);
+
+  document.getElementById("applicationStatus").textContent = "Registered";
+  document.getElementById("formDate").textContent = "Form submitted " + student.formDate;
+
+  document.getElementById("score").textContent = student.score;
+  document.getElementById("rankText").textContent = "Rank: " + student.rank;
+
+  document.getElementById("counsellingType").textContent =
+    student.counselling;
+
+  document.getElementById("courseText").textContent =
+    student.course;
+
+  document.getElementById("profilePercent").textContent =
+    student.profilePercent;
+
+
+  document.getElementById("pName").textContent = student.name;
+  document.getElementById("pMobile").textContent = student.mobile;
+  document.getElementById("pEmail").textContent = student.email;
+  document.getElementById("pCategory").textContent = student.category;
+  document.getElementById("pScore").textContent = student.score;
+  document.getElementById("pRank").textContent = student.rank;
+  document.getElementById("pBranches").textContent = student.branches;
+  document.getElementById("pCounselling").textContent = student.counselling;
+  document.getElementById("pPackage").textContent = student.package;
+  document.getElementById("pPayment").textContent = student.paymentStatus + " ✓";
+
+  document.getElementById("cPackage").textContent = student.package;
+  document.getElementById("payPackage").textContent = student.package;
+  document.getElementById("payAmount").textContent = student.amount;
+  document.getElementById("paymentId").textContent = student.paymentId;
+  document.getElementById("paymentDate").textContent = student.paymentDate;
+
+  updateChoiceCounts();
+}
+
+
+/* ==========================================================
+   CHOICES
+========================================================== */
+
+function renderChoices(){
+
+  const table = document.getElementById("choicesTable");
+  if(!table) return;
+
+  const search = (document.getElementById("choiceSearch")?.value || "").toLowerCase();
+  const quota = document.getElementById("quotaFilter")?.value || "";
+  const status = document.getElementById("statusFilter")?.value || "";
+
+  const filtered = choices.filter(c=>{
+
+    const text =
+      (c.college+" "+c.course+" "+c.quota).toLowerCase();
+
+    return (!search || text.includes(search))
+      && (!quota || c.quota === quota)
+      && (!status || c.status === status);
+  });
+
+  table.innerHTML = filtered.map(c=>`
+
+    <tr>
+
+      <td>
+        <b style="font-size:15px">${c.priority}</b>
+      </td>
+
+      <td>
+        <b>${escapeHtml(c.college)}</b>
+        <div class="muted" style="font-size:10px;margin-top:3px">
+          ${escapeHtml(c.course)}
+        </div>
+      </td>
+
+      <td>${escapeHtml(c.quota)}</td>
+
+      <td>
+        <span class="badge ${
+          c.chance==="High" ? "green" :
+          c.chance==="Moderate" ? "blue" : "orange"
+        }">
+          ${c.chance}
+        </span>
+      </td>
+
+      <td>
+        <span class="badge ${
+          c.status==="Filled" ? "green" :
+          c.status==="Saved" ? "blue" : "orange"
+        }">
+          ${c.status}
+        </span>
+      </td>
+
+      <td>
+        <div class="choice-action">
+          <button class="icon-btn" title="Move up" onclick="moveChoice(${c.priority},-1)">↑</button>
+          <button class="icon-btn" title="Move down" onclick="moveChoice(${c.priority},1)">↓</button>
+          <button class="icon-btn danger" title="Delete" onclick="deleteChoice(${c.priority})">×</button>
+        </div>
+      </td>
+
+    </tr>
+
+  `).join("");
+
+  updateChoiceCounts();
+}
+
+
+function renderTopChoices(){
+
+  const table = document.getElementById("topChoicesTable");
+  if(!table) return;
+
+  table.innerHTML = choices.slice(0,4).map(c=>`
+    <tr>
+      <td>${c.priority}</td>
+      <td><b>${escapeHtml(c.college)}</b></td>
+      <td>${escapeHtml(c.course)}</td>
+      <td>${escapeHtml(c.quota)}</td>
+      <td><span class="badge green">Pref. ${c.priority}</span></td>
+    </tr>
+  `).join("");
+}
+
+
+function updateChoiceCounts(){
+
+  const total = choices.length;
+  const aiq = choices.filter(c=>c.quota==="All India").length;
+  const state = choices.filter(c=>c.quota==="State Quota").length;
+  const saved = choices.filter(c=>c.status==="Saved").length;
+  const filled = choices.filter(c=>c.status==="Filled").length;
+
+  ["totalChoices","cTotal"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=total;
+  });
+
+  const ai=document.getElementById("aiqChoices");
+  if(ai) ai.textContent=aiq;
+
+  const st=document.getElementById("stateChoices");
+  if(st) st.textContent=state;
+
+  const sv=document.getElementById("savedChoices");
+  if(sv) sv.textContent=saved;
+
+  const f=document.getElementById("cFilled");
+  if(f) f.textContent=filled;
+
+  const s=document.getElementById("cSaved");
+  if(s) s.textContent=saved;
+
+  renderTopChoices();
+}
+
+
+function moveChoice(priority,direction){
+
+  const index = choices.findIndex(c=>c.priority===priority);
+
+  if(index < 0) return;
+
+  const newIndex = index + direction;
+
+  if(newIndex < 0 || newIndex >= choices.length) return;
+
+  [choices[index],choices[newIndex]] =
+    [choices[newIndex],choices[index]];
+
+  choices.forEach((c,i)=>c.priority=i+1);
+
+  renderChoices();
+
+  // Production:
+  // api("saveChoices",{applicationId:student.applicationId,choices});
+}
+
+
+function deleteChoice(priority){
+
+  if(!confirm("Remove this college from your choice list?")) return;
+
+  choices = choices.filter(c=>c.priority!==priority);
+  choices.forEach((c,i)=>c.priority=i+1);
+
+  renderChoices();
+
+  toast("Choice removed.");
+
+  // Production:
+  // api("deleteChoice",{applicationId:student.applicationId,priority});
+}
+
+
+function openAddChoice(){
+  document.getElementById("choiceModal").style.display="flex";
+  renderCollegeOptions();
+}
+
+
+function closeModal(){
+  document.getElementById("choiceModal").style.display="none";
+}
+
+
+function renderCollegeOptions(){
+
+  const q = (document.getElementById("collegeSearchModal").value || "").toLowerCase();
+
+  const sampleColleges = [
+    ["AIIMS Nagpur","MD General Medicine","All India","Moderate"],
+    ["Government Medical College, Nagpur","MD General Medicine","State Quota","High"],
+    ["Government Medical College, Chhatrapati Sambhajinagar","MD General Medicine","State Quota","High"],
+    ["BJ Medical College, Pune","MD General Medicine","State Quota","Moderate"],
+    ["Nair Hospital Mumbai","MD General Medicine","State Quota","Moderate"],
+    ["Lokmanya Tilak Municipal Medical College","MD General Medicine","State Quota","Moderate"],
+    ["AIIMS Delhi","MD General Medicine","All India","Ambitious"]
+  ];
+
+  const list = sampleColleges.filter(x=>x.join(" ").toLowerCase().includes(q));
+
+  document.getElementById("collegeOptions").innerHTML =
+    list.map(c=>`
+      <div class="choice-card" onclick='addChoice(${JSON.stringify(c)})'>
+        <b>${escapeHtml(c[0])}</b>
+        <div class="muted" style="font-size:11px;margin-top:4px">
+          ${escapeHtml(c[1])} · ${escapeHtml(c[2])}
+        </div>
+        <span class="badge blue" style="margin-top:7px">${escapeHtml(c[3])} Chance</span>
+      </div>
+    `).join("");
+}
+
+
+function addChoice(c){
+
+  choices.push({
+    priority:choices.length+1,
+    college:c[0],
+    course:c[1],
+    quota:c[2],
+    chance:c[3],
+    status:"Saved"
+  });
+
+  closeModal();
+  renderChoices();
+  toast("College added to your choices.");
+
+  // Production:
+  // api("addChoice",{applicationId:student.applicationId,choice:...});
+}
+
+
+function downloadChoices(){
+
+  let csv = "Priority,College,Course,Quota,Chance,Status\n";
+
+  choices.forEach(c=>{
+    csv += [
+      c.priority,
+      csvSafe(c.college),
+      csvSafe(c.course),
+      csvSafe(c.quota),
+      c.chance,
+      c.status
+    ].join(",") + "\n";
+  });
+
+  const blob = new Blob([csv],{type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="RN-Counselling-College-Choices.csv";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+
+function csvSafe(value){
+  return '"' + String(value).replaceAll('"','""') + '"';
+}
+
+
+/* ==========================================================
+   DOCUMENTS
+========================================================== */
+
+function renderDocuments(){
+
+  const box=document.getElementById("documentsList");
+  if(!box) return;
+
+  box.innerHTML = documents.map((doc,i)=>`
+
+    <div class="doc-row">
+
+      <div>
+        <div class="doc-name">${escapeHtml(doc.name)}</div>
+        <div class="doc-note">
+          ${doc.required ? "Required" : "Optional"}
+        </div>
+      </div>
+
+      <div class="doc-status">
+        <span class="badge ${
+          doc.status==="Uploaded" ? "green" : "orange"
+        }">
+          ${doc.status}
+        </span>
+      </div>
+
+      <div></div>
+
+      <div class="upload-wrap">
+        <label class="upload-btn">
+          Upload
+          <input type="file"
+                 accept=".pdf,.jpg,.jpeg,.png"
+                 onchange="uploadDocument(${i},this)">
+        </label>
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+async function uploadDocument(index,input){
+
+  const file=input.files[0];
+
+  if(!file) return;
+
+  if(file.size > 8*1024*1024){
+    toast("Maximum file size is 8 MB.");
+    input.value="";
+    return;
+  }
+
+  documents[index].status="Uploading...";
+  renderDocuments();
+
+  // --------------------------------------------------------
+  // DEMO MODE
+  // --------------------------------------------------------
+  if(CONFIG.DEMO_MODE){
+
+    setTimeout(()=>{
+      documents[index].status="Uploaded";
+      renderDocuments();
+      toast(file.name+" uploaded successfully (demo).");
+    },800);
+
+    return;
+  }
+
+  // --------------------------------------------------------
+  // PRODUCTION MODE
+  // --------------------------------------------------------
+  try{
+
+    /*
+      Apps Script can receive base64 JSON.
+
+      IMPORTANT:
+      For larger files, a dedicated storage backend can be
+      preferable. Google Drive + Apps Script is fine for an
+      initial counselling portal with controlled file sizes.
+    */
+
+    const base64 = await fileToBase64(file);
+
+    const result = await api("uploadDocument",{
+      applicationId:student.applicationId,
+      documentType:documents[index].name,
+      fileName:file.name,
+      mimeType:file.type,
+      base64:base64
+    });
+
+    if(result && result.success){
+      documents[index].status="Uploaded";
+      toast("Document uploaded successfully.");
+    }else{
+      documents[index].status="Pending";
+      toast(result.message || "Upload failed.");
+    }
+
+    renderDocuments();
+
+  }catch(e){
+
+    console.error(e);
+    documents[index].status="Pending";
+    renderDocuments();
+    toast("Upload failed. Please try again.");
+  }
+}
+
+
+function fileToBase64(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader=new FileReader();
+
+    reader.onload=()=>{
+      const result=reader.result;
+      resolve(result.split(",")[1]);
+    };
+
+    reader.onerror=reject;
+
+    reader.readAsDataURL(file);
+  });
+}
+
+
+/* ==========================================================
+   GOOGLE APPS SCRIPT API CONNECTOR
+========================================================== */
+
+async function api(action,data={}){
+
+  if(
+    !CONFIG.GOOGLE_SCRIPT_URL ||
+    CONFIG.GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")
+  ){
+    throw new Error("Google Apps Script URL not configured.");
+  }
+
+  const payload={
+    action:action,
+    ...data
+  };
+
+  const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain;charset=utf-8"
+    },
+    body:JSON.stringify(payload)
+  });
+
+  return await response.json();
+}
+
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+
+function openWhatsApp(){
+
+  const text =
+    "Hello RN Counselling, I need help with my student dashboard. Application ID: "
+    + student.applicationId;
+
+  window.open(
+    "https://wa.me/"+CONFIG.WHATSAPP_NUMBER+
+    "?text="+encodeURIComponent(text),
+    "_blank"
+  );
+}
+
+
+function toast(message){
+
+  const t=document.getElementById("toast");
+
+  t.textContent=message;
+  t.style.display="block";
+
+  clearTimeout(window.__toastTimer);
+
+  window.__toastTimer=setTimeout(()=>{
+    t.style.display="none";
+  },2500);
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* ==========================================================
+   STARTUP
+========================================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  renderDocuments();
+  renderChoices();
+
+  /*
+    For initial testing, keep DEMO_MODE = true.
+
+    When backend is ready:
+      CONFIG.DEMO_MODE = false
+
+    Then login() will call your Apps Script.
+  */
+
+  // Optional: keep user logged in during same browser session.
+  if(localStorage.getItem("rn_logged_in")==="1" && CONFIG.DEMO_MODE){
+    openDashboard();
+  }
+
+});
+</script>
+
+</body>
+</html>
