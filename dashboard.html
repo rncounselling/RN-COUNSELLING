@@ -421,24 +421,25 @@
 
       <div class="field">
         <label>Select Your Course</label>
-        <select id="loginCourse" class="input" required>
-          <option value="">-- Select Your Course --</option>
+        <select id="loginCourse" class="input" autocomplete="off">
+          <option value="">Select your course</option>
           <option value="NEET PG - MD/MS">NEET PG - MD/MS</option>
           <option value="NEET PG - MDS">NEET PG - MDS</option>
-          <option value="NEET UG - MBBS/BDS & AYUSH">NEET UG - MBBS/BDS & AYUSH</option>
+          <option value="NEET UG - MBBS/BDS & AYUSH">NEET UG - MBBS/BDS &amp; AYUSH</option>
         </select>
       </div>
 
       <div class="field">
-        <label>Email ID / Phone Number</label>
-        <input id="loginId" class="input" type="text"
-               placeholder="Enter registered email or phone number" autocomplete="username">
+        <label>Mobile Number</label>
+        <input id="loginId" class="input" type="tel"
+               inputmode="numeric" maxlength="15"
+               placeholder="Enter registered mobile number" autocomplete="username">
       </div>
 
       <div class="field">
         <label>Password</label>
         <input id="loginPassword" class="input" type="password"
-               placeholder="Enter password provided by RN Counselling" autocomplete="current-password">
+               placeholder="Enter password" autocomplete="current-password">
       </div>
 
       <button class="primary-btn" onclick="login()">Login to Dashboard</button>
@@ -763,12 +764,16 @@
               <strong id="pName">—</strong>
             </div>
             <div class="profile-row">
-              <label>Mobile Number</label>
+              <label>Contact Number</label>
               <strong id="pMobile">—</strong>
             </div>
             <div class="profile-row">
               <label>Email</label>
               <strong id="pEmail">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>State</label>
+              <strong id="pState">—</strong>
             </div>
             <div class="profile-row">
               <label>Category</label>
@@ -777,10 +782,14 @@
           </div>
 
           <div class="card panel">
-            <div class="section-title"><h3>NEET PG Details</h3></div>
+            <div class="section-title"><h3>NEET / Course Details</h3></div>
 
             <div class="profile-row">
-              <label>NEET PG Score</label>
+              <label>Course</label>
+              <strong id="pCourse">—</strong>
+            </div>
+            <div class="profile-row">
+              <label>NEET Score</label>
               <strong id="pScore">—</strong>
             </div>
             <div class="profile-row">
@@ -898,7 +907,10 @@
               <option value="Not Filled">Not Filled</option>
             </select>
 
-            <button class="primary-btn" style="width:auto" onclick="openAddChoice()">+ Add Choice</button>
+            <input id="dreamBranch" class="input" placeholder="Dream Branch e.g. MD Medicine">
+
+            <button class="primary-btn" style="width:auto" onclick="runCollegePredictor()">Predict Colleges</button>
+            <button class="outline-btn" onclick="openAddChoice()">+ Add Choice</button>
           </div>
 
           <div class="table-wrap">
@@ -947,6 +959,9 @@
         <div class="success-box">
           Documents uploaded here will be stored in your secure RN Counselling Google Drive folder.
           <strong>Do not upload documents belonging to another student.</strong>
+          <div style="margin-top:6px;font-size:11px;opacity:.9">
+            Google Drive folder is configured in the HTML and can be added later.
+          </div>
         </div>
 
         <div class="card panel">
@@ -1109,19 +1124,37 @@
 
 const CONFIG = {
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  // ==========================================================
+  // STUDENT LOGIN / PERSONAL DATA APPS SCRIPT
+  // ==========================================================
   GOOGLE_SCRIPT_URL:
-    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE",
+    "https://script.google.com/macros/s/AKfycbypG9Gi-GSlAXP94tX_idegFsSZ2AiwbEVHxrDs3BdDo87bRK2xI38IzQDiqki8DWUofw/exec",
+
+  // ==========================================================
+  // GOOGLE DRIVE DOCUMENT UPLOAD
+  // PASTE YOUR GOOGLE DRIVE FOLDER LINK HERE LATER.
+  // The upload backend will use this folder for student files.
+  // ==========================================================
+  GOOGLE_DRIVE_FOLDER_URL:
+    "PASTE_GOOGLE_DRIVE_FOLDER_LINK_HERE",
+
+  // ==========================================================
+  // MEDICAL COLLEGE PREDICTOR
+  // PASTE THE MEDICAL GOOGLE SHEET / APPS SCRIPT DETAILS HERE.
+  // Browser access to a private Google Sheet requires an Apps
+  // Script Web App; the spreadsheet ID can also be supplied.
+  // ==========================================================
+  MEDICAL_APPS_SCRIPT_URL:
+    "PASTE_MEDICAL_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE",
+
+  MEDICAL_SPREADSHEET_ID:
+    "PASTE_MEDICAL_GOOGLE_SHEET_ID_HERE",
 
   // Your WhatsApp number, country code included.
   WHATSAPP_NUMBER: "919763077764",
 
-  // Demo mode:
-  // true = page works with sample data so you can test the UI.
-  // false = page attempts to connect to Google Apps Script.
-  DEMO_MODE: true
+  // LIVE MODE: student data comes from Google Sheet.
+  DEMO_MODE: false
 };
 
 
@@ -1131,35 +1164,21 @@ const CONFIG = {
 ========================================================== */
 
 let student = {
-  applicationId: "RNPG26081245",
-  name: "Nadeem Shaikh",
-  mobile: "+91 9763077764",
-  email: "student@example.com",
-  category: "General",
-  score: "542",
-  rank: "12,540",
-  branches: "MD General Medicine, Radiology, Pediatrics",
-  counselling: "All India + Maharashtra State",
-  course: "MD/MS",
-  package: "Premium Counselling",
+  name: "",
+  mobile: "",
+  email: "",
+  state: "",
+  course: "",
+  rank: "",
+  score: "",
+  category: "",
+  packageName: "",
+  additionalInfo: "",
   paymentStatus: "PAID",
-  paymentId: "pay_RNPG26081245",
-  paymentDate: "08 Aug 2026",
-  formDate: "08 Aug 2026",
-  profilePercent: "85%",
-  amount: "₹19,999"
+  finalAmount: ""
 };
 
-let choices = [
-  {priority:1,college:"AIIMS New Delhi",course:"MD General Medicine",quota:"All India",chance:"Ambitious",status:"Filled"},
-  {priority:2,college:"JIPMER Puducherry",course:"MD General Medicine",quota:"All India",chance:"Ambitious",status:"Filled"},
-  {priority:3,college:"KEM Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Filled"},
-  {priority:4,college:"Seth GS Medical College, Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Filled"},
-  {priority:5,college:"BJ Medical College, Ahmedabad",course:"MD General Medicine",quota:"All India",chance:"Moderate",status:"Saved"},
-  {priority:6,college:"Maulana Azad Medical College, Delhi",course:"MD General Medicine",quota:"All India",chance:"Moderate",status:"Saved"},
-  {priority:7,college:"Armed Forces Medical College, Pune",course:"MD General Medicine",quota:"State Quota",chance:"Moderate",status:"Saved"},
-  {priority:8,college:"Grant Medical College, Mumbai",course:"MD General Medicine",quota:"State Quota",chance:"High",status:"Not Filled"}
-];
+let choices = [];
 
 let documents = [
   {name:"Aadhaar Card",required:true,status:"Pending"},
@@ -1179,89 +1198,82 @@ let documents = [
 
 async function login(){
 
-  const course = document.getElementById("loginCourse").value.trim();
-  const loginId = document.getElementById("loginId").value.trim();
-  const password = document.getElementById("loginPassword").value.trim();
-  const error = document.getElementById("loginError");
+  const selectedCourse =
+    document.getElementById("loginCourse").value.trim();
+
+  const mobile =
+    document.getElementById("loginId").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value.trim();
+
+  const error =
+    document.getElementById("loginError");
 
   error.style.display = "none";
+  error.textContent = "";
 
-  if(!course){
+  if(!selectedCourse){
     error.textContent = "Please select your course.";
     error.style.display = "block";
     return;
   }
 
-  if(!loginId || !password){
-    error.textContent = "Please enter your registered Email/Phone and password.";
+  if(!mobile){
+    error.textContent = "Please enter your registered mobile number.";
     error.style.display = "block";
     return;
   }
 
-  // -------------------------------------------------------
-  // DEMO MODE - FOR HTML TESTING ONLY
-  // -------------------------------------------------------
-  if(CONFIG.DEMO_MODE){
-
-    const demoPasswords = [
-      "RN@2026",
-      "RN#4582",
-      "RN@7391",
-      "RN#6248",
-      "RN@8157",
-      "RN#9364",
-      "RN@2746",
-      "RN#5813",
-      "RN@6925",
-      "RN#3478"
-    ];
-
-    if(!demoPasswords.includes(password)){
-      error.textContent = "Invalid password. Please use the password provided by RN Counselling.";
-      error.style.display = "block";
-      return;
-    }
-
-    localStorage.setItem("rn_logged_in","1");
-    openDashboard();
+  if(!password){
+    error.textContent = "Please enter your password.";
+    error.style.display = "block";
     return;
   }
 
-  // -------------------------------------------------------
-  // PRODUCTION MODE
-  // Google Apps Script checks course + loginId + password
-  // against the Google Sheet.
-  // -------------------------------------------------------
+  error.textContent = "Checking your details...";
+  error.style.display = "block";
+
   try{
 
     const result = await api("login",{
-      course: course,
-      loginId: loginId,
+      course: selectedCourse,
+      mobile: mobile,
       password: password
     });
 
-    if(result && result.success && result.paid === true){
+    if(result && result.success === true){
 
-      student = result.student;
+      student = result.student || {};
       choices = result.choices || [];
       documents = result.documents || documents;
 
-      localStorage.setItem("rn_session_token", result.token || "");
+      localStorage.setItem("rn_logged_in","1");
+      localStorage.setItem("rn_student_mobile", student.mobile || mobile);
+
+      error.style.display = "none";
       openDashboard();
 
     }else{
-      error.textContent = result.message ||
-        "Login failed. Your Email/Phone, Course or Password is incorrect, or your data is not registered.";
+
+      error.textContent =
+        result.message ||
+        "Login failed. Please check your course, mobile number and password.";
+
       error.style.display = "block";
     }
 
   }catch(e){
-    error.textContent =
-      "Unable to connect to RN Counselling server. Please try again or contact support.";
-    error.style.display = "block";
+
     console.error(e);
+
+    error.textContent =
+      "Unable to connect to Student Dashboard server. Please try again.";
+
+    error.style.display = "block";
   }
 }
+
 
 function openDashboard(){
 
@@ -1278,6 +1290,7 @@ function logout(){
 
   localStorage.removeItem("rn_logged_in");
   localStorage.removeItem("rn_session_token");
+  localStorage.removeItem("rn_student_mobile");
 
   document.getElementById("app").style.display = "none";
   document.getElementById("loginScreen").style.display = "flex";
@@ -1325,54 +1338,84 @@ function toggleSidebar(){
 
 function loadStudentData(){
 
-  const initials = student.name
+  const safeStudent = student || {};
+
+  const studentName = safeStudent.name || "Student";
+
+  const initials = studentName
     .split(" ")
+    .filter(Boolean)
     .map(x=>x[0])
     .join("")
     .substring(0,2)
     .toUpperCase();
 
-  document.getElementById("avatar").textContent = initials;
-  document.getElementById("topName").textContent = student.name;
-  document.getElementById("welcomeName").textContent = student.name;
+  document.getElementById("avatar").textContent = initials || "ST";
+  document.getElementById("topName").textContent = studentName;
+  document.getElementById("welcomeName").textContent = studentName;
 
-  document.getElementById("applicationId").textContent = student.applicationId;
-
+  // No Application ID is required for login.
+  document.getElementById("applicationId").textContent = "Verified Student";
   document.querySelectorAll(".profile-app-id")
-    .forEach(x=>x.textContent = student.applicationId);
+    .forEach(x=>x.textContent = "Verified Student");
 
-  document.getElementById("applicationStatus").textContent = "Registered";
-  document.getElementById("formDate").textContent = "Form submitted " + student.formDate;
+  document.getElementById("applicationStatus").textContent = "Verified";
+  document.getElementById("formDate").textContent =
+    safeStudent.formDate ? "Form submitted " + safeStudent.formDate : "Registration verified";
 
-  document.getElementById("score").textContent = student.score;
-  document.getElementById("rankText").textContent = "Rank: " + student.rank;
+  document.getElementById("score").textContent = safeStudent.score || "—";
+  document.getElementById("rankText").textContent =
+    "Rank: " + (safeStudent.rank || "—");
 
   document.getElementById("counsellingType").textContent =
-    student.counselling;
+    safeStudent.state || "—";
 
   document.getElementById("courseText").textContent =
-    student.course;
+    safeStudent.course || "—";
 
-  document.getElementById("profilePercent").textContent =
-    student.profilePercent;
+  document.getElementById("profilePercent").textContent = "—";
 
+  // Personal details from Google Sheet
+  document.getElementById("pName").textContent = safeStudent.name || "—";
+  document.getElementById("pMobile").textContent = safeStudent.mobile || "—";
+  document.getElementById("pEmail").textContent = safeStudent.email || "—";
+  document.getElementById("pState").textContent = safeStudent.state || "—";
+  document.getElementById("pCategory").textContent = safeStudent.category || "—";
 
-  document.getElementById("pName").textContent = student.name;
-  document.getElementById("pMobile").textContent = student.mobile;
-  document.getElementById("pEmail").textContent = student.email;
-  document.getElementById("pCategory").textContent = student.category;
-  document.getElementById("pScore").textContent = student.score;
-  document.getElementById("pRank").textContent = student.rank;
-  document.getElementById("pBranches").textContent = student.branches;
-  document.getElementById("pCounselling").textContent = student.counselling;
-  document.getElementById("pPackage").textContent = student.package;
-  document.getElementById("pPayment").textContent = student.paymentStatus + " ✓";
+  // NEET / course details from Google Sheet
+  document.getElementById("pCourse").textContent = safeStudent.course || "—";
+  document.getElementById("pScore").textContent = safeStudent.score || "—";
+  document.getElementById("pRank").textContent = safeStudent.rank || "—";
+  document.getElementById("pBranches").textContent =
+    safeStudent.dreamBranch || safeStudent.additionalInfo || "—";
+  document.getElementById("pCounselling").textContent = safeStudent.state || "—";
 
-  document.getElementById("cPackage").textContent = student.package;
-  document.getElementById("payPackage").textContent = student.package;
-  document.getElementById("payAmount").textContent = student.amount;
-  document.getElementById("paymentId").textContent = student.paymentId;
-  document.getElementById("paymentDate").textContent = student.paymentDate;
+  // Package / payment information from Sheet1
+  document.getElementById("pPackage").textContent =
+    safeStudent.packageName || safeStudent.package || "—";
+
+  document.getElementById("pPayment").textContent =
+    safeStudent.paymentStatus || "PAID";
+
+  document.getElementById("cPackage").textContent =
+    safeStudent.packageName || safeStudent.package || "—";
+
+  document.getElementById("payPackage").textContent =
+    safeStudent.packageName || safeStudent.package || "—";
+
+  document.getElementById("payAmount").textContent =
+    safeStudent.finalAmount || safeStudent.amount || "—";
+
+  document.getElementById("paymentId").textContent =
+    safeStudent.paymentId || "Not available in Sheet1";
+
+  document.getElementById("paymentDate").textContent =
+    safeStudent.paymentDate || "—";
+
+  const dream = document.getElementById("dreamBranch");
+  if(dream && !dream.value){
+    dream.value = safeStudent.dreamBranch || "";
+  }
 
   updateChoiceCounts();
 }
@@ -1599,6 +1642,81 @@ function addChoice(c){
 }
 
 
+async function runCollegePredictor(){
+
+  if(!student || !student.mobile){
+    toast("Please login first.");
+    return;
+  }
+
+  const dreamBranch =
+    (document.getElementById("dreamBranch")?.value || "").trim();
+
+  if(!dreamBranch){
+    toast("Please enter your dream branch.");
+    return;
+  }
+
+  toast("Checking college predictor...");
+
+  try{
+
+    const predictorUrl =
+      CONFIG.MEDICAL_APPS_SCRIPT_URL &&
+      !CONFIG.MEDICAL_APPS_SCRIPT_URL.includes("PASTE_MEDICAL")
+        ? CONFIG.MEDICAL_APPS_SCRIPT_URL
+        : CONFIG.GOOGLE_SCRIPT_URL;
+
+    const result = await apiWithUrl(
+      predictorUrl,
+      "getChoices",
+      {
+        mobile: student.mobile,
+        rank: student.rank || "",
+        category: student.category || "",
+        dreamBranch: dreamBranch,
+        medicalSpreadsheetId: CONFIG.MEDICAL_SPREADSHEET_ID
+      }
+    );
+
+    if(result && result.success){
+      choices = result.choices || [];
+      renderChoices();
+      toast("College prediction updated.");
+    }else{
+      toast(result.message || "No prediction data found.");
+    }
+
+  }catch(error){
+    console.error(error);
+    toast("College predictor is not connected yet. Add the Medical Apps Script URL.");
+  }
+}
+
+
+async function apiWithUrl(url,action,data={}){
+
+  if(!url || url.includes("PASTE_")){
+    throw new Error("Medical Apps Script URL not configured.");
+  }
+
+  const payload={
+    action:action,
+    ...data
+  };
+
+  const response = await fetch(url,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain;charset=utf-8"
+    },
+    body:JSON.stringify(payload)
+  });
+
+  return await response.json();
+}
+
+
 function downloadChoices(){
 
   let csv = "Priority,College,Course,Quota,Chance,Status\n";
@@ -1722,10 +1840,13 @@ async function uploadDocument(index,input){
     const base64 = await fileToBase64(file);
 
     const result = await api("uploadDocument",{
-      applicationId:student.applicationId,
+      mobile:student.mobile,
+      email:student.email,
+      studentName:student.name,
       documentType:documents[index].name,
       fileName:file.name,
       mimeType:file.type,
+      driveFolderUrl:CONFIG.GOOGLE_DRIVE_FOLDER_URL,
       base64:base64
     });
 
@@ -1804,8 +1925,8 @@ async function api(action,data={}){
 function openWhatsApp(){
 
   const text =
-    "Hello RN Counselling, I need help with my student dashboard. Application ID: "
-    + student.applicationId;
+    "Hello RN Counselling, I need help with my student dashboard. Mobile: "
+    + (student.mobile || "Not available");
 
   window.open(
     "https://wa.me/"+CONFIG.WHATSAPP_NUMBER+
@@ -1850,16 +1971,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderDocuments();
   renderChoices();
 
-  /*
-    For initial testing, keep DEMO_MODE = true.
-
-    When backend is ready:
-      CONFIG.DEMO_MODE = false
-
-    Then login() will call your Apps Script.
-  */
-
-  // Optional: keep user logged in during same browser session.
+  // Live mode: do not automatically display dashboard with demo data.
+  // A student must login through the Google Sheet connected backend.
   if(localStorage.getItem("rn_logged_in")==="1" && CONFIG.DEMO_MODE){
     openDashboard();
   }
