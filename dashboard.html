@@ -420,16 +420,6 @@
       <div id="loginError" class="error"></div>
 
       <div class="field">
-        <label>Select Your Course</label>
-        <select id="loginCourse" class="input" autocomplete="off">
-          <option value="">Select your course</option>
-          <option value="NEET PG - MD/MS">NEET PG - MD/MS</option>
-          <option value="NEET PG - MDS">NEET PG - MDS</option>
-          <option value="NEET UG - MBBS/BDS & AYUSH">NEET UG - MBBS/BDS &amp; AYUSH</option>
-        </select>
-      </div>
-
-      <div class="field">
         <label>Mobile Number</label>
         <input id="loginId" class="input" type="tel"
                inputmode="numeric" maxlength="15"
@@ -1198,9 +1188,6 @@ let documents = [
 
 async function login(){
 
-  const selectedCourse =
-    document.getElementById("loginCourse").value.trim();
-
   const mobile =
     document.getElementById("loginId").value.trim();
 
@@ -1212,12 +1199,6 @@ async function login(){
 
   error.style.display = "none";
   error.textContent = "";
-
-  if(!selectedCourse){
-    error.textContent = "Please select your course.";
-    error.style.display = "block";
-    return;
-  }
 
   if(!mobile){
     error.textContent = "Please enter your registered mobile number.";
@@ -1237,7 +1218,6 @@ async function login(){
   try{
 
     const result = await api("login",{
-      course: selectedCourse,
       mobile: mobile,
       password: password
     });
