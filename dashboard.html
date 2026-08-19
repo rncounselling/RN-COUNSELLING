@@ -284,6 +284,195 @@
       padding:8px 10px;border-radius:8px;font-size:11px;font-weight:800
     }
     input[type=file]{display:none}
+    /* ==========================================================
+   NEW DOCUMENT MANAGEMENT TABLE
+   ========================================================== */
+
+.documents-table{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+
+.documents-header{
+  display:grid;
+  grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
+  gap:0;
+  background:#f6f8fb;
+  border-bottom:1px solid var(--border);
+  padding:14px 12px;
+  font-size:11px;
+  font-weight:800;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+
+.document-row{
+  display:grid;
+  grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
+  gap:0;
+  align-items:center;
+  padding:15px 12px;
+  border-bottom:1px solid var(--border);
+}
+
+
+.document-row:last-child{
+  border-bottom:none;
+}
+
+
+.document-name-cell{
+  min-width:0;
+}
+
+
+.document-name-cell strong{
+  display:block;
+  font-size:13px;
+  line-height:1.4;
+}
+
+
+.document-name-cell small{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+
+.document-upload-cell{
+  display:flex;
+  align-items:center;
+}
+
+
+.document-upload-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:8px 12px;
+  border-radius:8px;
+  background:#eef5ff;
+  color:#1769aa;
+  border:1px solid #cfe2f7;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+
+
+.document-upload-button:hover{
+  background:#dfeeff;
+  transform:translateY(-1px);
+}
+
+
+.document-status-cell{
+  display:flex;
+  align-items:center;
+}
+
+
+.document-view-cell{
+  display:flex;
+  align-items:center;
+}
+
+
+.document-view-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 10px;
+  border-radius:7px;
+  text-decoration:none;
+  background:#f1f8f3;
+  color:#18864b;
+  border:1px solid #cde8d7;
+  font-size:11px;
+  font-weight:800;
+}
+
+
+.document-view-button:hover{
+  background:#e1f2e6;
+}
+
+
+.document-not-available{
+  color:#9aa4af;
+  font-size:11px;
+}
+
+
+.document-remark-cell{
+  min-width:0;
+}
+
+
+.rn-remark{
+  display:block;
+  padding:7px 9px;
+  border-radius:7px;
+  background:#fff8e8;
+  border:1px solid #f1dfae;
+  color:#856404;
+  font-size:11px;
+  line-height:1.4;
+}
+
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .documents-header{
+    display:none;
+  }
+
+
+  .document-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    padding:15px;
+  }
+
+
+  .document-name-cell{
+    grid-column:1 / -1;
+  }
+
+
+  .document-upload-cell{
+    justify-content:flex-start;
+  }
+
+
+  .document-status-cell{
+    justify-content:flex-start;
+  }
+
+
+  .document-view-cell{
+    justify-content:flex-start;
+  }
+
+
+  .document-remark-cell{
+    grid-column:1 / -1;
+  }
+
+}
 
     /* PAYMENT / DATES */
     .payment-row,.date-row{
