@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,207 +273,132 @@
     .profile-row label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}
     .profile-row strong{font-size:13px}
 
-    /* DOCUMENTS */
-    .doc-row{
-      display:grid;grid-template-columns:1.5fr .7fr .8fr auto;
-      align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--border)
+    /* DOCUMENTS - ONLY ON DOCUMENTS PAGE */
+    #page-documents .documents-table{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
     }
-    .doc-name{font-weight:700;font-size:13px}
-    .doc-note{font-size:10px;color:var(--muted);margin-top:3px}
-    .upload-btn{
-      border:1px solid #c9d8ef;background:#f8fbff;color:var(--blue);
-      padding:8px 10px;border-radius:8px;font-size:11px;font-weight:800
+
+    #page-documents .documents-header{
+      display:grid;
+      grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
+      gap:0;
+      background:#f6f8fb;
+      border-bottom:1px solid var(--border);
+      padding:14px 12px;
+      font-size:11px;
+      font-weight:800;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.4px;
     }
-    input[type=file]{display:none}
-    /* ==========================================================
-   NEW DOCUMENT MANAGEMENT TABLE
-   ========================================================== */
 
-.documents-table{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-}
+    #page-documents .document-row{
+      display:grid;
+      grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
+      gap:0;
+      align-items:center;
+      padding:15px 12px;
+      border-bottom:1px solid var(--border);
+    }
 
+    #page-documents .document-row:last-child{border-bottom:none}
 
-.documents-header{
-  display:grid;
-  grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
-  gap:0;
-  background:#f6f8fb;
-  border-bottom:1px solid var(--border);
-  padding:14px 12px;
-  font-size:11px;
-  font-weight:800;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.4px;
-}
+    #page-documents .document-name-cell{min-width:0}
+    #page-documents .document-name-cell strong{
+      display:block;
+      font-size:13px;
+      line-height:1.4;
+    }
 
+    #page-documents .document-name-cell small{
+      display:block;
+      margin-top:4px;
+      font-size:10px;
+      color:var(--muted);
+    }
 
-.document-row{
-  display:grid;
-  grid-template-columns:2.2fr .8fr .9fr .7fr 1.5fr;
-  gap:0;
-  align-items:center;
-  padding:15px 12px;
-  border-bottom:1px solid var(--border);
-}
+    #page-documents .document-upload-cell,
+    #page-documents .document-status-cell,
+    #page-documents .document-view-cell{
+      display:flex;
+      align-items:center;
+    }
 
+    #page-documents .document-upload-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:5px;
+      padding:8px 12px;
+      border-radius:8px;
+      background:#eef5ff;
+      color:#1769aa;
+      border:1px solid #cfe2f7;
+      font-size:11px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s;
+    }
 
-.document-row:last-child{
-  border-bottom:none;
-}
+    #page-documents .document-upload-button:hover{
+      background:#dfeeff;
+      transform:translateY(-1px);
+    }
 
+    #page-documents .document-view-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:7px;
+      text-decoration:none;
+      background:#f1f8f3;
+      color:#18864b;
+      border:1px solid #cde8d7;
+      font-size:11px;
+      font-weight:800;
+    }
 
-.document-name-cell{
-  min-width:0;
-}
+    #page-documents .document-view-button:hover{background:#e1f2e6}
 
+    #page-documents .document-not-available{
+      color:#9aa4af;
+      font-size:11px;
+    }
 
-.document-name-cell strong{
-  display:block;
-  font-size:13px;
-  line-height:1.4;
-}
+    #page-documents .document-remark-cell{min-width:0}
 
+    #page-documents .rn-remark{
+      display:block;
+      padding:7px 9px;
+      border-radius:7px;
+      background:#fff8e8;
+      border:1px solid #f1dfae;
+      color:#856404;
+      font-size:11px;
+      line-height:1.4;
+    }
 
-.document-name-cell small{
-  display:block;
-  margin-top:4px;
-  font-size:10px;
-  color:var(--muted);
-}
+    @media(max-width:850px){
+      #page-documents .documents-header{display:none}
 
+      #page-documents .document-row{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        padding:15px;
+      }
 
-.document-upload-cell{
-  display:flex;
-  align-items:center;
-}
-
-
-.document-upload-button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  padding:8px 12px;
-  border-radius:8px;
-  background:#eef5ff;
-  color:#1769aa;
-  border:1px solid #cfe2f7;
-  font-size:11px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.2s;
-}
-
-
-.document-upload-button:hover{
-  background:#dfeeff;
-  transform:translateY(-1px);
-}
-
-
-.document-status-cell{
-  display:flex;
-  align-items:center;
-}
-
-
-.document-view-cell{
-  display:flex;
-  align-items:center;
-}
-
-
-.document-view-button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:7px 10px;
-  border-radius:7px;
-  text-decoration:none;
-  background:#f1f8f3;
-  color:#18864b;
-  border:1px solid #cde8d7;
-  font-size:11px;
-  font-weight:800;
-}
-
-
-.document-view-button:hover{
-  background:#e1f2e6;
-}
-
-
-.document-not-available{
-  color:#9aa4af;
-  font-size:11px;
-}
-
-
-.document-remark-cell{
-  min-width:0;
-}
-
-
-.rn-remark{
-  display:block;
-  padding:7px 9px;
-  border-radius:7px;
-  background:#fff8e8;
-  border:1px solid #f1dfae;
-  color:#856404;
-  font-size:11px;
-  line-height:1.4;
-}
-
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-  .documents-header{
-    display:none;
-  }
-
-
-  .document-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    padding:15px;
-  }
-
-
-  .document-name-cell{
-    grid-column:1 / -1;
-  }
-
-
-  .document-upload-cell{
-    justify-content:flex-start;
-  }
-
-
-  .document-status-cell{
-    justify-content:flex-start;
-  }
-
-
-  .document-view-cell{
-    justify-content:flex-start;
-  }
-
-
-  .document-remark-cell{
-    grid-column:1 / -1;
-  }
-
-}
+      #page-documents .document-name-cell{grid-column:1 / -1}
+      #page-documents .document-upload-cell{justify-content:flex-start}
+      #page-documents .document-status-cell{justify-content:flex-start}
+      #page-documents .document-view-cell{justify-content:flex-start}
+      #page-documents .document-remark-cell{grid-column:1 / -1}
+    }
 
     /* PAYMENT / DATES */
     .payment-row,.date-row{
@@ -1136,20 +1062,18 @@
         </div>
 
         <div class="success-box">
+          Documents uploaded here will be securely submitted to
+          RN Counselling for verification.
 
-  Documents uploaded here will be securely submitted to
-  RN Counselling for verification.
+          <strong>
+            Please upload clear and valid documents belonging only to you.
+          </strong>
 
-  <strong>
-    Please upload clear and valid documents belonging only to you.
-  </strong>
-
-  <div style="margin-top:6px;font-size:11px;opacity:.9">
-    Maximum file size: 8 MB per document.
-    Accepted formats: PDF, JPG, JPEG, PNG.
-  </div>
-
-</div>
+          <div style="margin-top:6px;font-size:11px;opacity:.9">
+            Maximum file size: 8 MB per document.
+            Accepted formats: PDF, JPG, JPEG, PNG.
+          </div>
+        </div>
 
         <div class="card panel">
           <div class="section-title">
@@ -1157,6 +1081,7 @@
             <span class="badge blue">Secure Upload</span>
           </div>
 
+          <!-- Document list is rendered ONLY inside this Documents page. -->
           <div id="documentsList"></div>
         </div>
 
@@ -1569,7 +1494,10 @@ function openDashboard(){
 
   loadStudentData();
   renderChoices();
-  renderDocuments();
+
+  // Always open the Dashboard after login.
+  // Documents are rendered only when the Documents page is opened.
+  showPage("dashboard");
 }
 
 
@@ -1597,7 +1525,15 @@ function showPage(page){
   });
 
   const target = document.getElementById("page-"+page);
-  if(target) target.style.display = "block";
+
+  if(!target) return;
+
+  target.style.display = "block";
+
+  // Document UI is refreshed only when the Documents page is opened.
+  if(page === "documents"){
+    renderDocuments();
+  }
 
   document.querySelectorAll(".nav-item").forEach(item=>{
     item.classList.remove("active");
@@ -2038,158 +1974,176 @@ function csvSafe(value){
 
 /* ==========================================================
    DOCUMENTS
+   ----------------------------------------------------------
+   IMPORTANT:
+   Document UI is rendered only inside #page-documents.
+   Nothing from this section is inserted into Dashboard.
 ========================================================== */
 
-  function renderDocuments(){
+function renderDocuments(){
 
+  const page = document.getElementById("page-documents");
   const box = document.getElementById("documentsList");
 
-  if(!box) return;
+  // Safety guard: never render the document list anywhere else.
+  if(!page || !box) return;
 
+  box.innerHTML = "";
 
-  box.innerHTML = `
+  const table = document.createElement("div");
+  table.className = "documents-table";
 
-    <div class="documents-table">
-
-      <div class="documents-header">
-
-        <div>Document Name</div>
-
-        <div>Upload</div>
-
-        <div>Status</div>
-
-        <div>View</div>
-
-        <div>RN Remark</div>
-
-      </div>
-
-
-      ${
-        documents.map((doc,index)=>`
-
-          <div class="document-row">
-
-            <!-- DOCUMENT NAME -->
-
-            <div class="document-name-cell">
-
-              <strong>
-                ${index + 1}. ${escapeHtml(doc.name)}
-              </strong>
-
-              <small>
-                ${doc.required ? "Required Document" : "Optional Document"}
-              </small>
-
-            </div>
-
-
-            <!-- UPLOAD -->
-
-            <div class="document-upload-cell">
-
-              <label class="document-upload-button">
-
-                📤 Upload
-
-                <input
-                  type="file"
-                  accept=".pdf,.jpg,.jpeg,.png"
-                  onchange="uploadDocument(${index},this)"
-                  hidden
-                >
-
-              </label>
-
-            </div>
-
-
-            <!-- STATUS -->
-
-            <div class="document-status-cell">
-
-              <span class="badge ${
-                doc.status === "Uploaded"
-                  ? "green"
-                  : doc.status === "Uploading..."
-                  ? "blue"
-                  : "orange"
-              }">
-
-                ${escapeHtml(doc.status)}
-
-              </span>
-
-            </div>
-
-
-            <!-- VIEW -->
-
-            <div class="document-view-cell">
-
-              ${
-                doc.viewUrl
-                  ? `
-                    <a
-                      href="${escapeHtml(doc.viewUrl)}"
-                      target="_blank"
-                      class="document-view-button"
-                    >
-                      👁 View
-                    </a>
-                  `
-                  : `
-                    <span class="document-not-available">
-                      —
-                    </span>
-                  `
-              }
-
-            </div>
-
-
-            <!-- RN REMARK -->
-
-            <div class="document-remark-cell">
-
-              ${
-                doc.remark
-                  ? `
-                    <span class="rn-remark">
-                      ${escapeHtml(doc.remark)}
-                    </span>
-                  `
-                  : `
-                    <span class="document-not-available">
-                      Pending Review
-                    </span>
-                  `
-              }
-
-            </div>
-
-          </div>
-
-        `).join("")
-      }
-
-    </div>
-
+  const header = document.createElement("div");
+  header.className = "documents-header";
+  header.innerHTML = `
+    <div>Document Name</div>
+    <div>Upload</div>
+    <div>Status</div>
+    <div>View</div>
+    <div>RN Remark</div>
   `;
+  table.appendChild(header);
 
+  documents.forEach((doc,index)=>{
+
+    const row = document.createElement("div");
+    row.className = "document-row";
+
+    const nameCell = document.createElement("div");
+    nameCell.className = "document-name-cell";
+
+    const name = document.createElement("strong");
+    name.textContent = (index + 1) + ". " + (doc.name || "Document");
+
+    const note = document.createElement("small");
+    note.textContent = doc.required
+      ? "Required Document"
+      : "Optional Document";
+
+    nameCell.appendChild(name);
+    nameCell.appendChild(note);
+
+    const uploadCell = document.createElement("div");
+    uploadCell.className = "document-upload-cell";
+
+    const label = document.createElement("label");
+    label.className = "document-upload-button";
+    label.innerHTML = "📤 Upload";
+
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".pdf,.jpg,.jpeg,.png";
+    input.style.display = "none";
+
+    input.addEventListener("change",function(){
+      uploadDocument(index,this);
+    });
+
+    label.appendChild(input);
+    uploadCell.appendChild(label);
+
+    const statusCell = document.createElement("div");
+    statusCell.className = "document-status-cell";
+
+    const statusBadge = document.createElement("span");
+    statusBadge.className =
+      "badge " +
+      (
+        doc.status === "Uploaded"
+          ? "green"
+          : doc.status === "Uploading..."
+          ? "blue"
+          : "orange"
+      );
+
+    statusBadge.textContent = doc.status || "Pending";
+    statusCell.appendChild(statusBadge);
+
+    const viewCell = document.createElement("div");
+    viewCell.className = "document-view-cell";
+
+    if(doc.viewUrl){
+
+      const viewLink = document.createElement("a");
+      viewLink.href = doc.viewUrl;
+      viewLink.target = "_blank";
+      viewLink.rel = "noopener noreferrer";
+      viewLink.className = "document-view-button";
+      viewLink.textContent = "👁 View";
+
+      viewCell.appendChild(viewLink);
+
+    }else{
+
+      const unavailable = document.createElement("span");
+      unavailable.className = "document-not-available";
+      unavailable.textContent = "—";
+
+      viewCell.appendChild(unavailable);
+    }
+
+    const remarkCell = document.createElement("div");
+    remarkCell.className = "document-remark-cell";
+
+    if(doc.remark){
+
+      const remark = document.createElement("span");
+      remark.className = "rn-remark";
+      remark.textContent = doc.remark;
+
+      remarkCell.appendChild(remark);
+
+    }else{
+
+      const pending = document.createElement("span");
+      pending.className = "document-not-available";
+      pending.textContent = "Pending Review";
+
+      remarkCell.appendChild(pending);
+    }
+
+    row.appendChild(nameCell);
+    row.appendChild(uploadCell);
+    row.appendChild(statusCell);
+    row.appendChild(viewCell);
+    row.appendChild(remarkCell);
+
+    table.appendChild(row);
+  });
+
+  box.appendChild(table);
 }
 
 
 async function uploadDocument(index,input){
 
-  const file=input.files[0];
+  const file = input.files[0];
 
   if(!file) return;
 
   if(file.size > 8*1024*1024){
+
     toast("Maximum file size is 8 MB.");
+    input.value="";
+    return;
+  }
+
+  const allowedTypes = [
+    "application/pdf",
+    "image/jpeg",
+    "image/png"
+  ];
+
+  const fileName = (file.name || "").toLowerCase();
+  const validExtension =
+    fileName.endsWith(".pdf") ||
+    fileName.endsWith(".jpg") ||
+    fileName.endsWith(".jpeg") ||
+    fileName.endsWith(".png");
+
+  if(!validExtension && !allowedTypes.includes(file.type)){
+
+    toast("Only PDF, JPG, JPEG and PNG files are allowed.");
     input.value="";
     return;
   }
@@ -2197,53 +2151,64 @@ async function uploadDocument(index,input){
   documents[index].status="Uploading...";
   renderDocuments();
 
-  // --------------------------------------------------------
-  // DEMO MODE
-  // --------------------------------------------------------
   if(CONFIG.DEMO_MODE){
 
     setTimeout(()=>{
+
       documents[index].status="Uploaded";
       renderDocuments();
+
       toast(file.name+" uploaded successfully (demo).");
+
     },800);
 
     return;
   }
 
-  // --------------------------------------------------------
-  // PRODUCTION MODE
-  // --------------------------------------------------------
   try{
-
-    /*
-      Apps Script can receive base64 JSON.
-
-      IMPORTANT:
-      For larger files, a dedicated storage backend can be
-      preferable. Google Drive + Apps Script is fine for an
-      initial counselling portal with controlled file sizes.
-    */
 
     const base64 = await fileToBase64(file);
 
     const result = await api("uploadDocument",{
+
       mobile:student.mobile,
       email:student.email,
       studentName:student.name,
+
       documentType:documents[index].name,
+
       fileName:file.name,
       mimeType:file.type,
+
       driveFolderUrl:CONFIG.GOOGLE_DRIVE_FOLDER_URL,
+
       base64:base64
     });
 
     if(result && result.success){
+
       documents[index].status="Uploaded";
+
+      // If backend returns a Google Drive view URL, show it.
+      if(result.viewUrl){
+        documents[index].viewUrl = result.viewUrl;
+      }
+
+      // If backend returns a remark, show it.
+      if(result.remark){
+        documents[index].remark = result.remark;
+      }
+
       toast("Document uploaded successfully.");
+
     }else{
+
       documents[index].status="Pending";
-      toast(result.message || "Upload failed.");
+
+      toast(
+        result.message ||
+        "Upload failed."
+      );
     }
 
     renderDocuments();
@@ -2251,8 +2216,11 @@ async function uploadDocument(index,input){
   }catch(e){
 
     console.error(e);
+
     documents[index].status="Pending";
+
     renderDocuments();
+
     toast("Upload failed. Please try again.");
   }
 }
@@ -2265,8 +2233,12 @@ function fileToBase64(file){
     const reader=new FileReader();
 
     reader.onload=()=>{
+
       const result=reader.result;
-      resolve(result.split(",")[1]);
+
+      resolve(
+        result.split(",")[1]
+      );
     };
 
     reader.onerror=reject;
@@ -2356,7 +2328,6 @@ function escapeHtml(value){
 
 document.addEventListener("DOMContentLoaded",()=>{
 
-  renderDocuments();
   renderChoices();
 
   // Live mode: do not automatically display dashboard with demo data.
@@ -2370,3 +2341,4 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 </body>
 </html>
+
