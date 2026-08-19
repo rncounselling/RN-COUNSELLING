@@ -1845,42 +1845,145 @@ function csvSafe(value){
 
 function renderDocuments(){
 
-  const box=document.getElementById("documentsList");
+  function renderDocuments(){
+
+  const box = document.getElementById("documentsList");
+
   if(!box) return;
 
-  box.innerHTML = documents.map((doc,i)=>`
 
-    <div class="doc-row">
+  box.innerHTML = `
 
-      <div>
-        <div class="doc-name">${escapeHtml(doc.name)}</div>
-        <div class="doc-note">
-          ${doc.required ? "Required" : "Optional"}
-        </div>
+    <div class="documents-table">
+
+      <div class="documents-header">
+
+        <div>Document Name</div>
+
+        <div>Upload</div>
+
+        <div>Status</div>
+
+        <div>View</div>
+
+        <div>RN Remark</div>
+
       </div>
 
-      <div class="doc-status">
-        <span class="badge ${
-          doc.status==="Uploaded" ? "green" : "orange"
-        }">
-          ${doc.status}
-        </span>
-      </div>
 
-      <div></div>
+      ${
+        documents.map((doc,index)=>`
 
-      <div class="upload-wrap">
-        <label class="upload-btn">
-          Upload
-          <input type="file"
-                 accept=".pdf,.jpg,.jpeg,.png"
-                 onchange="uploadDocument(${i},this)">
-        </label>
-      </div>
+          <div class="document-row">
+
+            <!-- DOCUMENT NAME -->
+
+            <div class="document-name-cell">
+
+              <strong>
+                ${index + 1}. ${escapeHtml(doc.name)}
+              </strong>
+
+              <small>
+                ${doc.required ? "Required Document" : "Optional Document"}
+              </small>
+
+            </div>
+
+
+            <!-- UPLOAD -->
+
+            <div class="document-upload-cell">
+
+              <label class="document-upload-button">
+
+                📤 Upload
+
+                <input
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  onchange="uploadDocument(${index},this)"
+                  hidden
+                >
+
+              </label>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="document-status-cell">
+
+              <span class="badge ${
+                doc.status === "Uploaded"
+                  ? "green"
+                  : doc.status === "Uploading..."
+                  ? "blue"
+                  : "orange"
+              }">
+
+                ${escapeHtml(doc.status)}
+
+              </span>
+
+            </div>
+
+
+            <!-- VIEW -->
+
+            <div class="document-view-cell">
+
+              ${
+                doc.viewUrl
+                  ? `
+                    <a
+                      href="${escapeHtml(doc.viewUrl)}"
+                      target="_blank"
+                      class="document-view-button"
+                    >
+                      👁 View
+                    </a>
+                  `
+                  : `
+                    <span class="document-not-available">
+                      —
+                    </span>
+                  `
+              }
+
+            </div>
+
+
+            <!-- RN REMARK -->
+
+            <div class="document-remark-cell">
+
+              ${
+                doc.remark
+                  ? `
+                    <span class="rn-remark">
+                      ${escapeHtml(doc.remark)}
+                    </span>
+                  `
+                  : `
+                    <span class="document-not-available">
+                      Pending Review
+                    </span>
+                  `
+              }
+
+            </div>
+
+          </div>
+
+        `).join("")
+      }
 
     </div>
 
-  `).join("");
+  `;
+
 }
 
 
