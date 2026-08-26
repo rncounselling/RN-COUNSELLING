@@ -4702,92 +4702,117 @@ function addChoice(c){
    COLLEGE PREDICTOR
 ========================================================== */
 
-async function runCollegePredictor(){
+  async function runCollegePredictor(){
 
-  if(
-    !student ||
-    !student.mobile
-  ){
-
-    toast(
-      "Please login first."
-    );
-
+  if(!student || !student.mobile){
+    toast("Please login first.");
     return;
   }
 
-
-  const dreamBranch =
-    (
-      document.getElementById(
-        "dreamBranch"
-      )?.value || ""
-    ).trim();
-
-
-  if(!dreamBranch){
-
-    toast(
-      "Please enter your dream branch."
-    );
-
-    return;
-  }
-
-
-  toast(
-    "Checking college predictor..."
-  );
-
+  toast("Checking college predictor...");
 
   try{
 
     const predictorUrl =
-      CONFIG.MEDICAL_APPS_SCRIPT_URL &&
-      !CONFIG.MEDICAL_APPS_SCRIPT_URL.includes("PASTE_MEDICAL")
-        ? CONFIG.MEDICAL_APPS_SCRIPT_URL
-        : CONFIG.GOOGLE_SCRIPT_URL;
+      CONFIG.MEDICAL_APPS_SCRIPT_URL;
 
+    if(!predictorUrl){
+      toast("Medical College Predictor URL is missing.");
+      return;
+    }
 
-    const result =
-      await apiWithUrl(
-        predictorUrl,
-        "getChoices",
-        {
+    const password =
+      document.getElementById("loginPassword")?.value?.trim() || "";
 
-          mobile:
-            student.mobile,
+    if(!password){
+      toast("Please login again to use College Predictor.");
+      return;
+    }
 
-          rank:
-            student.rank || "",
+    const url =
+      predictorUrl +
+      "?mobile=" + encodeURIComponent(student.mobile) +
+      "&password=" + encodeURIComponent(password);
 
-          category:
-            student.category || "",
+    const response = await fetch(url, {
+      method: "GET"
+    });
 
-          dreamBranch:
-            dreamBranch,
-
-
-        }
+    if(!response.ok){
+      throw new Error(
+        "Predictor server returned HTTP " +
+        response.status
       );
+    }
 
+    const result = await response.json();
 
-    if(
-      result &&
-      result.success
-    ){
+    console.log("College Predictor Response:", result);
 
-      choices =
-        result.choices || [];
+    if(result && result.success){
+
+      choices = (result.colleges || []).map(function(college, index){
+
+        return {
+          priority: index + 1,
+
+          college:
+            college.college || "",
+
+          course:
+            college.branch || "",
+
+          quota:
+            college.quota || "",
+
+          chance:
+            college.chance || "",
+
+          status:
+            "Recommended",
+
+          state:
+            college.state || "",
+
+          fees:
+            college.fees || "",
+
+          stipend:
+            college.stipend || "",
+
+          openingRank:
+            college.openingRank || "",
+
+          closingRank:
+            college.closingRank || "",
+
+          allottedCategory:
+            college.allottedCategory || "",
+
+          candidateCategory:
+            college.candidateCategory || ""
+        };
+
+      });
 
       renderChoices();
 
-      toast(
-        "College prediction updated."
-      );
+      if(choices.length > 0){
 
-    }
-    else{
+        toast(
+          choices.length +
+          " colleges found."
+        );
+
+      }else{
+
+        toast(
+          "No matching colleges found for your rank/category/course."
+        );
+
+      }
+
+    }else{
 
       toast(
         result.message ||
@@ -4796,13 +4821,15 @@ async function runCollegePredictor(){
 
     }
 
-  }
-  catch(error){
+  }catch(error){
 
-    console.error(error);
+    console.error(
+      "College Predictor Error:",
+      error
+    );
 
     toast(
-      "College predictor is not connected yet."
+      "College predictor connection failed. Please try again."
     );
 
   }
