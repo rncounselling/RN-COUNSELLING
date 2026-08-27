@@ -91,7 +91,7 @@ async function runPredictor(){
  if(!mobile){showError("Student mobile number was not found. Please return to the Student Dashboard and login again.");return}
  document.getElementById("resultsArea").innerHTML='<div class="loading"><div class="spinner"></div><strong>Running college prediction...</strong><div class="muted">Matching your rank, category, course and state.</div></div>';
  try{
-   const url=CONFIG.GOOGLE_SCRIPT_URL+"?mobile="+encodeURIComponent(mobile)+"&action=predictMedical";
+   const url=CONFIG.GOOGLE_SCRIPT_URL+"?action=collegePredictor&mobile="+encodeURIComponent(mobile)";
    const response=await fetch(url,{method:"GET",cache:"no-store"});
    if(!response.ok)throw new Error("Predictor server returned HTTP "+response.status);
    const data=await response.json();
