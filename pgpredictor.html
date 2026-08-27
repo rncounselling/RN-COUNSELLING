@@ -1,752 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PG College Predictor | RN Counselling</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-
-  <style>
-    :root {
-      --primary:      #1a4fa0;
-      --primary-dark: #133a7a;
-      --secondary:    #e8f0fe;
-      --accent:       #f97316;
-      --accent-dark:  #dc6309;
-      --text:         #1e293b;
-      --muted:        #64748b;
-      --bg:           #f1f5f9;
-      --white:        #ffffff;
-      --border:       #cbd5e1;
-      --success:      #16a34a;
-      --radius:       10px;
-      --shadow:       0 4px 24px rgba(26,79,160,0.10);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; }
-    a { text-decoration: none; color: inherit; }
-
-    .topbar {
-      background: var(--primary-dark);
-      color: #c9d8f5;
-      font-size: 12px;
-      padding: 6px 0;
-      text-align: center;
-      letter-spacing: 0.3px;
-    }
-    .topbar a { color: #f97316; }
-
-    header { background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-    }
-    .logo { display: flex; align-items: center; gap: 10px; }
-    .logo-icon {
-      width: 46px; height: 46px;
-      background: var(--primary);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 20px; font-weight: 700;
-    }
-    .logo-text { line-height: 1.2; }
-    .logo-text strong { display: block; color: var(--primary); font-size: 17px; font-weight: 700; }
-    .logo-text span { font-size: 11px; color: var(--muted); }
-
-    nav { display: flex; align-items: center; gap: 4px; }
-    nav a {
-      padding: 8px 13px;
-      border-radius: 6px;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text);
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    nav a:hover, nav a.active { background: var(--secondary); color: var(--primary); }
-
-    .nav-cta {
-      background: var(--accent) !important;
-      color: var(--white) !important;
-      font-weight: 600 !important;
-      padding: 8px 16px !important;
-    }
-    .nav-cta:hover { background: var(--accent-dark) !important; }
-
-    .nav-dropdown { position: relative; }
-    .nav-dropdown > a::after { content: " ▾"; font-size: 10px; }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-width: 200px;
-      overflow: hidden;
-      z-index: 200;
-    }
-    .dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; border-radius: 0; }
-    .dropdown-menu a.active-sub { background: var(--secondary); color: var(--primary); font-weight: 600; }
-    .nav-dropdown:hover .dropdown-menu { display: block; }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { width: 25px; height: 3px; background: var(--primary); border-radius: 2px; transition: 0.3s; }
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--white);
-      padding: 12px 20px 16px;
-      border-top: 1px solid var(--border);
-    }
-    .mobile-nav a {
-      padding: 10px 0;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      display: block;
-    }
-    .mobile-nav a.active-sub { color: var(--primary); font-weight: 600; }
-    .mobile-nav.open { display: flex; }
-
-    .page-hero {
-      background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
-      color: var(--white);
-      text-align: center;
-      padding: 52px 20px 44px;
-    }
-    .page-hero h1 { font-size: clamp(22px, 4vw, 34px); font-weight: 700; margin-bottom: 10px; }
-    .page-hero p { font-size: 15px; opacity: 0.88; max-width: 560px; margin: auto; }
-    .breadcrumb { font-size: 12px; opacity: 0.75; margin-bottom: 16px; }
-    .breadcrumb a { opacity: 1; text-decoration: underline; }
-
-    .page-wrap { max-width: 800px; margin: 0 auto; padding: 48px 16px 64px; }
-
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 36px 40px;
-    }
-    @media (max-width: 600px) { .card { padding: 24px 18px; } }
-
-    .card-title { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
-    .card-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
-
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
-    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-
-    label { font-size: 13px; font-weight: 600; color: var(--text); }
-    label .req { color: var(--accent); margin-left: 2px; }
-
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"],
-    input[type="number"],
-    select,
-    .ts-wrapper .ts-control {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 14px;
-      color: var(--text);
-      background: #fafbff;
-      transition: border 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,79,160,0.10); }
-
-    .score-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
-
-    .ts-wrapper { width: 100%; }
-    .ts-wrapper.focus .ts-control { border-color: var(--primary) !important; box-shadow: 0 0 0 3px rgba(26,79,160,0.10) !important; }
-    .ts-dropdown { border-radius: 8px; border: 1.5px solid var(--border); }
-    .ts-dropdown .option.selected { background: var(--secondary); color: var(--primary); }
-    .ts-dropdown .option:hover { background: var(--secondary); }
-
-    .btn-submit {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background: var(--accent);
-      color: var(--white);
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 28px;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-submit:hover { background: var(--accent-dark); }
-    .btn-submit:active { transform: scale(0.99); }
-    .btn-submit:disabled { background: #a0aec0; cursor: not-allowed; }
-
-    .secure-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 10px; }
-    .secure-note i { color: var(--success); }
-
-    .alert { display: none; padding: 14px 18px; border-radius: 8px; font-size: 14px; margin-top: 16px; }
-    .alert-error { background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; }
-    .alert-success { background: #dcfce7; color: #166534; border-left: 4px solid #22c55e; }
-
-    #processingSection { display: none; text-align: center; padding: 40px 20px; }
-    #processingSection .spinner {
-      width: 52px; height: 52px;
-      border: 5px solid var(--secondary);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      margin: 0 auto 18px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    #processingSection h3 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
-    #processingSection p { color: var(--muted); font-size: 13px; max-width: 380px; margin: auto; }
-
-    #resultsSection { display: none; margin-top: 32px; border-top: 2px dashed var(--border); padding-top: 28px; }
-    .result-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-    .result-header i { color: var(--success); font-size: 28px; }
-    .result-header h2 { font-size: 20px; font-weight: 700; color: var(--text); }
-
-    .thankyou-box {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-      border-radius: 12px;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    .thankyou-box .big-icon { font-size: 48px; color: var(--success); margin-bottom: 16px; }
-    .thankyou-box h3 { font-size: 20px; font-weight: 700; color: #166534; margin-bottom: 12px; }
-    .thankyou-box p { font-size: 15px; color: #166534; line-height: 1.7; max-width: 480px; margin: 0 auto; }
-    .thankyou-box .delivery-note {
-      margin-top: 18px; font-size: 13px; color: var(--muted);
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
-    .thankyou-box .delivery-note i { color: var(--accent); }
-
-    .info-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-    .badge { background: var(--secondary); color: var(--primary); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; }
-
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 40px auto;
-      max-width: 800px;
-      padding: 0 16px;
-    }
-    @media (max-width: 600px) { .steps-row { grid-template-columns: 1fr; } }
-    .step-card { background: var(--white); border-radius: 12px; padding: 22px 18px; text-align: center; box-shadow: var(--shadow); }
-    .step-num {
-      width: 38px; height: 38px;
-      background: var(--primary);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 16px;
-      margin: 0 auto 12px;
-    }
-    .step-card h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .step-card p { font-size: 12px; color: var(--muted); }
-
-    footer { background: var(--primary-dark); color: #c9d8f5; padding: 48px 0 0; }
-    .footer-grid {
-      max-width: 1200px; margin: auto; padding: 0 24px;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
-    }
-    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
-
-    .footer-brand .logo-text strong { color: #fff; }
-    .footer-brand p { font-size: 13px; margin-top: 10px; opacity: 0.78; line-height: 1.7; }
-    .footer-socials { display: flex; gap: 10px; margin-top: 16px; }
-    .footer-socials a {
-      width: 34px; height: 34px; background: rgba(255,255,255,0.12);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--white); transition: background 0.2s;
-    }
-    .footer-socials a:hover { background: var(--accent); }
-
-    .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--white); margin-bottom: 14px; }
-    .footer-col a { display: block; font-size: 13px; color: #a5b4c8; margin-bottom: 8px; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--white); }
-    .footer-col a.active-footer { color: var(--accent); }
-
-    .footer-contact p { font-size: 13px; color: #a5b4c8; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
-    .footer-contact i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.10);
-      text-align: center; padding: 16px 24px;
-      font-size: 12px; color: #6b8aa8; margin-top: 36px;
-    }
-    .footer-bottom a { color: var(--accent); }
-
-    .text-center { text-align: center; }
-    .hidden { display: none !important; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RN Counselling | College Predictor</title>
+<style>
+:root{--navy:#06245f;--navy2:#0b347d;--blue:#1456c4;--blue2:#2563d8;--light-blue:#eef5ff;--text:#17233c;--muted:#6d788c;--border:#e3e9f2;--bg:#f4f7fb;--white:#fff;--green:#18a957;--green-bg:#eaf9f0;--orange:#f39a18;--orange-bg:#fff6e6;--red:#e34b4b;--shadow:0 7px 25px rgba(23,48,93,.08);--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg)}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+.topbar{height:66px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50}.brand{display:flex;align-items:center;gap:10px;min-width:220px}.brand-logo,.avatar{border-radius:50%;background:#fff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:900}.brand-logo{width:42px;height:42px;font-size:16px}.brand-title{font-weight:900;font-size:18px;line-height:1.1}.brand-sub{font-size:10px;opacity:.75;margin-top:3px}.top-contact{font-size:12px;opacity:.95;text-align:center;line-height:1.5}.top-user{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px}.user-name{font-size:12px;font-weight:800}.hamburger{display:none;border:0;background:transparent;color:#fff;font-size:24px}
+.layout{display:flex;min-height:calc(100vh - 66px)}.sidebar{width:255px;background:var(--navy);color:#fff;flex-shrink:0;padding:18px 10px;display:flex;flex-direction:column;position:sticky;top:66px;height:calc(100vh - 66px)}.side-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;opacity:.5;padding:8px 14px}.nav-item{border:0;background:transparent;color:#dce7ff;width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;text-align:left;margin:2px 0;font-size:14px}.nav-item:hover,.nav-item.active{background:#114a9f;color:#fff}.nav-icon{width:20px;text-align:center;font-size:17px}.support-box{margin-top:auto;background:var(--navy2);border-radius:12px;padding:16px;font-size:12px;color:#dce7ff}.support-box strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}.wa-btn{width:100%;border:1px solid rgba(255,255,255,.7);color:#fff;background:transparent;border-radius:8px;padding:9px;margin-top:10px;font-weight:700}
+.content{flex:1;padding:26px;min-width:0}.page-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:20px}.page-head h1{margin:0;font-size:28px}.page-head p{margin:5px 0 0;color:var(--muted)}.app-id{background:#eaf1ff;color:var(--blue);padding:8px 12px;border-radius:8px;font-size:12px;font-weight:800;white-space:nowrap}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.student-strip{padding:18px;margin-bottom:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.info-box{background:#f8faff;border:1px solid #e5ebf5;border-radius:10px;padding:12px}.info-label{font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:800;letter-spacing:.4px}.info-value{font-size:14px;font-weight:900;margin-top:5px;word-break:break-word}
+.toolbar{padding:16px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.toolbar-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.search{height:42px;border:1px solid #d7deea;border-radius:9px;padding:0 12px;background:#fbfcfe;outline:none;min-width:240px}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,86,196,.1)}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:800;font-size:12px}.btn-blue{background:var(--blue);color:#fff}.btn-outline{background:#fff;border:1px solid #bdd0ef;color:var(--blue)}.btn-green{background:var(--green);color:#fff}.btn-red{background:var(--red);color:#fff}
+.result-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:center;gap:12px}.result-head h3{margin:0;font-size:17px}.result-count{font-size:12px;color:var(--muted)}.table-wrap{overflow:auto;padding:0 12px 14px}.table{width:100%;border-collapse:collapse;min-width:980px}.table th{background:#f5f8fd;color:#5e6b81;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.35px;padding:12px 10px;border-bottom:1px solid var(--border);white-space:nowrap}.table td{padding:11px 10px;border-bottom:1px solid #edf1f6;font-size:12px;vertical-align:middle}.table tr:hover{background:#fafcff}.priority{font-weight:900;font-size:15px;color:var(--blue);width:60px}.college{font-weight:900}.muted{color:var(--muted);font-size:11px;margin-top:3px}.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}.badge.green{background:var(--green-bg);color:var(--green)}.badge.blue{background:#eaf1ff;color:var(--blue)}.badge.orange{background:var(--orange-bg);color:#c77900}.badge.red{background:#fff0f0;color:#c73a3a}.actions{display:flex;gap:5px}.icon-btn{width:32px;height:32px;border:1px solid #d8e0ec;border-radius:7px;background:#fff;color:var(--blue);font-weight:900;font-size:16px}.icon-btn:hover{background:#eef5ff}.icon-btn.danger{color:#d93636;border-color:#f0bcbc}.icon-btn.danger:hover{background:#fff0f0}.empty{padding:45px 20px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--text);font-size:16px;margin-bottom:7px}.loading{padding:45px;text-align:center}.spinner{width:34px;height:34px;border:4px solid #dce7f8;border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}.notice{padding:13px 15px;border-radius:9px;background:#eef5ff;color:#174b9c;font-size:12px;line-height:1.5;margin-bottom:18px}.error-box{padding:14px;border-radius:9px;background:#fff0f0;color:#b72e2e;border:1px solid #ffd2d2;font-size:12px;line-height:1.5;margin-bottom:18px;display:none}.toast{position:fixed;right:22px;bottom:22px;background:#17233c;color:#fff;padding:12px 16px;border-radius:9px;font-size:12px;box-shadow:0 10px 30px rgba(0,0,0,.2);display:none;z-index:100}
+@media(max-width:900px){.sidebar{width:220px}.student-strip{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.topbar{padding:0 14px}.top-contact{display:none}.hamburger{display:block}.sidebar{position:fixed;left:-260px;top:66px;z-index:60;transition:.25s;width:255px}.sidebar.open{left:0}.content{padding:16px}.page-head h1{font-size:23px}.app-id{display:none}.student-strip{grid-template-columns:repeat(2,1fr)}.search{min-width:190px;width:100%}.toolbar{align-items:stretch}.toolbar-left{width:100%}.toolbar-left .btn{flex:1}}
+</style>
 </head>
 <body>
-
-<!-- TOPBAR -->
-<div class="topbar">
-  Free Counselling Helpline: <a href="tel:+919763077764">+91 97630 77764</a> &nbsp;|&nbsp;
-  <a href="mailto:info@rncounselling.com">info@rncounselling.com</a>
-</div>
-
-<!-- NAVBAR -->
-<header>
-  <div class="nav-container">
-    <div class="logo">
-      <div class="logo-icon">RN</div>
-      <div class="logo-text">
-        <strong>RN Counselling</strong>
-        <span>Medical Admission Experts</span>
-      </div>
-    </div>
-
-    <nav id="desktopNav">
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
-      <div class="nav-dropdown">
-        <a href="#" class="active">College Predictor</a>
-        <div class="dropdown-menu">
-          <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">MD/MS/MDS Predictor</a>
-          <a href="pgpredicted.html" class="active-sub">PG Predictor</a>
-        </div>
-      </div>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#services">Services</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#about">About Us</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact" class="nav-cta">Contact Us</a>
-    </nav>
-
-    <div class="hamburger" id="hamburger" onclick="toggleMobile()">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-
-  <div class="mobile-nav" id="mobileNav">
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a>
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
-    <a href="pgpredictor.html" class="active-sub">PG College Predictor</a>
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
-  </div>
+<header class="topbar">
+  <div class="brand"><div class="brand-logo">RN</div><div><div class="brand-title">RN Counselling</div><div class="brand-sub">Medical UG & PG Admission Counselling</div></div></div>
+  <div class="top-contact">College Predictor<br><span style="opacity:.7">Personalised for your profile</span></div>
+  <div class="top-user"><div><div class="user-name" id="topName">Student</div><div style="font-size:10px;opacity:.7" id="topMobile">—</div></div><div class="avatar" id="avatar">S</div><button class="hamburger" onclick="toggleSidebar()">☰</button></div>
 </header>
-
-<!-- HERO -->
-<section class="page-hero">
-  <div class="breadcrumb">
-    <a href="https://rncounselling.github.io/RN-COUNSELLING/">Home</a> &rsaquo;
-    <a href="#">College Predictor</a> &rsaquo;
-    PG Predictor
-  </div>
-  <h1><i class="fa-solid fa-graduation-cap"></i> PG College Predictor</h1>
-  <p>Enter your NEET PG score and preferences — get a personalised list of colleges you can expect, based on 5 years of cutoff data.</p>
-</section>
-
-<!-- HOW IT WORKS -->
-<div class="steps-row">
-  <div class="step-card">
-    <div class="step-num">1</div>
-    <h4>Fill the Form</h4>
-    <p>Enter your NEET PG score, category, and dream branches.</p>
-  </div>
-  <div class="step-card">
-    <div class="step-num">2</div>
-    <h4>Complete Payment</h4>
-    <p>Unlock your personalised prediction report with a one-time fee.</p>
-  </div>
-  <div class="step-card">
-    <div class="step-num">3</div>
-    <h4>Receive Report</h4>
-    <p>Get your personalised predictor file on your email &amp; WhatsApp within 4 hours.</p>
-  </div>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="side-label">Main Menu</div>
+  <button class="nav-item" onclick="goDashboard()"><span class="nav-icon">⌂</span>Student Dashboard</button>
+  <button class="nav-item active"><span class="nav-icon">🎓</span>College Choices</button>
+  <button class="nav-item" onclick="goState()"><span class="nav-icon">🏛</span>State Counselling</button>
+  <div class="side-label" style="margin-top:8px">Account</div>
+  <button class="nav-item" onclick="logoutStudent()"><span class="nav-icon">↪</span>Logout</button>
+  <div class="support-box"><strong>Need Help?</strong>Contact RN Counselling for counselling support.<button class="wa-btn" onclick="openWhatsApp()">💬 WhatsApp Support</button></div>
+</aside>
+<main class="content">
+  <div class="page-head"><div><h1>College Choices</h1><p>Top 50 medical colleges based on your rank, category, course and counselling eligibility.</p></div><div class="app-id">MEDICAL PREDICTOR</div></div>
+  <div id="errorBox" class="error-box"></div>
+  <div id="notice" class="notice">Your profile is taken automatically from your Student Dashboard. No second login is required.</div>
+  <section class="card student-strip">
+    <div class="info-box"><div class="info-label">Student</div><div class="info-value" id="studentName">—</div></div>
+    <div class="info-box"><div class="info-label">Mobile</div><div class="info-value" id="studentMobile">—</div></div>
+    <div class="info-box"><div class="info-label">Course</div><div class="info-value" id="studentCourse">—</div></div>
+    <div class="info-box"><div class="info-label">NEET Rank</div><div class="info-value" id="studentRank">—</div></div>
+    <div class="info-box"><div class="info-label">Category</div><div class="info-value" id="studentCategory">—</div></div>
+  </section>
+  <section class="card toolbar">
+    <div class="toolbar-left"><input id="search" class="search" placeholder="Search college, quota or course..." oninput="render()"><button class="btn btn-blue" onclick="runPredictor()">↻ Refresh Prediction</button></div>
+    <div class="toolbar-left"><button class="btn btn-green" onclick="downloadExcel()">⬇ Download Excel</button></div>
+  </section>
+  <section class="card">
+    <div class="result-head"><h3>Recommended College Choices</h3><div class="result-count" id="resultCount">0 colleges</div></div>
+    <div id="resultsArea"><div class="loading"><div class="spinner"></div><strong>Loading your college prediction...</strong><div class="muted">Checking Sheet1 profile and medical cutoff data.</div></div></div>
+  </section>
+</main>
 </div>
-
-<!-- MAIN CARD -->
-<div class="page-wrap">
-  <div class="card">
-
-    <!-- FORM SECTION -->
-    <div id="formSection">
-      <div class="card-title"><i class="fa-regular fa-clipboard"></i> Applicant Details</div>
-      <div class="card-subtitle">All fields are required. Your data is kept strictly confidential.</div>
-
-      <form id="predictorForm" novalidate>
-        <div class="form-grid">
-
-          <div class="form-group">
-            <label for="fullName">Full Name <span class="req">*</span></label>
-            <input type="text" id="fullName" name="fullName" placeholder="Dr. / Mr. / Ms. Surname" required />
-          </div>
-
-          <div class="form-group">
-            <label for="contactNo">Contact No <span class="req">*</span></label>
-            <input type="tel" id="contactNo" name="contactNo" placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{7,15}" required />
-          </div>
-
-          <div class="form-group">
-            <label for="emailId">Email ID <span class="req">*</span></label>
-            <input type="email" id="emailId" name="emailId" placeholder="you@email.com" required />
-          </div>
-
-          <div class="form-group">
-            <label for="category">Category <span class="req">*</span></label>
-            <select id="category" name="category" required>
-              <option value="" disabled selected>Select your category</option>
-              <option value="General">General (UR)</option>
-              <option value="OBC">OBC</option>
-              <option value="OBC-NCL">OBC-NCL (Non-Creamy Layer)</option>
-              <option value="SC">SC</option>
-              <option value="ST">ST</option>
-              <option value="EWS">EWS</option>
-              <option value="PwD">PwD (Persons with Disability)</option>
-            </select>
-          </div>
-
-          <div class="form-group full">
-            <label for="dreamBranch">Dream Branch(es) <span class="req">*</span></label>
-            <select id="dreamBranch" name="dreamBranch" multiple placeholder="Search or select branches...">
-              <optgroup label="MD Branches">
-                <option value="MD General Medicine">MD General Medicine</option>
-                <option value="MD Paediatrics">MD Paediatrics</option>
-                <option value="MD Dermatology">MD Dermatology, Venereology &amp; Leprosy</option>
-                <option value="MD Radio-Diagnosis">MD Radio-Diagnosis</option>
-                <option value="MD Psychiatry">MD Psychiatry</option>
-                <option value="MD Anaesthesiology">MD Anaesthesiology</option>
-                <option value="MD Pathology">MD Pathology</option>
-                <option value="MD Biochemistry">MD Biochemistry</option>
-                <option value="MD Microbiology">MD Microbiology</option>
-                <option value="MD Pharmacology">MD Pharmacology</option>
-                <option value="MD Physiology">MD Physiology</option>
-                <option value="MD Anatomy">MD Anatomy</option>
-                <option value="MD Forensic Medicine">MD Forensic Medicine &amp; Toxicology</option>
-                <option value="MD Community Medicine">MD Community Medicine</option>
-                <option value="MD Respiratory Medicine">MD Respiratory Medicine</option>
-                <option value="MD Geriatrics">MD Geriatrics</option>
-                <option value="MD Nuclear Medicine">MD Nuclear Medicine</option>
-                <option value="MD Physical Medicine">MD Physical Medicine &amp; Rehabilitation</option>
-                <option value="MD Radiation Oncology">MD Radiation Oncology</option>
-              </optgroup>
-              <optgroup label="MS Branches">
-                <option value="MS General Surgery">MS General Surgery</option>
-                <option value="MS Orthopaedics">MS Orthopaedics</option>
-                <option value="MS OBGY">MS Obstetrics &amp; Gynaecology (OBGY)</option>
-                <option value="MS ENT">MS ENT (Otorhinolaryngology)</option>
-                <option value="MS Ophthalmology">MS Ophthalmology</option>
-                <option value="MS Anatomy">MS Anatomy</option>
-              </optgroup>
-              <optgroup label="Diploma Courses">
-                <option value="Diploma Anaesthesiology">Diploma in Anaesthesiology</option>
-                <option value="Diploma Child Health">Diploma in Child Health (DCH)</option>
-                <option value="Diploma Obstetrics">Diploma in Obstetrics &amp; Gynaecology</option>
-                <option value="Diploma Ophthalmology">Diploma in Ophthalmology</option>
-                <option value="Diploma ENT">Diploma in ENT</option>
-                <option value="Diploma Dermatology">Diploma in Dermatology</option>
-                <option value="Diploma Orthopaedics">Diploma in Orthopaedics</option>
-                <option value="Diploma Radio-Diagnosis">Diploma in Radio-Diagnosis</option>
-              </optgroup>
-              <optgroup label="MDS Branches">
-                <option value="Oral &amp; Maxillofacial Surgery (OMFS)">Oral &amp; Maxillofacial Surgery (OMFS)</option>
-                <option value="Orthodontics &amp; Dentofacial Orthopaedics">Orthodontics &amp; Dentofacial Orthopaedics</option>
-                <option value="Conservative Dentistry &amp; Endodontics">Conservative Dentistry &amp; Endodontics</option>
-                <option value="Prosthodontics &amp; Crown Bridge">Prosthodontics &amp; Crown Bridge</option>
-                <option value="Periodontics">Periodontics</option>
-                <option value="Paedodontics (Paediatric Dentistry)">Paedodontics (Paediatric Dentistry)</option>
-                <option value="Oral Medicine &amp; Radiology">Oral Medicine &amp; Radiology</option>
-                <option value="Oral Pathology &amp; Microbiology">Oral Pathology &amp; Microbiology</option>
-                <option value="Public Health Dentistry">Public Health Dentistry</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <div class="form-group full">
-            <label for="neetScore">NEET PG / Mock Test Score <span class="req">*</span></label>
-            <input type="number" id="neetScore" name="neetScore" min="0" max="1800" placeholder="Enter your score (0 – 1800)" required />
-            <span class="score-note">Enter your actual NEET PG score or latest mock test score out of 1800.</span>
-          </div>
-
-        </div><!-- /.form-grid -->
-
-        <div id="alertMsg" class="alert alert-error"></div>
-        <div id="successMsg" class="alert alert-success"></div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <i class="fa-solid fa-lock"></i> &nbsp; Submit &amp; Proceed to Payment
-        </button>
-        <p class="secure-note">
-          <i class="fa-solid fa-shield-halved"></i> Secure payment via Razorpay &nbsp;|&nbsp; 256-bit SSL encrypted
-        </p>
-
-      </form>
-    </div><!-- /#formSection -->
-
-    <!-- PROCESSING SECTION -->
-    <div id="processingSection">
-      <div class="spinner"></div>
-      <h3>Processing Your Payment…</h3>
-      <p>Please wait while we verify your payment. Do not close this tab.</p>
-    </div>
-
-    <!-- RESULTS / THANK-YOU SECTION -->
-    <div id="resultsSection">
-      <div class="result-header">
-        <i class="fa-solid fa-circle-check"></i>
-        <h2>Payment Successful!</h2>
-      </div>
-
-      <div class="info-badges" id="resultBadges"></div>
-
-      <div class="thankyou-box">
-        <div class="big-icon">
-          <i class="fa-solid fa-circle-check"></i>
-        </div>
-        <h3>Thank you for your payment!</h3>
-        <p>
-          Your Predictor file will be received on your <strong>email &amp; WhatsApp within 4 hours</strong>.
-          Please keep an eye on your inbox and WhatsApp messages.
-        </p>
-        <p class="delivery-note">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp &nbsp;+&nbsp;
-          <i class="fa-solid fa-envelope"></i> Email &nbsp;— delivery within 4 hours
-        </p>
-        <p class="delivery-note" style="margin-top:10px;">
-          <i class="fa-solid fa-phone"></i> Need help? Call us:
-          <a href="tel:+919763077764" style="color:var(--accent);font-weight:600;">+91 97630 77764</a>
-        </p>
-      </div>
-
-    </div><!-- /#resultsSection -->
-
-  </div><!-- /.card -->
-</div><!-- /.page-wrap -->
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo">
-        <div class="logo-icon">RN</div>
-        <div class="logo-text">
-          <strong>RN Counselling</strong>
-          <span style="color:#8daecf">Medical Admission Experts</span>
-        </div>
-      </div>
-      <p>Since 2015, we have guided 500+ students to their dream medical colleges across India. Transparent, personalised, and result-oriented.</p>
-      <div class="footer-socials">
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/pg.html">PG Counselling</a>
-      <a href="pgpredictor.html" class="active-footer">PG Predictor</a>
-      <a href="https://rncounselling.github.io/RN-COUNSELLING/#contact">Contact Us</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Services</h4>
-      <a href="index.html">MBBS Counselling</a>
-      <a href="pg.html">PG Counselling</a>
-    </div>
-
-    <div class="footer-col footer-contact">
-      <h4>Contact</h4>
-      <p><i class="fa-solid fa-phone"></i> +91 97630 77764</p>
-      <p><i class="fa-solid fa-envelope"></i> info@rncounselling.com</p>
-      <p><i class="fa-solid fa-location-dot"></i> Aurangabad, India</p>
-      <p><i class="fab fa-whatsapp"></i> WhatsApp us for quick help</p>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    &copy; 2025 RN Counselling. All rights reserved. &nbsp;|&nbsp;
-    <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
-    <a href="#">Terms &amp; Conditions</a> &nbsp;|&nbsp;
-    <a href="#">Refund Policy</a>
-  </div>
-</footer>
-
-
-<!-- JAVASCRIPT -->
+<div class="toast" id="toast"></div>
 <script>
-  // ─── CONFIG ───────────────────────────────────────────────────────────────
-  const CONFIG = {
-    GOOGLE_SHEET_WEBHOOK:  "https://script.google.com/macros/s/AKfycbzVCakeCOiA57AYbtuQwO3eSd-dejb5UOdSlFLvJekUw6dtKcULMBj-JAYCJhAIhLKe1w/exec",
-    RAZORPAY_PAYMENT_LINK: "https://rzp.io/rzp/V7SVyw9",
-  };
+const CONFIG={GOOGLE_SCRIPT_URL:"https://script.google.com/macros/s/AKfycbxqJ06ienGDuyFxdjfZxNWkzXwNve0oyeRJyrFbWRdtl_2BQyXN9lhajefh8cFLeLHP/exec",DASHBOARD_URL:"dashboard.html",STATE_URL:"state.html",WHATSAPP_NUMBER:"919999999999"};
+let student=null, results=[], displayed=[];
 
-  // ─── TOM SELECT ───────────────────────────────────────────────────────────
-  const branchSelect = new TomSelect("#dreamBranch", {
-    plugins: ["remove_button", "checkbox_options"],
-    placeholder: "Search or select branches…",
-    maxOptions: 100,
-    create: false,
-  });
-
-  // ─── MOBILE MENU ──────────────────────────────────────────────────────────
-  function toggleMobile() {
-    document.getElementById("mobileNav").classList.toggle("open");
-  }
-
-  // ─── SAVE TO GOOGLE SHEET ─────────────────────────────────────────────────
-  // Sends a GET request (no-cors) — response is opaque but data saves correctly.
-  function saveToSheet(params) {
-    const qs = new URLSearchParams(params);
-    return fetch(`${CONFIG.GOOGLE_SHEET_WEBHOOK}?${qs.toString()}`, {
-      method: "GET",
-      mode:   "no-cors",
-    }).catch(err => console.error("[RN Predictor] Sheet error:", err));
-  }
-
-  // ─── POST-PAYMENT STATE CHECK (runs on every page load) ───────────────────
-  (function checkPaymentStatus() {
-    const params = new URLSearchParams(window.location.search);
-    const status = params.get("status");
-
-    if (status === "paid") {
-      // Save PAID row to Google Sheet
-      const email     = params.get("email")     || "";
-      const contact   = params.get("contact")   || "";
-      const name      = params.get("name")       || "";
-
-      saveToSheet({
-        timestamp:     new Date().toISOString(),
-        fullName:      decodeURIComponent(name),
-        contactNo:     decodeURIComponent(contact),
-        emailId:       decodeURIComponent(email),
-        paymentStatus: "PAID",                      // ← KEY CHANGE
-      });
-
-      showResults(params);
-    }
-
-    if (status === "processing") {
-      showProcessing();
-      setTimeout(() => {
-        const p = new URLSearchParams(window.location.search);
-        showResults(p);
-      }, 3000);
-    }
-  })();
-
-  // ─── FORM SUBMIT ──────────────────────────────────────────────────────────
-  document.getElementById("predictorForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    handleFormSubmit();
-  });
-
-  async function handleFormSubmit() {
-    const alertEl   = document.getElementById("alertMsg");
-    const successEl = document.getElementById("successMsg");
-    const submitBtn = document.getElementById("submitBtn");
-
-    alertEl.style.display   = "none";
-    successEl.style.display = "none";
-
-    const fullName  = document.getElementById("fullName").value.trim();
-    const contactNo = document.getElementById("contactNo").value.trim();
-    const emailId   = document.getElementById("emailId").value.trim();
-    const category  = document.getElementById("category").value;
-    const branches  = branchSelect.getValue();
-    const neetScore = document.getElementById("neetScore").value;
-
-    // Validation
-    if (!fullName || !contactNo || !emailId || !category || branches.length === 0 || neetScore === "") {
-      showAlert(alertEl, "Please fill in all required fields before proceeding.");
-      return;
-    }
-    if (Number(neetScore) < 0 || Number(neetScore) > 1800) {
-      showAlert(alertEl, "Please enter a valid NEET PG score between 0 and 1800.");
-      return;
-    }
-
-    submitBtn.disabled  = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> &nbsp; Submitting…';
-
-    // ── Step 1: Save PENDING row to Google Sheet ──────────────────────────
-    await saveToSheet({
-      timestamp:     new Date().toISOString(),
-      fullName:      fullName,
-      contactNo:     contactNo,
-      emailId:       emailId,
-      category:      category,
-      dreamBranches: branches.join(", "),
-      neetScore:     neetScore,
-      paymentStatus: "PENDING",                     // ← KEY CHANGE
-    });
-
-    console.log("[RN Predictor] PENDING row saved.");
-
-    // ── Step 2: Redirect to Razorpay ──────────────────────────────────────
-    // Pass name, contact, email in the callback URL so we can write the PAID
-    // row when the user lands back on this page.
-    const returnUrl = encodeURIComponent(
-      `${window.location.origin}${window.location.pathname}` +
-      `?status=paid` +
-      `&email=${encodeURIComponent(emailId)}` +
-      `&contact=${encodeURIComponent(contactNo)}` +
-      `&name=${encodeURIComponent(fullName)}`
-    );
-    const paymentUrl = `${CONFIG.RAZORPAY_PAYMENT_LINK}?callback_url=${returnUrl}`;
-
-    submitBtn.innerHTML = '<i class="fa-solid fa-lock"></i> &nbsp; Redirecting to Payment…';
-
-    setTimeout(() => { window.location.href = paymentUrl; }, 800);
-  }
-
-  // ─── UI HELPERS ───────────────────────────────────────────────────────────
-  function showProcessing() {
-    document.getElementById("formSection").style.display       = "none";
-    document.getElementById("processingSection").style.display = "block";
-    document.getElementById("resultsSection").style.display    = "none";
-  }
-
-  function showResults(params) {
-    document.getElementById("formSection").style.display       = "none";
-    document.getElementById("processingSection").style.display = "none";
-    document.getElementById("resultsSection").style.display    = "block";
-
-    const badges = document.getElementById("resultBadges");
-    const email  = params && params.get("email");
-    const name   = params && params.get("name");
-
-    if (name)  badges.innerHTML += `<span class="badge"><i class="fa-solid fa-user"></i> ${decodeURIComponent(name)}</span>`;
-    if (email) badges.innerHTML += `<span class="badge"><i class="fa-solid fa-envelope"></i> ${decodeURIComponent(email)}</span>`;
-    badges.innerHTML += `<span class="badge"><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Payment Confirmed</span>`;
-
-    document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function showAlert(el, msg) {
-    el.textContent   = msg;
-    el.style.display = "block";
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
+function safeJson(value){try{return JSON.parse(value)}catch(e){return null}}
+function normalizeMobile(value){return String(value||"").replace(/\D/g,"")}
+function getStudent(){
+  const params=new URLSearchParams(window.location.search);
+  const mobileFromUrl=normalizeMobile(params.get("mobile"));
+  const keys=["rnStudent","student","studentData","loggedInStudent","currentStudent","RN_STUDENT"];
+  let stored=null;
+  for(const key of keys){const raw=localStorage.getItem(key);if(raw){const parsed=safeJson(raw);if(parsed){stored=parsed;break}}}
+  if(!stored && window.opener){try{if(window.opener.student)stored=window.opener.student}catch(e){}}
+  if(mobileFromUrl){stored=stored||{};stored.mobile=mobileFromUrl}
+  return stored;
+}
+function getMobile(){return normalizeMobile(student&&student.mobile)}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.style.display="none",3000)}
+function showError(msg){const box=document.getElementById("errorBox");box.innerHTML=escapeHtml(msg);box.style.display="block"}
+function clearError(){document.getElementById("errorBox").style.display="none"}
+function setStudentUI(){
+ document.getElementById("studentName").textContent=student.name||student.studentName||"Student";
+ document.getElementById("studentMobile").textContent=getMobile()||"—";
+ document.getElementById("studentCourse").textContent=student.course||"—";
+ document.getElementById("studentRank").textContent=student.rank||student.neetRank||"—";
+ document.getElementById("studentCategory").textContent=student.category||"—";
+ document.getElementById("topName").textContent=student.name||student.studentName||"Student";
+ document.getElementById("topMobile").textContent=getMobile()||"—";
+ document.getElementById("avatar").textContent=String(student.name||student.studentName||"S").trim().charAt(0).toUpperCase()||"S";
+}
+async function runPredictor(){
+ clearError();
+ const mobile=getMobile();
+ if(!mobile){showError("Student mobile number was not found. Please return to the Student Dashboard and login again.");return}
+ document.getElementById("resultsArea").innerHTML='<div class="loading"><div class="spinner"></div><strong>Running college prediction...</strong><div class="muted">Matching your rank, category, course and state.</div></div>';
+ try{
+   const url=CONFIG.GOOGLE_SCRIPT_URL+"?mobile="+encodeURIComponent(mobile)+"&action=predictMedical";
+   const response=await fetch(url,{method:"GET",cache:"no-store"});
+   if(!response.ok)throw new Error("Predictor server returned HTTP "+response.status);
+   const data=await response.json();
+   if(!data.success)throw new Error(data.message||"Prediction data could not be loaded.");
+   if(data.student){student={...student,...data.student};setStudentUI();saveSessionStudent();}
+   results=Array.isArray(data.colleges)?data.colleges:[];
+   render();
+   toast(results.length+" college choices found.");
+ }catch(err){console.error(err);results=[];render();showError(err.message||"College predictor connection failed. Please try again.")}
+}
+function saveSessionStudent(){try{localStorage.setItem("rnStudent",JSON.stringify(student))}catch(e){}}
+function chanceClass(chance){const x=String(chance||"").toLowerCase();return x.includes("high")?"green":x.includes("moderate")?"blue":x.includes("low")?"orange":"blue"}
+function render(){
+ const q=(document.getElementById("search").value||"").toLowerCase().trim();
+ displayed=results.filter(r=>{const text=[r.college,r.branch,r.quota,r.state,r.allottedCategory,r.candidateCategory].join(" ").toLowerCase();return !q||text.includes(q)});
+ const area=document.getElementById("resultsArea");document.getElementById("resultCount").textContent=displayed.length+" college"+(displayed.length===1?"":"s");
+ if(!displayed.length){area.innerHTML='<div class="empty"><strong>No matching college found</strong><span>Try clearing the search or refresh the prediction.</span></div>';return}
+ area.innerHTML='<div class="table-wrap"><table class="table"><thead><tr><th>Priority</th><th>College</th><th>Quota</th><th>Chance</th><th>Opening Rank</th><th>Closing Rank</th><th>Fees</th><th>Stipend</th><th>Actions</th></tr></thead><tbody>'+displayed.map((r,i)=>`<tr><td class="priority">${i+1}</td><td><div class="college">${escapeHtml(r.college)}</div><div class="muted">${escapeHtml(r.branch||"")} ${r.state?"· "+escapeHtml(r.state):""}</div></td><td>${escapeHtml(r.quota||"")}</td><td><span class="badge ${chanceClass(r.chance)}">${escapeHtml(r.chance||"")}</span></td><td>${escapeHtml(r.openingRank||"")}</td><td>${escapeHtml(r.closingRank||"")}</td><td>${escapeHtml(r.fees||"")}</td><td>${escapeHtml(r.stipend||"")}</td><td><div class="actions"><button class="icon-btn" title="Move up" onclick="moveChoice(${i},-1)">↑</button><button class="icon-btn" title="Move down" onclick="moveChoice(${i},1)">↓</button><button class="icon-btn danger" title="Delete" onclick="deleteChoice(${i})">×</button></div></td></tr>`).join("")+"</tbody></table></div>";
+}
+function moveChoice(index,direction){
+ const actual=results.indexOf(displayed[index]);if(actual<0)return;const ni=actual+direction;if(ni<0||ni>=results.length)return;[results[actual],results[ni]]=[results[ni],results[actual]];render();
+}
+function deleteChoice(index){const actual=results.indexOf(displayed[index]);if(actual<0)return;if(!confirm("Remove this college from your choice list?"))return;results.splice(actual,1);render();toast("College removed.")}
+function downloadExcel(){
+ if(!results.length){toast("No college choices available to download.");return}
+ let html='<html><head><meta charset="UTF-8"></head><body><h2>RN Counselling - College Choices</h2><p>Student: '+escapeHtml(student.name||student.studentName||"")+' | Mobile: '+escapeHtml(getMobile())+' | Course: '+escapeHtml(student.course||"")+' | Rank: '+escapeHtml(student.rank||"")+' | Category: '+escapeHtml(student.category||"")+'</p><table border="1"><tr><th>Priority</th><th>College</th><th>Course</th><th>Quota</th><th>State</th><th>Chance</th><th>Candidate Category</th><th>Allotted Category</th><th>Opening Rank</th><th>Closing Rank</th><th>Fees</th><th>Stipend</th></tr>';
+ results.forEach((r,i)=>{html+='<tr><td>'+ (i+1)+'</td><td>'+escapeHtml(r.college)+'</td><td>'+escapeHtml(r.branch)+'</td><td>'+escapeHtml(r.quota)+'</td><td>'+escapeHtml(r.state)+'</td><td>'+escapeHtml(r.chance)+'</td><td>'+escapeHtml(r.candidateCategory)+'</td><td>'+escapeHtml(r.allottedCategory)+'</td><td>'+escapeHtml(r.openingRank)+'</td><td>'+escapeHtml(r.closingRank)+'</td><td>'+escapeHtml(r.fees)+'</td><td>'+escapeHtml(r.stipend)+'</td></tr>'});html+='</table></body></html>';
+ const blob=new Blob([html],{type:"application/vnd.ms-excel;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="RN-Counselling-College-Choices.xls";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("Excel file prepared.")
+}
+function goDashboard(){window.location.href=CONFIG.DASHBOARD_URL}
+function goState(){const m=getMobile();window.location.href=CONFIG.STATE_URL+(m?"?mobile="+encodeURIComponent(m):"")}
+function logoutStudent(){try{["rnStudent","student","studentData","loggedInStudent","currentStudent","RN_STUDENT"].forEach(k=>localStorage.removeItem(k))}catch(e){}window.location.href=CONFIG.DASHBOARD_URL}
+function openWhatsApp(){const text="Hello RN Counselling, I need help with my college predictor. Mobile: "+(getMobile()||"Not available");window.open("https://wa.me/"+CONFIG.WHATSAPP_NUMBER+"?text="+encodeURIComponent(text),"_blank")}
+function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open")}
+document.addEventListener("DOMContentLoaded",()=>{student=getStudent();if(!getMobile()){showError("No logged-in student was found. Please open College Choices from the Student Dashboard after login.");document.getElementById("resultsArea").innerHTML='<div class="empty"><strong>Student login required</strong><span>Return to the dashboard and open College Choices.</span></div>';return}setStudentUI();saveSessionStudent();runPredictor()});
 </script>
-
 </body>
 </html>
