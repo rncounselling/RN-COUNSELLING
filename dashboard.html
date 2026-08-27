@@ -578,121 +578,8 @@ a{
 
 
 /* =========================================================
-   CHOICES
+   PROFILE
 ========================================================= */
-
-.choice-summary{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:15px
-}
-
-.mini{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:15px
-}
-
-.mini label{
-  font-size:11px;
-  color:var(--muted);
-  display:block
-}
-
-.mini strong{
-  font-size:22px;
-  display:block;
-  margin-top:4px
-}
-
-.toolbar{
-  display:flex;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-bottom:13px
-}
-
-.toolbar .input{
-  height:42px;
-  min-width:190px;
-  flex:1
-}
-
-.select{
-  height:42px;
-  border:1px solid #d7deea;
-  border-radius:9px;
-  padding:0 10px;
-  background:white
-}
-
-.table-wrap{
-  overflow:auto
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:750px
-}
-
-th,td{
-  padding:12px 10px;
-  border-bottom:1px solid var(--border);
-  text-align:left;
-  font-size:12px
-}
-
-th{
-  font-size:11px;
-  color:var(--muted);
-  font-weight:800;
-  background:#fbfcfe
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 8px;
-  border-radius:6px;
-  font-size:10px;
-  font-weight:800
-}
-
-.badge.green{
-  background:var(--green-bg)
-}
-
-.badge.blue{
-  background:#eaf1ff;
-  color:var(--blue)!important
-}
-
-.badge.orange{
-  background:var(--orange-bg)
-}
-
-.choice-action{
-  display:flex;
-  gap:5px
-}
-
-.icon-btn{
-  border:1px solid #d9e1ee;
-  background:white;
-  border-radius:7px;
-  width:30px;
-  height:30px;
-  color:var(--blue)
-}
-
-.icon-btn.danger{
-  color:var(--red)
-}
-
-
 /* =========================================================
    PROFILE
 ========================================================= */
@@ -1412,13 +1299,10 @@ th{
   >
     <span class="nav-icon">🎓</span>
     My Counselling
-  </button>
-
-
+  </button> 
   <button
     class="nav-item"
-    data-page="choices"
-    onclick="showPage('choices')"
+    onclick="openCollegePredictor()"
   >
     <span class="nav-icon">▣</span>
     College Choices
@@ -1875,75 +1759,6 @@ th{
 
   </div>
 
-
-
-  <div class="card panel">
-
-    <div class="section-title">
-
-      <h3>
-        My College Choices
-      </h3>
-
-      <button
-        class="outline-btn"
-        onclick="showPage('choices')"
-      >
-        Manage Choices
-      </button>
-
-    </div>
-
-
-    <div class="choice-summary">
-
-      <div class="mini">
-        <label>Total Choices</label>
-        <strong id="totalChoices">25</strong>
-      </div>
-
-      <div class="mini">
-        <label>All India</label>
-        <strong id="aiqChoices">15</strong>
-      </div>
-
-      <div class="mini">
-        <label>State</label>
-        <strong id="stateChoices">10</strong>
-      </div>
-
-      <div class="mini">
-        <label>Saved</label>
-        <strong id="savedChoices">7</strong>
-      </div>
-
-    </div>
-
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>#</th>
-            <th>College</th>
-            <th>Course</th>
-            <th>Quota</th>
-            <th>Preference</th>
-          </tr>
-
-        </thead>
-
-        <tbody id="topChoicesTable"></tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
 </section>
 
 
@@ -2253,179 +2068,8 @@ th{
 
 
 <!-- =========================================================
-     COLLEGE CHOICES
+     DOCUMENTS
 ========================================================= -->
-
-<section
-  id="page-choices"
-  class="page"
-  style="display:none"
->
-
-  <div class="page-head">
-
-    <div>
-
-      <h1>
-        My College Choices
-      </h1>
-
-      <p>
-        Recommended and saved college preferences
-      </p>
-
-    </div>
-
-    <button
-      class="outline-btn"
-      onclick="downloadChoices()"
-    >
-      ↓ Download Choice List
-    </button>
-
-  </div>
-
-
-  <div class="choice-summary">
-
-    <div class="mini">
-      <label>Total Choices</label>
-      <strong id="cTotal">25</strong>
-    </div>
-
-    <div class="mini">
-      <label>Filled</label>
-      <strong id="cFilled">18</strong>
-    </div>
-
-    <div class="mini">
-      <label>Saved</label>
-      <strong id="cSaved">7</strong>
-    </div>
-
-    <div class="mini">
-      <label>Last Updated</label>
-      <strong style="font-size:14px">
-        Today
-      </strong>
-    </div>
-
-  </div>
-
-
-  <div class="card panel">
-
-    <div class="toolbar">
-
-      <input
-        id="choiceSearch"
-        class="input"
-        placeholder="Search college, city or course..."
-        oninput="renderChoices()"
-      >
-
-
-      <select
-        id="quotaFilter"
-        class="select"
-        onchange="renderChoices()"
-      >
-
-        <option value="">
-          All Quota
-        </option>
-
-        <option value="All India">
-          All India
-        </option>
-
-        <option value="State Quota">
-          State Quota
-        </option>
-
-      </select>
-
-
-      <select
-        id="statusFilter"
-        class="select"
-        onchange="renderChoices()"
-      >
-
-        <option value="">
-          All Status
-        </option>
-
-        <option value="Filled">
-          Filled
-        </option>
-
-        <option value="Saved">
-          Saved
-        </option>
-
-        <option value="Not Filled">
-          Not Filled
-        </option>
-
-      </select>
-
-
-      <input
-        id="dreamBranch"
-        class="input"
-        placeholder="Dream Branch e.g. MD Medicine"
-      >
-
-
-      <button
-        class="primary-btn"
-        style="width:auto"
-        onclick="runCollegePredictor()"
-      >
-        Predict Colleges
-      </button>
-
-
-      <button
-        class="outline-btn"
-        onclick="openAddChoice()"
-      >
-        + Add Choice
-      </button>
-
-    </div>
-
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>Priority</th>
-            <th>College & Course</th>
-            <th>Quota</th>
-            <th>Chance</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-
-        </thead>
-
-        <tbody id="choicesTable"></tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
 <!-- =========================================================
      DOCUMENTS
 ========================================================= -->
@@ -2811,9 +2455,7 @@ th{
   </button>
 
 
-  <button
-    onclick="showPage('choices')"
-  >
+  <button onclick="openCollegePredictor()">
     ▣
     <span>Choices</span>
   </button>
@@ -2840,59 +2482,6 @@ th{
 
 
 
-<!-- =========================================================
-     ADD CHOICE MODAL
-========================================================= -->
-
-<div
-  class="modal"
-  id="choiceModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h3>
-        Add College Choice
-      </h3>
-
-      <button
-        class="close"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <p
-      class="muted"
-      style="font-size:12px"
-    >
-      In the production version, this list will come from your College Master / Cutoff database.
-    </p>
-
-
-    <input
-      id="collegeSearchModal"
-      class="input"
-      placeholder="Search college..."
-      oninput="renderCollegeOptions()"
-    >
-
-
-    <div
-      id="collegeOptions"
-      style="margin-top:12px;max-height:300px;overflow:auto"
-    ></div>
-
-  </div>
-
-</div>
-
-
 
 <div
   id="toast"
@@ -2915,10 +2504,6 @@ const CONFIG = {
   GOOGLE_DRIVE_FOLDER_URL:
     "PASTE_GOOGLE_DRIVE_FOLDER_LINK_HERE",
 
-  MEDICAL_APPS_SCRIPT_URL:
-    "https://script.google.com/macros/s/AKfycbxqJ06ienGDuyFxdjfZxNWkzXwNve0oyeRJyrFbWRdtl_2BQyXN9lhajefh8cFLeLHP/exec",
-
-  
   WHATSAPP_NUMBER:
     "919763077764",
 
@@ -2947,13 +2532,6 @@ let student = {
   finalAmount:""
 
 };
-
-
-/* ==========================================================
-   CHOICES
-========================================================== */
-
-let choices = [];
 
 
 /* ==========================================================
@@ -3227,7 +2805,6 @@ function openDashboard(){
 
   loadStudentData();
 
-  renderChoices();
 
   showPage("dashboard");
 
@@ -3542,26 +3119,7 @@ function loadStudentData(){
     .textContent =
     safeStudent.paymentDate ||
     "—";
-
-
-  const dream =
-    document.getElementById(
-      "dreamBranch"
-    );
-
-
-  if(
-    dream &&
-    !dream.value
-  ){
-
-    dream.value =
-      safeStudent.dreamBranch || "";
-
-  }
-
-
-  updateChoiceCounts();
+updateChoiceCounts();
 
 }
 
@@ -4152,817 +3710,52 @@ function fileToBase64(file){
 }
 
 
-/* ==========================================================
-   CHOICES
-========================================================== */
-
-function renderChoices(){
-
-  const table =
-    document.getElementById(
-      "choicesTable"
-    );
-
-
-  if(!table) return;
-
-
-  const search =
-    (
-      document.getElementById(
-        "choiceSearch"
-      )?.value || ""
-    ).toLowerCase();
-
-
-  const quota =
-    document.getElementById(
-      "quotaFilter"
-    )?.value || "";
-
-
-  const status =
-    document.getElementById(
-      "statusFilter"
-    )?.value || "";
-
-
-  const filtered =
-    choices.filter(c=>{
-
-      const text =
-        (
-          (c.college || "")+
-          " "+
-          (c.course || "")+
-          " "+
-          (c.quota || "")
-        ).toLowerCase();
-
-
-      return (
-        (!search ||
-        text.includes(search))
-        &&
-        (!quota ||
-        c.quota===quota)
-        &&
-        (!status ||
-        c.status===status)
-      );
-
-    });
-
-
-  table.innerHTML =
-    filtered.map(c=>`
-
-      <tr>
-
-        <td>
-          <b style="font-size:15px">
-            ${c.priority}
-          </b>
-        </td>
-
-        <td>
-
-          <b>
-            ${escapeHtml(c.college)}
-          </b>
-
-          <div
-            class="muted"
-            style="font-size:10px;margin-top:3px"
-          >
-            ${escapeHtml(c.course)}
-          </div>
-
-        </td>
-
-        <td>
-          ${escapeHtml(c.quota)}
-        </td>
-
-        <td>
-
-          <span class="badge ${
-            c.chance==="High"
-              ? "green"
-              : c.chance==="Moderate"
-              ? "blue"
-              : "orange"
-          }">
-
-            ${escapeHtml(c.chance)}
-
-          </span>
-
-        </td>
-
-        <td>
-
-          <span class="badge ${
-            c.status==="Filled"
-              ? "green"
-              : c.status==="Saved"
-              ? "blue"
-              : "orange"
-          }">
-
-            ${escapeHtml(c.status)}
-
-          </span>
-
-        </td>
-
-        <td>
-
-          <div class="choice-action">
-
-            <button
-              class="icon-btn"
-              onclick="moveChoice(${c.priority},-1)"
-            >
-              ↑
-            </button>
-
-            <button
-              class="icon-btn"
-              onclick="moveChoice(${c.priority},1)"
-            >
-              ↓
-            </button>
-
-            <button
-              class="icon-btn danger"
-              onclick="deleteChoice(${c.priority})"
-            >
-              ×
-            </button>
-
-          </div>
-
-        </td>
-
-      </tr>
-
-    `).join("");
-
-
-  updateChoiceCounts();
-
-}
-
-
-function renderTopChoices(){
-
-  const table =
-    document.getElementById(
-      "topChoicesTable"
-    );
-
-
-  if(!table) return;
-
-
-  table.innerHTML =
-    choices.slice(0,4).map(c=>`
-
-      <tr>
-
-        <td>
-          ${c.priority}
-        </td>
-
-        <td>
-          <b>
-            ${escapeHtml(c.college)}
-          </b>
-        </td>
-
-        <td>
-          ${escapeHtml(c.course)}
-        </td>
-
-        <td>
-          ${escapeHtml(c.quota)}
-        </td>
-
-        <td>
-          <span class="badge green">
-            Pref. ${c.priority}
-          </span>
-        </td>
-
-      </tr>
-
-    `).join("");
-
-}
-
-
-function updateChoiceCounts(){
-
-  const total =
-    choices.length;
-
-
-  const aiq =
-    choices.filter(
-      c=>c.quota==="All India"
-    ).length;
-
-
-  const state =
-    choices.filter(
-      c=>c.quota==="State Quota"
-    ).length;
-
-
-  const saved =
-    choices.filter(
-      c=>c.status==="Saved"
-    ).length;
-
-
-  const filled =
-    choices.filter(
-      c=>c.status==="Filled"
-    ).length;
-
-
-  ["totalChoices","cTotal"]
-    .forEach(id=>{
-
-      const el =
-        document.getElementById(id);
-
-      if(el){
-        el.textContent=total;
-      }
-
-    });
-
-
-  const ai =
-    document.getElementById(
-      "aiqChoices"
-    );
-
-  if(ai){
-    ai.textContent=aiq;
-  }
-
-
-  const st =
-    document.getElementById(
-      "stateChoices"
-    );
-
-  if(st){
-    st.textContent=state;
-  }
-
-
-  const sv =
-    document.getElementById(
-      "savedChoices"
-    );
-
-  if(sv){
-    sv.textContent=saved;
-  }
-
-
-  const f =
-    document.getElementById(
-      "cFilled"
-    );
-
-  if(f){
-    f.textContent=filled;
-  }
-
-
-  const s =
-    document.getElementById(
-      "cSaved"
-    );
-
-  if(s){
-    s.textContent=saved;
-  }
-
-
-  renderTopChoices();
-
-}
-
-
-function moveChoice(
-  priority,
-  direction
-){
-
-  const index =
-    choices.findIndex(
-      c=>c.priority===priority
-    );
-
-
-  if(index<0) return;
-
-
-  const newIndex =
-    index+direction;
-
-
-  if(
-    newIndex<0 ||
-    newIndex>=choices.length
-  ){
-
-    return;
-
-  }
-
-
-  [
-    choices[index],
-    choices[newIndex]
-  ] =
-  [
-    choices[newIndex],
-    choices[index]
-  ];
-
-
-  choices.forEach(
-    (c,i)=>{
-      c.priority=i+1;
-    }
-  );
-
-
-  renderChoices();
-
-}
-
-
-function deleteChoice(priority){
-
-  if(
-    !confirm(
-      "Remove this college from your choice list?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  choices =
-    choices.filter(
-      c=>c.priority!==priority
-    );
-
-
-  choices.forEach(
-    (c,i)=>{
-      c.priority=i+1;
-    }
-  );
-
-
-  renderChoices();
-
-  toast(
-    "Choice removed."
-  );
-
-}
-
-
-function openAddChoice(){
-
-  document.getElementById(
-    "choiceModal"
-  ).style.display="flex";
-
-
-  renderCollegeOptions();
-
-}
-
-
-function closeModal(){
-
-  document.getElementById(
-    "choiceModal"
-  ).style.display="none";
-
-}
-
-
-function renderCollegeOptions(){
-
-  const q =
-    (
-      document.getElementById(
-        "collegeSearchModal"
-      ).value || ""
-    ).toLowerCase();
-
-
-  const sampleColleges = [
-
-    [
-      "AIIMS Nagpur",
-      "MD General Medicine",
-      "All India",
-      "Moderate"
-    ],
-
-    [
-      "Government Medical College, Nagpur",
-      "MD General Medicine",
-      "State Quota",
-      "High"
-    ],
-
-    [
-      "Government Medical College, Chhatrapati Sambhajinagar",
-      "MD General Medicine",
-      "State Quota",
-      "High"
-    ],
-
-    [
-      "BJ Medical College, Pune",
-      "MD General Medicine",
-      "State Quota",
-      "Moderate"
-    ],
-
-    [
-      "Nair Hospital Mumbai",
-      "MD General Medicine",
-      "State Quota",
-      "Moderate"
-    ]
-
-  ];
-
-
-  const list =
-    sampleColleges.filter(
-      x =>
-        x.join(" ")
-        .toLowerCase()
-        .includes(q)
-    );
-
-
-  document.getElementById(
-    "collegeOptions"
-  ).innerHTML =
-    list.map(c=>`
-
-      <div
-        class="choice-card"
-        onclick='addChoice(${JSON.stringify(c)})'
-      >
-
-        <b>
-          ${escapeHtml(c[0])}
-        </b>
-
-        <div
-          class="muted"
-          style="font-size:11px;margin-top:4px"
-        >
-          ${escapeHtml(c[1])}
-          ·
-          ${escapeHtml(c[2])}
-        </div>
-
-        <span
-          class="badge blue"
-          style="margin-top:7px"
-        >
-          ${escapeHtml(c[3])} Chance
-        </span>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-function addChoice(c){
-
-  choices.push({
-
-    priority:
-      choices.length+1,
-
-    college:
-      c[0],
-
-    course:
-      c[1],
-
-    quota:
-      c[2],
-
-    chance:
-      c[3],
-
-    status:
-      "Saved"
-
-  });
-
-
-  closeModal();
-
-  renderChoices();
-
-  toast(
-    "College added to your choices."
-  );
-
-}
-
 
 /* ==========================================================
-   COLLEGE PREDICTOR
+   OPEN COLLEGE PREDICTOR
+   ----------------------------------------------------------
+   The student is already logged in here. We do NOT ask for
+   the password again. The same mobile number and personal
+   information are handed to pgpredictor.html through
+   same-origin localStorage, with mobile also in the URL as
+   a fallback.
 ========================================================== */
 
-  async function runCollegePredictor(){
+function openCollegePredictor(){
 
   if(!student || !student.mobile){
-    toast("Please login first.");
+    toast("Student information not found. Please login again.");
     return;
   }
 
-  toast("Checking college predictor...");
+  /*
+    Save the complete student profile locally so
+    pgpredictor.html can use the SAME logged-in student.
+  */
+  localStorage.setItem(
+    "rn_predictor_student",
+    JSON.stringify(student)
+  );
 
-  try{
+  localStorage.setItem(
+    "rn_predictor_mobile",
+    student.mobile
+  );
 
-    const predictorUrl =
-      CONFIG.MEDICAL_APPS_SCRIPT_URL;
+  /*
+    Open the separate College Predictor page.
+    No second login screen is required.
+  */
+  const url =
+    "pgpredictor.html?mobile=" +
+    encodeURIComponent(student.mobile);
 
-    if(!predictorUrl){
-      toast("Medical College Predictor URL is missing.");
-      return;
-    }
-
-    const password =
-      document.getElementById("loginPassword")?.value?.trim() || "";
-
-    if(!password){
-      toast("Please login again to use College Predictor.");
-      return;
-    }
-
-    const url =
-      predictorUrl +
-      "?mobile=" + encodeURIComponent(student.mobile) +
-      "&password=" + encodeURIComponent(password);
-
-    const response = await fetch(url, {
-      method: "GET"
-    });
-
-    if(!response.ok){
-      throw new Error(
-        "Predictor server returned HTTP " +
-        response.status
-      );
-    }
-
-    const result = await response.json();
-
-    console.log("College Predictor Response:", result);
-
-    if(result && result.success){
-
-      choices = (result.colleges || []).map(function(college, index){
-
-        return {
-          priority: index + 1,
-
-          college:
-            college.college || "",
-
-          course:
-            college.branch || "",
-
-          quota:
-            college.quota || "",
-
-          chance:
-            college.chance || "",
-
-          status:
-            "Recommended",
-
-          state:
-            college.state || "",
-
-          fees:
-            college.fees || "",
-
-          stipend:
-            college.stipend || "",
-
-          openingRank:
-            college.openingRank || "",
-
-          closingRank:
-            college.closingRank || "",
-
-          allottedCategory:
-            college.allottedCategory || "",
-
-          candidateCategory:
-            college.candidateCategory || ""
-        };
-
-      });
-
-      renderChoices();
-
-      if(choices.length > 0){
-
-        toast(
-          choices.length +
-          " colleges found."
-        );
-
-      }else{
-
-        toast(
-          "No matching colleges found for your rank/category/course."
-        );
-
-      }
-
-    }else{
-
-      toast(
-        result.message ||
-        "No prediction data found."
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "College Predictor Error:",
-      error
-    );
-
-    toast(
-      "College predictor connection failed. Please try again."
-    );
-
-  }
-
+  window.location.href = url;
 }
-
-
-async function apiWithUrl(
-  url,
-  action,
-  data={}
-){
-
-  if(
-    !url ||
-    url.includes("PASTE_")
-  ){
-
-    throw new Error(
-      "Apps Script URL not configured."
-    );
-
-  }
-
-
-  const payload = {
-
-    action:
-      action,
-
-    ...data
-
-  };
-
-
-  const response =
-    await fetch(
-      url,
-      {
-
-        method:"POST",
-
-        headers:{
-          "Content-Type":
-            "text/plain;charset=utf-8"
-        },
-
-        body:
-          JSON.stringify(payload)
-
-      }
-    );
-
-
-  return await response.json();
-
-}
-
 
 /* ==========================================================
-   DOWNLOAD CHOICES
+   GOOGLE APPS SCRIPT API
 ========================================================== */
-
-function downloadChoices(){
-
-  let csv =
-    "Priority,College,Course,Quota,Chance,Status\n";
-
-
-  choices.forEach(c=>{
-
-    csv += [
-
-      c.priority,
-
-      csvSafe(c.college),
-
-      csvSafe(c.course),
-
-      csvSafe(c.quota),
-
-      c.chance,
-
-      c.status
-
-    ].join(",")+
-    "\n";
-
-  });
-
-
-  const blob =
-    new Blob(
-      [csv],
-      {
-        type:
-          "text/csv;charset=utf-8"
-      }
-    );
-
-
-  const url =
-    URL.createObjectURL(blob);
-
-
-  const a =
-    document.createElement("a");
-
-
-  a.href=url;
-
-  a.download =
-    "RN-Counselling-College-Choices.csv";
-
-
-  a.click();
-
-
-  URL.revokeObjectURL(url);
-
-}
-
-
-function csvSafe(value){
-
-  return '"' +
-    String(value)
-      .replaceAll('"','""') +
-    '"';
-
-}
-
-
 /* ==========================================================
    GOOGLE APPS SCRIPT API
 ========================================================== */
@@ -5106,9 +3899,10 @@ function escapeHtml(value){
 document.addEventListener(
   "DOMContentLoaded",
   ()=>{
-
-    renderChoices();
-
+    /*
+      Dashboard startup.
+      College prediction is handled only by pgpredictor.html.
+    */
   }
 );
 
