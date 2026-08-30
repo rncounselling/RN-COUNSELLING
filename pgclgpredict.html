@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>NEET PG & MDS College Predictor | RN Counselling</title>
+
+<meta name="description"
+      content="Get your personalized NEET PG and MDS college prediction based on rank, category, branch and state.">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  font-family:
+  'Segoe UI',
+  Tahoma,
+  Geneva,
+  Verdana,
+  sans-serif;
+
+  background:#f8f9fa;
+
+  color:#333;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  background:#0a58ca;
+
+  color:white;
+
+  padding:1rem 0;
+
+  position:relative;
+
+  width:100%;
+
+  box-shadow:
+  0 2px 5px rgba(0,0,0,.1);
+
+}
+
+.header-container{
+
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+.logo-section{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.logo-section img{
+
+  height:50px;
+
+  width:auto;
+
+}
+
+.brand-name{
+
+  font-size:1.35rem;
+
+  font-weight:bold;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+  max-width:850px;
+
+  margin:45px auto;
+
+  padding:0 20px;
+
+}
+
+.form-container{
+
+  background:white;
+
+  border-radius:12px;
+
+  padding:35px;
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.08);
+
+}
+
+h1{
+
+  color:#0a58ca;
+
+  font-size:2rem;
+
+  margin-bottom:5px;
+
+}
+
+.subtitle{
+
+  color:#666;
+
+  margin-bottom:30px;
+
+}
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:20px;
+
+}
+
+.form-group{
+
+  margin-bottom:5px;
+
+}
+
+.full{
+
+  grid-column:
+  1 / -1;
+
+}
+
+label{
+
+  display:block;
+
+  margin-bottom:7px;
+
+  font-weight:600;
+
+}
+
+.required{
+
+  color:#dc3545;
+
+}
+
+input,
+select{
+
+  width:100%;
+
+  padding:13px;
+
+  border:1px solid #ddd;
+
+  border-radius:6px;
+
+  font-size:1rem;
+
+  background:white;
+
+}
+
+input:focus,
+select:focus{
+
+  outline:none;
+
+  border-color:#0a58ca;
+
+  box-shadow:
+  0 0 0 2px rgba(10,88,202,.08);
+
+}
+
+
+/* =====================================================
+   PRICE BOX
+===================================================== */
+
+.price-box{
+
+  margin-top:25px;
+
+  background:#eef5ff;
+
+  border:1px solid #cfe0ff;
+
+  border-radius:10px;
+
+  padding:20px;
+
+  text-align:center;
+
+}
+
+.price{
+
+  color:#0a58ca;
+
+  font-size:2rem;
+
+  font-weight:800;
+
+}
+
+.price-text{
+
+  color:#555;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.pay-btn{
+
+  width:100%;
+
+  margin-top:20px;
+
+  padding:16px;
+
+  border:0;
+
+  border-radius:7px;
+
+  background:#ff7a00;
+
+  color:white;
+
+  font-size:1.1rem;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+.pay-btn:hover{
+
+  background:#e96d00;
+
+}
+
+.pay-btn:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  display:none;
+
+  text-align:center;
+
+  padding:30px;
+
+}
+
+.spinner{
+
+  width:45px;
+
+  height:45px;
+
+  border:4px solid #ddd;
+
+  border-top-color:#0a58ca;
+
+  border-radius:50%;
+
+  animation:
+  spin 1s linear infinite;
+
+  margin:0 auto 15px;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+#resultSection{
+
+  display:none;
+
+}
+
+.student-summary{
+
+  background:#eef5ff;
+
+  border-radius:10px;
+
+  padding:18px;
+
+  margin-bottom:20px;
+
+}
+
+.summary-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:8px 20px;
+
+}
+
+.result-card{
+
+  background:white;
+
+  border:1px solid #ddd;
+
+  border-radius:8px;
+
+  padding:14px;
+
+  margin-bottom:10px;
+
+}
+
+.result-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.college{
+
+  font-weight:700;
+
+  color:#0a58ca;
+
+}
+
+.branch{
+
+  font-size:.9rem;
+
+  color:#555;
+
+  margin-top:3px;
+
+}
+
+.meta{
+
+  font-size:.82rem;
+
+  color:#666;
+
+  margin-top:7px;
+
+}
+
+.badge{
+
+  display:inline-block;
+
+  padding:4px 9px;
+
+  border-radius:20px;
+
+  font-size:.75rem;
+
+  font-weight:700;
+
+  white-space:nowrap;
+
+}
+
+.safe{
+
+  background:#d9f5df;
+
+  color:#17752a;
+
+}
+
+.high{
+
+  background:#fff0cc;
+
+  color:#9a6500;
+
+}
+
+.moderate{
+
+  background:#ffe0e0;
+
+  color:#a02020;
+
+}
+
+.outside{
+
+  background:#eee;
+
+  color:#666;
+
+}
+
+
+/* =====================================================
+   DOWNLOAD
+===================================================== */
+
+.download-btn{
+
+  width:100%;
+
+  padding:15px;
+
+  border:0;
+
+  border-radius:7px;
+
+  background:#0a58ca;
+
+  color:white;
+
+  font-size:1rem;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  margin-top:15px;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+  padding:14px;
+
+  border-radius:7px;
+
+  margin-top:15px;
+
+  display:none;
+
+}
+
+.error{
+
+  background:#ffe5e5;
+
+  color:#a00000;
+
+}
+
+.success{
+
+  background:#e0f7e5;
+
+  color:#176b28;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .full{
+
+    grid-column:auto;
+
+  }
+
+  .summary-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .form-container{
+
+    padding:22px;
+
+  }
+
+  h1{
+
+    font-size:1.55rem;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="header-container">
+
+<div class="logo-section">
+
+<!-- CHANGE LOGO URL -->
+
+<img src="YOUR_LOGO_URL_HERE"
+     alt="RN Counselling">
+
+<div class="brand-name">
+RN Counselling
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     FORM
+===================================================== -->
+
+<div id="formSection"
+     class="form-container">
+
+<h1>
+NEET PG & MDS College Predictor
+</h1>
+
+<div class="subtitle">
+
+Get your personalized list of 50 colleges based on
+your Rank, Category, Dream Branch & State.
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Name <span class="required">*</span>
+</label>
+
+<input
+  type="text"
+  id="name"
+  placeholder="Enter your full name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Mobile Number <span class="required">*</span>
+</label>
+
+<input
+  type="tel"
+  id="mobile"
+  maxlength="10"
+  placeholder="10 digit mobile number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Email <span class="required">*</span>
+</label>
+
+<input
+  type="email"
+  id="email"
+  placeholder="Enter email address">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+NEET Rank <span class="required">*</span>
+</label>
+
+<input
+  type="number"
+  id="rank"
+  min="1"
+  placeholder="Enter NEET rank">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Caste Category <span class="required">*</span>
+</label>
+
+<select id="category">
+
+<option value="">
+Select Category
+</option>
+
+<option value="OPEN">
+Open
+</option>
+
+<option value="OBC">
+OBC
+</option>
+
+<option value="EWS">
+EWS
+</option>
+
+<option value="SC">
+SC
+</option>
+
+<option value="ST">
+ST
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+State <span class="required">*</span>
+</label>
+
+<select id="state">
+
+<option value="">
+Select State
+</option>
+
+<option>Maharashtra</option>
+<option>Karnataka</option>
+<option>Telangana</option>
+<option>Tamil Nadu</option>
+<option>Kerala</option>
+<option>Gujarat</option>
+<option>Rajasthan</option>
+<option>Madhya Pradesh</option>
+<option>Uttar Pradesh</option>
+<option>Delhi</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Dream Branch <span class="required">*</span>
+</label>
+
+<select id="dreamBranch">
+
+<option value="">
+Select your Dream Branch
+</option>
+
+
+<optgroup label="NEET PG - MD">
+
+<option>MD General Medicine</option>
+<option>MD Paediatrics</option>
+<option>MD Dermatology</option>
+<option>MD Radiodiagnosis</option>
+<option>MD Psychiatry</option>
+<option>MD Anaesthesiology</option>
+<option>MD Pathology</option>
+<option>MD Respiratory Medicine</option>
+<option>MD General Medicine</option>
+<option>MD Pharmacology</option>
+<option>MD Microbiology</option>
+<option>MD Anatomy</option>
+<option>MD Physiology</option>
+<option>MD Biochemistry</option>
+
+</optgroup>
+
+
+<optgroup label="NEET PG - MS">
+
+<option>MS General Surgery</option>
+<option>MS Orthopaedics</option>
+<option>MS ENT</option>
+<option>MS Ophthalmology</option>
+<option>MS Obstetrics & Gynaecology</option>
+
+</optgroup>
+
+
+<optgroup label="NEET MDS">
+
+<option>MDS Prosthodontics</option>
+<option>MDS Conservative Dentistry & Endodontics</option>
+<option>MDS Orthodontics</option>
+<option>MDS Periodontology</option>
+<option>MDS Oral & Maxillofacial Surgery</option>
+<option>MDS Oral Medicine & Radiology</option>
+<option>MDS Paediatric Dentistry</option>
+<option>MDS Public Health Dentistry</option>
+<option>MDS Oral Pathology</option>
+
+</optgroup>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<div class="price-box">
+
+<div class="price">
+₹999
+</div>
+
+<div class="price-text">
+
+50 personalized college predictions based on
+historical cutoff data.
+
+</div>
+
+</div>
+
+
+<button
+  class="pay-btn"
+  id="payButton"
+  onclick="startPayment()">
+
+PAY ₹999 & GET COLLEGE PREDICTION
+
+</button>
+
+
+<div id="message"
+     class="message">
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loadingSection"
+     class="form-container loading">
+
+<div class="spinner"></div>
+
+<h2>
+Generating Your College Prediction
+</h2>
+
+<p>
+Please wait while we analyze your rank,
+category, branch and state.
+</p>
+
+</div>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div id="resultSection"
+     class="form-container">
+
+<h1>
+Your College Prediction
+</h1>
+
+<div id="studentSummary"
+     class="student-summary">
+</div>
+
+<div id="results"></div>
+
+<button
+  class="download-btn"
+  onclick="downloadPDF()">
+
+DOWNLOAD YOUR PDF REPORT
+
+</button>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     PDF LIBRARY
+===================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
+
+
+<script>
+
+
+// ========================================================
+// CONFIGURATION
+// ========================================================
+
+const APPS_SCRIPT_URL =
+  "PASTE_YOUR_NEW_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+
+const RAZORPAY_PAYMENT_LINK =
+  "PASTE_YOUR_RAZORPAY_PAYMENT_LINK_HERE";
+
+
+const LOGO_URL =
+  "YOUR_LOGO_URL_HERE";
+
+
+const WHATSAPP =
+  "9763077764";
+
+
+const WEBSITE =
+  "https://rnent.in";
+
+
+const INSTAGRAM =
+  "https://www.instagram.com/pgmed_admission/";
+
+
+// Current student/application
+
+let currentApplication = null;
+
+let currentPredictions = [];
+
+
+// ========================================================
+// START PAYMENT
+// ========================================================
+
+async function startPayment(){
+
+  const name =
+    document.getElementById("name")
+      .value.trim();
+
+
+  const mobile =
+    document.getElementById("mobile")
+      .value.trim();
+
+
+  const email =
+    document.getElementById("email")
+      .value.trim();
+
+
+  const rank =
+    document.getElementById("rank")
+      .value.trim();
+
+
+  const category =
+    document.getElementById("category")
+      .value;
+
+
+  const dreamBranch =
+    document.getElementById("dreamBranch")
+      .value;
+
+
+  const state =
+    document.getElementById("state")
+      .value;
+
+
+  // ======================================================
+  // VALIDATION
+  // ======================================================
+
+  if(!name){
+
+    showMessage(
+      "Please enter your name.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    showMessage(
+      "Please enter a valid 10 digit mobile number.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !email ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      .test(email)
+  ){
+
+    showMessage(
+      "Please enter a valid email address.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !rank ||
+    Number(rank) <= 0
+  ){
+
+    showMessage(
+      "Please enter a valid NEET rank.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!category){
+
+    showMessage(
+      "Please select your category.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!dreamBranch){
+
+    showMessage(
+      "Please select your dream branch.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!state){
+
+    showMessage(
+      "Please select your state.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById("payButton");
+
+
+  button.disabled = true;
+
+  button.innerText =
+    "SAVING APPLICATION...";
+
+
+  try{
+
+    // ====================================================
+    // SAVE APPLICATION
+    // ====================================================
+
+    const response =
+      await fetch(
+        APPS_SCRIPT_URL,
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+            "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:
+              "saveApplication",
+
+            name:
+              name,
+
+            mobile:
+              mobile,
+
+            email:
+              email,
+
+            rank:
+              rank,
+
+            category:
+              category,
+
+            dreamBranch:
+              dreamBranch,
+
+            state:
+              state
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      !result.success
+    ){
+
+      throw new Error(
+        result.message ||
+        "Unable to save application."
+      );
+
+    }
+
+
+    currentApplication = {
+
+      applicationId:
+        result.applicationId,
+
+      name:
+        name,
+
+      mobile:
+        mobile,
+
+      email:
+        email,
+
+      rank:
+        rank,
+
+      category:
+        category,
+
+      dreamBranch:
+        dreamBranch,
+
+      state:
+        state
+
+    };
+
+
+    // Save locally
+
+    localStorage.setItem(
+      "rn_pg_predictor_application",
+      JSON.stringify(
+        currentApplication
+      )
+    );
+
+
+    // ====================================================
+    // REDIRECT TO RAZORPAY
+    // ====================================================
+
+    /*
+       IMPORTANT:
+
+       Put your Razorpay Payment Link above.
+
+       We append our Application ID so that after
+       payment return we know which application belongs
+       to the student.
+    */
+
+
+    const separator =
+      RAZORPAY_PAYMENT_LINK.includes("?")
+        ? "&"
+        : "?";
+
+
+    const returnUrl =
+      window.location.origin +
+      window.location.pathname +
+      "?payment=success&applicationId=" +
+      encodeURIComponent(
+        result.applicationId
+      );
+
+
+    const paymentUrl =
+      RAZORPAY_PAYMENT_LINK +
+      separator +
+      "reference_id=" +
+      encodeURIComponent(
+        result.applicationId
+      );
+
+
+    /*
+      Store intended return URL locally.
+    */
+
+    localStorage.setItem(
+      "rn_pg_predictor_return",
+      returnUrl
+    );
+
+
+    window.location.href =
+      paymentUrl;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    button.disabled = false;
+
+    button.innerText =
+      "PAY ₹999 & GET COLLEGE PREDICTION";
+
+
+    showMessage(
+      error.message ||
+      "Something went wrong. Please try again.",
+      "error"
+    );
+
+  }
+
+}
+
+
+// ========================================================
+// PAGE LOAD
+// ========================================================
+
+window.addEventListener(
+  "load",
+  function(){
+
+    handlePaymentReturn();
+
+  }
+);
+
+
+// ========================================================
+// HANDLE RETURN
+// ========================================================
+
+async function handlePaymentReturn(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const payment =
+    params.get("payment");
+
+
+  const applicationId =
+    params.get("applicationId");
+
+
+  if(
+    payment !== "success" ||
+    !applicationId
+  ){
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "formSection"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "loadingSection"
+  ).style.display = "block";
+
+
+  try{
+
+    const stored =
+      JSON.parse(
+        localStorage.getItem(
+          "rn_pg_predictor_application"
+        ) || "null"
+      );
+
+
+    if(
+      !stored ||
+      stored.applicationId !==
+      applicationId
+    ){
+
+      throw new Error(
+        "Application information not found."
+      );
+
+    }
+
+
+    currentApplication =
+      stored;
+
+
+    // ----------------------------------------------------
+    // PAYMENT STATUS
+    // ----------------------------------------------------
+
+    /*
+      If your Razorpay return URL supplies a payment ID,
+      it can be read here.
+
+      Example:
+      ?payment=success&applicationId=XXX&payment_id=YYY
+    */
+
+    const paymentId =
+      params.get(
+        "payment_id"
+      ) || "";
+
+
+    /*
+      Update payment status.
+
+      If payment_id exists, save it.
+    */
+
+    await fetch(
+      APPS_SCRIPT_URL,
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "text/plain;charset=utf-8"
+        },
+
+        body:JSON.stringify({
+
+          action:
+            "paymentUpdate",
+
+          applicationId:
+            applicationId,
+
+          paymentId:
+            paymentId
+
+        })
+
+      }
+    );
+
+
+    // ----------------------------------------------------
+    // GENERATE PREDICTION
+    // ----------------------------------------------------
+
+    const response =
+      await fetch(
+        APPS_SCRIPT_URL,
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+            "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:
+              "predict",
+
+            applicationId:
+              currentApplication.applicationId,
+
+            rank:
+              currentApplication.rank,
+
+            category:
+              currentApplication.category,
+
+            dreamBranch:
+              currentApplication.dreamBranch,
+
+            state:
+              currentApplication.state
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      !result.success
+    ){
+
+      throw new Error(
+        result.message ||
+        "Prediction could not be generated."
+      );
+
+    }
+
+
+    currentPredictions =
+      result.colleges || [];
+
+
+    showPrediction();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    document.getElementById(
+      "loadingSection"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "formSection"
+    ).style.display = "block";
+
+
+    showMessage(
+      error.message ||
+      "Unable to generate prediction.",
+      "error"
+    );
+
+  }
+
+}
+
+
+// ========================================================
+// SHOW PREDICTION
+// ========================================================
+
+function showPrediction(){
+
+  document.getElementById(
+    "loadingSection"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "resultSection"
+  ).style.display = "block";
+
+
+  const s =
+    currentApplication;
+
+
+  document.getElementById(
+    "studentSummary"
+  ).innerHTML = `
+
+    <div class="summary-grid">
+
+      <div>
+        <b>Name:</b>
+        ${escapeHtml(s.name)}
+      </div>
+
+      <div>
+        <b>NEET Rank:</b>
+        ${escapeHtml(s.rank)}
+      </div>
+
+      <div>
+        <b>Category:</b>
+        ${escapeHtml(s.category)}
+      </div>
+
+      <div>
+        <b>State:</b>
+        ${escapeHtml(s.state)}
+      </div>
+
+      <div style="grid-column:1/-1">
+        <b>Dream Branch:</b>
+        ${escapeHtml(s.dreamBranch)}
+      </div>
+
+    </div>
+
+  `;
+
+
+  const results =
+    document.getElementById(
+      "results"
+    );
+
+
+  results.innerHTML = "";
+
+
+  currentPredictions.forEach(
+    function(item,index){
+
+      let cls =
+        "outside";
+
+
+      if(
+        item.chance ===
+        "Safe"
+      ){
+
+        cls =
+          "safe";
+
+      }
+
+      else if(
+        item.chance ===
+        "High Chance"
+      ){
+
+        cls =
+          "high";
+
+      }
+
+      else if(
+        item.chance ===
+        "Moderate Chance"
+      ){
+
+        cls =
+          "moderate";
+
+      }
+
+
+      results.innerHTML += `
+
+        <div class="result-card">
+
+          <div class="result-top">
+
+            <div>
+
+              <div class="college">
+                ${index + 1}.
+                ${escapeHtml(item.college)}
+              </div>
+
+              <div class="branch">
+                ${escapeHtml(item.branch)}
+              </div>
+
+            </div>
+
+            <span class="badge ${cls}">
+              ${escapeHtml(item.chance)}
+            </span>
+
+          </div>
+
+
+          <div class="meta">
+
+            ${escapeHtml(item.state || "")}
+            ·
+            ${escapeHtml(item.quota || "")}
+            ·
+            Category:
+            ${escapeHtml(item.candidateCategory || "")}
+
+          </div>
+
+
+          <div class="meta">
+
+            Historical Closing Rank:
+            <b>${escapeHtml(String(item.closingRank))}</b>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+}
+
+
+// ========================================================
+// PDF
+// ========================================================
+
+async function downloadPDF(){
+
+  if(
+    !currentApplication ||
+    !currentPredictions.length
+  ){
+
+    alert(
+      "Prediction is not available."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    jsPDF
+  } = window.jspdf;
+
+
+  const doc =
+    new jsPDF({
+
+      orientation:"portrait",
+
+      unit:"mm",
+
+      format:"a4"
+
+    });
+
+
+  const pageWidth =
+    doc.internal.pageSize.getWidth();
+
+
+  const pageHeight =
+    doc.internal.pageSize.getHeight();
+
+
+  let y = 15;
+
+
+  // ======================================================
+  // HEADER
+  // ======================================================
+
+  doc.setFillColor(
+    10,
+    88,
+    202
+  );
+
+  doc.rect(
+    0,
+    0,
+    pageWidth,
+    28,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    255,
+    255,
+    255
+  );
+
+
+  doc.setFontSize(18);
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.text(
+    "RN COUNSELLING",
+    15,
+    12
+  );
+
+
+  doc.setFontSize(9);
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.text(
+    "NEET PG & MDS COLLEGE PREDICTOR",
+    15,
+    20
+  );
+
+
+  y = 38;
+
+
+  // ======================================================
+  // STUDENT DETAILS
+  // ======================================================
+
+  doc.setTextColor(
+    10,
+    88,
+    202
+  );
+
+  doc.setFontSize(14);
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.text(
+    "Student Details",
+    15,
+    y
+  );
+
+
+  y += 8;
+
+
+  doc.setTextColor(
+    50,
+    50,
+    50
+  );
+
+
+  doc.setFontSize(10);
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  const details = [
+
+    [
+      "Name",
+      currentApplication.name
+    ],
+
+    [
+      "NEET Rank",
+      currentApplication.rank
+    ],
+
+    [
+      "Category",
+      currentApplication.category
+    ],
+
+    [
+      "Dream Branch",
+      currentApplication.dreamBranch
+    ],
+
+    [
+      "State",
+      currentApplication.state
+    ]
+
+  ];
+
+
+  details.forEach(
+    function(d){
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+      doc.text(
+        d[0] + ":",
+        15,
+        y
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      doc.text(
+        String(d[1]),
+        48,
+        y
+      );
+
+
+      y += 6;
+
+    }
+  );
+
+
+  y += 6;
+
+
+  // ======================================================
+  // TITLE
+  // ======================================================
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.setTextColor(
+    10,
+    88,
+    202
+  );
+
+
+  doc.text(
+    "50 College Predictions",
+    15,
+    y
+  );
+
+
+  y += 8;
+
+
+  // ======================================================
+  // TABLE HEADER
+  // ======================================================
+
+  doc.setFillColor(
+    10,
+    88,
+    202
+  );
+
+
+  doc.setTextColor(
+    255,
+    255,
+    255
+  );
+
+
+  doc.setFontSize(8);
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.rect(
+    10,
+    y - 5,
+    190,
+    8,
+    "F"
+  );
+
+
+  doc.text(
+    "#",
+    13,
+    y
+  );
+
+
+  doc.text(
+    "College / Branch",
+    22,
+    y
+  );
+
+
+  doc.text(
+    "Quota",
+    123,
+    y
+  );
+
+
+  doc.text(
+    "Closing",
+    148,
+    y
+  );
+
+
+  doc.text(
+    "Chance",
+    173,
+    y
+  );
+
+
+  y += 7;
+
+
+  // ======================================================
+  // TABLE
+  // ======================================================
+
+  currentPredictions.forEach(
+    function(item,index){
+
+      if(
+        y > pageHeight - 38
+      ){
+
+        addFooter(
+          doc,
+          pageWidth,
+          pageHeight
+        );
+
+        doc.addPage();
+
+        y = 15;
+
+      }
+
+
+      doc.setTextColor(
+        40,
+        40,
+        40
+      );
+
+
+      doc.setFontSize(7.5);
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      doc.text(
+        String(index + 1),
+        13,
+        y
+      );
+
+
+      const collegeText =
+        doc.splitTextToSize(
+          String(
+            item.college +
+            " - " +
+            item.branch
+          ),
+          96
+        );
+
+
+      doc.text(
+        collegeText,
+        22,
+        y
+      );
+
+
+      doc.text(
+        String(
+          item.quota || ""
+        ),
+        123,
+        y
+      );
+
+
+      doc.text(
+        String(
+          item.closingRank || ""
+        ),
+        148,
+        y
+      );
+
+
+      doc.text(
+        String(
+          item.chance || ""
+        ),
+        173,
+        y
+      );
+
+
+      y += Math.max(
+        7,
+        collegeText.length * 4
+      );
+
+    }
+  );
+
+
+  // ======================================================
+  // FOOTER / AD
+  // ======================================================
+
+  if(
+    y > pageHeight - 45
+  ){
+
+    doc.addPage();
+
+    y = 18;
+
+  }
+
+
+  y += 5;
+
+
+  doc.setFillColor(
+    245,
+    248,
+    255
+  );
+
+
+  doc.roundedRect(
+    10,
+    y,
+    190,
+    35,
+    3,
+    3,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    10,
+    88,
+    202
+  );
+
+
+  doc.setFontSize(11);
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.text(
+    "Need Complete Counselling Support?",
+    15,
+    y + 8
+  );
+
+
+  doc.setFontSize(8);
+
+  doc.setTextColor(
+    60,
+    60,
+    60
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.text(
+    "Basic Counselling: Personalized State Counselling Guidance",
+    15,
+    y + 15
+  );
+
+
+  doc.text(
+    "Premium Counselling: All India + State Counselling & Choice Filling",
+    15,
+    y + 21
+  );
+
+
+  doc.text(
+    "WhatsApp: " + WHATSAPP +
+    "   |   Website: " + WEBSITE,
+    15,
+    y + 28
+  );
+
+
+  y += 43;
+
+
+  doc.setFontSize(7);
+
+  doc.setTextColor(
+    100,
+    100,
+    100
+  );
+
+
+  const disclaimer =
+    "Disclaimer: Predictions are based on historical cutoff data and information provided by the student. " +
+    "They are indicative only and do not guarantee admission. Actual allotment depends on counselling rules, " +
+    "seat availability, category, quota, choice filling and changes in cutoffs.";
+
+
+  const wrapped =
+    doc.splitTextToSize(
+      disclaimer,
+      185
+    );
+
+
+  doc.text(
+    wrapped,
+    12,
+    y
+  );
+
+
+  addFooter(
+    doc,
+    pageWidth,
+    pageHeight
+  );
+
+
+  // ======================================================
+  // SAVE
+  // ======================================================
+
+  const safeName =
+    currentApplication.name
+      .replace(
+        /[^a-z0-9]/gi,
+        "_"
+      );
+
+
+  doc.save(
+    "RN_Counselling_College_Predictor_" +
+    safeName +
+    ".pdf"
+  );
+
+}
+
+
+// ========================================================
+// FOOTER
+// ========================================================
+
+function addFooter(
+  doc,
+  pageWidth,
+  pageHeight
+){
+
+  doc.setFontSize(7);
+
+  doc.setTextColor(
+    120,
+    120,
+    120
+  );
+
+
+  doc.text(
+    "RN Counselling | " +
+    WHATSAPP +
+    " | " +
+    WEBSITE,
+    pageWidth / 2,
+    pageHeight - 7,
+    {
+      align:"center"
+    }
+  );
+
+}
+
+
+// ========================================================
+// MESSAGE
+// ========================================================
+
+function showMessage(
+  text,
+  type
+){
+
+  const box =
+    document.getElementById(
+      "message"
+    );
+
+
+  box.className =
+    "message " +
+    type;
+
+
+  box.innerText =
+    text;
+
+
+  box.style.display =
+    "block";
+
+}
+
+
+// ========================================================
+// ESCAPE HTML
+// ========================================================
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value || ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
