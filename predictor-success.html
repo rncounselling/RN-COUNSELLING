@@ -523,42 +523,16 @@ async function generateReport(){
     // CALL GOOGLE APPS SCRIPT
     // ======================================================
 
-    const response =
-      await fetch(
+    const url =
+  API_URL +
+  "?action=predict&mobile=" +
+  encodeURIComponent(mobile);
 
-        API_URL,
+const response =
+  await fetch(url);
 
-        {
-
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "text/plain;charset=utf-8"
-          },
-
-          body:JSON.stringify({
-
-            action:
-              "predict",
-
-            mobile:
-              mobile
-
-          })
-
-        }
-
-      );
-
-
-    // ------------------------------------------------------
-    // READ RESPONSE
-    // ------------------------------------------------------
-
-    const text =
-      await response.text();
-
+const text =
+  await response.text();
 
     let result;
 
