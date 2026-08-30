@@ -1,0 +1,710 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>RN Counselling | Download College Predictor Report</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#17233d;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  background:#06245f;
+  color:white;
+  padding:18px 20px;
+  text-align:center;
+}
+
+.logo{
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.subtitle{
+  margin-top:5px;
+  font-size:14px;
+  opacity:.9;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+  width:100%;
+  max-width:520px;
+  margin:45px auto;
+  padding:0 18px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:30px 25px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+/* ================= SUCCESS ================= */
+
+.success-icon{
+  width:72px;
+  height:72px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  background:#e8f8ee;
+  color:#159447;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:bold;
+}
+
+h1{
+  margin:0;
+  font-size:25px;
+  color:#06245f;
+}
+
+.description{
+  margin:12px 0 25px;
+  line-height:1.55;
+  color:#5b6475;
+  font-size:15px;
+}
+
+/* ================= FORM ================= */
+
+label{
+  display:block;
+  text-align:left;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+input{
+  width:100%;
+  height:50px;
+  border:1px solid #d5dce8;
+  border-radius:10px;
+  padding:0 15px;
+  font-size:16px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus{
+  border-color:#1456c4;
+  box-shadow:0 0 0 3px rgba(20,86,196,.1);
+}
+
+button{
+  width:100%;
+  height:50px;
+  border:0;
+  border-radius:10px;
+  background:#1456c4;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:16px;
+}
+
+button:hover{
+  background:#0b449f;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+  display:none;
+  margin-top:18px;
+  padding:13px 14px;
+  border-radius:9px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.message.error{
+  display:block;
+  background:#fff0f0;
+  color:#b42318;
+  border:1px solid #ffd0d0;
+}
+
+.message.success{
+  display:block;
+  background:#ecfdf3;
+  color:#067647;
+  border:1px solid #b7ebcd;
+}
+
+/* ================= LOADING ================= */
+
+.loader{
+  display:none;
+  margin:20px auto 0;
+}
+
+.spinner{
+  width:32px;
+  height:32px;
+  border:4px solid #dce6f7;
+  border-top:4px solid #1456c4;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:auto;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* ================= DOWNLOAD ================= */
+
+.download-area{
+  display:none;
+  margin-top:25px;
+  padding-top:22px;
+  border-top:1px solid #e5e9f0;
+}
+
+.download-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  width:100%;
+  min-height:52px;
+  border-radius:10px;
+  background:#159447;
+  color:white;
+  font-weight:700;
+  font-size:16px;
+}
+
+.download-button:hover{
+  background:#117c3b;
+}
+
+.note{
+  margin-top:12px;
+  font-size:12px;
+  color:#777;
+  line-height:1.5;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  text-align:center;
+  margin-top:25px;
+  color:#777;
+  font-size:12px;
+}
+
+.whatsapp{
+  margin-top:7px;
+  font-weight:700;
+  color:#159447;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:480px){
+
+  .container{
+    margin:25px auto;
+  }
+
+  .card{
+    padding:25px 18px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<div class="header">
+
+  <div class="logo">
+    RN COUNSELLING
+  </div>
+
+  <div class="subtitle">
+    NEET PG College Predictor
+  </div>
+
+</div>
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<div class="container">
+
+  <div class="card">
+
+
+    <!-- SUCCESS ICON -->
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+
+    <h1>
+      Payment Successful
+    </h1>
+
+
+    <div class="description">
+
+      Your payment has been received successfully.
+
+      <br><br>
+
+      Enter the <b>mobile number used while filling
+      the predictor form</b> to generate your
+      personalised college prediction report.
+
+    </div>
+
+
+    <!-- ==================================================
+         MOBILE FORM
+    ================================================== -->
+
+    <div id="formArea">
+
+      <label for="mobile">
+        Registered Mobile Number
+      </label>
+
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="Enter 10 digit mobile number"
+        maxlength="10"
+        inputmode="numeric"
+        autocomplete="tel"
+      >
+
+      <button
+        id="generateBtn"
+        onclick="generateReport()">
+
+        Generate My College Report
+
+      </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         LOADER
+    ================================================== -->
+
+    <div
+      class="loader"
+      id="loader">
+
+      <div class="spinner"></div>
+
+      <div style="margin-top:10px;font-size:13px;color:#666;">
+
+        Checking payment and generating your report...
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MESSAGE
+    ================================================== -->
+
+    <div
+      id="message"
+      class="message">
+    </div>
+
+
+    <!-- ==================================================
+         DOWNLOAD
+    ================================================== -->
+
+    <div
+      id="downloadArea"
+      class="download-area">
+
+      <div style="
+        font-size:17px;
+        font-weight:700;
+        color:#06245f;
+        margin-bottom:12px;
+      ">
+
+        🎉 Your College Prediction Report is Ready
+
+      </div>
+
+
+      <a
+        id="downloadButton"
+        class="download-button"
+        href="#"
+        target="_blank">
+
+        📄 Download My PDF Report
+
+      </a>
+
+
+      <div class="note">
+
+        Please save your PDF report after downloading.
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="footer">
+
+    RN Counselling
+
+    <div class="whatsapp">
+      WhatsApp: 9763077764
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+// ==========================================================
+// RN COUNSELLING
+// NEW COLLEGE PREDICTOR
+// SUCCESS PAGE
+// ==========================================================
+
+
+// ==========================================================
+// GOOGLE APPS SCRIPT API
+// ==========================================================
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwpxObp1JRc9a6wIAYzM_RhGbSvHXDRCGP4RfmCBpZU-MqlAeurS4otq1-J3T2MeE3e/exec";
+
+
+// ==========================================================
+// GENERATE REPORT
+// ==========================================================
+
+async function generateReport(){
+
+  const mobileInput =
+    document.getElementById("mobile");
+
+  const mobile =
+    mobileInput.value.trim();
+
+
+  const message =
+    document.getElementById("message");
+
+  const loader =
+    document.getElementById("loader");
+
+  const button =
+    document.getElementById("generateBtn");
+
+  const formArea =
+    document.getElementById("formArea");
+
+  const downloadArea =
+    document.getElementById("downloadArea");
+
+  const downloadButton =
+    document.getElementById("downloadButton");
+
+
+  // --------------------------------------------------------
+  // RESET
+  // --------------------------------------------------------
+
+  message.className =
+    "message";
+
+  message.innerHTML = "";
+
+  downloadArea.style.display =
+    "none";
+
+
+  // --------------------------------------------------------
+  // VALIDATE MOBILE
+  // --------------------------------------------------------
+
+  if(!/^[6-9][0-9]{9}$/.test(mobile)){
+
+    message.className =
+      "message error";
+
+    message.innerHTML =
+      "Please enter a valid 10 digit Indian mobile number.";
+
+    return;
+
+  }
+
+
+  // --------------------------------------------------------
+  // LOADING
+  // --------------------------------------------------------
+
+  button.disabled = true;
+
+  loader.style.display =
+    "block";
+
+
+  try{
+
+
+    // ======================================================
+    // CALL GOOGLE APPS SCRIPT
+    // ======================================================
+
+    const response =
+      await fetch(
+
+        API_URL,
+
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:
+              "generateReport",
+
+            mobile:
+              mobile
+
+          })
+
+        }
+
+      );
+
+
+    // ------------------------------------------------------
+    // READ RESPONSE
+    // ------------------------------------------------------
+
+    const text =
+      await response.text();
+
+
+    let result;
+
+
+    try{
+
+      result =
+        JSON.parse(text);
+
+    }
+
+    catch(error){
+
+      throw new Error(
+        "Invalid response received from server."
+      );
+
+    }
+
+
+    // ======================================================
+    // SERVER ERROR
+    // ======================================================
+
+    if(!result.success){
+
+      throw new Error(
+
+        result.message ||
+        "Unable to generate report."
+
+      );
+
+    }
+
+
+    // ======================================================
+    // PDF URL
+    // ======================================================
+
+    const pdfUrl =
+      result.pdfUrl;
+
+
+    if(!pdfUrl){
+
+      throw new Error(
+        "Report generated but PDF link was not received."
+      );
+
+    }
+
+
+    // ======================================================
+    // SUCCESS
+    // ======================================================
+
+    loader.style.display =
+      "none";
+
+
+    message.className =
+      "message success";
+
+    message.innerHTML =
+      "Your college prediction report has been generated successfully.";
+
+
+    downloadButton.href =
+      pdfUrl;
+
+
+    downloadArea.style.display =
+      "block";
+
+
+    formArea.style.display =
+      "none";
+
+
+  }
+
+
+  catch(error){
+
+    loader.style.display =
+      "none";
+
+    button.disabled =
+      false;
+
+
+    message.className =
+      "message error";
+
+    message.innerHTML =
+      error.message ||
+      "Something went wrong. Please try again.";
+
+  }
+
+}
+
+
+// ==========================================================
+// ALLOW ENTER KEY
+// ==========================================================
+
+document
+  .getElementById("mobile")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        generateReport();
+
+      }
+
+    }
+  );
+
+
+// ==========================================================
+// ONLY NUMBERS IN MOBILE FIELD
+// ==========================================================
+
+document
+  .getElementById("mobile")
+  .addEventListener(
+    "input",
+    function(){
+
+      this.value =
+        this.value
+          .replace(/\D/g,"")
+          .substring(0,10);
+
+    }
+  );
+
+
+</script>
+
+
+</body>
+</html>
+```
