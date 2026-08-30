@@ -1148,8 +1148,13 @@ async function startPayment(){
 
 
     const result =
-      await response.json();
+  await response.json();
 
+console.log("APPLICATION SAVE RESPONSE:", result);
+
+alert(
+  JSON.stringify(result)
+);
 
     if(
       !result.success
