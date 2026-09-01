@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,12 +7,12 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+   content="width=device-width, initial-scale=1.0">
 
 <title>NEET PG & MDS College Predictor | RN Counselling</title>
 
 <meta name="description"
-      content="Get your personalized NEET PG and MDS college prediction based on rank, category, branch and state.">
+   content="Get your personalized NEET PG and MDS college prediction based on rank, category, branch and state.">
 
 <style>
 
@@ -578,9 +579,7 @@ select:focus{
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -588,10 +587,8 @@ select:focus{
 
 <div class="logo-section">
 
-<!-- CHANGE LOGO URL -->
-
 <img src="YOUR_LOGO_URL_HERE"
-     alt="RN Counselling">
+  alt="RN Counselling">
 
 <div class="brand-name">
 RN Counselling
@@ -603,9 +600,7 @@ RN Counselling
 
 </header>
 
-
 <main>
-
 
 <!-- =====================================================
      FORM
@@ -625,9 +620,7 @@ your Rank, Category, Dream Branch & State.
 
 </div>
 
-
 <div class="form-grid">
-
 
 <div class="form-group">
 
@@ -636,12 +629,11 @@ Name <span class="required">*</span>
 </label>
 
 <input
-  type="text"
-  id="name"
-  placeholder="Enter your full name">
+type="text"
+id="name"
+placeholder="Enter your full name">
 
 </div>
-
 
 <div class="form-group">
 
@@ -650,13 +642,12 @@ Mobile Number <span class="required">*</span>
 </label>
 
 <input
-  type="tel"
-  id="mobile"
-  maxlength="10"
-  placeholder="10 digit mobile number">
+type="tel"
+id="mobile"
+maxlength="10"
+placeholder="10 digit mobile number">
 
 </div>
-
 
 <div class="form-group">
 
@@ -665,12 +656,11 @@ Email <span class="required">*</span>
 </label>
 
 <input
-  type="email"
-  id="email"
-  placeholder="Enter email address">
+type="email"
+id="email"
+placeholder="Enter email address">
 
 </div>
-
 
 <div class="form-group">
 
@@ -679,13 +669,12 @@ NEET Rank <span class="required">*</span>
 </label>
 
 <input
-  type="number"
-  id="rank"
-  min="1"
-  placeholder="Enter NEET rank">
+type="number"
+id="rank"
+min="1"
+placeholder="Enter NEET rank">
 
 </div>
-
 
 <div class="form-group">
 
@@ -723,7 +712,6 @@ ST
 
 </div>
 
-
 <div class="form-group">
 
 <label>
@@ -752,7 +740,6 @@ Select State
 
 </div>
 
-
 <div class="form-group full">
 
 <label>
@@ -764,7 +751,6 @@ Dream Branch <span class="required">*</span>
 <option value="">
 Select your Dream Branch
 </option>
-
 
 <optgroup label="NEET PG - MD">
 
@@ -785,7 +771,6 @@ Select your Dream Branch
 
 </optgroup>
 
-
 <optgroup label="NEET PG - MS">
 
 <option>MS General Surgery</option>
@@ -795,7 +780,6 @@ Select your Dream Branch
 <option>MS Obstetrics & Gynaecology</option>
 
 </optgroup>
-
 
 <optgroup label="NEET MDS">
 
@@ -815,9 +799,7 @@ Select your Dream Branch
 
 </div>
 
-
 </div>
-
 
 <div class="price-box">
 
@@ -834,24 +816,20 @@ historical cutoff data.
 
 </div>
 
-
 <button
-  class="pay-btn"
-  id="payButton"
-  onclick="startPayment()">
+class="pay-btn"
+id="payButton"
+onclick="startPayment()">
 
 PAY ₹999 & GET COLLEGE PREDICTION
 
 </button>
 
-
 <div id="message"
      class="message">
 </div>
 
-
 </div>
-
 
 <!-- =====================================================
      LOADING
@@ -873,7 +851,6 @@ category, branch and state.
 
 </div>
 
-
 <!-- =====================================================
      RESULT
 ===================================================== -->
@@ -892,8 +869,8 @@ Your College Prediction
 <div id="results"></div>
 
 <button
-  class="download-btn"
-  onclick="downloadPDF()">
+class="download-btn"
+onclick="downloadPDF()">
 
 DOWNLOAD YOUR PDF REPORT
 
@@ -901,9 +878,7 @@ DOWNLOAD YOUR PDF REPORT
 
 </div>
 
-
 </main>
-
 
 <!-- =====================================================
      PDF LIBRARY
@@ -911,7 +886,6 @@ DOWNLOAD YOUR PDF REPORT
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
 </script>
-
 
 <script>
 
@@ -928,6 +902,18 @@ const RAZORPAY_PAYMENT_LINK =
   "https://rzp.io/rzp/SR14k5pC";
 
 
+/*
+==========================================================
+PDF BRANDING SETTINGS
+==========================================================
+
+ONLY CHANGE LOGO_URL IF REQUIRED.
+
+The logo must be a publicly accessible image URL.
+PNG/JPG recommended.
+==========================================================
+*/
+
 const LOGO_URL =
   "YOUR_LOGO_URL_HERE";
 
@@ -942,6 +928,10 @@ const WEBSITE =
 
 const INSTAGRAM =
   "https://www.instagram.com/pgmed_admission/";
+
+
+const CONTACT_EMAIL =
+  "info@rnent.in";
 
 
 // Current student/application
@@ -1148,13 +1138,14 @@ async function startPayment(){
 
 
     const result =
-  await response.json();
+      await response.json();
 
-console.log("APPLICATION SAVE RESPONSE:", result);
 
-alert(
-  JSON.stringify(result)
-);
+    console.log(
+      "APPLICATION SAVE RESPONSE:",
+      result
+    );
+
 
     if(
       !result.success
@@ -1197,8 +1188,6 @@ alert(
     };
 
 
-    // Save locally
-
     localStorage.setItem(
       "rn_pg_predictor_application",
       JSON.stringify(
@@ -1210,17 +1199,6 @@ alert(
     // ====================================================
     // REDIRECT TO RAZORPAY
     // ====================================================
-
-    /*
-       IMPORTANT:
-
-       Put your Razorpay Payment Link above.
-
-       We append our Application ID so that after
-       payment return we know which application belongs
-       to the student.
-    */
-
 
     const separator =
       RAZORPAY_PAYMENT_LINK.includes("?")
@@ -1245,10 +1223,6 @@ alert(
         result.applicationId
       );
 
-
-    /*
-      Store intended return URL locally.
-    */
 
     localStorage.setItem(
       "rn_pg_predictor_return",
@@ -1366,25 +1340,11 @@ async function handlePaymentReturn(){
     // PAYMENT STATUS
     // ----------------------------------------------------
 
-    /*
-      If your Razorpay return URL supplies a payment ID,
-      it can be read here.
-
-      Example:
-      ?payment=success&applicationId=XXX&payment_id=YYY
-    */
-
     const paymentId =
       params.get(
         "payment_id"
       ) || "";
 
-
-    /*
-      Update payment status.
-
-      If payment_id exists, save it.
-    */
 
     await fetch(
       APPS_SCRIPT_URL,
@@ -1665,7 +1625,7 @@ function showPrediction(){
 
 
 // ========================================================
-// PDF
+// PROFESSIONAL PDF REPORT
 // ========================================================
 
 async function downloadPDF(){
@@ -1709,423 +1669,302 @@ async function downloadPDF(){
     doc.internal.pageSize.getHeight();
 
 
-  let y = 15;
+  const margin = 12;
+
+  let y = 0;
 
 
   // ======================================================
-  // HEADER
+  // HELPER FUNCTIONS
   // ======================================================
 
-  doc.setFillColor(
-    10,
-    88,
-    202
-  );
-
-  doc.rect(
-    0,
-    0,
-    pageWidth,
-    28,
-    "F"
-  );
-
-
-  doc.setTextColor(
-    255,
-    255,
-    255
-  );
-
-
-  doc.setFontSize(18);
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.text(
-    "RN COUNSELLING",
-    15,
-    12
-  );
-
-
-  doc.setFontSize(9);
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.text(
-    "NEET PG & MDS COLLEGE PREDICTOR",
-    15,
-    20
-  );
-
-
-  y = 38;
-
-
-  // ======================================================
-  // STUDENT DETAILS
-  // ======================================================
-
-  doc.setTextColor(
-    10,
-    88,
-    202
-  );
-
-  doc.setFontSize(14);
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.text(
-    "Student Details",
-    15,
-    y
-  );
-
-
-  y += 8;
-
-
-  doc.setTextColor(
-    50,
-    50,
-    50
-  );
-
-
-  doc.setFontSize(10);
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  const details = [
-
-    [
-      "Name",
-      currentApplication.name
-    ],
-
-    [
-      "NEET Rank",
-      currentApplication.rank
-    ],
-
-    [
-      "Category",
-      currentApplication.category
-    ],
-
-    [
-      "Dream Branch",
-      currentApplication.dreamBranch
-    ],
-
-    [
-      "State",
-      currentApplication.state
-    ]
-
-  ];
-
-
-  details.forEach(
-    function(d){
-
-      doc.setFont(
-        "helvetica",
-        "bold"
-      );
-
-      doc.text(
-        d[0] + ":",
-        15,
-        y
-      );
-
-
-      doc.setFont(
-        "helvetica",
-        "normal"
-      );
-
-
-      doc.text(
-        String(d[1]),
-        48,
-        y
-      );
-
-
-      y += 6;
-
-    }
-  );
-
-
-  y += 6;
-
-
-  // ======================================================
-  // TITLE
-  // ======================================================
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-  doc.setFontSize(14);
-
-  doc.setTextColor(
-    10,
-    88,
-    202
-  );
-
-
-  doc.text(
-    "50 College Predictions",
-    15,
-    y
-  );
-
-
-  y += 8;
-
-
-  // ======================================================
-  // TABLE HEADER
-  // ======================================================
-
-  doc.setFillColor(
-    10,
-    88,
-    202
-  );
-
-
-  doc.setTextColor(
-    255,
-    255,
-    255
-  );
-
-
-  doc.setFontSize(8);
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.rect(
-    10,
-    y - 5,
-    190,
-    8,
-    "F"
-  );
-
-
-  doc.text(
-    "#",
-    13,
-    y
-  );
-
-
-  doc.text(
-    "College / Branch",
-    22,
-    y
-  );
-
-
-  doc.text(
-    "Quota",
-    123,
-    y
-  );
-
-
-  doc.text(
-    "Closing",
-    148,
-    y
-  );
-
-
-  doc.text(
-    "Chance",
-    173,
-    y
-  );
-
-
-  y += 7;
-
-
-  // ======================================================
-  // TABLE
-  // ======================================================
-
-  currentPredictions.forEach(
-    function(item,index){
-
-      if(
-        y > pageHeight - 38
-      ){
-
-        addFooter(
-          doc,
-          pageWidth,
-          pageHeight
+  function addPageHeader(){
+
+    doc.setFillColor(
+      8,
+      42,
+      95
+    );
+
+    doc.rect(
+      0,
+      0,
+      pageWidth,
+      31,
+      "F"
+    );
+
+
+    /*
+      LOGO
+    */
+
+    if(
+      LOGO_URL &&
+      LOGO_URL !==
+      "YOUR_LOGO_URL_HERE"
+    ){
+
+      try{
+
+        doc.addImage(
+          LOGO_URL,
+          "PNG",
+          12,
+          5,
+          20,
+          20
         );
 
-        doc.addPage();
+      }catch(e){
 
-        y = 15;
+        console.warn(
+          "Logo could not be loaded:",
+          e
+        );
 
       }
 
-
-      doc.setTextColor(
-        40,
-        40,
-        40
-      );
+    }
 
 
-      doc.setFontSize(7.5);
-
-      doc.setFont(
-        "helvetica",
-        "normal"
-      );
-
-
-      doc.text(
-        String(index + 1),
-        13,
-        y
-      );
+    doc.setTextColor(
+      255,
+      255,
+      255
+    );
 
 
-      const collegeText =
-        doc.splitTextToSize(
-          String(
-            item.college +
-            " - " +
-            item.branch
-          ),
-          96
-        );
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
 
 
-      doc.text(
-        collegeText,
-        22,
-        y
-      );
+    doc.setFontSize(17);
 
 
-      doc.text(
-        String(
-          item.quota || ""
-        ),
-        123,
-        y
-      );
+    doc.text(
+      "RN COUNSELLING",
+      38,
+      12
+    );
 
 
-      doc.text(
-        String(
-          item.closingRank || ""
-        ),
-        148,
-        y
-      );
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
 
 
-      doc.text(
-        String(
-          item.chance || ""
-        ),
-        173,
-        y
-      );
+    doc.setFontSize(8.5);
 
 
-      y += Math.max(
-        7,
-        collegeText.length * 4
-      );
+    doc.text(
+      "NEET PG & MDS COLLEGE PREDICTOR",
+      38,
+      19
+    );
+
+
+    doc.setFontSize(7);
+
+
+    doc.text(
+      "Personalized College Prediction Report",
+      38,
+      25
+    );
+
+
+    y = 40;
+
+  }
+
+
+  function checkPageSpace(
+    requiredHeight
+  ){
+
+    if(
+      y + requiredHeight >
+      pageHeight - 20
+    ){
+
+      addFooter();
+
+      doc.addPage();
+
+      addPageHeader();
 
     }
+
+  }
+
+
+  function addFooter(){
+
+    doc.setDrawColor(
+      220,
+      225,
+      235
+    );
+
+    doc.line(
+      12,
+      pageHeight - 13,
+      pageWidth - 12,
+      pageHeight - 13
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.setFontSize(6.5);
+
+
+    doc.setTextColor(
+      100,
+      110,
+      125
+    );
+
+
+    doc.text(
+      "RN Counselling | WhatsApp: " +
+      WHATSAPP +
+      " | " +
+      WEBSITE,
+      pageWidth / 2,
+      pageHeight - 7,
+      {
+        align:"center"
+      }
+    );
+
+  }
+
+
+  function roundedBox(
+    x,
+    yPos,
+    width,
+    height,
+    fillR,
+    fillG,
+    fillB
+  ){
+
+    doc.setFillColor(
+      fillR,
+      fillG,
+      fillB
+    );
+
+    doc.roundedRect(
+      x,
+      yPos,
+      width,
+      height,
+      3,
+      3,
+      "F"
+    );
+
+  }
+
+
+  // ======================================================
+  // PAGE 1 HEADER
+  // ======================================================
+
+  addPageHeader();
+
+
+  // ======================================================
+  // REPORT TITLE
+  // ======================================================
+
+  doc.setTextColor(
+    8,
+    42,
+    95
   );
 
 
-  // ======================================================
-  // FOOTER / AD
-  // ======================================================
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
 
-  if(
-    y > pageHeight - 45
-  ){
 
-    doc.addPage();
+  doc.setFontSize(16);
 
-    y = 18;
 
-  }
+  doc.text(
+    "COLLEGE PREDICTION REPORT",
+    margin,
+    y
+  );
 
 
   y += 5;
 
 
-  doc.setFillColor(
-    245,
-    248,
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(7.5);
+
+
+  doc.setTextColor(
+    100,
+    105,
+    115
+  );
+
+
+  doc.text(
+    "Prepared exclusively for the student based on the information submitted.",
+    margin,
+    y + 5
+  );
+
+
+  y += 14;
+
+
+  // ======================================================
+  // STUDENT INFORMATION
+  // ======================================================
+
+  checkPageSpace(45);
+
+
+  roundedBox(
+    margin,
+    y,
+    pageWidth - 24,
+    38,
+    241,
+    247,
     255
   );
 
 
-  doc.roundedRect(
-    10,
-    y,
-    190,
-    35,
-    3,
-    3,
-    "F"
-  );
-
-
   doc.setTextColor(
-    10,
-    88,
-    202
+    8,
+    42,
+    95
   );
 
-
-  doc.setFontSize(11);
 
   doc.setFont(
     "helvetica",
@@ -2133,19 +1972,68 @@ async function downloadPDF(){
   );
 
 
+  doc.setFontSize(11);
+
+
   doc.text(
-    "Need Complete Counselling Support?",
-    15,
+    "STUDENT PROFILE",
+    margin + 6,
     y + 8
   );
 
 
   doc.setFontSize(8);
 
+
+  const studentY =
+    y + 17;
+
+
   doc.setTextColor(
-    60,
-    60,
-    60
+    50,
+    55,
+    65
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.text(
+    "Name",
+    margin + 6,
+    studentY
+  );
+
+
+  doc.text(
+    "NEET Rank",
+    112,
+    studentY
+  );
+
+
+  doc.text(
+    "Category",
+    margin + 6,
+    studentY + 9
+  );
+
+
+  doc.text(
+    "State",
+    112,
+    studentY + 9
+  );
+
+
+  doc.text(
+    "Dream Branch",
+    margin + 6,
+    studentY + 18
   );
 
 
@@ -2156,116 +2044,1236 @@ async function downloadPDF(){
 
 
   doc.text(
-    "Basic Counselling: Personalized State Counselling Guidance",
-    15,
-    y + 15
+    String(
+      currentApplication.name || ""
+    ),
+    margin + 29,
+    studentY
   );
 
 
   doc.text(
-    "Premium Counselling: All India + State Counselling & Choice Filling",
-    15,
-    y + 21
+    String(
+      currentApplication.rank || ""
+    ),
+    137,
+    studentY
   );
 
 
   doc.text(
-    "WhatsApp: " + WHATSAPP +
-    "   |   Website: " + WEBSITE,
+    String(
+      currentApplication.category || ""
+    ),
+    margin + 29,
+    studentY + 9
+  );
+
+
+  doc.text(
+    String(
+      currentApplication.state || ""
+    ),
+    137,
+    studentY + 9
+  );
+
+
+  const branchText =
+    doc.splitTextToSize(
+      String(
+        currentApplication.dreamBranch || ""
+      ),
+      130
+    );
+
+
+  doc.text(
+    branchText,
+    margin + 40,
+    studentY + 18
+  );
+
+
+  y += 46;
+
+
+  // ======================================================
+  // PREDICTION INTRO
+  // ======================================================
+
+  checkPageSpace(25);
+
+
+  doc.setTextColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(13);
+
+
+  doc.text(
+    "YOUR TOP 50 COLLEGE PREDICTIONS",
+    margin,
+    y
+  );
+
+
+  y += 5;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(7.5);
+
+
+  doc.setTextColor(
+    90,
+    95,
+    105
+  );
+
+
+  doc.text(
+    "Predictions are ranked according to the available historical cutoff data and your submitted preferences.",
+    margin,
+    y + 4
+  );
+
+
+  y += 13;
+
+
+  // ======================================================
+  // LEGEND
+  // ======================================================
+
+  const legendY =
+    y;
+
+
+  doc.setFillColor(
+    214,
+    244,
+    220
+  );
+
+
+  doc.roundedRect(
+    margin,
+    legendY - 4,
+    32,
+    7,
+    2,
+    2,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    25,
+    105,
+    45
+  );
+
+
+  doc.setFontSize(6.5);
+
+
+  doc.text(
+    "SAFE",
+    margin + 10,
+    legendY + 1
+  );
+
+
+  doc.setFillColor(
+    255,
+    239,
+    200
+  );
+
+
+  doc.roundedRect(
+    margin + 38,
+    legendY - 4,
+    42,
+    7,
+    2,
+    2,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    145,
+    90,
+    0
+  );
+
+
+  doc.text(
+    "HIGH CHANCE",
+    margin + 47,
+    legendY + 1
+  );
+
+
+  doc.setFillColor(
+    255,
+    220,
+    220
+  );
+
+
+  doc.roundedRect(
+    margin + 86,
+    legendY - 4,
+    48,
+    7,
+    2,
+    2,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    150,
+    30,
+    30
+  );
+
+
+  doc.text(
+    "MODERATE CHANCE",
+    margin + 94,
+    legendY + 1
+  );
+
+
+  y += 12;
+
+
+  // ======================================================
+  // TABLE HEADER
+  // ======================================================
+
+  checkPageSpace(15);
+
+
+  doc.setFillColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.rect(
+    margin,
+    y,
+    pageWidth - 24,
+    10,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    255,
+    255,
+    255
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(7);
+
+
+  doc.text(
+    "#",
+    margin + 3,
+    y + 6.5
+  );
+
+
+  doc.text(
+    "COLLEGE / BRANCH",
+    margin + 13,
+    y + 6.5
+  );
+
+
+  doc.text(
+    "QUOTA",
+    123,
+    y + 6.5
+  );
+
+
+  doc.text(
+    "CLOSING",
+    148,
+    y + 6.5
+  );
+
+
+  doc.text(
+    "CHANCE",
+    173,
+    y + 6.5
+  );
+
+
+  y += 10;
+
+
+  // ======================================================
+  // TABLE ROWS
+  // ======================================================
+
+  currentPredictions.forEach(
+    function(item,index){
+
+      const college =
+        String(
+          item.college || ""
+        );
+
+
+      const branch =
+        String(
+          item.branch || ""
+        );
+
+
+      const combined =
+        college +
+        " - " +
+        branch;
+
+
+      const collegeLines =
+        doc.splitTextToSize(
+          combined,
+          94
+        );
+
+
+      const rowHeight =
+        Math.max(
+          10,
+          collegeLines.length * 4 + 4
+        );
+
+
+      if(
+        y + rowHeight >
+        pageHeight - 20
+      ){
+
+        addFooter();
+
+        doc.addPage();
+
+        addPageHeader();
+
+
+        /*
+          Repeat table header on new page
+        */
+
+        doc.setFillColor(
+          8,
+          42,
+          95
+        );
+
+
+        doc.rect(
+          margin,
+          y,
+          pageWidth - 24,
+          10,
+          "F"
+        );
+
+
+        doc.setTextColor(
+          255,
+          255,
+          255
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(7);
+
+
+        doc.text(
+          "#",
+          margin + 3,
+          y + 6.5
+        );
+
+
+        doc.text(
+          "COLLEGE / BRANCH",
+          margin + 13,
+          y + 6.5
+        );
+
+
+        doc.text(
+          "QUOTA",
+          123,
+          y + 6.5
+        );
+
+
+        doc.text(
+          "CLOSING",
+          148,
+          y + 6.5
+        );
+
+
+        doc.text(
+          "CHANCE",
+          173,
+          y + 6.5
+        );
+
+
+        y += 10;
+
+      }
+
+
+      /*
+        Alternate row background
+      */
+
+      if(
+        index % 2 === 0
+      ){
+
+        doc.setFillColor(
+          248,
+          250,
+          253
+        );
+
+        doc.rect(
+          margin,
+          y,
+          pageWidth - 24,
+          rowHeight,
+          "F"
+        );
+
+      }
+
+
+      /*
+        Row border
+      */
+
+      doc.setDrawColor(
+        225,
+        229,
+        235
+      );
+
+
+      doc.rect(
+        margin,
+        y,
+        pageWidth - 24,
+        rowHeight
+      );
+
+
+      // NUMBER
+
+      doc.setTextColor(
+        60,
+        65,
+        75
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(7);
+
+
+      doc.text(
+        String(index + 1),
+        margin + 3,
+        y + 6
+      );
+
+
+      // COLLEGE
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(7.2);
+
+
+      doc.setTextColor(
+        8,
+        42,
+        95
+      );
+
+
+      doc.text(
+        collegeLines,
+        margin + 13,
+        y + 5
+      );
+
+
+      // QUOTA
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      doc.setFontSize(6.8);
+
+
+      doc.setTextColor(
+        70,
+        75,
+        85
+      );
+
+
+      const quota =
+        String(
+          item.quota || ""
+        );
+
+
+      const quotaLines =
+        doc.splitTextToSize(
+          quota,
+          21
+        );
+
+
+      doc.text(
+        quotaLines,
+        123,
+        y + 5
+      );
+
+
+      // CLOSING
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(7);
+
+
+      doc.text(
+        String(
+          item.closingRank || "-"
+        ),
+        148,
+        y + 6
+      );
+
+
+      // CHANCE
+
+      let chance =
+        String(
+          item.chance || ""
+        );
+
+
+      if(
+        chance ===
+        "Safe"
+      ){
+
+        doc.setFillColor(
+          214,
+          244,
+          220
+        );
+
+        doc.setTextColor(
+          25,
+          105,
+          45
+        );
+
+      }
+
+      else if(
+        chance ===
+        "High Chance"
+      ){
+
+        doc.setFillColor(
+          255,
+          239,
+          200
+        );
+
+        doc.setTextColor(
+          145,
+          90,
+          0
+        );
+
+      }
+
+      else if(
+        chance ===
+        "Moderate Chance"
+      ){
+
+        doc.setFillColor(
+          255,
+          220,
+          220
+        );
+
+        doc.setTextColor(
+          150,
+          30,
+          30
+        );
+
+      }
+
+      else{
+
+        doc.setFillColor(
+          235,
+          235,
+          235
+        );
+
+        doc.setTextColor(
+          90,
+          90,
+          90
+        );
+
+      }
+
+
+      doc.roundedRect(
+        170,
+        y + 2.5,
+        28,
+        6,
+        2,
+        2,
+        "F"
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(5.8);
+
+
+      doc.text(
+        chance,
+        184,
+        y + 6.5,
+        {
+          align:"center"
+        }
+      );
+
+
+      y += rowHeight;
+
+    }
+  );
+
+
+  // ======================================================
+  // COUNSELLING FUNNEL
+  // ======================================================
+
+  if(
+    y + 85 >
+    pageHeight - 15
+  ){
+
+    addFooter();
+
+    doc.addPage();
+
+    addPageHeader();
+
+  }
+
+
+  y += 8;
+
+
+  /*
+    CTA HEADER
+  */
+
+  doc.setFillColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.roundedRect(
+    margin,
+    y,
+    pageWidth - 24,
     15,
-    y + 28
+    3,
+    3,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    255,
+    255,
+    255
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(12);
+
+
+  doc.text(
+    "YOUR PREDICTION IS THE FIRST STEP.",
+    pageWidth / 2,
+    y + 6,
+    {
+      align:"center"
+    }
+  );
+
+
+  doc.setFontSize(7);
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.text(
+    "Now let RN Counselling help you convert your rank into the right college choice.",
+    pageWidth / 2,
+    y + 11,
+    {
+      align:"center"
+    }
+  );
+
+
+  y += 20;
+
+
+  // ======================================================
+  // PACKAGES
+  // ======================================================
+
+  doc.setTextColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(11);
+
+
+  doc.text(
+    "COUNSELLING SUPPORT PACKAGES",
+    margin,
+    y
+  );
+
+
+  y += 6;
+
+
+  const boxGap = 5;
+
+  const boxWidth =
+    (pageWidth - 24 - boxGap) / 2;
+
+
+  // BASIC
+
+  roundedBox(
+    margin,
+    y,
+    boxWidth,
+    48,
+    245,
+    248,
+    255
+  );
+
+
+  doc.setTextColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(10);
+
+
+  doc.text(
+    "BASIC COUNSELLING",
+    margin + 6,
+    y + 8
+  );
+
+
+  doc.setFontSize(13);
+
+
+  doc.text(
+    "State Counselling",
+    margin + 6,
+    y + 16
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(7);
+
+
+  doc.setTextColor(
+    65,
+    70,
+    80
+  );
+
+
+  const basicPoints = [
+
+    "✓ Personalized counselling guidance",
+
+    "✓ State counselling support",
+
+    "✓ College & branch selection",
+
+    "✓ Rank-based strategy",
+
+    "✓ Choice filling guidance"
+
+  ];
+
+
+  basicPoints.forEach(
+    function(text,i){
+
+      doc.text(
+        text,
+        margin + 6,
+        y + 24 + i * 4.5
+      );
+
+    }
+  );
+
+
+  // PREMIUM
+
+  const premiumX =
+    margin +
+    boxWidth +
+    boxGap;
+
+
+  roundedBox(
+    premiumX,
+    y,
+    boxWidth,
+    48,
+    255,
+    248,
+    224
+  );
+
+
+  doc.setTextColor(
+    145,
+    90,
+    0
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(10);
+
+
+  doc.text(
+    "PREMIUM COUNSELLING",
+    premiumX + 6,
+    y + 8
+  );
+
+
+  doc.setFontSize(13);
+
+
+  doc.text(
+    "Complete Counselling",
+    premiumX + 6,
+    y + 16
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(7);
+
+
+  doc.setTextColor(
+    70,
+    65,
+    50
+  );
+
+
+  const premiumPoints = [
+
+    "✓ All India + State Counselling",
+
+    "✓ Personalized choice filling",
+
+    "✓ College & branch strategy",
+
+    "✓ Category & quota analysis",
+
+    "✓ Round-wise counselling support"
+
+  ];
+
+
+  premiumPoints.forEach(
+    function(text,i){
+
+      doc.text(
+        text,
+        premiumX + 6,
+        y + 24 + i * 4.5
+      );
+
+    }
+  );
+
+
+  y += 55;
+
+
+  // ======================================================
+  // CONTACT / CTA
+  // ======================================================
+
+  roundedBox(
+    margin,
+    y,
+    pageWidth - 24,
+    36,
+    235,
+    245,
+    255
+  );
+
+
+  doc.setTextColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(11);
+
+
+  doc.text(
+    "READY TO PLAN YOUR COUNSELLING?",
+    pageWidth / 2,
+    y + 9,
+    {
+      align:"center"
+    }
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(8);
+
+
+  doc.setTextColor(
+    55,
+    60,
+    70
+  );
+
+
+  doc.text(
+    "Talk to RN Counselling for personalized admission guidance.",
+    pageWidth / 2,
+    y + 16,
+    {
+      align:"center"
+    }
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(9);
+
+
+  doc.setTextColor(
+    8,
+    42,
+    95
+  );
+
+
+  doc.text(
+    "WhatsApp: " + WHATSAPP,
+    pageWidth / 2,
+    y + 24,
+    {
+      align:"center"
+    }
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(7);
+
+
+  doc.text(
+    "Email: " +
+    CONTACT_EMAIL +
+    "   |   Website: " +
+    WEBSITE,
+    pageWidth / 2,
+    y + 30,
+    {
+      align:"center"
+    }
   );
 
 
   y += 43;
 
 
-  doc.setFontSize(7);
+  // ======================================================
+  // DISCLAIMER
+  // ======================================================
 
-  doc.setTextColor(
-    100,
-    100,
-    100
+  if(
+    y + 25 >
+    pageHeight - 18
+  ){
+
+    addFooter();
+
+    doc.addPage();
+
+    addPageHeader();
+
+  }
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
   );
 
 
-  const disclaimer =
-    "Disclaimer: Predictions are based on historical cutoff data and information provided by the student. " +
-    "They are indicative only and do not guarantee admission. Actual allotment depends on counselling rules, " +
-    "seat availability, category, quota, choice filling and changes in cutoffs.";
+  doc.setFontSize(7);
 
 
-  const wrapped =
-    doc.splitTextToSize(
-      disclaimer,
-      185
-    );
+  doc.setTextColor(
+    80,
+    85,
+    95
+  );
 
 
   doc.text(
-    wrapped,
-    12,
+    "IMPORTANT DISCLAIMER",
+    margin,
     y
   );
 
 
-  addFooter(
-    doc,
-    pageWidth,
-    pageHeight
+  y += 4;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(6.5);
+
+
+  const disclaimer =
+    "This report is generated using historical cutoff information and the details submitted by the student. " +
+    "Predictions are indicative and do not guarantee admission. Actual allotment depends on counselling rules, " +
+    "seat availability, category, quota, choice filling, participating colleges and changes in cutoff ranks. " +
+    "Students should verify official counselling notifications before making final decisions.";
+
+
+  const wrappedDisclaimer =
+    doc.splitTextToSize(
+      disclaimer,
+      pageWidth - 24
+    );
+
+
+  doc.text(
+    wrappedDisclaimer,
+    margin,
+    y
   );
 
 
   // ======================================================
-  // SAVE
+  // FINAL FOOTER
+  // ======================================================
+
+  addFooter();
+
+
+  // ======================================================
+  // SAVE PDF
   // ======================================================
 
   const safeName =
-    currentApplication.name
-      .replace(
-        /[^a-z0-9]/gi,
-        "_"
-      );
+    String(
+      currentApplication.name || "Student"
+    )
+    .replace(
+      /[^a-z0-9]/gi,
+      "_"
+    );
 
 
   doc.save(
     "RN_Counselling_College_Predictor_" +
     safeName +
     ".pdf"
-  );
-
-}
-
-
-// ========================================================
-// FOOTER
-// ========================================================
-
-function addFooter(
-  doc,
-  pageWidth,
-  pageHeight
-){
-
-  doc.setFontSize(7);
-
-  doc.setTextColor(
-    120,
-    120,
-    120
-  );
-
-
-  doc.text(
-    "RN Counselling | " +
-    WHATSAPP +
-    " | " +
-    WEBSITE,
-    pageWidth / 2,
-    pageHeight - 7,
-    {
-      align:"center"
-    }
   );
 
 }
