@@ -341,7 +341,13 @@ async function downloadPDF(){
     return;
   }
 
-  const { jsPDF } = window.jspdf;
+if(!window.jspdf || !window.jspdf.jsPDF){
+  alert("PDF system could not be loaded. Please refresh the page and try again.");
+  console.error("jsPDF library is not loaded.", window.jspdf);
+  return;
+}
+
+const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation:"portrait", unit:"mm", format:"a4" });
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -363,32 +369,65 @@ async function downloadPDF(){
   const GREY = [95,100,110];
   const BORDER = [210,220,232];
 
-  async function loadImageData(url){
-    return new Promise(function(resolve){
-      const img = new Image();
-      img.onload = function(){
-        try{
-          const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth || img.width;
-          canvas.height = img.naturalHeight || img.height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0);
-          resolve(canvas.toDataURL("image/png"));
-        }catch(e){
-          resolve(null);
-        }
-      };
-      img.onerror = function(){ resolve(null); };
-      img.src = url;
-    });
-  }
+ async function loadImageData(url, timeout = 5000){
+  return new Promise(function(resolve){
+    const img = new Image();
 
-  let logoData = await loadImageData(LOGO_URL || "logo.png");
-  let barcodeData = await loadImageData("barcode.png");
-  let testimonialData = [];
-  for(let i = 1; i <= 4; i++){
-    let img = await loadImageData("testimonial" + i + ".png");
-    testimonialData.push(img);
+    let finished = false;
+
+    function finish(result){
+      if(finished) return;
+      finished = true;
+      clearTimeout(timer);
+      resolve(result);
+    }
+
+    const timer = setTimeout(function(){
+      console.warn("Image loading timeout:", url);
+      finish(null);
+    }, timeout);
+
+    img.onload = function(){
+      try{
+        const canvas = document.createElement("canvas");
+
+        canvas.width = img.naturalWidth || img.width;
+        canvas.height = img.naturalHeight || img.height;
+
+        if(!canvas.width || !canvas.height){
+          finish(null);
+          return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        if(!ctx){
+          finish(null);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0);
+
+        finish(canvas.toDataURL("image/png"));
+
+      }catch(e){
+        console.warn("Image conversion failed:", url, e);
+        finish(null);
+      }
+    };
+
+    img.onerror = function(){
+      console.warn("Image could not be loaded:", url);
+      finish(null);
+    };
+
+    img.src = url;
+  });
+}
+
+// Load only the images actually required by this PDF
+let logoData = await loadImageData(LOGO_URL);
+let barcodeData = await loadImageData("barcode.png");
   }
 
   function addFooter(){
