@@ -1628,17 +1628,23 @@ function showPrediction(){
 // PROFESSIONAL PDF REPORT
 // ========================================================
 
+   // ========================================================
+// RN COUNSELLING - PROFESSIONAL COLOUR PDF REPORT
+// ========================================================
+
 async function downloadPDF(){
+
+  // ------------------------------------------------------
+  // CHECK DATA
+  // ------------------------------------------------------
 
   if(
     !currentApplication ||
+    !currentPredictions ||
     !currentPredictions.length
   ){
 
-    alert(
-      "Prediction is not available."
-    );
-
+    alert("Prediction is not available.");
     return;
 
   }
@@ -1651,13 +1657,9 @@ async function downloadPDF(){
 
   const doc =
     new jsPDF({
-
       orientation:"portrait",
-
       unit:"mm",
-
       format:"a4"
-
     });
 
 
@@ -1669,57 +1671,345 @@ async function downloadPDF(){
     doc.internal.pageSize.getHeight();
 
 
-  const margin = 12;
+  const margin = 10;
+
 
   let y = 0;
 
 
   // ======================================================
-  // HELPER FUNCTIONS
+  // BRAND COLOURS
   // ======================================================
 
-  function addPageHeader(){
+  const NAVY = [8,42,95];
+
+  const BLUE = [20,105,190];
+
+  const LIGHT_BLUE = [235,245,255];
+
+  const ORANGE = [255,153,0];
+
+  const LIGHT_ORANGE = [255,244,220];
+
+  const GREEN = [30,160,85];
+
+  const LIGHT_GREEN = [232,249,238];
+
+  const RED = [220,55,55];
+
+  const LIGHT_RED = [255,235,235];
+
+  const WHITE = [255,255,255];
+
+  const BLACK = [35,40,48];
+
+  const GREY = [95,100,110];
+
+  const LIGHT_GREY = [245,247,250];
+
+  const BORDER = [210,220,232];
+
+
+  // ======================================================
+  // IMAGE LOADER
+  // ======================================================
+
+  async function loadImageData(url){
+
+    return new Promise(function(resolve){
+
+      const img =
+        new Image();
+
+
+      img.onload =
+        function(){
+
+          try{
+
+            const canvas =
+              document.createElement("canvas");
+
+
+            canvas.width =
+              img.naturalWidth || img.width;
+
+
+            canvas.height =
+              img.naturalHeight || img.height;
+
+
+            const ctx =
+              canvas.getContext("2d");
+
+
+            ctx.drawImage(
+              img,
+              0,
+              0
+            );
+
+
+            resolve(
+              canvas.toDataURL("image/png")
+            );
+
+          }catch(e){
+
+            console.warn(
+              "Image conversion failed:",
+              url,
+              e
+            );
+
+            resolve(null);
+
+          }
+
+        };
+
+
+      img.onerror =
+        function(){
+
+          console.warn(
+            "Image could not be loaded:",
+            url
+          );
+
+          resolve(null);
+
+        };
+
+
+      /*
+       * Relative files such as logo.png,
+       * barcode.png and testimonial1.png
+       * normally work directly from the same
+       * GitHub Pages folder.
+       */
+
+      img.src = url;
+
+    });
+
+  }
+
+
+  // ======================================================
+  // LOAD ALL BRAND IMAGES
+  // ======================================================
+
+  let logoData = null;
+
+  let barcodeData = null;
+
+  let testimonialData = [];
+
+
+  try{
+
+    logoData =
+      await loadImageData(
+        LOGO_URL || "logo.png"
+      );
+
+  }catch(e){
+
+    console.warn(e);
+
+  }
+
+
+  try{
+
+    barcodeData =
+      await loadImageData(
+        "barcode.png"
+      );
+
+  }catch(e){
+
+    console.warn(e);
+
+  }
+
+
+  /*
+   * TESTIMONIAL IMAGES
+   *
+   * IMPORTANT:
+   * The complete name, college, rating,
+   * testimonial message etc. should already
+   * be designed INSIDE each PNG.
+   *
+   * PDF will not add any extra testimonial text.
+   */
+
+  for(
+    let i = 1;
+    i <= 4;
+    i++
+  ){
+
+    try{
+
+      const image =
+        await loadImageData(
+          "testimonial" +
+          i +
+          ".png"
+        );
+
+
+      testimonialData.push(
+        image
+      );
+
+    }catch(e){
+
+      testimonialData.push(null);
+
+    }
+
+  }
+
+
+  // ======================================================
+  // HELPER - FOOTER
+  // ======================================================
+
+  function addFooter(){
+
+    doc.setDrawColor(
+      ...BORDER
+    );
+
+
+    doc.setLineWidth(
+      0.3
+    );
+
+
+    doc.line(
+      margin,
+      pageHeight - 10,
+      pageWidth - margin,
+      pageHeight - 10
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.setFontSize(
+      6.5
+    );
+
+
+    doc.setTextColor(
+      ...GREY
+    );
+
+
+    doc.text(
+      "RN Counselling",
+      margin,
+      pageHeight - 5.5
+    );
+
+
+    doc.text(
+      "WhatsApp: " + WHATSAPP,
+      pageWidth / 2,
+      pageHeight - 5.5,
+      {
+        align:"center"
+      }
+    );
+
+
+    doc.text(
+      WEBSITE.replace(
+        "https://",
+        ""
+      ),
+      pageWidth - margin,
+      pageHeight - 5.5,
+      {
+        align:"right"
+      }
+    );
+
+  }
+
+
+  // ======================================================
+  // HELPER - HEADER
+  // ======================================================
+
+  function addHeader(){
+
+    /*
+     * MAIN HEADER
+     */
 
     doc.setFillColor(
-      8,
-      42,
-      95
+      ...NAVY
     );
+
 
     doc.rect(
       0,
       0,
       pageWidth,
-      31,
+      32,
       "F"
     );
 
 
     /*
-      LOGO
-    */
+     * ORANGE ACCENT
+     */
 
-    if(
-      LOGO_URL &&
-      LOGO_URL !==
-      "YOUR_LOGO_URL_HERE"
-    ){
+    doc.setFillColor(
+      ...ORANGE
+    );
+
+
+    doc.rect(
+      0,
+      30,
+      pageWidth,
+      2,
+      "F"
+    );
+
+
+    /*
+     * LOGO
+     */
+
+    if(logoData){
 
       try{
 
         doc.addImage(
-          LOGO_URL,
+          logoData,
           "PNG",
-          12,
-          5,
-          20,
-          20
+          10,
+          4,
+          22,
+          22
         );
 
       }catch(e){
 
         console.warn(
-          "Logo could not be loaded:",
+          "Logo PDF error:",
           e
         );
 
@@ -1728,10 +2018,12 @@ async function downloadPDF(){
     }
 
 
+    /*
+     * BRAND NAME
+     */
+
     doc.setTextColor(
-      255,
-      255,
-      255
+      ...WHITE
     );
 
 
@@ -1741,12 +2033,74 @@ async function downloadPDF(){
     );
 
 
-    doc.setFontSize(17);
+    doc.setFontSize(
+      18
+    );
 
 
     doc.text(
-      "RN COUNSELLING",
+      "RN Counselling",
       38,
+      13
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.setFontSize(
+      8
+    );
+
+
+    doc.text(
+      "Trusted Medical Admission Guidance",
+      38,
+      20
+    );
+
+
+    /*
+     * RIGHT CONTACT
+     */
+
+    doc.setDrawColor(
+      255,
+      255,
+      255
+    );
+
+
+    doc.setLineWidth(
+      0.3
+    );
+
+
+    doc.line(
+      145,
+      5,
+      145,
+      27
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(
+      8
+    );
+
+
+    doc.text(
+      "WhatsApp Support",
+      151,
       12
     );
 
@@ -1757,23 +2111,15 @@ async function downloadPDF(){
     );
 
 
-    doc.setFontSize(8.5);
-
-
-    doc.text(
-      "NEET PG & MDS COLLEGE PREDICTOR",
-      38,
-      19
+    doc.setFontSize(
+      8
     );
 
 
-    doc.setFontSize(7);
-
-
     doc.text(
-      "Personalized College Prediction Report",
-      38,
-      25
+      WHATSAPP,
+      151,
+      19
     );
 
 
@@ -1782,39 +2128,422 @@ async function downloadPDF(){
   }
 
 
-  function checkPageSpace(
+  // ======================================================
+  // HELPER - SECTION TITLE
+  // ======================================================
+
+  function sectionTitle(
+    number,
+    title
+  ){
+
+    /*
+     * Blue rounded number circle
+     */
+
+    doc.setFillColor(
+      ...BLUE
+    );
+
+
+    doc.circle(
+      margin + 5,
+      y + 1,
+      4,
+      "F"
+    );
+
+
+    doc.setTextColor(
+      ...WHITE
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(
+      7
+    );
+
+
+    doc.text(
+      String(number),
+      margin + 5,
+      y + 3.2,
+      {
+        align:"center"
+      }
+    );
+
+
+    /*
+     * Section bar
+     */
+
+    doc.setFillColor(
+      ...NAVY
+    );
+
+
+    doc.roundedRect(
+      margin + 11,
+      y - 4,
+      82,
+      10,
+      2,
+      2,
+      "F"
+    );
+
+
+    doc.setTextColor(
+      ...WHITE
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(
+      8.5
+    );
+
+
+    doc.text(
+      title,
+      margin + 16,
+      y + 2.8
+    );
+
+
+    /*
+     * Orange line
+     */
+
+    doc.setDrawColor(
+      ...ORANGE
+    );
+
+
+    doc.setLineWidth(
+      1
+    );
+
+
+    doc.line(
+      margin + 96,
+      y + 1,
+      pageWidth - margin,
+      y + 1
+    );
+
+
+    y += 13;
+
+  }
+
+
+  // ======================================================
+  // HELPER - CHECK PAGE
+  // ======================================================
+
+  function checkSpace(
     requiredHeight
   ){
 
     if(
       y + requiredHeight >
-      pageHeight - 20
+      pageHeight - 17
     ){
 
       addFooter();
 
       doc.addPage();
 
-      addPageHeader();
+      addHeader();
 
     }
 
   }
 
 
-  function addFooter(){
+  // ======================================================
+  // HELPER - TEXT
+  // ======================================================
 
-    doc.setDrawColor(
-      220,
-      225,
-      235
+  function safeText(
+    value
+  ){
+
+    return String(
+      value === undefined ||
+      value === null
+        ? ""
+        : value
     );
 
-    doc.line(
-      12,
-      pageHeight - 13,
-      pageWidth - 12,
-      pageHeight - 13
+  }
+
+
+  // ======================================================
+  // HELPER - CHANCE COLOUR
+  // ======================================================
+
+  function chanceStyle(
+    chance
+  ){
+
+    const value =
+      safeText(
+        chance
+      ).toLowerCase();
+
+
+    if(
+      value.includes("safe")
+    ){
+
+      return {
+        fill:LIGHT_GREEN,
+        text:[25,115,55]
+      };
+
+    }
+
+
+    if(
+      value.includes("high")
+    ){
+
+      return {
+        fill:LIGHT_ORANGE,
+        text:[150,90,0]
+      };
+
+    }
+
+
+    if(
+      value.includes("moderate")
+    ){
+
+      return {
+        fill:LIGHT_RED,
+        text:[165,35,35]
+      };
+
+    }
+
+
+    return {
+      fill:[238,240,243],
+      text:GREY
+    };
+
+  }
+
+
+  // ======================================================
+  // PAGE 1
+  // ======================================================
+
+  addHeader();
+
+
+  // ------------------------------------------------------
+  // TITLE
+  // ------------------------------------------------------
+
+  doc.setTextColor(
+    ...BLUE
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(
+    17
+  );
+
+
+  doc.text(
+    "COLLEGE PREDICTION",
+    pageWidth / 2,
+    y,
+    {
+      align:"center"
+    }
+  );
+
+
+  y += 6;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    8
+  );
+
+
+  doc.setTextColor(
+    ...GREY
+  );
+
+
+  doc.text(
+    "Personalized Report for NEET PG & MDS",
+    pageWidth / 2,
+    y,
+    {
+      align:"center"
+    }
+  );
+
+
+  y += 12;
+
+
+  // ======================================================
+  // CANDIDATE DETAILS
+  // ======================================================
+
+  sectionTitle(
+    1,
+    "CANDIDATE DETAILS"
+  );
+
+
+  checkSpace(
+    42
+  );
+
+
+  const detailX =
+    margin;
+
+
+  const detailY =
+    y;
+
+
+  const detailW =
+    pageWidth - margin * 2;
+
+
+  const detailH =
+    39;
+
+
+  doc.setFillColor(
+    249,
+    251,
+    254
+  );
+
+
+  doc.setDrawColor(
+    ...BORDER
+  );
+
+
+  doc.roundedRect(
+    detailX,
+    detailY,
+    detailW,
+    detailH,
+    4,
+    4,
+    "FD"
+  );
+
+
+  /*
+   * Vertical divider
+   */
+
+  doc.setDrawColor(
+    220,
+    225,
+    232
+  );
+
+
+  doc.line(
+    pageWidth / 2,
+    detailY + 5,
+    pageWidth / 2,
+    detailY + detailH - 5
+  );
+
+
+  const s =
+    currentApplication;
+
+
+  const leftX =
+    margin + 8;
+
+
+  const rightX =
+    pageWidth / 2 + 8;
+
+
+  const row1 =
+    detailY + 10;
+
+
+  const row2 =
+    detailY + 20;
+
+
+  const row3 =
+    detailY + 30;
+
+
+  function detailRow(
+    label,
+    value,
+    x,
+    yy,
+    valueWidth
+  ){
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(
+      7.5
+    );
+
+
+    doc.setTextColor(
+      ...NAVY
+    );
+
+
+    doc.text(
+      label,
+      x,
+      yy
     );
 
 
@@ -1824,23 +2553,246 @@ async function downloadPDF(){
     );
 
 
-    doc.setFontSize(6.5);
+    doc.setTextColor(
+      ...BLACK
+    );
+
+
+    const wrapped =
+      doc.splitTextToSize(
+        safeText(value),
+        valueWidth
+      );
+
+
+    doc.text(
+      wrapped,
+      x + 30,
+      yy
+    );
+
+  }
+
+
+  detailRow(
+    "Name",
+    s.name,
+    leftX,
+    row1,
+    50
+  );
+
+
+  detailRow(
+    "Contact",
+    s.mobile,
+    leftX,
+    row2,
+    50
+  );
+
+
+  detailRow(
+    "State",
+    s.state,
+    leftX,
+    row3,
+    50
+  );
+
+
+  detailRow(
+    "Category",
+    s.category,
+    rightX,
+    row1,
+    48
+  );
+
+
+  detailRow(
+    "Course",
+    s.dreamBranch,
+    rightX,
+    row2,
+    48
+  );
+
+
+  detailRow(
+    "NEET Rank",
+    s.rank,
+    rightX,
+    row3,
+    48
+  );
+
+
+  y += detailH + 9;
+
+
+  // ======================================================
+  // PREDICTION INTRO
+  // ======================================================
+
+  sectionTitle(
+    2,
+    "YOUR PREDICTION"
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    8
+  );
+
+
+  doc.setTextColor(
+    ...GREY
+  );
+
+
+  const introText =
+    "This report is prepared using your NEET rank, category, preferred branch, state and available historical counselling trends to provide realistic college possibilities.";
+
+
+  const introLines =
+    doc.splitTextToSize(
+      introText,
+      pageWidth - margin * 2
+    );
+
+
+  doc.text(
+    introLines,
+    margin,
+    y
+  );
+
+
+  y +=
+    introLines.length * 4 + 6;
+
+
+  // ======================================================
+  // PREDICTION SUMMARY BOXES
+  // ======================================================
+
+  const safeCount =
+    currentPredictions.filter(
+      function(item){
+        return safeText(
+          item.chance
+        ).toLowerCase().includes("safe");
+      }
+    ).length;
+
+
+  const highCount =
+    currentPredictions.filter(
+      function(item){
+        return safeText(
+          item.chance
+        ).toLowerCase().includes("high");
+      }
+    ).length;
+
+
+  const moderateCount =
+    currentPredictions.filter(
+      function(item){
+        return safeText(
+          item.chance
+        ).toLowerCase().includes("moderate");
+      }
+    ).length;
+
+
+  const summaryGap =
+    4;
+
+
+  const summaryWidth =
+    (
+      pageWidth -
+      margin * 2 -
+      summaryGap * 2
+    ) / 3;
+
+
+  const summaryY =
+    y;
+
+
+  function summaryCard(
+    x,
+    label,
+    value,
+    fill,
+    textColor
+  ){
+
+    doc.setFillColor(
+      ...fill
+    );
+
+
+    doc.setDrawColor(
+      ...BORDER
+    );
+
+
+    doc.roundedRect(
+      x,
+      summaryY,
+      summaryWidth,
+      20,
+      3,
+      3,
+      "FD"
+    );
 
 
     doc.setTextColor(
-      100,
-      110,
-      125
+      ...textColor
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(
+      7
     );
 
 
     doc.text(
-      "RN Counselling | WhatsApp: " +
-      WHATSAPP +
-      " | " +
-      WEBSITE,
-      pageWidth / 2,
-      pageHeight - 7,
+      label,
+      x + summaryWidth / 2,
+      summaryY + 7,
+      {
+        align:"center"
+      }
+    );
+
+
+    doc.setFontSize(
+      13
+    );
+
+
+    doc.text(
+      String(value),
+      x + summaryWidth / 2,
+      summaryY + 15,
       {
         align:"center"
       }
@@ -1849,499 +2801,162 @@ async function downloadPDF(){
   }
 
 
-  function roundedBox(
-    x,
-    yPos,
-    width,
-    height,
-    fillR,
-    fillG,
-    fillB
-  ){
-
-    doc.setFillColor(
-      fillR,
-      fillG,
-      fillB
-    );
-
-    doc.roundedRect(
-      x,
-      yPos,
-      width,
-      height,
-      3,
-      3,
-      "F"
-    );
-
-  }
-
-
-  // ======================================================
-  // PAGE 1 HEADER
-  // ======================================================
-
-  addPageHeader();
-
-
-  // ======================================================
-  // REPORT TITLE
-  // ======================================================
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(16);
-
-
-  doc.text(
-    "COLLEGE PREDICTION REPORT",
+  summaryCard(
     margin,
-    y
+    "SAFE OPTIONS",
+    safeCount,
+    LIGHT_GREEN,
+    [25,115,55]
   );
 
 
-  y += 5;
-
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.setFontSize(7.5);
-
-
-  doc.setTextColor(
-    100,
-    105,
-    115
-  );
-
-
-  doc.text(
-    "Prepared exclusively for the student based on the information submitted.",
-    margin,
-    y + 5
-  );
-
-
-  y += 14;
-
-
-  // ======================================================
-  // STUDENT INFORMATION
-  // ======================================================
-
-  checkPageSpace(45);
-
-
-  roundedBox(
-    margin,
-    y,
-    pageWidth - 24,
-    38,
-    241,
-    247,
-    255
-  );
-
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(11);
-
-
-  doc.text(
-    "STUDENT PROFILE",
-    margin + 6,
-    y + 8
-  );
-
-
-  doc.setFontSize(8);
-
-
-  const studentY =
-    y + 17;
-
-
-  doc.setTextColor(
-    50,
-    55,
-    65
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.text(
-    "Name",
-    margin + 6,
-    studentY
-  );
-
-
-  doc.text(
-    "NEET Rank",
-    112,
-    studentY
-  );
-
-
-  doc.text(
-    "Category",
-    margin + 6,
-    studentY + 9
-  );
-
-
-  doc.text(
-    "State",
-    112,
-    studentY + 9
-  );
-
-
-  doc.text(
-    "Dream Branch",
-    margin + 6,
-    studentY + 18
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.text(
-    String(
-      currentApplication.name || ""
-    ),
-    margin + 29,
-    studentY
-  );
-
-
-  doc.text(
-    String(
-      currentApplication.rank || ""
-    ),
-    137,
-    studentY
-  );
-
-
-  doc.text(
-    String(
-      currentApplication.category || ""
-    ),
-    margin + 29,
-    studentY + 9
-  );
-
-
-  doc.text(
-    String(
-      currentApplication.state || ""
-    ),
-    137,
-    studentY + 9
-  );
-
-
-  const branchText =
-    doc.splitTextToSize(
-      String(
-        currentApplication.dreamBranch || ""
-      ),
-      130
-    );
-
-
-  doc.text(
-    branchText,
-    margin + 40,
-    studentY + 18
-  );
-
-
-  y += 46;
-
-
-  // ======================================================
-  // PREDICTION INTRO
-  // ======================================================
-
-  checkPageSpace(25);
-
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(13);
-
-
-  doc.text(
-    "YOUR TOP 50 COLLEGE PREDICTIONS",
-    margin,
-    y
-  );
-
-
-  y += 5;
-
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.setFontSize(7.5);
-
-
-  doc.setTextColor(
-    90,
-    95,
-    105
-  );
-
-
-  doc.text(
-    "Predictions are ranked according to the available historical cutoff data and your submitted preferences.",
-    margin,
-    y + 4
-  );
-
-
-  y += 13;
-
-
-  // ======================================================
-  // LEGEND
-  // ======================================================
-
-  const legendY =
-    y;
-
-
-  doc.setFillColor(
-    214,
-    244,
-    220
-  );
-
-
-  doc.roundedRect(
-    margin,
-    legendY - 4,
-    32,
-    7,
-    2,
-    2,
-    "F"
-  );
-
-
-  doc.setTextColor(
-    25,
-    105,
-    45
-  );
-
-
-  doc.setFontSize(6.5);
-
-
-  doc.text(
-    "SAFE",
-    margin + 10,
-    legendY + 1
-  );
-
-
-  doc.setFillColor(
-    255,
-    239,
-    200
-  );
-
-
-  doc.roundedRect(
-    margin + 38,
-    legendY - 4,
-    42,
-    7,
-    2,
-    2,
-    "F"
-  );
-
-
-  doc.setTextColor(
-    145,
-    90,
-    0
-  );
-
-
-  doc.text(
+  summaryCard(
+    margin +
+    summaryWidth +
+    summaryGap,
     "HIGH CHANCE",
-    margin + 47,
-    legendY + 1
+    highCount,
+    LIGHT_ORANGE,
+    [150,90,0]
   );
 
 
-  doc.setFillColor(
-    255,
-    220,
-    220
+  summaryCard(
+    margin +
+    (summaryWidth +
+    summaryGap) * 2,
+    "MODERATE",
+    moderateCount,
+    LIGHT_RED,
+    [165,35,35]
   );
 
 
-  doc.roundedRect(
-    margin + 86,
-    legendY - 4,
-    48,
-    7,
-    2,
-    2,
-    "F"
+  y += 28;
+
+
+  // ======================================================
+  // TOP PREDICTIONS
+  // ======================================================
+
+  sectionTitle(
+    3,
+    "TOP COLLEGE OPTIONS"
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    7.5
   );
 
 
   doc.setTextColor(
-    150,
-    30,
-    30
+    ...GREY
   );
 
 
   doc.text(
-    "MODERATE CHANCE",
-    margin + 94,
-    legendY + 1
+    "Based on your submitted details and available historical cutoff trends.",
+    margin,
+    y
   );
 
 
-  y += 12;
+  y += 6;
 
 
   // ======================================================
   // TABLE HEADER
   // ======================================================
 
-  checkPageSpace(15);
+  function drawTableHeader(){
+
+    doc.setFillColor(
+      ...NAVY
+    );
 
 
-  doc.setFillColor(
-    8,
-    42,
-    95
-  );
+    doc.roundedRect(
+      margin,
+      y,
+      pageWidth - margin * 2,
+      9,
+      2,
+      2,
+      "F"
+    );
 
 
-  doc.rect(
-    margin,
-    y,
-    pageWidth - 24,
-    10,
-    "F"
-  );
+    doc.setTextColor(
+      ...WHITE
+    );
 
 
-  doc.setTextColor(
-    255,
-    255,
-    255
-  );
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
 
 
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
+    doc.setFontSize(
+      7
+    );
 
 
-  doc.setFontSize(7);
+    doc.text(
+      "#",
+      margin + 3,
+      y + 6
+    );
 
 
-  doc.text(
-    "#",
-    margin + 3,
-    y + 6.5
-  );
+    doc.text(
+      "COLLEGE / BRANCH",
+      margin + 13,
+      y + 6
+    );
 
 
-  doc.text(
-    "COLLEGE / BRANCH",
-    margin + 13,
-    y + 6.5
-  );
+    doc.text(
+      "STATE",
+      127,
+      y + 6
+    );
 
 
-  doc.text(
-    "QUOTA",
-    123,
-    y + 6.5
-  );
+    doc.text(
+      "QUOTA",
+      145,
+      y + 6
+    );
 
 
-  doc.text(
-    "CLOSING",
-    148,
-    y + 6.5
-  );
+    doc.text(
+      "CLOSING",
+      163,
+      y + 6
+    );
 
 
-  doc.text(
-    "CHANCE",
-    173,
-    y + 6.5
-  );
+    doc.text(
+      "CHANCE",
+      184,
+      y + 6
+    );
 
 
-  y += 10;
+    y += 9;
+
+  }
+
+
+  drawTableHeader();
 
 
   // ======================================================
@@ -2352,128 +2967,67 @@ async function downloadPDF(){
     function(item,index){
 
       const college =
-        String(
-          item.college || ""
+        safeText(
+          item.college
         );
 
 
       const branch =
-        String(
-          item.branch || ""
+        safeText(
+          item.branch
         );
 
 
       const combined =
-        college +
-        " - " +
-        branch;
+        branch
+          ? college +
+            " - " +
+            branch
+          : college;
 
 
       const collegeLines =
         doc.splitTextToSize(
           combined,
-          94
+          88
         );
 
 
       const rowHeight =
         Math.max(
-          10,
-          collegeLines.length * 4 + 4
+          9,
+          collegeLines.length * 3.8 + 3
         );
 
 
+      /*
+       * New page
+       */
+
       if(
         y + rowHeight >
-        pageHeight - 20
+        pageHeight - 15
       ){
 
         addFooter();
 
         doc.addPage();
 
-        addPageHeader();
+        addHeader();
 
-
-        /*
-          Repeat table header on new page
-        */
-
-        doc.setFillColor(
-          8,
-          42,
-          95
+        sectionTitle(
+          3,
+          "COLLEGE OPTIONS - CONTINUED"
         );
 
-
-        doc.rect(
-          margin,
-          y,
-          pageWidth - 24,
-          10,
-          "F"
-        );
-
-
-        doc.setTextColor(
-          255,
-          255,
-          255
-        );
-
-
-        doc.setFont(
-          "helvetica",
-          "bold"
-        );
-
-
-        doc.setFontSize(7);
-
-
-        doc.text(
-          "#",
-          margin + 3,
-          y + 6.5
-        );
-
-
-        doc.text(
-          "COLLEGE / BRANCH",
-          margin + 13,
-          y + 6.5
-        );
-
-
-        doc.text(
-          "QUOTA",
-          123,
-          y + 6.5
-        );
-
-
-        doc.text(
-          "CLOSING",
-          148,
-          y + 6.5
-        );
-
-
-        doc.text(
-          "CHANCE",
-          173,
-          y + 6.5
-        );
-
-
-        y += 10;
+        drawTableHeader();
 
       }
 
 
       /*
-        Alternate row background
-      */
+       * Alternate background
+       */
 
       if(
         index % 2 === 0
@@ -2488,7 +3042,7 @@ async function downloadPDF(){
         doc.rect(
           margin,
           y,
-          pageWidth - 24,
+          pageWidth - margin * 2,
           rowHeight,
           "F"
         );
@@ -2497,30 +3051,33 @@ async function downloadPDF(){
 
 
       /*
-        Row border
-      */
+       * Border
+       */
 
       doc.setDrawColor(
-        225,
-        229,
-        235
+        ...BORDER
+      );
+
+
+      doc.setLineWidth(
+        0.25
       );
 
 
       doc.rect(
         margin,
         y,
-        pageWidth - 24,
+        pageWidth - margin * 2,
         rowHeight
       );
 
 
-      // NUMBER
+      /*
+       * NUMBER
+       */
 
       doc.setTextColor(
-        60,
-        65,
-        75
+        ...GREY
       );
 
 
@@ -2530,17 +3087,26 @@ async function downloadPDF(){
       );
 
 
-      doc.setFontSize(7);
+      doc.setFontSize(
+        6.8
+      );
 
 
       doc.text(
         String(index + 1),
         margin + 3,
-        y + 6
+        y + 5.5
       );
 
 
-      // COLLEGE
+      /*
+       * COLLEGE
+       */
+
+      doc.setTextColor(
+        ...NAVY
+      );
+
 
       doc.setFont(
         "helvetica",
@@ -2548,24 +3114,21 @@ async function downloadPDF(){
       );
 
 
-      doc.setFontSize(7.2);
-
-
-      doc.setTextColor(
-        8,
-        42,
-        95
+      doc.setFontSize(
+        6.8
       );
 
 
       doc.text(
         collegeLines,
         margin + 13,
-        y + 5
+        y + 4.5
       );
 
 
-      // QUOTA
+      /*
+       * STATE
+       */
 
       doc.setFont(
         "helvetica",
@@ -2573,37 +3136,48 @@ async function downloadPDF(){
       );
 
 
-      doc.setFontSize(6.8);
-
-
-      doc.setTextColor(
-        70,
-        75,
-        85
+      doc.setFontSize(
+        6.5
       );
 
 
-      const quota =
-        String(
-          item.quota || ""
-        );
+      doc.setTextColor(
+        ...BLACK
+      );
 
+
+      doc.text(
+        safeText(
+          item.state
+        ),
+        127,
+        y + 5.5
+      );
+
+
+      /*
+       * QUOTA
+       */
 
       const quotaLines =
         doc.splitTextToSize(
-          quota,
-          21
+          safeText(
+            item.quota
+          ),
+          15
         );
 
 
       doc.text(
         quotaLines,
-        123,
-        y + 5
+        145,
+        y + 4.5
       );
 
 
-      // CLOSING
+      /*
+       * CLOSING RANK
+       */
 
       doc.setFont(
         "helvetica",
@@ -2611,104 +3185,45 @@ async function downloadPDF(){
       );
 
 
-      doc.setFontSize(7);
-
-
-      doc.text(
-        String(
-          item.closingRank || "-"
-        ),
-        148,
-        y + 6
+      doc.setFontSize(
+        6.5
       );
 
 
-      // CHANCE
+      doc.text(
+        safeText(
+          item.closingRank || "-"
+        ),
+        163,
+        y + 5.5
+      );
 
-      let chance =
-        String(
-          item.chance || ""
+
+      /*
+       * CHANCE
+       */
+
+      const chance =
+        safeText(
+          item.chance
         );
 
 
-      if(
-        chance ===
-        "Safe"
-      ){
-
-        doc.setFillColor(
-          214,
-          244,
-          220
+      const style =
+        chanceStyle(
+          chance
         );
 
-        doc.setTextColor(
-          25,
-          105,
-          45
-        );
 
-      }
-
-      else if(
-        chance ===
-        "High Chance"
-      ){
-
-        doc.setFillColor(
-          255,
-          239,
-          200
-        );
-
-        doc.setTextColor(
-          145,
-          90,
-          0
-        );
-
-      }
-
-      else if(
-        chance ===
-        "Moderate Chance"
-      ){
-
-        doc.setFillColor(
-          255,
-          220,
-          220
-        );
-
-        doc.setTextColor(
-          150,
-          30,
-          30
-        );
-
-      }
-
-      else{
-
-        doc.setFillColor(
-          235,
-          235,
-          235
-        );
-
-        doc.setTextColor(
-          90,
-          90,
-          90
-        );
-
-      }
+      doc.setFillColor(
+        ...style.fill
+      );
 
 
       doc.roundedRect(
-        170,
-        y + 2.5,
-        28,
+        179,
+        y + 2,
+        26,
         6,
         2,
         2,
@@ -2716,19 +3231,26 @@ async function downloadPDF(){
       );
 
 
+      doc.setTextColor(
+        ...style.text
+      );
+
+
       doc.setFont(
         "helvetica",
         "bold"
       );
 
 
-      doc.setFontSize(5.8);
+      doc.setFontSize(
+        5.2
+      );
 
 
       doc.text(
         chance,
-        184,
-        y + 6.5,
+        192,
+        y + 5.9,
         {
           align:"center"
         }
@@ -2742,52 +3264,711 @@ async function downloadPDF(){
 
 
   // ======================================================
-  // COUNSELLING FUNNEL
+  // WHY CHOOSE RN
   // ======================================================
 
-  if(
-    y + 85 >
-    pageHeight - 15
-  ){
-
-    addFooter();
-
-    doc.addPage();
-
-    addPageHeader();
-
-  }
+  checkSpace(
+    65
+  );
 
 
   y += 8;
 
 
-  /*
-    CTA HEADER
-  */
+  sectionTitle(
+    4,
+    "WHY CHOOSE RN COUNSELLING?"
+  );
+
+
+  const whyBoxY =
+    y;
+
+
+  const whyBoxH =
+    48;
+
 
   doc.setFillColor(
-    8,
-    42,
-    95
+    ...LIGHT_BLUE
+  );
+
+
+  doc.setDrawColor(
+    190,
+    215,
+    240
   );
 
 
   doc.roundedRect(
     margin,
-    y,
-    pageWidth - 24,
-    15,
-    3,
-    3,
-    "F"
+    whyBoxY,
+    pageWidth - margin * 2,
+    whyBoxH,
+    4,
+    4,
+    "FD"
+  );
+
+
+  const whyPoints = [
+
+    [
+      "Personalized Guidance",
+      "Counselling strategy based on your rank, category and preferences."
+    ],
+
+    [
+      "Data-Based Approach",
+      "Historical cutoff trends help identify realistic college possibilities."
+    ],
+
+    [
+      "Choice Filling Focus",
+      "Better planning of college and branch preferences during counselling."
+    ],
+
+    [
+      "State + All India Support",
+      "Guidance can be planned around the counselling options relevant to you."
+    ]
+
+  ];
+
+
+  const whyGap =
+    5;
+
+
+  const whyWidth =
+    (
+      pageWidth -
+      margin * 2 -
+      whyGap
+    ) / 2;
+
+
+  whyPoints.forEach(
+    function(point,index){
+
+      const col =
+        index % 2;
+
+
+      const row =
+        Math.floor(
+          index / 2
+        );
+
+
+      const x =
+        margin +
+        col *
+        (whyWidth + whyGap);
+
+
+      const yy =
+        whyBoxY +
+        5 +
+        row * 20;
+
+
+      doc.setFillColor(
+        ...WHITE
+      );
+
+
+      doc.roundedRect(
+        x,
+        yy,
+        whyWidth,
+        16,
+        3,
+        3,
+        "F"
+      );
+
+
+      /*
+       * Orange number
+       */
+
+      doc.setFillColor(
+        ...ORANGE
+      );
+
+
+      doc.circle(
+        x + 6,
+        yy + 8,
+        3.2,
+        "F"
+      );
+
+
+      doc.setTextColor(
+        ...WHITE
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(
+        5.5
+      );
+
+
+      doc.text(
+        String(index + 1),
+        x + 6,
+        yy + 10,
+        {
+          align:"center"
+        }
+      );
+
+
+      /*
+       * Heading
+       */
+
+      doc.setTextColor(
+        ...NAVY
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(
+        6.8
+      );
+
+
+      doc.text(
+        point[0],
+        x + 12,
+        yy + 6
+      );
+
+
+      /*
+       * Description
+       */
+
+      doc.setTextColor(
+        ...GREY
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      doc.setFontSize(
+        5.5
+      );
+
+
+      const lines =
+        doc.splitTextToSize(
+          point[1],
+          whyWidth - 15
+        );
+
+
+      doc.text(
+        lines.slice(
+          0,
+          2
+        ),
+        x + 12,
+        yy + 10
+      );
+
+    }
+  );
+
+
+  y += whyBoxH + 8;
+
+
+  // ======================================================
+  // PAGE 2 / PACKAGE SECTION
+  // ======================================================
+
+  checkSpace(
+    85
+  );
+
+
+  sectionTitle(
+    5,
+    "OUR COUNSELLING PACKAGES"
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    7
   );
 
 
   doc.setTextColor(
-    255,
-    255,
-    255
+    ...GREY
+  );
+
+
+  doc.text(
+    "Choose the counselling support that matches your admission journey.",
+    margin,
+    y
+  );
+
+
+  y += 7;
+
+
+  // ======================================================
+  // PRODUCT CONFIGURATION
+  // ======================================================
+  //
+  // YOU ONLY NEED TO EDIT THIS SECTION LATER.
+  //
+  // Four products are arranged as:
+  //
+  // PRODUCT 1 | PRODUCT 2
+  // PRODUCT 3 | PRODUCT 4
+  //
+  // Each product has exactly 4 feature lines.
+  //
+  // Keep the feature text blank if you want to add it later.
+  //
+  // ======================================================
+
+  const products = [
+
+    {
+      name:"BASIC",
+      subtitle:"",
+      price:"",
+      color:BLUE,
+      fill:LIGHT_BLUE,
+      features:[
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+
+
+    {
+      name:"PREMIUM",
+      subtitle:"",
+      price:"",
+      color:ORANGE,
+      fill:LIGHT_ORANGE,
+      features:[
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+
+
+    {
+      name:"PRODUCT 3",
+      subtitle:"",
+      price:"",
+      color:GREEN,
+      fill:LIGHT_GREEN,
+      features:[
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+
+
+    {
+      name:"PRODUCT 4",
+      subtitle:"",
+      price:"",
+      color:[130,80,180],
+      fill:[245,238,255],
+      features:[
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+
+  ];
+
+
+  /*
+   * ======================================================
+   * PACKAGE CARD DIMENSIONS
+   * ======================================================
+   */
+
+  const packageGap =
+    5;
+
+
+  const packageWidth =
+    (
+      pageWidth -
+      margin * 2 -
+      packageGap
+    ) / 2;
+
+
+  const packageHeight =
+    48;
+
+
+  products.forEach(
+    function(product,index){
+
+      const col =
+        index % 2;
+
+
+      const row =
+        Math.floor(
+          index / 2
+        );
+
+
+      const x =
+        margin +
+        col *
+        (
+          packageWidth +
+          packageGap
+        );
+
+
+      const yy =
+        y +
+        row *
+        (
+          packageHeight +
+          packageGap
+        );
+
+
+      /*
+       * Card
+       */
+
+      doc.setFillColor(
+        ...product.fill
+      );
+
+
+      doc.setDrawColor(
+        ...product.color
+      );
+
+
+      doc.setLineWidth(
+        0.6
+      );
+
+
+      doc.roundedRect(
+        x,
+        yy,
+        packageWidth,
+        packageHeight,
+        4,
+        4,
+        "FD"
+      );
+
+
+      /*
+       * Top product header
+       */
+
+      doc.setFillColor(
+        ...product.color
+      );
+
+
+      doc.roundedRect(
+        x,
+        yy,
+        packageWidth,
+        12,
+        4,
+        4,
+        "F"
+      );
+
+
+      /*
+       * Cover lower rounded corners
+       * of header
+       */
+
+      doc.rect(
+        x,
+        yy + 7,
+        packageWidth,
+        5,
+        "F"
+      );
+
+
+      /*
+       * PRODUCT NAME
+       */
+
+      doc.setTextColor(
+        ...WHITE
+      );
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(
+        9
+      );
+
+
+      doc.text(
+        product.name,
+        x + 5,
+        yy + 7.5
+      );
+
+
+      /*
+       * PRICE
+       */
+
+      if(
+        product.price
+      ){
+
+        doc.setFontSize(
+          8
+        );
+
+
+        doc.text(
+          product.price,
+          x + packageWidth - 5,
+          yy + 7.5,
+          {
+            align:"right"
+          }
+        );
+
+      }
+
+
+      /*
+       * SUBTITLE
+       */
+
+      if(
+        product.subtitle
+      ){
+
+        doc.setTextColor(
+          ...NAVY
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(
+          6.5
+        );
+
+
+        doc.text(
+          product.subtitle,
+          x + 5,
+          yy + 18
+        );
+
+      }
+
+
+      /*
+       * FOUR FEATURES
+       */
+
+      product.features.forEach(
+        function(feature,featureIndex){
+
+          if(
+            !feature
+          ){
+            return;
+          }
+
+
+          const fy =
+            yy +
+            20 +
+            featureIndex * 6;
+
+
+          /*
+           * Feature circle
+           */
+
+          doc.setFillColor(
+            ...product.color
+          );
+
+
+          doc.circle(
+            x + 7,
+            fy - 1.5,
+            1.8,
+            "F"
+          );
+
+
+          /*
+           * Feature text
+           */
+
+          doc.setTextColor(
+            ...BLACK
+          );
+
+
+          doc.setFont(
+            "helvetica",
+            "normal"
+          );
+
+
+          doc.setFontSize(
+            6
+          );
+
+
+          const featureLines =
+            doc.splitTextToSize(
+              feature,
+              packageWidth - 16
+            );
+
+
+          doc.text(
+            featureLines.slice(
+              0,
+              1
+            ),
+            x + 12,
+            fy
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  y +=
+    packageHeight * 2 +
+    packageGap +
+    10;
+
+
+  // ======================================================
+  // CONTACT + WEBSITE + INSTAGRAM
+  // ======================================================
+
+  checkSpace(
+    78
+  );
+
+
+  sectionTitle(
+    6,
+    "CONNECT WITH RN COUNSELLING"
+  );
+
+
+  /*
+   * Main contact box
+   */
+
+  const contactY =
+    y;
+
+
+  const contactH =
+    58;
+
+
+  doc.setFillColor(
+    249,
+    251,
+    254
+  );
+
+
+  doc.setDrawColor(
+    ...BORDER
+  );
+
+
+  doc.roundedRect(
+    margin,
+    contactY,
+    pageWidth - margin * 2,
+    contactH,
+    4,
+    4,
+    "FD"
+  );
+
+
+  /*
+   * Left side
+   */
+
+  doc.setTextColor(
+    ...NAVY
   );
 
 
@@ -2797,20 +3978,16 @@ async function downloadPDF(){
   );
 
 
-  doc.setFontSize(12);
-
-
-  doc.text(
-    "YOUR PREDICTION IS THE FIRST STEP.",
-    pageWidth / 2,
-    y + 6,
-    {
-      align:"center"
-    }
+  doc.setFontSize(
+    11
   );
 
 
-  doc.setFontSize(7);
+  doc.text(
+    "Talk to RN Counselling",
+    margin + 7,
+    contactY + 10
+  );
 
 
   doc.setFont(
@@ -2819,8 +3996,518 @@ async function downloadPDF(){
   );
 
 
+  doc.setFontSize(
+    7
+  );
+
+
+  doc.setTextColor(
+    ...GREY
+  );
+
+
+  const contactLines = [
+
+    "Personalized medical admission guidance",
+
+    "NEET PG & MDS counselling support",
+
+    "College, branch & choice-filling guidance"
+
+  ];
+
+
+  contactLines.forEach(
+    function(text,index){
+
+      doc.text(
+        text,
+        margin + 7,
+        contactY + 18 +
+        index * 7
+      );
+
+    }
+  );
+
+
+  /*
+   * WhatsApp
+   */
+
+  doc.setFillColor(
+    ...GREEN
+  );
+
+
+  doc.roundedRect(
+    margin + 7,
+    contactY + 41,
+    57,
+    9,
+    4,
+    4,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    ...WHITE
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(
+    7
+  );
+
+
   doc.text(
-    "Now let RN Counselling help you convert your rank into the right college choice.",
+    "WhatsApp: " + WHATSAPP,
+    margin + 35.5,
+    contactY + 47,
+    {
+      align:"center"
+    }
+  );
+
+
+  /*
+   * Vertical divider
+   */
+
+  doc.setDrawColor(
+    ...BORDER
+  );
+
+
+  doc.line(
+    107,
+    contactY + 6,
+    107,
+    contactY + contactH - 6
+  );
+
+
+  /*
+   * WEBSITE
+   */
+
+  doc.setTextColor(
+    ...BLUE
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(
+    9
+  );
+
+
+  doc.text(
+    "VISIT OUR WEBSITE",
+    112,
+    contactY + 10
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    7
+  );
+
+
+  doc.setTextColor(
+    ...BLACK
+  );
+
+
+  doc.text(
+    WEBSITE.replace(
+      "https://",
+      ""
+    ),
+    112,
+    contactY + 18
+  );
+
+
+  /*
+   * Instagram
+   */
+
+  doc.setTextColor(
+    ...ORANGE
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(
+    8
+  );
+
+
+  doc.text(
+    "FOLLOW US ON INSTAGRAM",
+    112,
+    contactY + 28
+  );
+
+
+  doc.setTextColor(
+    ...GREY
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    6.5
+  );
+
+
+  doc.text(
+    "@pgmed_admission",
+    112,
+    contactY + 35
+  );
+
+
+  /*
+   * Barcode / QR IMAGE
+   */
+
+  if(
+    barcodeData
+  ){
+
+    try{
+
+      doc.addImage(
+        barcodeData,
+        "PNG",
+        155,
+        contactY + 7,
+        32,
+        32
+      );
+
+    }catch(e){
+
+      console.warn(
+        "Barcode image error:",
+        e
+      );
+
+    }
+
+  }
+
+
+  y +=
+    contactH +
+    9;
+
+
+  // ======================================================
+  // TESTIMONIALS
+  // ======================================================
+
+  checkSpace(
+    95
+  );
+
+
+  sectionTitle(
+    7,
+    "STUDENT TESTIMONIALS"
+  );
+
+
+  doc.setTextColor(
+    ...GREY
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+
+  doc.setFontSize(
+    7
+  );
+
+
+  doc.text(
+    "What students say about their counselling experience.",
+    margin,
+    y
+  );
+
+
+  y += 7;
+
+
+  /*
+   * TESTIMONIAL IMAGE GRID
+   *
+   * Each image itself contains:
+   * Name
+   * College
+   * Rating
+   * Message
+   *
+   * Therefore this PDF does NOT add
+   * any testimonial text.
+   */
+
+  const testimonialGap =
+    5;
+
+
+  const testimonialWidth =
+    (
+      pageWidth -
+      margin * 2 -
+      testimonialGap
+    ) / 2;
+
+
+  const testimonialHeight =
+    55;
+
+
+  testimonialData.forEach(
+    function(image,index){
+
+      const col =
+        index % 2;
+
+
+      const row =
+        Math.floor(
+          index / 2
+        );
+
+
+      const x =
+        margin +
+        col *
+        (
+          testimonialWidth +
+          testimonialGap
+        );
+
+
+      const yy =
+        y +
+        row *
+        (
+          testimonialHeight +
+          testimonialGap
+        );
+
+
+      /*
+       * Card
+       */
+
+      doc.setFillColor(
+        ...WHITE
+      );
+
+
+      doc.setDrawColor(
+        ...BORDER
+      );
+
+
+      doc.roundedRect(
+        x,
+        yy,
+        testimonialWidth,
+        testimonialHeight,
+        4,
+        4,
+        "FD"
+      );
+
+
+      /*
+       * IMAGE
+       */
+
+      if(
+        image
+      ){
+
+        try{
+
+          /*
+           * Keep image inside card
+           */
+
+          const padding =
+            2.5;
+
+
+          doc.addImage(
+            image,
+            "PNG",
+            x + padding,
+            yy + padding,
+            testimonialWidth -
+            padding * 2,
+            testimonialHeight -
+            padding * 2
+          );
+
+        }catch(e){
+
+          console.warn(
+            "Testimonial image error:",
+            e
+          );
+
+        }
+
+      }
+      else{
+
+        /*
+         * Empty provision if image
+         * has not yet been added.
+         */
+
+        doc.setTextColor(
+          170,
+          175,
+          185
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(
+          7
+        );
+
+
+        doc.text(
+          "TESTIMONIAL " +
+          (index + 1),
+          x +
+          testimonialWidth / 2,
+          yy +
+          testimonialHeight / 2,
+          {
+            align:"center"
+          }
+        );
+
+      }
+
+    }
+  );
+
+
+  y +=
+    testimonialHeight * 2 +
+    testimonialGap +
+    10;
+
+
+  // ======================================================
+  // FINAL CTA
+  // ======================================================
+
+  checkSpace(
+    40
+  );
+
+
+  doc.setFillColor(
+    ...NAVY
+  );
+
+
+  doc.roundedRect(
+    margin,
+    y,
+    pageWidth - margin * 2,
+    30,
+    4,
+    4,
+    "F"
+  );
+
+
+  /*
+   * Orange top line
+   */
+
+  doc.setFillColor(
+    ...ORANGE
+  );
+
+
+  doc.rect(
+    margin,
+    y,
+    pageWidth - margin * 2,
+    2,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    ...WHITE
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+
+  doc.setFontSize(
+    12
+  );
+
+
+  doc.text(
+    "YOUR DREAM. OUR GUIDANCE. YOUR SUCCESS.",
     pageWidth / 2,
     y + 11,
     {
@@ -2829,295 +4516,21 @@ async function downloadPDF(){
   );
 
 
-  y += 20;
-
-
-  // ======================================================
-  // PACKAGES
-  // ======================================================
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(11);
-
-
-  doc.text(
-    "COUNSELLING SUPPORT PACKAGES",
-    margin,
-    y
-  );
-
-
-  y += 6;
-
-
-  const boxGap = 5;
-
-  const boxWidth =
-    (pageWidth - 24 - boxGap) / 2;
-
-
-  // BASIC
-
-  roundedBox(
-    margin,
-    y,
-    boxWidth,
-    48,
-    245,
-    248,
-    255
-  );
-
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(10);
-
-
-  doc.text(
-    "BASIC COUNSELLING",
-    margin + 6,
-    y + 8
-  );
-
-
-  doc.setFontSize(13);
-
-
-  doc.text(
-    "State Counselling",
-    margin + 6,
-    y + 16
-  );
-
-
   doc.setFont(
     "helvetica",
     "normal"
   );
 
 
-  doc.setFontSize(7);
-
-
-  doc.setTextColor(
-    65,
-    70,
-    80
+  doc.setFontSize(
+    7
   );
-
-
-  const basicPoints = [
-
-    "✓ Personalized counselling guidance",
-
-    "✓ State counselling support",
-
-    "✓ College & branch selection",
-
-    "✓ Rank-based strategy",
-
-    "✓ Choice filling guidance"
-
-  ];
-
-
-  basicPoints.forEach(
-    function(text,i){
-
-      doc.text(
-        text,
-        margin + 6,
-        y + 24 + i * 4.5
-      );
-
-    }
-  );
-
-
-  // PREMIUM
-
-  const premiumX =
-    margin +
-    boxWidth +
-    boxGap;
-
-
-  roundedBox(
-    premiumX,
-    y,
-    boxWidth,
-    48,
-    255,
-    248,
-    224
-  );
-
-
-  doc.setTextColor(
-    145,
-    90,
-    0
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(10);
 
 
   doc.text(
-    "PREMIUM COUNSELLING",
-    premiumX + 6,
-    y + 8
-  );
-
-
-  doc.setFontSize(13);
-
-
-  doc.text(
-    "Complete Counselling",
-    premiumX + 6,
-    y + 16
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.setFontSize(7);
-
-
-  doc.setTextColor(
-    70,
-    65,
-    50
-  );
-
-
-  const premiumPoints = [
-
-    "✓ All India + State Counselling",
-
-    "✓ Personalized choice filling",
-
-    "✓ College & branch strategy",
-
-    "✓ Category & quota analysis",
-
-    "✓ Round-wise counselling support"
-
-  ];
-
-
-  premiumPoints.forEach(
-    function(text,i){
-
-      doc.text(
-        text,
-        premiumX + 6,
-        y + 24 + i * 4.5
-      );
-
-    }
-  );
-
-
-  y += 55;
-
-
-  // ======================================================
-  // CONTACT / CTA
-  // ======================================================
-
-  roundedBox(
-    margin,
-    y,
-    pageWidth - 24,
-    36,
-    235,
-    245,
-    255
-  );
-
-
-  doc.setTextColor(
-    8,
-    42,
-    95
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "bold"
-  );
-
-
-  doc.setFontSize(11);
-
-
-  doc.text(
-    "READY TO PLAN YOUR COUNSELLING?",
+    "Connect with RN Counselling for personalized admission guidance.",
     pageWidth / 2,
-    y + 9,
-    {
-      align:"center"
-    }
-  );
-
-
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.setFontSize(8);
-
-
-  doc.setTextColor(
-    55,
-    60,
-    70
-  );
-
-
-  doc.text(
-    "Talk to RN Counselling for personalized admission guidance.",
-    pageWidth / 2,
-    y + 16,
+    y + 18,
     {
       align:"center"
     }
@@ -3130,67 +4543,42 @@ async function downloadPDF(){
   );
 
 
-  doc.setFontSize(9);
-
-
-  doc.setTextColor(
-    8,
-    42,
-    95
+  doc.setFontSize(
+    8
   );
 
 
   doc.text(
-    "WhatsApp: " + WHATSAPP,
+    "WhatsApp: " +
+    WHATSAPP +
+    "   |   " +
+    WEBSITE.replace(
+      "https://",
+      ""
+    ),
     pageWidth / 2,
-    y + 24,
+    y + 25,
     {
       align:"center"
     }
   );
 
 
-  doc.setFont(
-    "helvetica",
-    "normal"
-  );
-
-
-  doc.setFontSize(7);
-
-
-  doc.text(
-    "Email: " +
-    CONTACT_EMAIL +
-    "   |   Website: " +
-    WEBSITE,
-    pageWidth / 2,
-    y + 30,
-    {
-      align:"center"
-    }
-  );
-
-
-  y += 43;
+  y += 38;
 
 
   // ======================================================
   // DISCLAIMER
   // ======================================================
 
-  if(
-    y + 25 >
-    pageHeight - 18
-  ){
+  checkSpace(
+    24
+  );
 
-    addFooter();
 
-    doc.addPage();
-
-    addPageHeader();
-
-  }
+  doc.setTextColor(
+    ...NAVY
+  );
 
 
   doc.setFont(
@@ -3199,13 +4587,8 @@ async function downloadPDF(){
   );
 
 
-  doc.setFontSize(7);
-
-
-  doc.setTextColor(
-    80,
-    85,
-    95
+  doc.setFontSize(
+    6.8
   );
 
 
@@ -3219,38 +4602,42 @@ async function downloadPDF(){
   y += 4;
 
 
+  doc.setTextColor(
+    ...GREY
+  );
+
+
   doc.setFont(
     "helvetica",
     "normal"
   );
 
 
-  doc.setFontSize(6.5);
+  doc.setFontSize(
+    6.2
+  );
 
 
   const disclaimer =
-    "This report is generated using historical cutoff information and the details submitted by the student. " +
-    "Predictions are indicative and do not guarantee admission. Actual allotment depends on counselling rules, " +
-    "seat availability, category, quota, choice filling, participating colleges and changes in cutoff ranks. " +
-    "Students should verify official counselling notifications before making final decisions.";
+    "This report is generated using available historical cutoff information and the details submitted by the student. Predictions are indicative and do not guarantee admission. Actual allotment depends on counselling rules, seat availability, category, quota, choice filling, participating colleges and changes in cutoff ranks. Students should verify official counselling notifications before making final decisions.";
 
 
-  const wrappedDisclaimer =
+  const disclaimerLines =
     doc.splitTextToSize(
       disclaimer,
-      pageWidth - 24
+      pageWidth - margin * 2
     );
 
 
   doc.text(
-    wrappedDisclaimer,
+    disclaimerLines,
     margin,
     y
   );
 
 
   // ======================================================
-  // FINAL FOOTER
+  // FOOTER
   // ======================================================
 
   addFooter();
@@ -3261,8 +4648,9 @@ async function downloadPDF(){
   // ======================================================
 
   const safeName =
-    String(
-      currentApplication.name || "Student"
+    safeText(
+      currentApplication.name ||
+      "Student"
     )
     .replace(
       /[^a-z0-9]/gi,
@@ -3277,77 +4665,6 @@ async function downloadPDF(){
   );
 
 }
-
-
-// ========================================================
-// MESSAGE
-// ========================================================
-
-function showMessage(
-  text,
-  type
-){
-
-  const box =
-    document.getElementById(
-      "message"
-    );
-
-
-  box.className =
-    "message " +
-    type;
-
-
-  box.innerText =
-    text;
-
-
-  box.style.display =
-    "block";
-
-}
-
-
-// ========================================================
-// ESCAPE HTML
-// ========================================================
-
-function escapeHtml(
-  value
-){
-
-  return String(
-    value || ""
-  )
-
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
-
-}
-
 </script>
 
 </body>
