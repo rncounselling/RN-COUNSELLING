@@ -428,7 +428,6 @@ const { jsPDF } = window.jspdf;
 // Load only the images actually required by this PDF
 let logoData = await loadImageData(LOGO_URL);
 let barcodeData = await loadImageData("barcode.png");
-  }
 
   function addFooter(){
     doc.setDrawColor(...BORDER);
