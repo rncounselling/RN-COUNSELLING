@@ -333,7 +333,9 @@ function showMessage(msg, type){
 }
 
 // ========================================================
-// COMPLETE PROFESSIONAL COLOUR PDF REPORT
+// RN COUNSELLING — FINAL PROFESSIONAL MARKETING PDF
+// ONLY PDF GENERATION IS CHANGED.
+// FORM / PAYMENT / API / PREDICTION LOGIC REMAINS UNTOUCHED.
 // ========================================================
 async function downloadPDF(){
   if(!currentApplication || !currentPredictions || !currentPredictions.length){
@@ -341,284 +343,511 @@ async function downloadPDF(){
     return;
   }
 
-if(!window.jspdf || !window.jspdf.jsPDF){
-  alert("PDF system could not be loaded. Please refresh the page and try again.");
-  console.error("jsPDF library is not loaded.", window.jspdf);
-  return;
-}
-
-const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation:"portrait", unit:"mm", format:"a4" });
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 10;
-  let y = 0;
-
-  // Brand Colours
-  const NAVY = [8,42,95];
-  const BLUE = [20,105,190];
-  const LIGHT_BLUE = [235,245,255];
-  const ORANGE = [255,153,0];
-  const LIGHT_ORANGE = [255,244,220];
-  const GREEN = [30,160,85];
-  const LIGHT_GREEN = [232,249,238];
-  const RED = [220,55,55];
-  const LIGHT_RED = [255,235,235];
-  const WHITE = [255,255,255];
-  const BLACK = [35,40,48];
-  const GREY = [95,100,110];
-  const BORDER = [210,220,232];
-
- async function loadImageData(url, timeout = 5000){
-  return new Promise(function(resolve){
-    const img = new Image();
-
-    let finished = false;
-
-    function finish(result){
-      if(finished) return;
-      finished = true;
-      clearTimeout(timer);
-      resolve(result);
-    }
-
-    const timer = setTimeout(function(){
-      console.warn("Image loading timeout:", url);
-      finish(null);
-    }, timeout);
-
-    img.onload = function(){
-      try{
-        const canvas = document.createElement("canvas");
-
-        canvas.width = img.naturalWidth || img.width;
-        canvas.height = img.naturalHeight || img.height;
-
-        if(!canvas.width || !canvas.height){
-          finish(null);
-          return;
-        }
-
-        const ctx = canvas.getContext("2d");
-
-        if(!ctx){
-          finish(null);
-          return;
-        }
-
-        ctx.drawImage(img, 0, 0);
-
-        finish(canvas.toDataURL("image/png"));
-
-      }catch(e){
-        console.warn("Image conversion failed:", url, e);
-        finish(null);
-      }
-    };
-
-    img.onerror = function(){
-      console.warn("Image could not be loaded:", url);
-      finish(null);
-    };
-
-    img.src = url;
-  });
-}
-
-// Load only the images actually required by this PDF
-let logoData = await loadImageData(LOGO_URL);
-let barcodeData = await loadImageData("barcode.png");
-
-  function addFooter(){
-    doc.setDrawColor(...BORDER);
-    doc.setLineWidth(0.3);
-    doc.line(margin, pageHeight - 10, pageWidth - margin, pageHeight - 10);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(6.5);
-    doc.setTextColor(...GREY);
-    doc.text("RN Counselling", margin, pageHeight - 5.5);
-    doc.text("WhatsApp: " + WHATSAPP, pageWidth / 2, pageHeight - 5.5, { align:"center" });
-    doc.text(WEBSITE.replace("https://", ""), pageWidth - margin, pageHeight - 5.5, { align:"right" });
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    alert("PDF system could not be loaded. Please refresh the page and try again.");
+    return;
   }
 
-  function addHeader(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:"portrait", unit:"mm", format:"a4", compress:true});
+  const PW = doc.internal.pageSize.getWidth();
+  const PH = doc.internal.pageSize.getHeight();
+
+  // ---------- RN BRAND PALETTE ----------
+  const NAVY=[7,35,78], BLUE=[19,92,170], GOLD=[218,158,42];
+  const SKY=[235,244,255], PALE=[247,249,252], WHITE=[255,255,255];
+  const DARK=[25,31,42], GREY=[91,99,112], LIGHTGREY=[222,228,236];
+  const GREEN=[27,137,76], GREENBG=[231,247,237];
+  const AMBER=[170,105,8], AMBERBG=[255,245,218];
+  const RED=[177,47,47], REDBG=[255,235,235];
+
+  let logoData=null, qrData=null;
+
+  function loadImageData(url, timeout=7000){
+    return new Promise(resolve=>{
+      const img=new Image();
+      let done=false;
+      const finish=v=>{
+        if(done)return;
+        done=true;
+        clearTimeout(timer);
+        resolve(v);
+      };
+      const timer=setTimeout(()=>finish(null),timeout);
+      img.onload=()=>{
+        try{
+          const c=document.createElement("canvas");
+          c.width=img.naturalWidth||img.width;
+          c.height=img.naturalHeight||img.height;
+          if(!c.width||!c.height)return finish(null);
+          const ctx=c.getContext("2d");
+          ctx.drawImage(img,0,0);
+          finish(c.toDataURL("image/png"));
+        }catch(e){finish(null);}
+      };
+      img.onerror=()=>finish(null);
+      img.src=url;
+    });
+  }
+
+  logoData=await loadImageData(LOGO_URL);
+  qrData=await loadImageData("barcode.png");
+
+  function txt(v){return String(v===undefined||v===null?"":v);}
+  function money(){return "Rs. 249";}
+  function safe(v){return txt(v);}
+  function cleanName(v){
+    return safe(v).replace(/[^a-z0-9]+/gi,"_").replace(/^_+|_+$/g,"").slice(0,40)||"Student";
+  }
+
+  function addBackground(){
+    doc.setFillColor(...PALE);
+    doc.rect(0,0,PW,PH,"F");
+  }
+
+  function footer(){
     doc.setFillColor(...NAVY);
-    doc.rect(0, 0, pageWidth, 32, "F");
-    doc.setFillColor(...ORANGE);
-    doc.rect(0, 30, pageWidth, 2, "F");
+    doc.rect(0,PH-13,PW,13,"F");
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(7);
+    doc.setTextColor(...WHITE);
+    doc.text("RN COUNSELLING",10,PH-7);
+    doc.setFont("helvetica","normal");
+    doc.text("WhatsApp: "+WHATSAPP, PW/2, PH-7,{align:"center"});
+    doc.text(WEBSITE.replace(/^https?:\/\//,""), PW-10, PH-7,{align:"right"});
+    doc.setDrawColor(...GOLD);
+    doc.setLineWidth(.7);
+    doc.line(10,PH-13,PW-10,PH-13);
+  }
+
+  function header(){
+    addBackground();
+
+    doc.setFillColor(...NAVY);
+    doc.rect(0,0,PW,35,"F");
+
+    doc.setFillColor(...GOLD);
+    doc.rect(0,33,PW,2,"F");
 
     if(logoData){
-      try{ doc.addImage(logoData, "PNG", 10, 4, 22, 22); }catch(e){}
+      try{doc.addImage(logoData,"PNG",9,5,24,24);}catch(e){}
     }
 
     doc.setTextColor(...WHITE);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.text("RN Counselling", 38, 13);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.text("Trusted Medical Admission Guidance", 38, 20);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(17);
+    doc.text("RN COUNSELLING",38,14);
 
-    doc.setDrawColor(255, 255, 255);
-    doc.setLineWidth(0.3);
-    doc.line(145, 5, 145, 27);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(8);
-    doc.text("WhatsApp Support", 151, 12);
-    doc.setFont("helvetica", "normal");
-    doc.text(WHATSAPP, 151, 19);
-    y = 40;
-  }
-
-  function sectionTitle(number, title){
-    doc.setFillColor(...BLUE);
-    doc.circle(margin + 5, y + 1, 4, "F");
-    doc.setTextColor(...WHITE);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(7);
-    doc.text(String(number), margin + 5, y + 3.2, { align:"center" });
-
-    doc.setFillColor(...NAVY);
-    doc.roundedRect(margin + 11, y - 4, 82, 10, 2, 2, "F");
-    doc.setTextColor(...WHITE);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.5);
-    doc.text(title, margin + 16, y + 2.8);
-
-    doc.setDrawColor(...ORANGE);
-    doc.setLineWidth(1);
-    doc.line(margin + 96, y + 1, pageWidth - margin, y + 1);
-    y += 13;
-  }
-
-  function checkSpace(reqH){
-    if(y + reqH > pageHeight - 17){
-      addFooter();
-      doc.addPage();
-      addHeader();
-    }
-  }
-
-  function safeText(val){
-    return String(val === undefined || val === null ? "" : val);
-  }
-
-  function chanceStyle(chance){
-    const val = safeText(chance).toLowerCase();
-    if(val.includes("safe")) return { fill: LIGHT_GREEN, text: [25,115,55] };
-    if(val.includes("high")) return { fill: LIGHT_ORANGE, text: [150,90,0] };
-    if(val.includes("moderate")) return { fill: LIGHT_RED, text: [165,35,35] };
-    return { fill: [238,240,243], text: GREY };
-  }
-
-  // --- PAGE 1 ---
-  addHeader();
-
-  doc.setTextColor(...BLUE);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(17);
-  doc.text("COLLEGE PREDICTION REPORT", pageWidth / 2, y, { align:"center" });
-  y += 6;
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(...GREY);
-  doc.text("Personalized Report for NEET PG & MDS", pageWidth / 2, y, { align:"center" });
-  y += 12;
-
-  // 1. Candidate Details
-  sectionTitle(1, "CANDIDATE DETAILS");
-  checkSpace(42);
-
-  const detailX = margin;
-  const detailY = y;
-  const detailW = pageWidth - (margin * 2);
-  const detailH = 32;
-
-  doc.setFillColor(249, 251, 254);
-  doc.setDrawColor(...BORDER);
-  doc.roundedRect(detailX, detailY, detailW, detailH, 4, 4, "FD");
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(9);
-  doc.setTextColor(...BLACK);
-  doc.text("Name:", detailX + 6, detailY + 9);
-  doc.text("NEET Rank:", detailX + 6, detailY + 19);
-  doc.text("Category:", detailX + 110, detailY + 9);
-  doc.text("State:", detailX + 110, detailY + 19);
-  doc.text("Dream Branch:", detailX + 6, detailY + 27);
-
-  doc.setFont("helvetica", "normal");
-  doc.setTextColor(...GREY);
-  doc.text(safeText(currentApplication.name), detailX + 25, detailY + 9);
-  doc.text(safeText(currentApplication.rank), detailX + 35, detailY + 19);
-  doc.text(safeText(currentApplication.category), detailX + 130, detailY + 9);
-  doc.text(safeText(currentApplication.state), detailX + 125, detailY + 19);
-  doc.text(safeText(currentApplication.dreamBranch), detailX + 33, detailY + 27);
-
-  y += detailH + 10;
-
-  // 2. Predicted Colleges
-  sectionTitle(2, "PREDICTED COLLEGES & ADMISSION CHANCES");
-
-  currentPredictions.forEach((item, index) => {
-    checkSpace(28);
-    const cardY = y;
-    const cardH = 24;
-
-    const style = chanceStyle(item.chance);
-
-    doc.setFillColor(255, 255, 255);
-    doc.setDrawColor(...BORDER);
-    doc.roundedRect(margin, cardY, pageWidth - (margin * 2), cardH, 3, 3, "FD");
-
-    // Left color bar
-    doc.setFillColor(...style.text);
-    doc.roundedRect(margin, cardY, 3, cardH, 2, 2, "F");
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(9.5);
-    doc.setTextColor(...NAVY);
-    doc.text(`${index + 1}. ${safeText(item.college)}`, margin + 7, cardY + 7);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor(...GREY);
-    doc.text(`Branch: ${safeText(item.branch)} | Quota: ${safeText(item.quota || "All India")} | Closing Rank: ${safeText(item.closingRank)}`, margin + 7, cardY + 15);
-
-    // Badge
-    doc.setFillColor(...style.fill);
-    doc.roundedRect(pageWidth - margin - 38, cardY + 6, 32, 10, 3, 3, "F");
-    doc.setTextColor(...style.text);
-    doc.setFont("helvetica", "bold");
+    doc.setFont("helvetica","normal");
     doc.setFontSize(7.5);
-    doc.text(safeText(item.chance), pageWidth - margin - 22, cardY + 12.5, { align: "center" });
+    doc.text("MEDICAL ADMISSION GUIDANCE",38,21);
 
-    y += cardH + 6;
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(7);
+    doc.text("WhatsApp Support",PW-51,11);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(8.5);
+    doc.text(WHATSAPP,PW-51,19);
+
+    footer();
+  }
+
+  function newPage(){
+    footer();
+    doc.addPage();
+    header();
+  }
+
+  function section(title, subtitle){
+    doc.setFillColor(...NAVY);
+    doc.roundedRect(10,39,PW-20,12,3,3,"F");
+    doc.setFillColor(...GOLD);
+    doc.rect(10,39,4,12,"F");
+    doc.setTextColor(...WHITE);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(10);
+    doc.text(title,18,46);
+    if(subtitle){
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(6.8);
+      doc.setTextColor(225,232,242);
+      doc.text(subtitle,PW-14,46,{align:"right"});
+    }
+    return 57;
+  }
+
+  function chance(ch){
+    const s=safe(ch).toLowerCase();
+    if(s.includes("safe")) return {fill:GREENBG,text:GREEN,label:"SAFE"};
+    if(s.includes("high")) return {fill:AMBERBG,text:AMBER,label:"HIGH CHANCE"};
+    if(s.includes("moderate")) return {fill:REDBG,text:RED,label:"MODERATE CHANCE"};
+    return {fill:[239,242,246],text:GREY,label:safe(ch).toUpperCase()||"PREDICTED"};
+  }
+
+  function roundedTextBox(x,y,w,h,fill,border,title,body,titleColor=NAVY){
+    doc.setFillColor(...fill);
+    doc.setDrawColor(...border);
+    doc.roundedRect(x,y,w,h,3,3,"FD");
+    doc.setTextColor(...titleColor);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(8);
+    doc.text(title,x+5,y+7);
+    doc.setTextColor(...GREY);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(7);
+    const lines=doc.splitTextToSize(body,w-10);
+    doc.text(lines,x+5,y+13);
+  }
+
+  // ========================================================
+  // PAGE 1 — PREMIUM COVER / STUDENT SNAPSHOT
+  // ========================================================
+  header();
+
+  doc.setFillColor(...NAVY);
+  doc.roundedRect(10,43,PW-20,43,5,5,"F");
+
+  doc.setFillColor(...GOLD);
+  doc.circle(PW-24,57,14,"F");
+  doc.setTextColor(...NAVY);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(8);
+  doc.text("RN",PW-24,55,{align:"center"});
+  doc.setFontSize(5.5);
+  doc.text("COUNSELLING",PW-24,61,{align:"center"});
+
+  doc.setTextColor(...WHITE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(19);
+  doc.text("COLLEGE PREDICTION",17,58);
+  doc.text("REPORT",17,68);
+
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(8);
+  doc.setTextColor(220,230,244);
+  doc.text("Personalized admission strategy for NEET PG & MDS",17,78);
+
+  doc.setFillColor(...WHITE);
+  doc.setDrawColor(...LIGHTGREY);
+  doc.roundedRect(10,94,PW-20,51,5,5,"FD");
+
+  doc.setTextColor(...NAVY);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(10);
+  doc.text("YOUR COUNSELLING PROFILE",16,104);
+
+  const s=currentApplication;
+  const cells=[
+    ["Candidate",safe(s.name)],
+    ["NEET Rank",safe(s.rank)],
+    ["Category",safe(s.category)],
+    ["State",safe(s.state)],
+    ["Dream Branch",safe(s.dreamBranch)],
+    ["Report Type","Personalized Prediction"]
+  ];
+
+  let cy=111;
+  cells.forEach((c,i)=>{
+    const col=i%2, row=Math.floor(i/2);
+    const x=16+col*91, yy=cy+row*12;
+    doc.setTextColor(...GREY);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(6.5);
+    doc.text(c[0].toUpperCase(),x,yy);
+    doc.setTextColor(...DARK);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(8);
+    const valueLines=doc.splitTextToSize(c[1],82);
+    doc.text(valueLines[0],x,yy+5);
   });
 
-  // 3. Disclaimer & Barcode / QR Section
-  checkSpace(40);
-  sectionTitle(3, "IMPORTANT ADMISSION DISCLAIMER");
+  // Highlight strip
+  doc.setFillColor(...SKY);
+  doc.roundedRect(10,153,PW-20,26,4,4,"F");
+  doc.setTextColor(...BLUE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(9);
+  doc.text("WHY THIS REPORT MATTERS",16,162);
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(7.5);
   doc.setTextColor(...GREY);
-  const disclaimerText = "Disclaimer: This prediction report is generated based on historical cutoffs (last 5 years) and algorithms designed by RN Counselling experts. Actual cutoffs may vary depending on seat matrix changes, candidate participation, and shifting trends. Please verify counseling authorities' official portals before making final choices.";
-  const splitText = doc.splitTextToSize(disclaimerText, pageWidth - (margin * 2));
-  doc.text(splitText, margin, y);
-  y += (splitText.length * 4) + 6;
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(7.2);
+  const intro=doc.splitTextToSize(
+    "Use this report to understand where your rank stands against historical closing trends and to build a smarter counselling preference list.",
+    PW-32
+  );
+  doc.text(intro,16,169);
 
-  if (barcodeData) {
-    checkSpace(25);
-    try {
-      doc.addImage(barcodeData, "PNG", pageWidth / 2 - 15, y, 30, 15);
-    } catch(e) {}
+  // Stats
+  const total=currentPredictions.length;
+  const safeN=currentPredictions.filter(x=>safe(x.chance).toLowerCase().includes("safe")).length;
+  const highN=currentPredictions.filter(x=>safe(x.chance).toLowerCase().includes("high")).length;
+  const modN=currentPredictions.filter(x=>safe(x.chance).toLowerCase().includes("moderate")).length;
+
+  const stats=[
+    ["TOTAL PREDICTIONS",total,String(BLUE)],
+    ["SAFE",safeN,"GREEN"],
+    ["HIGH CHANCE",highN,"AMBER"],
+    ["MODERATE",modN,"RED"]
+  ];
+
+  let sx=10;
+  stats.forEach((a,i)=>{
+    const w=(PW-32)/4;
+    const fill=i===1?GREENBG:i===2?AMBERBG:i===3?REDBG:SKY;
+    const tc=i===1?GREEN:i===2?AMBER:i===3?RED:BLUE;
+    doc.setFillColor(...fill);
+    doc.roundedRect(sx,188,w,25,4,4,"F");
+    doc.setTextColor(...tc);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(14);
+    doc.text(String(a[1]),sx+w/2,200,{align:"center"});
+    doc.setFontSize(5.7);
+    doc.text(a[0],sx+w/2,208,{align:"center"});
+    sx+=w+4;
+  });
+
+  roundedTextBox(
+    10,220,PW-20,34,
+    WHITE,LIGHTGREY,
+    "RN COUNSELLING STRATEGY",
+    "Prediction is not simply a rank-range list. The report is designed to help you compare historical closing trends and identify practical options for your counselling preference planning."
+  );
+
+  doc.setFillColor(...NAVY);
+  doc.roundedRect(10,260,PW-20,25,4,4,"F");
+  doc.setTextColor(...WHITE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(9);
+  doc.text("READY TO BUILD YOUR FINAL CHOICES?",16,270);
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(7);
+  doc.setTextColor(225,232,242);
+  doc.text("Use RN Counselling for personalized counselling guidance, choice filling & admission support.",16,277);
+
+  // ========================================================
+  // PAGE 2+ — PREDICTION TABLE
+  // ========================================================
+  newPage();
+  let y=57;
+
+  function drawTableHeader(){
+    doc.setFillColor(...BLUE);
+    doc.roundedRect(10,y,PW-20,11,2,2,"F");
+    doc.setTextColor(...WHITE);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(6.5);
+    doc.text("#",14,y+7);
+    doc.text("COLLEGE / INSTITUTE",23,y+7);
+    doc.text("BRANCH",101,y+7);
+    doc.text("QUOTA",137,y+7);
+    doc.text("CLOSING",166,y+7);
+    doc.text("CHANCE",193,y+7,{align:"center"});
+    y+=11;
   }
 
-  addFooter();
-  doc.save("RN_Counselling_Prediction_Report.pdf");
+  function drawPrediction(item,index){
+    const style=chance(item.chance);
+    const collegeLines=doc.splitTextToSize(safe(item.college),73);
+    const branchLines=doc.splitTextToSize(safe(item.branch),31);
+    const rowH=Math.max(17, Math.min(27, 8 + Math.max(collegeLines.length,branchLines.length)*4.2));
+
+    if(y+rowH>PH-22){
+      newPage();
+      y=57;
+      drawTableHeader();
+    }
+
+    const fill=index%2===0?WHITE:[248,250,253];
+    doc.setFillColor(...fill);
+    doc.setDrawColor(...LIGHTGREY);
+    doc.rect(10,y,PW-20,rowH,"FD");
+
+    doc.setFillColor(...style.text);
+    doc.rect(10,y,2.2,rowH,"F");
+
+    doc.setTextColor(...NAVY);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(7);
+    doc.text(String(index+1),14,y+8);
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(7.2);
+    doc.text(collegeLines.slice(0,3),23,y+7);
+
+    doc.setFont("helvetica","normal");
+    doc.setTextColor(...GREY);
+    doc.setFontSize(6.5);
+    doc.text(branchLines.slice(0,3),101,y+7);
+
+    doc.text(safe(item.quota||"All India"),137,y+7);
+
+    doc.setTextColor(...DARK);
+    doc.setFont("helvetica","bold");
+    doc.text(safe(item.closingRank),166,y+7);
+
+    doc.setFillColor(...style.fill);
+    doc.roundedRect(181,y+4,27,rowH-8,3,3,"F");
+    doc.setTextColor(...style.text);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(5.5);
+    doc.text(style.label,194.5,y+rowH/2+1.5,{align:"center"});
+
+    y+=rowH;
+  }
+
+  // Intro block on prediction page
+  doc.setTextColor(...NAVY);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(13);
+  doc.text("PREDICTED COLLEGES",10,45);
+
+  doc.setTextColor(...GREY);
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(7);
+  doc.text(
+    "Your personalized options are classified by admission chance using historical closing trends.",
+    10,51
+  );
+
+  drawTableHeader();
+  currentPredictions.forEach(drawPrediction);
+
+  // ========================================================
+  // FINAL PAGE — COUNSELLING FUNNEL / PACKAGES / QR
+  // ========================================================
+  newPage();
+
+  doc.setFillColor(...NAVY);
+  doc.roundedRect(10,43,PW-20,35,5,5,"F");
+  doc.setTextColor(...WHITE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(15);
+  doc.text("YOUR PREDICTION IS ONLY",16,55);
+  doc.setTextColor(...GOLD);
+  doc.text("THE FIRST STEP.",16,64);
+
+  doc.setTextColor(225,232,242);
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(7.2);
+  doc.text("Getting the right college is about strategy, choices and timely counselling.",16,72);
+
+  // What next
+  y=88;
+  doc.setTextColor(...NAVY);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(11);
+  doc.text("WHAT RN COUNSELLING CAN HELP YOU WITH",10,y);
+
+  const services=[
+    ["01","Personalized College Shortlisting","Rank + category + branch + budget based strategy"],
+    ["02","Choice Filling Strategy","Order colleges to improve your counselling outcome"],
+    ["03","All India & State Counselling","Guidance for counselling rounds and seat movement"],
+    ["04","Admission Guidance","Support from prediction to final admission decision"]
+  ];
+
+  y+=7;
+  services.forEach((v,i)=>{
+    const yy=y+i*23;
+    doc.setFillColor(...WHITE);
+    doc.setDrawColor(...LIGHTGREY);
+    doc.roundedRect(10,yy,PW-20,19,3,3,"FD");
+    doc.setFillColor(...SKY);
+    doc.circle(20,yy+9.5,6,"F");
+    doc.setTextColor(...BLUE);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(6);
+    doc.text(v[0],20,yy+11,{align:"center"});
+    doc.setTextColor(...NAVY);
+    doc.setFontSize(7.8);
+    doc.text(v[1],30,yy+8);
+    doc.setTextColor(...GREY);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(6.5);
+    doc.text(v[2],30,yy+14);
+  });
+
+  // Packages
+  y=191;
+  doc.setFillColor(...NAVY);
+  doc.roundedRect(10,y,PW-20,12,3,3,"F");
+  doc.setTextColor(...WHITE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(9);
+  doc.text("RN COUNSELLING PACKAGES",16,y+8);
+
+  const packages=[
+    ["NEET PG / MDS BASIC","₹12,999","State Counselling Guidance"],
+    ["NEET PG / MDS PREMIUM","₹19,999","All India + State Counselling"],
+    ["MBBS / BDS PREMIUM","₹29,999","Complete Counselling Support"],
+    ["AYUSH PREMIUM","₹23,999","Complete Counselling Support"]
+  ];
+
+  y+=15;
+  packages.forEach((p,i)=>{
+    const col=i%2, row=Math.floor(i/2);
+    const x=10+col*97, yy=y+row*30;
+    doc.setFillColor(...WHITE);
+    doc.setDrawColor(...LIGHTGREY);
+    doc.roundedRect(x,yy,93,25,3,3,"FD");
+    doc.setTextColor(...NAVY);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(6.5);
+    doc.text(p[0],x+5,yy+7);
+    doc.setTextColor(...GOLD);
+    doc.setFontSize(11);
+    doc.text(p[1],x+5,yy+15);
+    doc.setTextColor(...GREY);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(5.7);
+    doc.text(p[2],x+5,yy+21);
+  });
+
+  // CTA / QR
+  y=260;
+  doc.setFillColor(...NAVY);
+  doc.roundedRect(10,y,PW-20,38,5,5,"F");
+
+  if(qrData){
+    try{doc.addImage(qrData,"PNG",PW-48,y+5,28,28);}catch(e){}
+  }
+
+  doc.setTextColor(...GOLD);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(10);
+  doc.text("NEED PERSONALIZED COUNSELLING?",16,y+10);
+
+  doc.setTextColor(...WHITE);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(12);
+  doc.text("WhatsApp: "+WHATSAPP,16,y+19);
+
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(6.8);
+  doc.setTextColor(220,230,244);
+  doc.text("Scan to follow RN Counselling on Instagram",16,y+27);
+  doc.text("Website: "+WEBSITE.replace(/^https?:\/\//,""),16,y+33);
+
+  // Disclaimer
+  y=304;
+  doc.setTextColor(...GREY);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(6.5);
+  doc.text("IMPORTANT DISCLAIMER",10,y);
+
+  doc.setFont("helvetica","normal");
+  doc.setFontSize(5.8);
+  const disclaimer=
+    "This prediction is based on historical cutoff data and RN Counselling's prediction strategy. Actual admission outcomes can vary due to seat matrix changes, counselling rules, category/quota conditions, candidate participation and year-to-year cutoff movement. This report is for guidance only and is not a guarantee of admission. Always verify official counselling notices and seat availability before making final choices.";
+  doc.text(doc.splitTextToSize(disclaimer,PW-20),10,y+5);
+
+  footer();
+
+  doc.save(
+    "RN_Counselling_"+cleanName(currentApplication.name)+"_College_Prediction_Report.pdf"
+  );
 }
+
 </script>
 </body>
 </html>
