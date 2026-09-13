@@ -233,7 +233,7 @@ async function startPayment(){
   }catch(error){
     console.error(error);
     button.disabled = false;
-    button.innerText = "PAY ₹249 & GET COLLEGE PREDICTION";
+    button.innerText = "PAY ₹49 & GET COLLEGE PREDICTION";
     showMessage(error.message || "Something went wrong. Please try again.", "error");
   }
 }
@@ -414,7 +414,7 @@ async function downloadPDF(){
   }
 
   function money(){
-    return "Rs. 249";
+    return "Rs. 49";
   }
 
   function setText(color){
