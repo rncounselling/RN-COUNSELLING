@@ -125,11 +125,11 @@ input:focus,select:focus{outline:none;border-color:#0a58ca;box-shadow:0 0 0 2px 
 <option>MD General Medicine</option>
 <option>MD Paediatrics</option>
 <option>MD Dermatology</option>
-<option>MD Radiodiagnosis</option>
+<option>MD RADIO-DIAGNOSIS</option>
 <option>MD Psychiatry</option>
 <option>MD Anaesthesiology</option>
 <option>MD Pathology</option>
-<option>MD Respiratory Medicine</option>
+<option>MD Tuberculosis and Respiratory diseases</option>
 <option>MD Pharmacology</option>
 <option>MD Microbiology</option>
 <option>MD Anatomy</option>
@@ -139,7 +139,7 @@ input:focus,select:focus{outline:none;border-color:#0a58ca;box-shadow:0 0 0 2px 
 <optgroup label="NEET PG - MS">
 <option>MS General Surgery</option>
 <option>MS Orthopaedics</option>
-<option>MS ENT</option>
+<option>MS E.N.T.</option>
 <option>MS Ophthalmology</option>
 <option>MS Obstetrics & Gynaecology</option>
 </optgroup>
@@ -158,10 +158,10 @@ input:focus,select:focus{outline:none;border-color:#0a58ca;box-shadow:0 0 0 2px 
 </div>
 </div>
 <div class="price-box">
-<div class="price">₹49</div>
+<div class="price">₹249</div>
 <div class="price-text">Personalized college predictions based on last 5 year historical cutoff data & our expert strategy.</div>
 </div>
-<button class="pay-btn" id="payButton" onclick="startPayment()">PAY ₹49 & GET COLLEGE PREDICTION</button>
+<button class="pay-btn" id="payButton" onclick="startPayment()">PAY ₹249 & GET COLLEGE PREDICTION</button>
 <div id="message" class="message"></div>
 </div>
 
@@ -233,7 +233,7 @@ async function startPayment(){
   }catch(error){
     console.error(error);
     button.disabled = false;
-    button.innerText = "PAY ₹49 & GET COLLEGE PREDICTION";
+    button.innerText = "PAY ₹249 & GET COLLEGE PREDICTION";
     showMessage(error.message || "Something went wrong. Please try again.", "error");
   }
 }
@@ -414,7 +414,7 @@ async function downloadPDF(){
   }
 
   function money(){
-    return "Rs. 49";
+    return "Rs. 249";
   }
 
   function setText(color){
