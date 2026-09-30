@@ -1120,27 +1120,30 @@
 
                     // Replace PASTE_LINK_HERE with your actual Razorpay URLs
                     const paymentLinks = {
-                        'MD/MS Basic': {
-                            '0':  'https://rzp.io/rzp/oKy09poT',
-                            '10': 'PASTE_LINK_HERE',
-                            '15': 'PASTE_LINK_HERE'
-                        },
-                        'MD/MS Premium': {
-                            '0':  'https://rzp.io/rzp/vJFsJf3i',
-                            '10': 'PASTE_LINK_HERE',
-                            '15': 'PASTE_LINK_HERE'
-                        },
-                        'MD/MS Deemed & Managment': {
-                            '0':  'https://rzp.io/rzp/ByYTfaa',
-                            '10': 'PASTE_LINK_HERE',
-                            '15': 'PASTE_LINK_HERE'
-                        },
-                        'MD/MS NRI & VIP': {
-                            '0':  'https://rzp.io/rzp/ByYTfaa',
-                            '10': 'PASTE_LINK_HERE',
-                            '15': 'PASTE_LINK_HERE'
-                        }
-                    };
+    'Basic Package': {
+        '0': 'https://rzp.io/rzp/oKy09poT',
+        '10': 'PASTE_LINK_HERE',
+        '15': 'PASTE_LINK_HERE'
+    },
+
+    'Pro Dual Package': {
+        '0': 'https://rzp.io/rzp/vJFsJf3i',
+        '10': 'PASTE_LINK_HERE',
+        '15': 'PASTE_LINK_HERE'
+    },
+
+    'PRIVATE & DEEMED PREMIUM': {
+        '0': 'https://rzp.io/rzp/ByYTfaa',
+        '10': 'PASTE_LINK_HERE',
+        '15': 'PASTE_LINK_HERE'
+    },
+
+    'VIP MANAGEMENT & NRI QUOTA': {
+        '0': 'https://rzp.io/rzp/ByYTfaa',
+        '10': 'PASTE_LINK_HERE',
+        '15': 'PASTE_LINK_HERE'
+    }
+};
 
                     const paymentURL = paymentLinks[packageName] && paymentLinks[packageName][discountKey];
 
