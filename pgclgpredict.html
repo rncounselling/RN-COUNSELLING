@@ -171,10 +171,10 @@ input:focus,select:focus{outline:none;border-color:#0a58ca;box-shadow:0 0 0 2px 
 </div>
 </div>
 <div class="price-box">
-<div class="price">₹249</div>
+<div class="price">₹499</div>
 <div class="price-text">Personalized college predictions based on last 5 year historical cutoff data & our expert strategy.</div>
 </div>
-<button class="pay-btn" id="payButton" onclick="startPayment()">PAY ₹249 & GET COLLEGE PREDICTION</button>
+<button class="pay-btn" id="payButton" onclick="startPayment()">PAY ₹499 & GET COLLEGE PREDICTION</button>
 <div id="message" class="message"></div>
 </div>
 
@@ -246,7 +246,7 @@ async function startPayment(){
   }catch(error){
     console.error(error);
     button.disabled = false;
-    button.innerText = "PAY ₹249 & GET COLLEGE PREDICTION";
+    button.innerText = "PAY ₹499 & GET COLLEGE PREDICTION";
     showMessage(error.message || "Something went wrong. Please try again.", "error");
   }
 }
@@ -427,7 +427,7 @@ async function downloadPDF(){
   }
 
   function money(){
-    return "Rs. 249";
+    return "Rs. 499";
   }
 
   function setText(color){
