@@ -510,7 +510,7 @@ function submitFormToGoogleSheets(){
   formData.append('timestamp',new Date().toISOString());
 
   // Keep the existing Apps Script endpoint unchanged.
-  const scriptURL='https://script.google.com/macros/s/AKfycbyJm7xvO5ECcIq1y-Thd4PFJJJPwLkOjvztyFBcdVHf4WPaMk4KfEpn41KOVX5HsHgK/exec';
+  const scriptURL='https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
 
   fetch(scriptURL,{method:'POST',body:formData})
    .then(response=>response.json())
