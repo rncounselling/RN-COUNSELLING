@@ -490,53 +490,55 @@ function proceedToPayment(){
  });
 }
 
-function submitFormToGoogleSheets(){
- return new Promise((resolve,reject)=>{
-  const formData=new FormData($('applicationForm'));
-  const selected=document.querySelector('input[name="package"]:checked');
-  if(!selected){reject(new Error('Package not selected'));return;}
-  const [packageName,rawPrice]=selected.value.split('|');
-  const originalPrice=Number(rawPrice)||0;
-  const discountAmount=Math.round(originalPrice*discountPercentage/100);
-  const finalAmount=originalPrice-discountAmount;
+function submitFormToGoogleSheets() {
+    return new Promise((resolve, reject) => {
 
-  formData.append('packageName',packageName);
-  formData.append('originalPrice',String(originalPrice));
-  formData.append('discountPercentage',String(discountPercentage));
-  formData.append('discountAmount',String(discountAmount));
-  formData.append('finalAmount',String(finalAmount));
-  formData.append('appliedReferralCode',appliedReferralCode);
-  formData.append('formType','PG');
-  formData.append('timestamp',new Date().toISOString());
+        const formData = new FormData($('applicationForm'));
+        const selected = document.querySelector('input[name="package"]:checked');
 
-  // Keep the existing Apps Script endpoint unchanged.
-  const scriptURL='https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
+        if (!selected) {
+            reject(new Error('Package not selected'));
+            return;
+        }
 
-  // Keep the existing Apps Script endpoint
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
+        const [packageName, rawPrice] = selected.value.split('|');
 
-// Convert FormData into URL-encoded data
-const params = new URLSearchParams();
+        const originalPrice = Number(rawPrice) || 0;
+        const discountAmount = Math.round(originalPrice * discountPercentage / 100);
+        const finalAmount = originalPrice - discountAmount;
 
-formData.forEach((value, key) => {
-    params.append(key, value);
-});
+        formData.append('packageName', packageName);
+        formData.append('originalPrice', String(originalPrice));
+        formData.append('discountPercentage', String(discountPercentage));
+        formData.append('discountAmount', String(discountAmount));
+        formData.append('finalAmount', String(finalAmount));
+        formData.append('appliedReferralCode', appliedReferralCode);
+        formData.append('formType', 'PG');
+        formData.append('timestamp', new Date().toISOString());
 
-fetch(scriptURL, {
-    method: 'POST',
-    body: params,
-    mode: 'no-cors'
-})
-.then(() => {
-    console.log('Form submission request sent.');
-    resolve({ result: 'sent' });
-})
-.catch(error => {
-    console.error('Submission error:', error);
-    reject(error);
-});
- });
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
 
+        const params = new URLSearchParams();
+
+        formData.forEach((value, key) => {
+            params.append(key, value);
+        });
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: params,
+            mode: 'no-cors'
+        })
+        .then(() => {
+            console.log('Submission request sent.');
+            resolve({ result: 'sent' });
+        })
+        .catch(error => {
+            console.error('Submission error:', error);
+            reject(error);
+        });
+
+    });
 }
 
 // Live validation
