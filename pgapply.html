@@ -512,10 +512,29 @@ function submitFormToGoogleSheets(){
   // Keep the existing Apps Script endpoint unchanged.
   const scriptURL='https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
 
-  fetch(scriptURL,{method:'POST',body:formData})
-   .then(response=>response.json())
-   .then(data=>{if(data.result==='success')resolve(data);else reject(new Error(data.message||'Google Sheet error'));})
-   .catch(reject);
+  // Keep the existing Apps Script endpoint
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwVrQjSnY-9jA-JJnMRo9HEmD5gNAbMjS_pyGfTJJlmh8Dp7W7AtsnxF-UuW7AhunGvvg/exec';
+
+// Convert FormData into URL-encoded data
+const params = new URLSearchParams();
+
+formData.forEach((value, key) => {
+    params.append(key, value);
+});
+
+fetch(scriptURL, {
+    method: 'POST',
+    body: params,
+    mode: 'no-cors'
+})
+.then(() => {
+    console.log('Form submission request sent.');
+    resolve({ result: 'sent' });
+})
+.catch(error => {
+    console.error('Submission error:', error);
+    reject(error);
+});
  });
 
 }
