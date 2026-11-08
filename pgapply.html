@@ -203,8 +203,7 @@ footer{background:var(--blue);color:#fff;padding:35px 20px 18px}
         <option>MD (Psychiatry)</option><option>MS (General Surgery)</option>
         <option>MS (Orthopaedics)</option><option>MS (Ophthalmology)</option>
         <option>MS (ENT)</option><option>MS (Obstetrics &amp; Gynaecology)</option>
-        <option>DNB</option><option>Diploma</option><option>Other</option>
-       </optgroup>
+         </optgroup>
        option value="NEET MDS">NEET MDS</option>
        <optgroup label="MDS Courses">
         <option>MDS (Orthodontics)</option><option>MDS (Oral Surgery)</option>
@@ -224,34 +223,7 @@ footer{background:var(--blue);color:#fff;padding:35px 20px 18px}
       <div class="error-message" id="firstPriorityError">Please select your first priority.</div>
      </div>
     </div>
-    <div class="priority-box">
-     <h3>2nd Priority</h3>
-     <div class="form-group">
-      <label for="secondPriority">Select Course</label>
-      <select id="secondPriority" name="secondPriority">
-       <option value="None">None</option>
-       <option value="Not Confirm">Not Confirm</option>
-       <optgroup label="MD-MS Courses">
-        <option>MD (General Medicine)</option><option>MD (Paediatrics)</option>
-        <option>MD (Radio-Diagnosis)</option><option>MD (Dermatology)</option>
-        <option>MD (Psychiatry)</option><option>MS (General Surgery)</option>
-        <option>MS (Orthopaedics)</option><option>MS (Ophthalmology)</option>
-        <option>MS (ENT)</option><option>MS (Obstetrics &amp; Gynaecology)</option>
-        <option>DNB</option><option>Diploma</option><option>Other</option>
-       </optgroup>
-       <option value="NEET MDS">NEET MDS</option>
-       <optgroup label="MDS Courses">
-        <option>MDS (Orthodontics)</option><option>MDS (Oral Surgery)</option>
-        <option>MDS (Periodontics)</option><option>MDS (Prosthodontics)</option>
-        <option>MDS (Pedodontics)</option><option>MDS (Endodontics)</option>
-        <option>MDS (OMR)</option><option>MDS (Oral Patho)</option>
-        <option>MDS (Public Health)</option>
-       </optgroup>
-      </select>
-     </div>
-    </div>
-   </div>
-
+ 
    <div class="form-group">
     <label for="neetRank">NEET Rank (Optional)</label>
     <input type="number" id="neetRank" name="neetRank" min="1" inputmode="numeric">
@@ -321,8 +293,7 @@ footer{background:var(--blue);color:#fff;padding:35px 20px 18px}
    <div class="price-summary">
     <div class="price-row"><span>Counselling Type:</span><span id="confirmCounselling">-</span></div>
     <div class="price-row"><span>1st Priority:</span><span id="confirmFirstPriority">-</span></div>
-    <div class="price-row"><span>2nd Priority:</span><span id="confirmSecondPriority">-</span></div>
-    <div class="price-row"><span>Selected Package:</span><span id="confirmPackage">-</span></div>
+        <div class="price-row"><span>Selected Package:</span><span id="confirmPackage">-</span></div>
     <div class="price-row total"><span>Amount to Pay:</span><span id="confirmAmount">TBD</span></div>
    </div>
    <div class="form-group">
@@ -440,7 +411,6 @@ function updateConfirmationSummary(){
  const selected=document.querySelector('input[name="package"]:checked');
  $('confirmCounselling').textContent=$('counsellingType').value||'-';
  $('confirmFirstPriority').textContent=$('firstPriority').value||'-';
- $('confirmSecondPriority').textContent=$('secondPriority').value||'None';
  if(selected){
   const [name,price]=selected.value.split('|');
   const final=Number(price)-Math.round(Number(price)*discountPercentage/100);
